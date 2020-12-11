@@ -6,11 +6,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인페이지</title>
 </head>
 <body>
 
-	<jsp:forward page="WEB-INF/views/mainPage.jsp"/>
+
+
+
+
+
 
 </body>
 </html>
