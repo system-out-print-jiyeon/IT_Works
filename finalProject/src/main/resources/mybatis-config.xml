@@ -8,13 +8,14 @@
 	
 	<typeAliases>
 		<typeAlias type="com.kh.spring.member.model.vo.ApprovalDocument" alias="AppDoc"/>
-		
+		<typeAlias type="com.kh.ITWorks.member.model.vo.Member" alias="Member"/>
 	</typeAliases>
 	
 	
 	
 	<mappers>
 		<mapper resource="/mappers/approval-mapper.xml"/>
+		<mapper resource="/mappers/member-mapper.xml"/>
 	</mappers>
 	
 </configuration>
