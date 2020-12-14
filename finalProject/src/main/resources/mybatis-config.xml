@@ -7,7 +7,7 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="com.kh.spring.member.model.vo.ApprovalDocument" alias="AppDoc"/>
+		<typeAlias type="com.kh.ITWorks.approval.model.vo.ApprovalDocument" alias="AppDoc"/>
 		<typeAlias type="com.kh.ITWorks.member.model.vo.Member" alias="Member"/>
 	</typeAliases>
 	
