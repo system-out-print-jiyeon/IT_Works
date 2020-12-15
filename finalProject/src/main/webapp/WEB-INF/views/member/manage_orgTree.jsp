@@ -48,52 +48,6 @@
    
             }
 
-/* 사이드바 */
-.sidebar{
-    
-    justify-content: space-between;
-    padding: 8px 24px;
-    width: 300px;
-    height: 100vh;
-    background-color: #e7e1e1;
-    position: fixed;
-    
-    
-
-}
-
-
-.sidebar_menu{
-    align-items: center;
-    list-style: none;
-}  
-
-.sidebar_menu a{
-    display: block;
-    text-decoration: none;
-    line-height: 40px;
-    color: rgb(107, 102, 102);
-    font-size: 20px;
-    padding-left: 40px;
-    box-sizing: border-box;
-    
-}
-
-.sidebar_menu a:hover{
-    color: rgb(39, 37, 37);
-}
-
-
-.menu1 li{ 
-    padding-left: 60px;
-    list-style: none; 
-}
-
-.profile:hover{cursor: pointer;}
-.profile .menu1{display: none;}
-
-
-
 /* 콘텐츠 영역 */
 
 .content{
@@ -183,37 +137,10 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
 </style>
 </head>
 <body>
+	<jsp:include page="../common/navbar.jsp"/>
 	<div class="wrap">
         
-        <div class="sidebar">
-
-                <br>
-                <h2 align="center">사원 관리</h2>
-                <br><br>
-
-            <div class="sidebar_menu">
-                <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>사원 리스트</a>
-                    <ul class="menu1">
-                        <li><a href="#">사원리스트 조회</a></li>
-                        <li><a href="#">사원 상세 조회</a></li>
-                    </ul>
-                </li>
-                <br><br>
-                <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>조직도</a>
-                    <ul class="menu1">
-                        <li><a href="#">조직도 조회</a></li>
-                    </ul>
-                </li>
-                <br><br>
-                <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>* 수정/삭제</a>
-                    <ul class="menu1">
-                        <li><a href="#">사원 리스트</a></li>
-                        <li><a href="#">사원 등록</a></li>
-                    </ul>
-                </li>
-            </div>
-        
-        </div>
+        <jsp:include page="../common/sideBar_manage.jsp"/>
 
         <div class="content">
             <div class="content_1">

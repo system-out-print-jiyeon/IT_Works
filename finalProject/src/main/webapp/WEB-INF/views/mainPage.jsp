@@ -10,7 +10,9 @@
 </head>
 <body>
 
-	<h1> 메인페이지 나오는지 테스트 </h1>
+	<a href="manageList.ma">사원 관리</a>
+
+	
 
 
 
