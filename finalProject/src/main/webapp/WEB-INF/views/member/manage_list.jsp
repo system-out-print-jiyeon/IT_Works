@@ -220,126 +220,24 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>정규직</td>
-                            <td>no1234</td>
-                            <td>ㄴㄴㄴ</td>
-                            <td>개발</td>
-                            <td>사원</td>
-                            <td>1993-03-11</td>
-                            <td>2019-03-29</td>
-                            <td>010-0000-0000</td>
-                            <td>sss@naver.com</td>
-                            <td>재직</td>
-                        </tr>
-                        <tr>
-                            <td>정규직</td>
-                            <td>no1234</td>
-                            <td>ㄴㄴㄴ</td>
-                            <td>개발</td>
-                            <td>사원</td>
-                            <td>1993-03-11</td>
-                            <td>2019-03-29</td>
-                            <td>010-0000-0000</td>
-                            <td>sss@naver.com</td>
-                            <td>재직</td>
-                        </tr>
-                        <tr>
-                            <td>정규직</td>
-                            <td>no1234</td>
-                            <td>ㄴㄴㄴ</td>
-                            <td>개발</td>
-                            <td>사원</td>
-                            <td>1993-03-11</td>
-                            <td>2019-03-29</td>
-                            <td>010-0000-0000</td>
-                            <td>sss@naver.com</td>
-                            <td>재직</td>
-                        </tr>
-                        <tr>
-                            <td>정규직</td>
-                            <td>no1234</td>
-                            <td>ㄴㄴㄴ</td>
-                            <td>개발</td>
-                            <td>사원</td>
-                            <td>1993-03-11</td>
-                            <td>2019-03-29</td>
-                            <td>010-0000-0000</td>
-                            <td>sss@naver.com</td>
-                            <td>재직</td>
-                        </tr>
-                        <tr>
-                            <td>정규직</td>
-                            <td>no1234</td>
-                            <td>ㄴㄴㄴ</td>
-                            <td>개발</td>
-                            <td>사원</td>
-                            <td>1993-03-11</td>
-                            <td>2019-03-29</td>
-                            <td>010-0000-0000</td>
-                            <td>sss@naver.com</td>
-                            <td>재직</td>
-                        </tr>
-                        <tr>
-                            <td>정규직</td>
-                            <td>no1234</td>
-                            <td>ㄴㄴㄴ</td>
-                            <td>개발</td>
-                            <td>사원</td>
-                            <td>1993-03-11</td>
-                            <td>2019-03-29</td>
-                            <td>010-0000-0000</td>
-                            <td>sss@naver.com</td>
-                            <td>재직</td>
-                        </tr>
-                        <tr>
-                            <td>정규직</td>
-                            <td>no1234</td>
-                            <td>ㄴㄴㄴ</td>
-                            <td>개발</td>
-                            <td>사원</td>
-                            <td>1993-03-11</td>
-                            <td>2019-03-29</td>
-                            <td>010-0000-0000</td>
-                            <td>sss@naver.com</td>
-                            <td>재직</td>
-                        </tr>
-                        <tr>
-                            <td>정규직</td>
-                            <td>no1234</td>
-                            <td>ㄴㄴㄴ</td>
-                            <td>개발</td>
-                            <td>사원</td>
-                            <td>1993-03-11</td>
-                            <td>2019-03-29</td>
-                            <td>010-0000-0000</td>
-                            <td>sss@naver.com</td>
-                            <td>재직</td>
-                        </tr>
-                        <tr>
-                            <td>정규직</td>
-                            <td>no1234</td>
-                            <td>ㄴㄴㄴ</td>
-                            <td>개발</td>
-                            <td>사원</td>
-                            <td>1993-03-11</td>
-                            <td>2019-03-29</td>
-                            <td>010-0000-0000</td>
-                            <td>sss@naver.com</td>
-                            <td>재직</td>
-                        </tr>
-                        <tr>
-                            <td>정규직</td>
-                            <td>no1234</td>
-                            <td>ㄴㄴㄴ</td>
-                            <td>개발</td>
-                            <td>사원</td>
-                            <td>1993-03-11</td>
-                            <td>2019-03-29</td>
-                            <td>010-0000-0000</td>
-                            <td>sss@naver.com</td>
-                            <td>재직</td>
-                        </tr>
+                        <c:forEach var="m" items="${ list }">
+	                        <tr>
+	                            <td>구분</td>
+	                            <td>${ m.memNo }</td>
+	                            <td>${ m.memName }</td>
+	                            <td>부서</td>
+	                            <td>직책</td>
+	                            <td>${ m.birth }</td>
+	                            <td>입사일</td>
+	                            <td>${ m.phone }</td>
+	                            <td>${ m.email }</td>
+	                            <td>
+	                            	<c:if test="${ m.status == 'Y' }">
+	                            		재직중
+	                            	</c:if>
+	                            </td>
+	                        </tr>
+                    	</c:forEach>
                     </tbody>
                     </table>
                 </div>
@@ -352,16 +250,32 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
 
             <br>
             <div class="content_3">
-                <p>사원 수 : XXX </p>
+                <p>사원 수 : ${ count } 명 </p>
             </div>
             <br>
             <div class="w3-bar">
-                <a href="#" class="w3-button">&laquo;</a>
-                <a href="#" class="w3-button">1</a>
-                <a href="#" class="w3-button">2</a>
-                <a href="#" class="w3-button">3</a>
-                <a href="#" class="w3-button">4</a>
-                <a href="#" class="w3-button">&raquo;</a>
+            	<c:choose>
+	            	<c:when test="${ pi.currentPage eq 1 }">
+		                <a href="#" class="w3-button" disabled>&laquo;</a>
+	            	</c:when>
+	            	<c:otherwise>
+	            		<a href="manageList.ma?current=${ pi.currentPage-1 }" class="w3-button">&laquo;</a>
+	            	</c:otherwise>
+            	</c:choose>
+                
+                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+	                <a href="manageList.ma?current=${ p }" class="w3-button">${ p }</a>
+                </c:forEach>
+                
+                <c:choose>
+	                <c:when test="${ pi.currentPage eq pi.maxPage }">
+		                <a href="manageList.ma?current=${ pi.currentPage+1 }" class="w3-button">&raquo;</a>
+	                </c:when>
+	                <c:otherwise>
+	                	<a href="#" class="w3-button" disabled>&raquo;</a>
+	                </c:otherwise>
+                </c:choose>
+                
             </div>
             <br><br><br><br>
         </div>
