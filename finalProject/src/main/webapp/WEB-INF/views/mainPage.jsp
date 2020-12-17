@@ -74,15 +74,15 @@
         <div class="content">
             <p align="center">IT Works</p>
             <div class="loginArea">
-                <form action="" method="post">
+                <form action="login.me" method="post">
                     <table width="100%">
                             <tr align="center">
                                 <td width="5"><i class="far fa-user" style="font-size:36px;"></i></td>
-                                <td colspan="2"><input type="text" name="userId" id="userId" placeholder="아이디를 입력하세요" required></td>
+                                <td colspan="2"><input type="text" name="memId" id="memId" placeholder="아이디를 입력하세요" required></td>
                             </tr>
                             <tr align="center">
                                 <td><i class="fas fa-key" style="font-size:36px;"></i></td>
-                                <td colspan="2"><input type="password" name="userPwd" id="userPwd" placeholder="비밀번호를 입력하세요" required></td>
+                                <td colspan="2"><input type="password" name="memPwd" id="memPwd" placeholder="비밀번호를 입력하세요" required></td>
                             </tr>
                             <tr>
                                 <td colspan="2">
