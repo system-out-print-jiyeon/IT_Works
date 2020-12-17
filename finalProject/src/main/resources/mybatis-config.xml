@@ -16,6 +16,7 @@
 	<mappers>
 		<mapper resource="/mappers/approval-mapper.xml"/>
 		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/attendance-mapper.xml"/>
 	</mappers>
 	
 </configuration>
