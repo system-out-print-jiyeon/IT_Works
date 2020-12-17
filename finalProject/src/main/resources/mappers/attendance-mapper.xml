@@ -45,9 +45,8 @@
 	     , DEPT_CODE
 	     , JOB_CODE
 	 FROM EMPLOYEE
-	WHERE MEM_ID = #{userId}
-	  AND USER_PWD = #{userPwd}
-	   AND STATUS = 'Y'
+	WHERE MEM_ID = #{memId}
+	  AND MEM_STATUS = 'Y'
 </select>
 
 
