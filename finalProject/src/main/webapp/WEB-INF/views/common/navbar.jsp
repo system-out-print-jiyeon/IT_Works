@@ -6,11 +6,71 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../../css/navbar.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+.navbar_Wrapper {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.navbar_1200px {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1200px;
+    height: 100%;
+
+}
+
+.navbar_1200px div {
+    display: flex;
+    justify-content: center;
+
+}
+
+.emptyWrapper {
+    margin-left: 50px;
+}
+
+.emptyWrapper div {
+    display: flex;
+    align-items: center;
+}
+
+.MainLogo {
+    display: flex;
+    align-items: center;
+}
+
+.MainLogo>div a {
+    font-size: 3rem;
+    font-family: 'Amiri', serif;
+    text-decoration: none;
+    color: rgb(57, 146, 230);
+
+}
+
+
+.userInfoTable tr td {
+    padding-left: 10px;
+}
+</style>
 </head>
 <body>
 	<nav class="navbar_Wrapper">
@@ -24,9 +84,18 @@
             <div class="infoBar">
                 <table class="userInfoTable">
                     <tr>
-                        <td><i class="material-icons" style="font-size:25px">person_outline</i></td>
-                        <td>OOO 님</td>
-                        <td><i class="fa fa-angle-down" style="font-size:24px"></i></td>
+                    	<c:choose>
+	                    	<c:when test="${ !empty loginUser }">
+		                        <td><i class="material-icons" style="font-size:25px">person_outline</i></td>
+		                        <td>OOO 님</td>
+		                        <td><i class="fa fa-angle-down" style="font-size:24px"></i></td>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<td></td>
+	                    		<td></td>
+	                    		<td></td>
+	                    	</c:otherwise>
+                    	</c:choose>
                     </tr>
                 </table>
             </div>
