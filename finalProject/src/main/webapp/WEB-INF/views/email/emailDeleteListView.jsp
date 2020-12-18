@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<!-- 부트스트랩 -->
+<!-- 부트스트랩 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -179,10 +179,12 @@
         color:white;
     }
 }
+
 </style>
 </head>
 <body>
-	<div class="em_wrap">
+<body>
+    <div class="em_wrap">
 
         <!-- 상단바 include -->
 
@@ -218,8 +220,8 @@
                     <div class="submit_btn">
                         <input type="checkbox" id="checkall"> 
                         <label class="update" for="checkall">전체선택</label>
-                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("important");'><i class="fa fa-star"></i>중요</button></span>
-                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("delete");'><i class="fa fa-trash"></i>삭제</button></span>             
+                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("return");'><i class="fa fa-undo"></i>복구</button></span>
+                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("delete");'><i class="fa fa-trash"></i>영구삭제</button></span>
                     </div>
                     <table class="table">
                         <tbody>
@@ -242,76 +244,6 @@
                                 <td width="15%">user01@naver.com</td>
                                 <td width="2%" class="icon-none"><i class="fa fa-download"></i></td>
                                 <td>안녕하세요 김길순입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
                                 <td width="15%">2020-12-13</td>
                             </tr>
                             <tr>
@@ -375,25 +307,27 @@
     });
     </script>
 
-    <!-- 중요/삭제 클릭시 action -->
+    <!-- 복구/영구삭제 클릭시 action -->
     <script>
 
         function btn_click(str){                             
-            if(str=="important"){  // 중요메일 등록
+            if(str=="return"){  // 복구
 
-                alert("중요메일 등록이 완료되었습니다.");
+                alert("메일을 복구하였습니다.");
 
-                form_mail.action="important.em";
+                form_mail.action="return.em";   
 
-            } else if(str=="delete"){   // 메일 삭제
+            } else if(str=="delete"){   // 영구삭제
 
-                alert("메일을 삭제하였습니다.");
-                
-                form_mail.action="delete.em";  
-
+                var result = confirm("정말로 삭제하시겠습니까? (영구삭제시 이메일을 복구할수 없습니다.)");
+                    
+                if(result == true){
+                        form_mail.action="delete.em";  
+                }else{
+                    // 영구삭제 취소
+                }
             }
         }  
-
     </script>
 </body>
 </html>

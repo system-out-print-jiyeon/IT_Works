@@ -107,15 +107,10 @@
     width:100%;
     margin-left:300px;
 }
-.em_content_center>table{
-    width: 95%;
-    height: 80%;
-    text-align: center;
-}
-.en_content_center{
+.em_content_center{
     padding:20px;
 }
-.en_content_center tbody>tr{
+.em_content_center tbody>tr{
     font-size:17px;
     color:gray;
 }
@@ -207,10 +202,10 @@ input[type="submit"]:hover{
         </div>
 
         <div class="em_content">
-            <div clss="en_content_top">
+            <div clss="em_content_top">
 
             </div>
-            <div class="en_content_center">
+            <div class="em_content_center">
                 <form action="" method="post" enctype="multipart/form-data">
                     <table class="table">
                         <tr>
