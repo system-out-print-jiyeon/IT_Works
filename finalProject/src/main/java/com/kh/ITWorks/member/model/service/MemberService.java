@@ -10,6 +10,8 @@ public interface MemberService {
 	int selectListCount();
 	ArrayList<Member> selectManageList(PageInfo pi);
 	
+	Member detailView(int memNo);
+	
 	
 	
 }

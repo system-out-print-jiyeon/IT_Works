@@ -25,7 +25,7 @@ public class MemberController {
 	public String selectManageList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, Model model) {
 		
 		int listCount = mService.selectListCount();
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 		ArrayList<Member> list = mService.selectManageList(pi);
 		
 		model.addAttribute("count", listCount);
@@ -33,6 +33,18 @@ public class MemberController {
 		model.addAttribute("list", list);
 		
 		return "member/manage_list";
+	}
+	
+	@RequestMapping("detail.ma")
+	public String detailView(int memNo, Model model) {
+		
+		Member m = mService.detailView(memNo);
+		
+		model.addAttribute("m", m);
+		
+		System.out.println(m);
+		
+		return "member/manage_detailForm";
 	}
 	
 	@RequestMapping("orgTree.ma")

@@ -20,7 +20,9 @@
 		<result column="modify_date" property="modifyDate"/>
 		<result column="annual_leave" property="annualLeave"/>
 		<result column="dept_code" property="deptCode"/>	
-		<result column="job_code" property="jobCode"/>			
+		<result column="job_code" property="jobCode"/>
+		<result column="job_name" property="jobName"/>
+		<result column="dept_name" property="deptName"/>			
 	</resultMap>
 
 	<select id="selectMemberList" resultMap="memberResultSet">
@@ -41,9 +43,41 @@
 			  , mem_enroll
 			  , modify_date
 			  , annual_leave
-			  , dept_code
-			  , job_code
+              , dept_name
+              , job_name
 		  from employee
+          join department using(dept_code)
+          join jobgrade using(job_code)
+         order 
+            by mem_no asc
+	</select>
+	
+	<select id="detailView" 
+			resultMap="memberResultSet"
+			parameterType="_int">
+		select
+			    mem_no
+			  , mem_id
+			  , mem_pwd
+			  , mem_img
+			  , mem_name
+			  , mem_phone
+			  , mem_email
+			  , mem_gender
+			  , mem_birth
+			  , mem_address
+			  , mem_certification
+			  , mem_career
+			  , mem_status
+			  , mem_enroll
+			  , modify_date
+			  , annual_leave
+              , dept_name
+              , job_name
+		  from employee
+          join department using(dept_code)
+          join jobgrade using(job_code)
+         where mem_no = #{memNo}
 	</select>
 	
 	<select id="selectListCount" resultType="_int">

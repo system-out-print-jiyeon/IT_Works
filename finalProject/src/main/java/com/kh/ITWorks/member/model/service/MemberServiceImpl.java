@@ -28,4 +28,9 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.selectManageList(sqlSession, pi);
 	}
 
+	@Override
+	public Member detailView(int memNo) {		
+		return mDao.detailView(sqlSession, memNo);
+	}
+
 }

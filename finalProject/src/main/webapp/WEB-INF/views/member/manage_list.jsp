@@ -222,29 +222,43 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                     <tbody>
                         <c:forEach var="m" items="${ list }">
 	                        <tr>
-	                            <td>구분</td>
-	                            <td>${ m.memNo }</td>
+	                            <td>
+	                            	<c:choose>
+		                            	<c:when test="${ m.jobName == 'j0' }">
+		                            		계약직
+		                            	</c:when>
+	                            		<c:otherwise>
+	                            			정규직
+	                            		</c:otherwise>
+	                            	</c:choose>
+	                            </td>
+	                            <td class="memNo">${ m.memNo }</td>
 	                            <td>${ m.memName }</td>
-	                            <td>${ m.deptCode }</td>
-	                            <td>${ m.jobCode }</td>
+	                            <td>${ m.deptName }</td>
+	                            <td>${ m.jobName }</td>
 	                            <td>${ m.birth }</td>
 	                            <td>${ m.enrollDate }</td>
 	                            <td>${ m.phone }</td>
 	                            <td>${ m.email }</td>
 	                            <td>
-	                            	<c:if test="${ m.status == 'Y' }">
-	                            		재직중
-	                            	</c:if>
+	                            	<c:choose>
+		                            	<c:when test="${ m.status == 'Y' }">
+		                            		재직중
+		                            	</c:when>
+		                            	<c:otherwise>
+		                            		재직중아님
+		                            	</c:otherwise>	                            	
+	                            	</c:choose>
 	                            </td>
 	                        </tr>
                     	</c:forEach>
                     </tbody>
                     </table>
                 </div>
-
+                
                 <script>
                     $(".content_2 tbody>tr").click(function(){
-                        alert("리스트 상세보기");
+                        location.href="detail.ma?memNo=" + $(this).children(".memNo").text();
                     })
                 </script>
 
