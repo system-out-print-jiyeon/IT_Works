@@ -225,10 +225,10 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
 	                            <td>구분</td>
 	                            <td>${ m.memNo }</td>
 	                            <td>${ m.memName }</td>
-	                            <td>부서</td>
-	                            <td>직책</td>
+	                            <td>${ m.deptCode }</td>
+	                            <td>${ m.jobCode }</td>
 	                            <td>${ m.birth }</td>
-	                            <td>입사일</td>
+	                            <td>${ m.enrollDate }</td>
 	                            <td>${ m.phone }</td>
 	                            <td>${ m.email }</td>
 	                            <td>

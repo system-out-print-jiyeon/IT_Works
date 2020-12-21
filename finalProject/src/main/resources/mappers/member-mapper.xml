@@ -18,7 +18,9 @@
 		<result column="mem_status" property="status"/>
 		<result column="mem_enroll" property="enrollDate"/>
 		<result column="modify_date" property="modifyDate"/>
-		<result column="annual_leave" property="annualLeave"/>		
+		<result column="annual_leave" property="annualLeave"/>
+		<result column="dept_code" property="deptCode"/>	
+		<result column="job_code" property="jobCode"/>			
 	</resultMap>
 
 	<select id="selectMemberList" resultMap="memberResultSet">
@@ -39,6 +41,8 @@
 			  , mem_enroll
 			  , modify_date
 			  , annual_leave
+			  , dept_code
+			  , job_code
 		  from employee
 	</select>
 	
