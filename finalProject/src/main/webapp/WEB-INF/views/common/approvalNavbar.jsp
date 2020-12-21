@@ -173,7 +173,7 @@
             <a href="" class="logoText">IT Works</a>
         </div>
         <div class="category" >
-            전자결재&nbsp;<i class="fas fa-sort-down">&nbsp;</i>
+            오피스 홈&nbsp;<i class="fas fa-sort-down">&nbsp;</i>
         </div>
         <div class="searchBox">
             <input class="searchTxt" type="text" name="" id="" placeholder="문서 검색" width="500px" height="50px">
@@ -186,7 +186,7 @@
     </nav>
 
     <!-- 서브메뉴바 -->
-    <div class="submenuList">
+    <div class="submenuList" style="display: none;">
         
         <a href=""><div><p class="listCategory"><i class="far fa-envelope"></i><br> 메일</p></div></a>
         <a href=""><div><p class="listCategory"><i class="far fa-calendar-alt"></i><br> 캘린더</p></div></a>
