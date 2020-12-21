@@ -104,7 +104,7 @@
             <li class="profile" ><a class="btn">근태관리</a>
                 
             </li>
-            <li class="profile" ><a class="btn">전자결재</a>
+            <li class="profile" ><a class="btn" href="approval.me">전자결재</a>
                 
             </li>
             <br>

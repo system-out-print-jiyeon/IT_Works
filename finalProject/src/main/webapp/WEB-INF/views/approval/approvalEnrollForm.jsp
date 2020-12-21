@@ -135,7 +135,7 @@
 .approvalTable{
     border-collapse: collapse;
     width: 800px;
-    height: 500px;
+    height: 200px;
 }
 
 .approvalTable th{
@@ -363,6 +363,7 @@
 </head>
 <body>
 
+	<jsp:include page="../common/approvalNavbar.jsp"/>
 
 <div class="wrap">
         
@@ -372,28 +373,28 @@
 
                 <br><br>
             <div class="writeButton">
-                <button class="button1">작성하기</button>
+              	 <a href="approval.me"><button class="button1">작성하기</button></a>
             </div>
                 <br><br><br>
 
             <div class="sidebar_menu">
                 <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>진행 중인 문서</a>
                     <ul class="menu1">
-                        <li><a href="#">전체</a></li>
-                        <li><a href="#">대기</a></li>
-                        <li><a href="#">확인</a></li>
-                        <li><a href="#">예정</a></li>
-                        <li><a href="#">진행</a></li>
+                        <li><a href="approval.do">전체</a></li>
+                        <li><a href="approval.do">대기</a></li>
+                        <li><a href="approval.do">확인</a></li>
+                        <li><a href="approval.do">예정</a></li>
+                        <li><a href="approval.do">진행</a></li>
                     </ul>
                 </li>
                 <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>문서함</a>
                     <ul class="menu1">
-                        <li><a href="#">전체</a></li>
-                        <li><a href="#">기안</a></li>
-                        <li><a href="#">결제</a></li>
-                        <li><a href="#">수신</a></li>
-                        <li><a href="#">회람/참조</a></li>
-                        <li><a href="#">반려</a></li>
+                        <li><a href="approval.do">전체</a></li>
+                        <li><a href="approval.do">기안</a></li>
+                        <li><a href="approval.do">결제</a></li>
+                        <li><a href="approval.do">수신</a></li>
+                        <li><a href="approval.do">회람/참조</a></li>
+                        <li><a href="approval.do">반려</a></li>
                     </ul>
                 </li>
                 <li><a href=""><i class="fas fa-cog"></i>&nbsp;관리자 설정</a></li>
@@ -483,31 +484,7 @@
                     <td class="thirdCell"></td>
                     
                 </tr>
-                <tr>
-                    <th rowspan="3" class="mainTitle">합의</th>
-                    <td rowspan="3" colspan="3"></td>
-                    
-                    <th rowspan="3" class="mainTitle">재무합의</th>
-                    <th class="firstCell"></th>
-                    <th class="firstCell"></th>
-                    <th class="firstCell"></th>
-                </tr>
-                <tr>
-                    
-                   
-                  
-                    <td class="secondCell"></td>
-                    <td class="secondCell"></td>
-                    <td class="secondCell"></td>
-                </tr>
-                <tr>
-                   
-                    
-                    
-                    <td class="thirdCell"></td>
-                    <td class="thirdCell"></td>
-                    <td class="thirdCell"></td>
-                </tr>
+                
                 <tr>
                     <th class="secondTitle">참조</th>
                     <td colspan="7"></td>

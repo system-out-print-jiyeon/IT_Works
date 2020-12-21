@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,10 +175,16 @@
 <!-- 탑 네비바-->
     <nav class="navBar">
         <div class="navLogo">
-            <a href="" class="logoText">IT Works</a>
+            <a href="login.me" class="logoText">IT Works</a>
         </div>
         <div class="category" >
-            오피스 홈&nbsp;<i class="fas fa-sort-down">&nbsp;</i>
+        
+      	 <% String url = request.getRequestURI(); %>
+        
+           <% if(url.contains("approval")){ %> 전자결재 <% } 
+           else  {%> 오피스 홈 <% } %>
+            
+            &nbsp;<i class="fas fa-sort-down">&nbsp;</i>
         </div>
         <div class="searchBox">
             <input class="searchTxt" type="text" name="" id="" placeholder="문서 검색" width="500px" height="50px">
@@ -185,7 +192,7 @@
         </div>
         <a href=""><span class="bell"><i class="fas fa-bell"></i></span></a>
         <div class="personalInfo">
-           <a href="" class="infoText"><span><i class="fas fa-user-circle fa-2x"></i></span>&nbsp;<span class="username">홍길동&nbsp;<i class="fas fa-sort-down"></i></span></a>
+           <a href="" class="infoText"><span><i class="fas fa-user-circle fa-2x"></i></span>&nbsp;<span class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
         </div>
     </nav>
 
@@ -202,7 +209,7 @@
         <a href=""><div><p class="listCategory"><i class="fas fa-business-time"></i><br>회의실 예약</p></div></a>
         <a href="manage.me"><div><p class="listCategory"><i class="fas fa-users"></i><br>인사관리</p></div></a>
         <a href=""><div><p class="listCategory"><i class="far fa-id-badge"></i><br>근태관리</p></div></a>
-        <a href=""><div><p class="listCategory"><i class="fas fa-file-signature"></i><br>전자결재</p></div></a>
+        <a href="approval.me"><div><p class="listCategory"><i class="fas fa-file-signature"></i><br>전자결재</p></div></a>
     
     </div>
 
