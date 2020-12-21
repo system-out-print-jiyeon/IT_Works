@@ -50,6 +50,7 @@
           font-size: 30px;
           margin-right: auto;
           margin-left: 30px;
+          position: relative;
           
           
         }
@@ -127,12 +128,15 @@
         width: 500px;
         height: 260px;
         border: 1px solid rgb(143, 138, 138);
+        background-color: white;
         display:flex;
         flex-wrap: wrap;
         text-align: center;
         justify-content: center;
+        position: absolute;
         z-index: 1000;
         margin-left: 280px;
+        
         
         
         

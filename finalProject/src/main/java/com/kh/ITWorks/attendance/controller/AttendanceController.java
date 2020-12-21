@@ -28,7 +28,7 @@ public class AttendanceController {
 		
 		if(loginUser != null /*&& bcryptPasswordEncoder.matches(m.getMemPwd(),(loginUser.getMemPwd())*/) {
 			session.setAttribute("loginUser", loginUser);
-			mv.setViewName("redirect:/");
+			mv.setViewName("mainPage2");
 
 		}else {
 			mv.addObject("errorMsg", "로그인 실패! 다시 시도해주세요");

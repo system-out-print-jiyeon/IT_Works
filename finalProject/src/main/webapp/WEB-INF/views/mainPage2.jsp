@@ -12,10 +12,9 @@
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     
     <style>
-*{  
+*{   
      margin: 0;
      padding: 0;
-     
      box-sizing: border-box;
  }
 
@@ -44,7 +43,7 @@
 .sidebar_menu{
     align-items: center;
     list-style: none;
-    padding-top: 100px;
+    padding-top: 30px;
     
     
 }  
