@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private BCryptPasswordEncoder pwdEncoder;
 	
 	
 	@RequestMapping("manageList.ma")
@@ -75,12 +79,22 @@ public class MemberController {
 	}
 	
 	@RequestMapping("memberEnroll.ma")
-	public void memberEnroll(Member m, Model model, HttpSession session) {
-		System.out.println(m);
+	public String memberEnroll(Member m, Model model, HttpSession session) {
+		//System.out.println(m);
+		//System.out.println("암호화 전에 암호 체크용 - " + m.getMemPwd());
+		
+		String encPwd = pwdEncoder.encode(m.getMemPwd());
+		System.out.println(encPwd);
+		m.setMemPwd(encPwd);
 		
 		int result = mService.memberEnroll(m);
 		
-		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "회원가입 성공!");
+			return "redirect:manageList.ma";
+		}else {
+			return "common/errorPage";
+		}
 	}
 	
 	@RequestMapping("update.ma")

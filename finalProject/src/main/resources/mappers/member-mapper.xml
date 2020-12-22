@@ -104,6 +104,8 @@
 			   , MEM_CAREER
 			   , MEM_STATUS
 			   , MEM_ENROLL
+			   , DEPT_CODE
+			   , JOB_CODE
 			  )
 			  VALUES
 			  (  SEQ_ENO.NEXTVAL

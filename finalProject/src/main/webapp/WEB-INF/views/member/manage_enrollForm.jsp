@@ -160,7 +160,7 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                 <h2>신규 사원 등록</h2>
             </div>
             <br><br>
-            <form action="memberEnroll.ma" method="POST" name="enrollForm" id="enrollForm" enctype="multipart/form-data">
+            <form action="memberEnroll.ma" method="POST" name="enrollForm" id="enrollForm">
                 <div class="enroll">
                     <div class="con1">
                             아이디 <input type="text" name="memId" placeholder="사용할 아이디를 입력해주세요" required><br>
@@ -175,32 +175,32 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                     <hr>
                     <div class="con2">
                         <div id="con2">
-                            이름 <input type="text" name="memName" placeholder="이름을 입력해주세요." required>
+            *이름 <input type="text" name="memName" placeholder="이름을 입력해주세요." required>
                             <br><br>
-                            생년월일 <input type="text" name="birth" placeholder="생년월일(YYMMDD)">
+            *생년월일 <input type="text" name="birth" placeholder="생년월일(YYMMDD)" required>
                             <br><br>
                             성별 <select name="gender" id="gender">
-                                <option>--성별 선택 --</option>
+                                <option value="">--성별 선택 --</option>
                                 <option value="M">남(M)</option>
                                 <option value="F">여(F)</option>
                             </select>
                             <br><br>
-                            전화번호 <input type="text" name="phone" placeholder="010)0000-0000" required>
+            *전화번호 <input type="text" name="phone" placeholder="010)0000-0000" required>
                             <br><br>
-                            이메일 <input type="email" name="email" placeholder="ex)aaa@aaaaa.com">
+            *이메일 <input type="email" name="email" placeholder="ex)aaa@aaaaa.com" required>
                             <br>
                         </div>
                         <div class="img" align="center">
                             <div class="profile" id="profile" style="width: 70%; height: 100%; border: 1px dotted gray;">
                         
                             </div>
-                            프로필 이미지 <br>
+                            *프로필 이미지 <br>
                             <input type="file" name="memImg" id="memImg" onchange="preview(this);" required>
                         </div>
                     </div>
                     <div class="con3">
-           	소속 부서 <select name="deptCode" id="deptCode">
-	           			<option>--부서 선택--</option>
+           	*소속 부서 <select name="deptCode" id="deptCode" required>
+	           			<option value="">--부서 선택--</option>
 	           			<option value="D1">개발</option>
 	                    <option value="D2">인사</option>
 	                    <option value="D3">경영지원</option>
@@ -209,8 +209,8 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
            			</select>
            			<br><br>
            			
-           	직급 <select name="jobCode" id="jobCode">
-	           			<option>--직급 선택--</option>
+           	*직급 <select name="jobCode" id="jobCode" required>
+	           			<option value="">--직급 선택--</option>
 	           			<option value="J0">계약직</option>
 	                    <option value="J1">사원</option>
 	                    <option value="J2">대리</option>
@@ -221,7 +221,7 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
 	                    <option value="J7">대표이사</option>
            			</select>
            			<br><br>
-           	입사일 <input type="text" name="enrollDate" placeholder="입사일(YYYY-MM-DD)" required>
+           	*입사일 <input type="text" name="enrollDate" placeholder="입사일(YYYY-MM-DD)" required>
            	<br><br>
            
                         주소 <input type="text" name="address" placeholder="거주지 주소를 입력해주세요.">

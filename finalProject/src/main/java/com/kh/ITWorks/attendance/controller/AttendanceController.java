@@ -17,8 +17,8 @@ public class AttendanceController {
 	@Autowired
 	private AttendanceService aService;
 	
-	//@Autowired
-	//private BCryptPasswordEncoder bcryptPasswordEncoder;
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	
 	@RequestMapping("login.me")
@@ -26,7 +26,7 @@ public class AttendanceController {
 		
 		Member loginUser = aService.loginMember(m);  
 		
-		if(loginUser != null /*&& bcryptPasswordEncoder.matches(m.getMemPwd(),(loginUser.getMemPwd())*/) {
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(),loginUser.getMemPwd())) {
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("mainPage2");
 
