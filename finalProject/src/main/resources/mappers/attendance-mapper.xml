@@ -50,7 +50,7 @@
 	  AND MEM_STATUS = 'Y'
 </select>
 
-<!-- 
+
 <select id="searchId" resultMap="memberResultSet">
  SELECT MEM_ID
    FROM EMPLOYEE
@@ -59,7 +59,7 @@
      AND MEM_PHONE = #{phone}
      AND MEM_STATUS = 'Y'
 </select>
- -->
+
 
 
 

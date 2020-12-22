@@ -29,7 +29,7 @@ public class AttendanceController {
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(),(loginUser.getMemPwd()))) {
 			session.setAttribute("loginUser", loginUser);
-			mv.setViewName("redirect:/"); /*여기 메인페이지로 바꾸기*/
+			mv.setViewName("mainPage2"); 
 
 		}else {
 			mv.addObject("errorMsg", "로그인 실패! 다시 시도해주세요");
@@ -43,7 +43,7 @@ public class AttendanceController {
 	@RequestMapping("logout.at")
 	public String logoutMember(HttpSession session) {
 		session.invalidate();
-		return "redirect:/"; /*첫 로그인페이지로 가기*/
+		return "mainPage";
 	}
 	
 	
