@@ -87,4 +87,42 @@
 		 where mem_status = 'Y'
 	</select>
 	
+	<insert id="memberEnroll" parameterType="Member">
+		insert
+			  into EMPLOYEE
+			  (  MEM_NO
+			   , MEM_ID
+			   , MEM_PWD
+			   , MEM_IMG
+			   , MEM_NAME
+			   , MEM_PHONE
+			   , MEM_EMAIL
+			   , MEM_GENDER
+			   , MEM_BIRTH
+			   , MEM_ADDRESS
+			   , MEM_CERTIFICATION
+			   , MEM_CAREER
+			   , MEM_STATUS
+			   , MEM_ENROLL
+			  )
+			  VALUES
+			  (  SEQ_ENO.NEXTVAL
+			   , #{memId}
+			   , #{memPwd}
+			   , #{memImg}
+			   , #{memName}
+			   , #{phone}
+			   , #{email}
+			   , #{gender}
+			   , #{birth}
+			   , #{address}
+			   , #{certification}
+			   , #{career}
+			   , 'Y'
+			   , #{enrollDate}
+			   , #{deptCode}
+			   , #{jobCode}
+			  )
+	</insert>
+	
 </mapper>

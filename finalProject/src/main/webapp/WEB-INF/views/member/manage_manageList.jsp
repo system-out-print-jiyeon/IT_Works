@@ -193,136 +193,29 @@ th,td{
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><input type="checkbox" class="checked" name="userNo" value="01"></td>
-                                <td>정규직</td>
-                                <td>no1234</td>
-                                <td>ㄴㄴㄴ</td>
-                                <td>개발</td>
-                                <td>사원</td>
-                                <td>1993-03-11</td>
-                                <td>2019-03-29</td>
-                                <td>010-0000-0000</td>
-                                <td>sss@naver.com</td>
-                                <td>재직</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="checked" name="userNo" value="02"></td>
-                                <td>정규직</td>
-                                <td>no1234</td>
-                                <td>ㄴㄴㄴ</td>
-                                <td>개발</td>
-                                <td>사원</td>
-                                <td>1993-03-11</td>
-                                <td>2019-03-29</td>
-                                <td>010-0000-0000</td>
-                                <td>sss@naver.com</td>
-                                <td>재직</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="checked" name="userNo" value="03"></td>
-                                <td>정규직</td>
-                                <td>no1234</td>
-                                <td>ㄴㄴㄴ</td>
-                                <td>개발</td>
-                                <td>사원</td>
-                                <td>1993-03-11</td>
-                                <td>2019-03-29</td>
-                                <td>010-0000-0000</td>
-                                <td>sss@naver.com</td>
-                                <td>재직</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>정규직</td>
-                                <td>no1234</td>
-                                <td>ㄴㄴㄴ</td>
-                                <td>개발</td>
-                                <td>사원</td>
-                                <td>1993-03-11</td>
-                                <td>2019-03-29</td>
-                                <td>010-0000-0000</td>
-                                <td>sss@naver.com</td>
-                                <td>재직</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>정규직</td>
-                                <td>no1234</td>
-                                <td>ㄴㄴㄴ</td>
-                                <td>개발</td>
-                                <td>사원</td>
-                                <td>1993-03-11</td>
-                                <td>2019-03-29</td>
-                                <td>010-0000-0000</td>
-                                <td>sss@naver.com</td>
-                                <td>재직</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>정규직</td>
-                                <td>no1234</td>
-                                <td>ㄴㄴㄴ</td>
-                                <td>개발</td>
-                                <td>사원</td>
-                                <td>1993-03-11</td>
-                                <td>2019-03-29</td>
-                                <td>010-0000-0000</td>
-                                <td>sss@naver.com</td>
-                                <td>재직</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>정규직</td>
-                                <td>no1234</td>
-                                <td>ㄴㄴㄴ</td>
-                                <td>개발</td>
-                                <td>사원</td>
-                                <td>1993-03-11</td>
-                                <td>2019-03-29</td>
-                                <td>010-0000-0000</td>
-                                <td>sss@naver.com</td>
-                                <td>재직</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>정규직</td>
-                                <td>no1234</td>
-                                <td>ㄴㄴㄴ</td>
-                                <td>개발</td>
-                                <td>사원</td>
-                                <td>1993-03-11</td>
-                                <td>2019-03-29</td>
-                                <td>010-0000-0000</td>
-                                <td>sss@naver.com</td>
-                                <td>재직</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>정규직</td>
-                                <td>no1234</td>
-                                <td>ㄴㄴㄴ</td>
-                                <td>개발</td>
-                                <td>사원</td>
-                                <td>1993-03-11</td>
-                                <td>2019-03-29</td>
-                                <td>010-0000-0000</td>
-                                <td>sss@naver.com</td>
-                                <td>재직</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>정규직</td>
-                                <td>no1234</td>
-                                <td>ㄴㄴㄴ</td>
-                                <td>개발</td>
-                                <td>사원</td>
-                                <td>1993-03-11</td>
-                                <td>2019-03-29</td>
-                                <td>010-0000-0000</td>
-                                <td>sss@naver.com</td>
-                                <td>재직</td>
-                            </tr>
+                        	<c:forEach var="m" items="${ list }">
+	                            <tr>
+	                                <td><input type="checkbox" class="checked" name="memNo" value="${ m.memNo }"></td>
+	                                <td class="memNo">${ m.memNo }</td>
+		                            <td>${ m.memName }</td>
+		                            <td>${ m.deptName }</td>
+		                            <td>${ m.jobName }</td>
+		                            <td>${ m.birth }</td>
+		                            <td>${ m.enrollDate }</td>
+		                            <td>${ m.phone }</td>
+		                            <td>${ m.email }</td>
+		                            <td>
+		                            	<c:choose>
+			                            	<c:when test="${ m.status == 'Y' }">
+			                            		재직중
+			                            	</c:when>
+			                            	<c:otherwise>
+			                            		재직중아님
+			                            	</c:otherwise>	                            	
+		                            	</c:choose>
+		                            </td>
+	                            </tr>
+                        	</c:forEach>
                         </tbody>
                         </table>
                 </form>
@@ -333,7 +226,7 @@ th,td{
             </div>
             <br>
             <div class="content_3">
-                <p>사원 수 : XXX </p>
+                <p>사원 수 : ${ count } </p>
             </div>
             <br>
             <div class="w3-bar">

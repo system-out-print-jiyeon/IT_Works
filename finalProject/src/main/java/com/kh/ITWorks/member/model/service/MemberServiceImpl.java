@@ -33,4 +33,9 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.detailView(sqlSession, memNo);
 	}
 
+	@Override
+	public int memberEnroll(Member m) {
+		return mDao.memberEnroll(sqlSession, m);
+	}
+
 }

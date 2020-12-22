@@ -2,6 +2,8 @@ package com.kh.ITWorks.member.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,14 +56,31 @@ public class MemberController {
 	}
 	
 	@RequestMapping("listManage.ma")
-	public String listManage() {
+	public String listManage(@RequestParam(value="currentPage", defaultValue="1")int currentPage, Model model) {
+		
+		int listCount = mService.selectListCount();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+		ArrayList<Member> list = mService.selectManageList(pi);
+		
+		model.addAttribute("count", listCount);
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
 		
 		return "member/manage_manageList";
 	}
 	
-	@RequestMapping("enroll.ma")
+	@RequestMapping("enrollForm.ma")
 	public String enrollForm() {
 		return "member/manage_enrollForm";
+	}
+	
+	@RequestMapping("memberEnroll.ma")
+	public void memberEnroll(Member m, Model model, HttpSession session) {
+		System.out.println(m);
+		
+		int result = mService.memberEnroll(m);
+		
+		
 	}
 	
 	@RequestMapping("update.ma")

@@ -98,7 +98,7 @@
             <li class="profile" ><a class="btn">회의실 예약</a>
                 
             </li>
-            <li class="profile" ><a class="btn">인사관리</a>
+            <li class="profile" ><a class="btn" href="manageList.ma">인사관리</a>
                 
             </li>
             <li class="profile" ><a class="btn">근태관리</a>

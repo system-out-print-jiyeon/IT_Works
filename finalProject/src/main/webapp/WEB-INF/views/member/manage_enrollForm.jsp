@@ -5,13 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+<title>사원 등록 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>   
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-
 <style>
   /* rgb(52, 152, 219) --> 사이트 색상 */
  *{ 
@@ -159,24 +160,24 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                 <h2>신규 사원 등록</h2>
             </div>
             <br><br>
-            <form action="" method="POST" name="enrollForm" id="enrollForm">
+            <form action="memberEnroll.ma" method="POST" name="enrollForm" id="enrollForm" enctype="multipart/form-data">
                 <div class="enroll">
                     <div class="con1">
-                            아이디 <input type="text" name="userId" placeholder="사용할 아이디를 입력해주세요"><br>
+                            아이디 <input type="text" name="memId" placeholder="사용할 아이디를 입력해주세요" required><br>
                             <div id="idCheck">사용가능한 아이디 입니다.</div>
                             <br>
-                            비밀번호 <input type="password" name="userPwd" placeholder="사용할 비밀번호를 입력해주세요.">
+                            비밀번호 <input type="password" name="memPwd" placeholder="사용할 비밀번호를 입력해주세요." required>
                             <br><br>
-                            비밀번호 확인 <input type="password" name="checkPwd" placeholder="비밀번호를 다시 입력해주세요"><br>
+                            비밀번호 확인 <input type="password" name="checkPwd" placeholder="비밀번호를 다시 입력해주세요" required><br>
                             <div id="pwdCheck">비밀번호가 일치하지 않습니다.</div>
                             <br><br>
                     </div>
                     <hr>
                     <div class="con2">
                         <div id="con2">
-                            이름 <input type="text" name="userName" placeholder="이름을 입력해주세요.">
+                            이름 <input type="text" name="memName" placeholder="이름을 입력해주세요." required>
                             <br><br>
-                            생년월일 <input type="text" name="birth" placeholder="생년월일(YYYY-MM-DD">
+                            생년월일 <input type="text" name="birth" placeholder="생년월일(YYMMDD)">
                             <br><br>
                             성별 <select name="gender" id="gender">
                                 <option>--성별 선택 --</option>
@@ -184,18 +185,45 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                                 <option value="F">여(F)</option>
                             </select>
                             <br><br>
-                            전화번호 <input type="text" name="phone" placeholder="010)0000-0000">
+                            전화번호 <input type="text" name="phone" placeholder="010)0000-0000" required>
                             <br><br>
                             이메일 <input type="email" name="email" placeholder="ex)aaa@aaaaa.com">
                             <br>
                         </div>
                         <div class="img" align="center">
-                            <div class="imgV" style="width: 70%; height: 90%; border: 1px dotted gray;"></div>
+                            <div class="profile" id="profile" style="width: 70%; height: 100%; border: 1px dotted gray;">
+                        
+                            </div>
                             프로필 이미지 <br>
-                            <input type="file" name="addImg" id="addImg">
+                            <input type="file" name="memImg" id="memImg" onchange="preview(this);" required>
                         </div>
                     </div>
                     <div class="con3">
+           	소속 부서 <select name="deptCode" id="deptCode">
+	           			<option>--부서 선택--</option>
+	           			<option value="D1">개발</option>
+	                    <option value="D2">인사</option>
+	                    <option value="D3">경영지원</option>
+	                    <option value="D4">기획</option>
+	                    <option value="D5">총무</option>
+           			</select>
+           			<br><br>
+           			
+           	직급 <select name="jobCode" id="jobCode">
+	           			<option>--직급 선택--</option>
+	           			<option value="J0">계약직</option>
+	                    <option value="J1">사원</option>
+	                    <option value="J2">대리</option>
+	                    <option value="J3">과장</option>
+	                    <option value="J4">차장</option>
+	                    <option value="J5">부사</option>
+	                    <option value="J6">이사</option>
+	                    <option value="J7">대표이사</option>
+           			</select>
+           			<br><br>
+           	입사일 <input type="text" name="enrollDate" placeholder="입사일(YYYY-MM-DD)" required>
+           	<br><br>
+           
                         주소 <input type="text" name="address" placeholder="거주지 주소를 입력해주세요.">
                         <br><br>
                         자격증<br> 
@@ -215,8 +243,28 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
             <br><br><br><br>
         </div>
     </div>
-
-
+    
+   <!-- 사원 프로필 이미지 미리보기 -->
+   <script>
+   		function preview(inputFile){
+   			console.log("파일있나",inputFile.files.length);
+   			
+   			if(inputFile.files.length == 1){
+   				
+   				var reader = new FileReader();
+   				
+   				reader.readAsDataURL(inputFile.files[0]);
+   				
+   				reader.onload = function(e){
+   					//alert("확인용");
+   					$("#profile").html('<img src="' + e.target.result + '" width="100%" height="100%">');
+   				};
+   				
+   			}else{
+   				
+   			}
+   		}
+   </script>
 
   <script>
 
@@ -246,7 +294,7 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
             }
             
         });
-    });
+    })
 
   </script>
 </body>

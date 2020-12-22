@@ -12,6 +12,8 @@ public interface MemberService {
 	
 	Member detailView(int memNo);
 	
+	int memberEnroll(Member m);
+	
 	
 	
 }

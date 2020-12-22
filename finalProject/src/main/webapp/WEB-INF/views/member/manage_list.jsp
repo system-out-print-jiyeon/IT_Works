@@ -273,17 +273,17 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
 		                <a href="#" class="w3-button" disabled>&laquo;</a>
 	            	</c:when>
 	            	<c:otherwise>
-	            		<a href="manageList.ma?current=${ pi.currentPage-1 }" class="w3-button">&laquo;</a>
+	            		<a href="manageList.ma?currentPage=${ pi.currentPage-1 }" class="w3-button">&laquo;</a>
 	            	</c:otherwise>
             	</c:choose>
                 
                 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-	                <a href="manageList.ma?current=${ p }" class="w3-button">${ p }</a>
+	                <a href="manageList.ma?currentPage=${ p }" class="w3-button">${ p }</a>
                 </c:forEach>
                 
                 <c:choose>
 	                <c:when test="${ pi.currentPage eq pi.maxPage }">
-		                <a href="manageList.ma?current=${ pi.currentPage+1 }" class="w3-button">&raquo;</a>
+		                <a href="manageList.ma?currentPage=${ pi.currentPage+1 }" class="w3-button">&raquo;</a>
 	                </c:when>
 	                <c:otherwise>
 	                	<a href="#" class="w3-button" disabled>&raquo;</a>
