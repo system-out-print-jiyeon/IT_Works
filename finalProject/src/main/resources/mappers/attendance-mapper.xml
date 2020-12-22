@@ -46,6 +46,7 @@
 	     , JOB_CODE
 	 FROM EMPLOYEE
 	WHERE MEM_ID = #{memId}
+	  <!--AND MEM_PWD = #{memPwd}-->
 	  AND MEM_STATUS = 'Y'
 </select>
 

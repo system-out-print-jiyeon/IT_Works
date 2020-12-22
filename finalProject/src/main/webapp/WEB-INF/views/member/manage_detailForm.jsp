@@ -239,47 +239,65 @@ th,td{
                             <th rowspan="2">프로필 이미지</th>
                             <td rowspan="2"><div><img src="images/프로필.PNG" alt=""></div></td>
                             <th>사원명</th>
-                            <td>홍길동</td>
+                            <td>${ m.memName }</td>
                         </tr>
                         <tr>
                             <th>사원번호</th>
-                            <td>no234</td>
+                            <td>no${ m.memNo }</td>
                         </tr>
                         <tr>
                             <th>생년월일</th>
-                            <td>1993-03-11</td>
+                            <td>${ m.birth }</td>
                             <th>성별</th>
-                            <td>남</td>
+                            <td>
+                            	<c:choose>
+                            		<c:when test="${ m.gender == 'M' }">
+                            			남
+                            		</c:when>
+                            		<c:otherwise>
+                            			여
+                            		</c:otherwise>
+                            	</c:choose>
+                            </td>
                         </tr>
                         <tr>
                             <th>직 책</th>
-                            <td>사원</td>
+                            <td>${ m.jobName }</td>
                             <th>입사일</th>
-                            <td>2020-03-29</td>
+                            <td>${ m.enrollDate }</td>
                         </tr>
                         <tr>
                             <th>휴대폰</th>
-                            <td>010-0000-1234</td>
+                            <td>${ m.phone }</td>
                             <th>이메일</th>
-                            <td>sss@naver.com</td>
+                            <td>${ m.email }</td>
                         </tr>
                         <tr>
                             <th>부서명</th>
-                            <td>개발</td>
+                            <td>${ m.deptName }</td>
                             <th>현재상태</th>
-                            <td>재직</td>
+                            <td>
+                            	<c:choose>
+                            		<c:when test="${ m.status == 'Y' }">
+                            			재직중
+                            		</c:when>
+                            		<c:otherwise>
+                            			재직중이 아님
+                            		</c:otherwise>
+                            	</c:choose>
+                            </td>
                         </tr>
                         <tr>
                             <th>주 소</th>
-                            <td colspan="3">대한민국 XXX XXXX 124325421</td>
+                            <td colspan="3">${ m.address }</td>
                         </tr>
                         <tr>
                             <th>자격증</th>
-                            <td colspan="3">SQLD, 정보처리기사, 컴퓨터활용1급</td>
+                            <td colspan="3">${ m.certification }</td>
                         </tr>
                         <tr>
                             <th>경력사항</th>
-                            <td colspan="3">XX프로젝트 참여, XX기업 마케팅 XX프로젝트</td>
+                            <td colspan="3">${ m.career }</td>
                         </tr>
                     </thead>
                 </table>

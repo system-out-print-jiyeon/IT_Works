@@ -222,29 +222,43 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                     <tbody>
                         <c:forEach var="m" items="${ list }">
 	                        <tr>
-	                            <td>구분</td>
-	                            <td>${ m.memNo }</td>
+	                            <td>
+	                            	<c:choose>
+		                            	<c:when test="${ m.jobName == 'j0' }">
+		                            		계약직
+		                            	</c:when>
+	                            		<c:otherwise>
+	                            			정규직
+	                            		</c:otherwise>
+	                            	</c:choose>
+	                            </td>
+	                            <td class="memNo">${ m.memNo }</td>
 	                            <td>${ m.memName }</td>
-	                            <td>부서</td>
-	                            <td>직책</td>
+	                            <td>${ m.deptName }</td>
+	                            <td>${ m.jobName }</td>
 	                            <td>${ m.birth }</td>
-	                            <td>입사일</td>
+	                            <td>${ m.enrollDate }</td>
 	                            <td>${ m.phone }</td>
 	                            <td>${ m.email }</td>
 	                            <td>
-	                            	<c:if test="${ m.status == 'Y' }">
-	                            		재직중
-	                            	</c:if>
+	                            	<c:choose>
+		                            	<c:when test="${ m.status == 'Y' }">
+		                            		재직중
+		                            	</c:when>
+		                            	<c:otherwise>
+		                            		재직중아님
+		                            	</c:otherwise>	                            	
+	                            	</c:choose>
 	                            </td>
 	                        </tr>
                     	</c:forEach>
                     </tbody>
                     </table>
                 </div>
-
+                
                 <script>
                     $(".content_2 tbody>tr").click(function(){
-                        alert("리스트 상세보기");
+                        location.href="detail.ma?memNo=" + $(this).children(".memNo").text();
                     })
                 </script>
 
@@ -259,17 +273,17 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
 		                <a href="#" class="w3-button" disabled>&laquo;</a>
 	            	</c:when>
 	            	<c:otherwise>
-	            		<a href="manageList.ma?current=${ pi.currentPage-1 }" class="w3-button">&laquo;</a>
+	            		<a href="manageList.ma?currentPage=${ pi.currentPage-1 }" class="w3-button">&laquo;</a>
 	            	</c:otherwise>
             	</c:choose>
                 
                 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-	                <a href="manageList.ma?current=${ p }" class="w3-button">${ p }</a>
+	                <a href="manageList.ma?currentPage=${ p }" class="w3-button">${ p }</a>
                 </c:forEach>
                 
                 <c:choose>
 	                <c:when test="${ pi.currentPage eq pi.maxPage }">
-		                <a href="manageList.ma?current=${ pi.currentPage+1 }" class="w3-button">&raquo;</a>
+		                <a href="manageList.ma?currentPage=${ pi.currentPage+1 }" class="w3-button">&raquo;</a>
 	                </c:when>
 	                <c:otherwise>
 	                	<a href="#" class="w3-button" disabled>&raquo;</a>

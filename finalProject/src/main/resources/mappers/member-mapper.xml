@@ -18,7 +18,11 @@
 		<result column="mem_status" property="status"/>
 		<result column="mem_enroll" property="enrollDate"/>
 		<result column="modify_date" property="modifyDate"/>
-		<result column="annual_leave" property="annualLeave"/>		
+		<result column="annual_leave" property="annualLeave"/>
+		<result column="dept_code" property="deptCode"/>	
+		<result column="job_code" property="jobCode"/>
+		<result column="job_name" property="jobName"/>
+		<result column="dept_name" property="deptName"/>			
 	</resultMap>
 
 	<select id="selectMemberList" resultMap="memberResultSet">
@@ -39,7 +43,41 @@
 			  , mem_enroll
 			  , modify_date
 			  , annual_leave
+              , dept_name
+              , job_name
 		  from employee
+          join department using(dept_code)
+          join jobgrade using(job_code)
+         order 
+            by mem_no asc
+	</select>
+	
+	<select id="detailView" 
+			resultMap="memberResultSet"
+			parameterType="_int">
+		select
+			    mem_no
+			  , mem_id
+			  , mem_pwd
+			  , mem_img
+			  , mem_name
+			  , mem_phone
+			  , mem_email
+			  , mem_gender
+			  , mem_birth
+			  , mem_address
+			  , mem_certification
+			  , mem_career
+			  , mem_status
+			  , mem_enroll
+			  , modify_date
+			  , annual_leave
+              , dept_name
+              , job_name
+		  from employee
+          join department using(dept_code)
+          join jobgrade using(job_code)
+         where mem_no = #{memNo}
 	</select>
 	
 	<select id="selectListCount" resultType="_int">
@@ -48,5 +86,45 @@
 		  from employee
 		 where mem_status = 'Y'
 	</select>
+	
+	<insert id="memberEnroll" parameterType="Member">
+		insert
+			  into EMPLOYEE
+			  (  MEM_NO
+			   , MEM_ID
+			   , MEM_PWD
+			   , MEM_IMG
+			   , MEM_NAME
+			   , MEM_PHONE
+			   , MEM_EMAIL
+			   , MEM_GENDER
+			   , MEM_BIRTH
+			   , MEM_ADDRESS
+			   , MEM_CERTIFICATION
+			   , MEM_CAREER
+			   , MEM_STATUS
+			   , MEM_ENROLL
+			   , DEPT_CODE
+			   , JOB_CODE
+			  )
+			  VALUES
+			  (  SEQ_ENO.NEXTVAL
+			   , #{memId}
+			   , #{memPwd}
+			   , #{memImg}
+			   , #{memName}
+			   , #{phone}
+			   , #{email}
+			   , #{gender}
+			   , #{birth}
+			   , #{address}
+			   , #{certification}
+			   , #{career}
+			   , 'Y'
+			   , #{enrollDate}
+			   , #{deptCode}
+			   , #{jobCode}
+			  )
+	</insert>
 	
 </mapper>

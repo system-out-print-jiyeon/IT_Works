@@ -76,7 +76,7 @@
                 <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>* 수정/삭제</a>
                     <ul class="menu1">
                         <li><a href="listManage.ma">사원 리스트</a></li>
-                        <li><a href="enroll.ma">사원 등록</a></li>
+                        <li><a href="enrollForm.ma">사원 등록</a></li>
                     </ul>
                 </li>
             </div>

@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>approvalNavbar</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lexend+Peta&family=Nanum+Pen+Script&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
@@ -50,6 +51,7 @@
           font-size: 30px;
           margin-right: auto;
           margin-left: 30px;
+          position: relative;
           
           
         }
@@ -127,12 +129,15 @@
         width: 500px;
         height: 260px;
         border: 1px solid rgb(143, 138, 138);
+        background-color: white;
         display:flex;
         flex-wrap: wrap;
         text-align: center;
         justify-content: center;
+        position: absolute;
         z-index: 1000;
         margin-left: 280px;
+        
         
         
         
@@ -170,23 +175,33 @@
 <!-- 탑 네비바-->
     <nav class="navBar">
         <div class="navLogo">
-            <a href="" class="logoText">IT Works</a>
+            <a href="login.me" class="logoText">IT Works</a>
         </div>
         <div class="category" >
-            전자결재&nbsp;<i class="fas fa-sort-down">&nbsp;</i>
+        
+      	 <% String url = request.getRequestURI(); %>
+        
+           <% if(url.contains("approval")){ %> 전자결재 <% } 
+           else  {%> 오피스 홈 <% } %>
+            
+            &nbsp;<i class="fas fa-sort-down">&nbsp;</i>
         </div>
+        
+      	<% if(url.contains("approval")) { %>
         <div class="searchBox">
             <input class="searchTxt" type="text" name="" id="" placeholder="문서 검색" width="500px" height="50px">
             <a class="searchBtn" href="#"><i class="fas fa-search "></i></a>
         </div>
+        <%} else { %>  <% } %>
+        
         <a href=""><span class="bell"><i class="fas fa-bell"></i></span></a>
         <div class="personalInfo">
-           <a href="" class="infoText"><span><i class="fas fa-user-circle fa-2x"></i></span>&nbsp;<span class="username">홍길동&nbsp;<i class="fas fa-sort-down"></i></span></a>
+           <a href="" class="infoText"><span><i class="fas fa-user-circle fa-2x"></i></span>&nbsp;<span class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
         </div>
     </nav>
 
     <!-- 서브메뉴바 -->
-    <div class="submenuList">
+    <div class="submenuList" style="display: none;">
         
         <a href=""><div><p class="listCategory"><i class="far fa-envelope"></i><br> 메일</p></div></a>
         <a href=""><div><p class="listCategory"><i class="far fa-calendar-alt"></i><br> 캘린더</p></div></a>
@@ -198,7 +213,7 @@
         <a href=""><div><p class="listCategory"><i class="fas fa-business-time"></i><br>회의실 예약</p></div></a>
         <a href="manage.me"><div><p class="listCategory"><i class="fas fa-users"></i><br>인사관리</p></div></a>
         <a href=""><div><p class="listCategory"><i class="far fa-id-badge"></i><br>근태관리</p></div></a>
-        <a href=""><div><p class="listCategory"><i class="fas fa-file-signature"></i><br>전자결재</p></div></a>
+        <a href="approval.me"><div><p class="listCategory"><i class="fas fa-file-signature"></i><br>전자결재</p></div></a>
     
     </div>
 

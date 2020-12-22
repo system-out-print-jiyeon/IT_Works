@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>approvalListView</title>
    
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
@@ -29,70 +29,7 @@
       display: flex;
      
     }
- /* 작성하기 버튼 */
-.writeButton{text-align: center;}
-
-.button1{
-   border-radius: 10px;
-   border: 0;
-   width: 250px;
-   height: 45px;
-   font-size: larger;
-   color: white;
-   background-color: rgb(84, 129, 189);
-   
-            }
-
-.button1:hover{
-   cursor: pointer;
-   background-color: rgb(27, 97, 189);
-   
-            }
-
-/* 사이드바 */
-.sidebar{
-    
-    justify-content: space-between;
-    padding: 8px 24px;
-    width: 300px;
-    height: 100vh;
-    background-color: #e7e1e1;
-    position: fixed;
-    
-    
-
-}
-
-
-.sidebar_menu{
-    align-items: center;
-    list-style: none;
-}  
-
-.sidebar_menu a{
-    display: block;
-    text-decoration: none;
-    line-height: 40px;
-    color: rgb(107, 102, 102);
-    font-size: 20px;
-    padding-left: 40px;
-    box-sizing: border-box;
-    
-}
-
-.sidebar_menu a:hover{
-    color: rgb(39, 37, 37);
-}
-
-
-.menu1 li{ 
-    padding-left: 60px;
-    list-style: none; 
-}
-
-.profile:hover{cursor: pointer;}
-.profile .menu1{display: none;}
-
+ 
 
 
 /* 콘텐츠 영역 */
@@ -166,43 +103,13 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
 </head>
 <body>
 
+	<jsp:include page="../common/approvalNavbar.jsp"/>
 
  <div class="wrap">
         
       
         
-        <div class="sidebar">
-
-                <br><br>
-            <div class="writeButton">
-                <button class="button1">작성하기</button>
-            </div>
-                <br><br><br>
-
-            <div class="sidebar_menu">
-                <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>진행 중인 문서</a>
-                    <ul class="menu1">
-                        <li><a href="#">전체</a></li>
-                        <li><a href="#">대기</a></li>
-                        <li><a href="#">확인</a></li>
-                        <li><a href="#">예정</a></li>
-                        <li><a href="#">진행</a></li>
-                    </ul>
-                </li>
-                <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>문서함</a>
-                    <ul class="menu1">
-                        <li><a href="#">전체</a></li>
-                        <li><a href="#">기안</a></li>
-                        <li><a href="#">결제</a></li>
-                        <li><a href="#">수신</a></li>
-                        <li><a href="#">회람/참조</a></li>
-                        <li><a href="#">반려</a></li>
-                    </ul>
-                </li>
-                <li><a href=""><i class="fas fa-cog"></i>&nbsp;관리자 설정</a></li>
-            </div>
-        
-        </div>
+    <jsp:include page="../common/sideBar_approval.jsp"/>
     
         
 
@@ -376,21 +283,7 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
 
 
 
-  <script>
-
-    $(document).ready(function(){
-        $(".profile>a").click(function(){
-            var submenu = $(this).next();
-            if(submenu.css("display") == 'block'){
-                submenu.slideUp();
-            }else{
-                submenu.slideDown();
-            }
-            
-        });
-    });
-
-  </script>
+  
 
 <script>
 
