@@ -16,6 +16,9 @@ public class AttendanceDao {
 		
 	}
 	
+	public String searchId(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("attendanceMapper.searchId", m);
+	}
 
 
 }

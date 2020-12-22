@@ -6,5 +6,9 @@ public interface AttendanceService {
 	
 	// 로그인용 서비스
 	Member loginMember(Member m);
+	
+	// 아이디 찾기
+	String searchId(Member m);
+	
 
 }

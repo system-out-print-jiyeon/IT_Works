@@ -23,4 +23,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return aDao.loginMember(sqlSession, m);
 	}
 
+
+	@Override
+	public String searchId(Member m) {
+		return aDao.searchId(sqlSession, m);
+	}
+
 }
