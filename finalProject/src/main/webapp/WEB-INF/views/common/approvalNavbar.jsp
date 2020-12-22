@@ -186,10 +186,14 @@
             
             &nbsp;<i class="fas fa-sort-down">&nbsp;</i>
         </div>
+        
+      	<% if(url.contains("approval")) { %>
         <div class="searchBox">
             <input class="searchTxt" type="text" name="" id="" placeholder="문서 검색" width="500px" height="50px">
             <a class="searchBtn" href="#"><i class="fas fa-search "></i></a>
         </div>
+        <%} else { %>  <% } %>
+        
         <a href=""><span class="bell"><i class="fas fa-bell"></i></span></a>
         <div class="personalInfo">
            <a href="" class="infoText"><span><i class="fas fa-user-circle fa-2x"></i></span>&nbsp;<span class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
