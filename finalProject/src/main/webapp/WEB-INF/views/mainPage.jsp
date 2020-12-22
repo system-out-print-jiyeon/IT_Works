@@ -74,7 +74,7 @@
         <div class="content">
             <p align="center">IT Works</p>
             <div class="loginArea">
-                <form action="login.me" method="post">
+                <form action="login.at" method="post">
                     <table width="100%">
                             <tr align="center">
                                 <td width="5"><i class="far fa-user" style="font-size:36px;"></i></td>
@@ -96,8 +96,8 @@
                         <tr>
                             <table width="100%">
                                 <tr align="center">
-                                    <td id="searchId"><a href="">아이디 찾기</a></td>
-                                    <td id="searchPwd"><a href="">비밀번호 찾기</a></td>
+                                    <td id="searchId"><a href="searchIdForm.at">아이디 찾기</a></td>
+                                    <td id="searchPwd"><a href="searchPwdForm.at">비밀번호 찾기</a></td>
                                 </tr>
                             </table>
                             
