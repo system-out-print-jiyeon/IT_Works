@@ -31,6 +31,7 @@
 .wrap{width: 100%; 
       height: 100%;
       display: flex;
+       
       
     
     }
@@ -40,6 +41,7 @@
 /* 문서작성폼 */
 .enrollForm{
     margin-left: 300px;
+     margin-top: 120px;
     
 }
 
@@ -181,6 +183,8 @@
     .modalDiv_3_1_1 div{
         margin-left: 5px;
         margin-top: 5px;
+        cursor: pointer;
+        width: fit-content;
         
     }
 
@@ -205,7 +209,7 @@
         margin-top: 20px;
         margin-bottom: 20px;
         vertical-align: middle;
-
+		cursor: pointer;
         
         
         
@@ -245,6 +249,7 @@
         margin-top: 5px;
         margin-left: 20px;
         margin-right: 20px;
+        cursor: pointer;
     }
 
     .table1{
@@ -265,16 +270,23 @@
         
         
     }
+    
+    .th_category{
+        width: 70px;
+        border-right-style: hidden;
+    }
 
     .td_nameSpace{
         width: 140px;
         
     }
-
-    .th_category{
-        width: 100px;
-        border-right-style: hidden;
+    
+    .td_nameSpace2{
+        width: 350px;
+        text-align: left;
+        
     }
+
 
     .td_reference{
         background-color: #878787;
@@ -282,6 +294,7 @@
         height:55px;
         text-align: center;
         border: 3px solid white;
+        cursor: pointer;
 
     }
 
@@ -308,8 +321,8 @@
     <jsp:include page="../common/sideBar_approval.jsp"/>
         
         
-        
-        <div class="enrollForm">
+        <form name="enrollForm" action="approval.me" method="get">
+        <div class="enrollForm" id="enrollForm">
 
             <div class="titleBox">
                 <h5>기본 설정</h5>
@@ -325,7 +338,7 @@
                             </select> 
                         </td>
                         <th>작성자</th>
-                        <td>인사팀 홍길동</td>
+                        <td> ${ loginUser.memName }</td>
                     </tr>
                     <tr>
                         <th>보존 연한</th>
@@ -448,7 +461,7 @@
     <div class="modalDiv">
         <div class="modalDiv_1">
             <span>결재선 설정</span> 
-            <span class="modalCancel"><i class="fas fa-times fa-2x" style="color: #878787; float: right; margin-right: 10px; "></i></span>
+            <span class="modalCancel"><i class="fas fa-times fa-2x" style="color: #878787; float: right; margin-right: 10px; cursor: pointer; "></i></span>
         </div>
 
         <div class="modalDiv_2">
@@ -466,52 +479,56 @@
             <div class="modalDiv_3_1">
                 <div class="modalDiv_3_1_1">
                     <div class="modalDiv_business"><i class="fas fa-plus-circle"></i> 경영지원팀(13)
-                        <div class="member1">
-                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
-                        </div>
-                    </div>
                         
+                    </div>
+                        <div class="member1" style="display: none;">
+                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
+                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
+                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
+                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
+                        </div>
                     <div class="modalDiv_personnel"><i class="fas fa-plus-circle"></i> 인사팀(12)
-                        <div class="member2">
+                        
+                    </div> 
+                    		<div class="member2" style="display: none;">
                             <div><input type="checkbox" name="personnel" id="">부장 박동성</div>
                             <div><input type="checkbox" name="personnel" id="">부장 박동성</div>
                             <div><input type="checkbox" name="personnel" id="">부장 박동성</div>
                             <div><input type="checkbox" name="personnel" id="">부장 박동성</div>
                         </div>
-                    </div>
                     <div class="modalDiv_accounting"><i class="fas fa-plus-circle"></i> 총무팀(15)
-                        <div class="member3">
+                        
+                    </div>
+                    		<div class="member3" style="display: none;">
                             <div><input type="checkbox" name="accounting" id="">부장 박동성</div>
                             <div><input type="checkbox" name="accounting" id="">부장 박동성</div>
                             <div><input type="checkbox" name="accounting" id="">부장 박동성</div>
                             <div><input type="checkbox" name="accounting" id="">부장 박동성</div>
                         </div>
-                    </div>
                     <div class="modalDiv_developer"><i class="fas fa-plus-circle"></i> 개발팀(10)
-                        <div class="member4">
+                        
+                    </div>
+                    		<div class="member4" style="display: none;">
                             <div><input type="checkbox" name="developer" id="">부장 박동성</div>
                             <div><input type="checkbox" name="developer" id="">부장 박동성</div>
                             <div><input type="checkbox" name="developer" id="">부장 박동성</div>
                             <div><input type="checkbox" name="developer" id="">부장 박동성</div>
                         </div>
-                    </div>
                     <div class="modalDiv_planning"><i class="fas fa-plus-circle"></i> 기획팀(8)
-                        <div class="member5">
+                        
+                    </div>
+                    
+                    <div class="member5" style="display: none;">
                             <div><input type="checkbox" name="planning" id="">부장 박동성</div>
                             <div><input type="checkbox" name="planning" id="">부장 박동성</div>
                             <div><input type="checkbox" name="planning" id="">부장 박동성</div>
                             <div><input type="checkbox" name="planning" id="">부장 박동성</div>
                         </div>
-                    </div>
                 </div>
             </div>
             <div class="modalDiv_3_2">
-                <button style="margin-top: 70px;">결재 <i class="fas fa-chevron-right" style="float: right; margin-right: 10px; margin-top: 1px;"></i></button>
-                <button>합의 <i class="fas fa-chevron-right" style="float: right; margin-right: 10px; margin-top: 1px;"></i></button>
-                <button>재무합의 <i class="fas fa-chevron-right" style="float: right; margin-right: 10px; margin-top: 1px;"></i></button>
+                <button style="margin-top: 140px;">결재 <i class="fas fa-chevron-right" style="float: right; margin-right: 10px; margin-top: 1px;"></i></button>
+               
                 <button>참조 <i class="fas fa-chevron-right" style="float: right; margin-right: 10px; margin-top: 1px;"></i></button>
             </div>
             <div class="modalDiv_3_3">
@@ -521,119 +538,84 @@
                             <th class="th_numbering">1</th>
                             <th class="th_category">결재</th>
                             <td class="td_nameSpace" style="border-right-style:hidden; ">
-                                홍길동 <br>
-                                인사팀 
-                            </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
                                 인사팀
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
+                            <td colspan="2" class="td_nameSpace2" >
+                                부장 홍길동
                             </td>
+                           
                             
                         </tr>
                         <tr>
                             <th class="th_numbering">2</th>
                             <th class="th_category">결재</th>
                             <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
                                 인사팀
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
+                            <td  colspan="2" class="td_nameSpace2" >
+                                부장 홍길동
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
-                            </td>
+                            
                            
                         </tr>
                         <tr>
                             <th class="th_numbering">3</th>
                             <th class="th_category">결재</th>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
+                             <td class="td_nameSpace" style="border-right-style:hidden;">
                                 인사팀
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
+                            <td  colspan="2" class="td_nameSpace2" >
+                                부장 홍길동
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
-                            </td>
+                            
                           
                         </tr>
                         <tr>
                             <th class="th_numbering">4</th>
-                            <th class="th_category">합의</th>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
+                            <th class="th_category">결재</th>
+                             <td class="td_nameSpace" style="border-right-style:hidden;">
                                 인사팀
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
+                            <td  colspan="2" class="td_nameSpace2" >
+                                부장 홍길동
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
-                            </td>
+                            
                            
                         </tr>
                         <tr>
                             <th class="th_numbering">5</th>
-                            <th class="th_category">합의</th>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
+                            <th class="th_category">결재</th>
+                             <td class="td_nameSpace" style="border-right-style:hidden;">
                                 인사팀
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
+                            <td  colspan="2" class="td_nameSpace2" >
+                                부장 홍길동
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
-                            </td>
+                            
                           
                         </tr>
                         <tr>
                             <th class="th_numbering">6</th>
-                            <th class="th_category">재무합의</th>
+                            <th class="th_category">결재</th>
                             <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
                                 인사팀
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
+                            <td  colspan="2" class="td_nameSpace2" >
+                                부장 홍길동
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
-                            </td>
+                            
                             
                         </tr>
                         <tr>
                             <th class="th_numbering">7</th>
-                            <th class="th_category">재무합의</th>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
+                            <th class="th_category">결재</th>
+                             <td class="td_nameSpace" style="border-right-style:hidden;">
                                 인사팀
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
+                            <td  colspan="2" class="td_nameSpace2" >
+                                부장 홍길동
                             </td>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                홍길동 <br>
-                                인사팀
-                            </td>
+                            
                           
                         </tr>
                     </table>
@@ -645,20 +627,20 @@
                     <table>
                         <tr>
                             <td class="td_reference">
-                               홍길동 <br>
-                                인사팀
+                                인사팀 <br>
+                               부장 홍길동
                             </td>
                             <td class="td_reference">
-                                홍길동 <br>
-                                인사팀
+                                 인사팀 <br>
+                               부장 홍길동
                             </td>
                             <td class="td_reference">
-                                홍길동 <br>
-                                인사팀
+                                 인사팀 <br>
+                               부장 홍길동
                             </td>
                             <td class="td_reference">
-                                홍길동 <br>
-                                인사팀
+                                 인사팀 <br>
+                               부장 홍길동
                             </td>
                         </tr>
                     </table>
@@ -678,7 +660,7 @@
 
     <div class="dim"></div>
 
-    
+    </form>
 
 
 
@@ -702,71 +684,14 @@
         ]
       });
 
-      /* 모달창 보이기 */
-      $(document).ready(function(){
-        $(".modalOpen").click(function(){
-            $(".modalDiv").show();
-            $(".dim").show();
-        });
+     
 
-        $(".modalCancel").click(function(){
-            $(".modalDiv").hide();
-            $(".dim").hide();
-        });
-    });
-
-    /* 결재선 팀원 드롭다운 */
-    $(document).ready(function(){
-        $(".modalDiv_business").click(function(){
-        var submenu = $(".member1");
-        if(submenu.css("display") == 'block'){
-            submenu.slideUp();
-        }else{
-            submenu.slideDown();
-        }
-        
-    });
-
-    $(".modalDiv_personnel").click(function(){
-        var submenu = $(".member2");
-        if(submenu.css("display") == 'block'){
-            submenu.slideUp();
-        }else{
-            submenu.slideDown();
-        }
-        
-    });
-
-    $(".modalDiv_accounting").click(function(){
-        var submenu = $(".member3");
-        if(submenu.css("display") == 'block'){
-            submenu.slideUp();
-        }else{
-            submenu.slideDown();
-        }
-        
-    });
-
-    $(".modalDiv_developer").click(function(){
-        var submenu = $(".member4");
-        if(submenu.css("display") == 'block'){
-            submenu.slideUp();
-        }else{
-            submenu.slideDown();
-        }
-        
-    });
-
-    $(".modalDiv_planning").click(function(){
-        var submenu = $(".member5");
-        if(submenu.css("display") == 'block'){
-            submenu.slideUp();
-        }else{
-            submenu.slideDown();
-        }
-        
-    });
-});
+    
+    
+    
+     
+    
+   
 
   </script>
 

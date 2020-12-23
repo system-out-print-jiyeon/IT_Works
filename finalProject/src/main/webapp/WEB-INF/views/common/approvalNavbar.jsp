@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    
+    
   <style>
       
  
@@ -34,6 +36,11 @@
           align-items: center;
           padding: 20px 2%;
           border-bottom: 1px solid gray;
+          
+          background-color: white;
+          position:fixed;
+          z-index:300;
+          
       }
       
       
@@ -134,9 +141,10 @@
         flex-wrap: wrap;
         text-align: center;
         justify-content: center;
-        position: absolute;
+        position: fixed;
         z-index: 1000;
         margin-left: 280px;
+        margin-top:80px;
         
         
         
@@ -233,6 +241,10 @@
                 
             });
         });
+        
+      
+        
+        
     
       </script>
 
