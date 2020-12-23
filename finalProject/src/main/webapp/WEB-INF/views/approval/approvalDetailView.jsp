@@ -44,7 +44,7 @@
 	    <div class="approvalLine">
 	        <table class="table table-bordered approvalTable">
 	          <tr>
-	                <th rowspan="3" colspan="" align="center">결재</th>
+	                <th rowspan="3" colspan="" align="center" >결재</th>
 	                <th class="firstCell">대리</th>
 	                <th class="firstCell"></th>
 	                <th class="firstCell"></th>
@@ -71,7 +71,7 @@
 	      </table>
 	    </div>
 
-    	<link rel="import" href="결재승인Modal.html">
+		<jsp:include page="./approvalDecisionModal.jsp"/>
 
     	<br><br>
 
@@ -125,10 +125,6 @@
 	            </table>
 	            <hr>
 	            
-	            <!-- profile img -->
-	            
-	            <!-- 사원명 / 의견 입력 시간 -->
-	            <!-- 의견 내용 -->
 	        </div>
 	
 	        <br>
