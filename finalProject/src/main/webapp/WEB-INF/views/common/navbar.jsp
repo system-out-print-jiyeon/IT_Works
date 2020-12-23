@@ -87,7 +87,7 @@
                     	<c:choose>
 	                    	<c:when test="${ !empty loginUser }">
 		                        <td><i class="material-icons" style="font-size:25px">person_outline</i></td>
-		                        <td>OOO 님</td>
+		                        <td>${ loginUser.memName } 님</td>
 		                        <td><i class="fa fa-angle-down" style="font-size:24px"></i></td>
 	                    	</c:when>
 	                    	<c:otherwise>
