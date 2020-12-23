@@ -35,4 +35,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return aDao.searchPwd(sqlSession, m);
 	}
 
+
+	@Override
+	public int updateMember(Member m) {
+		return aDao.updateMember(sqlSession, m);
+	}
+
 }

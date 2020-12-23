@@ -13,5 +13,8 @@ public interface AttendanceService {
 	// 비밀번호 찾기
 	Member searchPwd(Member m);
 	
+	// 비밀번호 수정
+	int updateMember(Member m);
+	
 
 }

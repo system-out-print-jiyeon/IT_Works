@@ -65,6 +65,7 @@
 <select id="searchPwd" parameterType="Member" resultMap="memberResultSet">
  SELECT MEM_PWD
  	  , MEM_NAME
+ 	  , MEM_ID
    FROM EMPLOYEE
    WHERE MEM_NAME = #{memName}
      AND MEM_ID = #{memId}
@@ -77,6 +78,7 @@
    UPDATE
           EMPLOYEE
       SET MEM_PWD = #{memPwd}
+        , MODIFY_DATE = SYSDATE
     WHERE MEM_ID = #{memId}
 </update>
 

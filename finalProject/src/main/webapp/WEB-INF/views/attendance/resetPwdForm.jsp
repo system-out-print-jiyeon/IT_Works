@@ -73,7 +73,8 @@
         <div class="content">
             <p id="title" align="center">Reset Password</p>
             <div class="searchArea" >
-                <form action="" id="searchIdForm" method="post">
+                <form action="update.at" id="searchIdForm" method="post">
+                	<input type="hidden" name="memId" id="memId" value="${ searchPwd.memId }">
                     <br>
 	               <label for="memPwd">새 비밀번호 입력</label>
 	               <br>

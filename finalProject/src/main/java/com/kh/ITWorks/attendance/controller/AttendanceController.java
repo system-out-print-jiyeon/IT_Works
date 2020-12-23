@@ -85,4 +85,29 @@ public class AttendanceController {
 	}
 	
 	
+	@RequestMapping("update.at")
+	public String updateMember(Member m, Model model, HttpSession session) {
+		
+		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
+		m.setMemPwd(encPwd);
+		
+		int result = aService.updateMember(m);
+		
+		if(result > 0) { // 성공
+			// 세션에 담겨있던 loginUser의 Member객체 갱신된 객체로 변경해야됨!
+			session.setAttribute("searchPwd", aService.loginMember(m));
+			
+			return "attendance/resetPwdSuccess";
+			// return "member/myPage" => 포워딩하게되면 url에 여전히 update.me라고 남아버림..
+			
+		}else { // 실패
+			
+			model.addAttribute("errorMsg", "회원정보 수정 실패!");
+			return "common/errorPage";
+			
+		}
+	}
+
+	
+	
 }

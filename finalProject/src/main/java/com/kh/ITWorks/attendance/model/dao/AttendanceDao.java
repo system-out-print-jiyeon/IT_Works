@@ -24,4 +24,11 @@ public class AttendanceDao {
 		return sqlSession.selectOne("attendanceMapper.searchPwd", m);
 	}
 	
+	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("attendanceMapper.updatePwd", m);
+	}
+
+	
+	
+	
 }
