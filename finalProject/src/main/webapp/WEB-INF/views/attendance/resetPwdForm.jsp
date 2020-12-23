@@ -79,7 +79,7 @@
 	               <label for="memPwd">새 비밀번호 입력</label>
 	               <br>
 	               <input type="password" name="memPwd" id="memPwd" required minlength="8" maxlength="16" onfocusout="checkPwd();">
-	               <p id="checkPwd">변경하실 비밀번호를 입력하세요</p>
+	               <p id="checkPwd"> ${ searchPwd.memName }님, 변경하실 비밀번호를 입력하세요</p>
 	               <br>
 	               <label for="memPwdCheck">새 비밀번호 확인</label>
 	               <br>
