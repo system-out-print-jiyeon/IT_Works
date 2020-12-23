@@ -73,5 +73,12 @@
      AND MEM_STATUS = 'Y'
 </select>
 
+<update id="updatePwd" parameterType="Member">
+   UPDATE
+          EMPLOYEE
+      SET MEM_PWD = #{memPwd}
+    WHERE MEM_ID = #{memId}
+</update>
+
 
 </mapper>
