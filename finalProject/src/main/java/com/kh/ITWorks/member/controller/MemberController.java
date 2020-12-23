@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.common.template.Pagination;
@@ -95,6 +96,13 @@ public class MemberController {
 		}else {
 			return "common/errorPage";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("idCheck.ma")
+	public String idCheck(String memId) {
+		int count = mService.idCheck(memId);
+		return String.valueOf(count);	
 	}
 	
 	@RequestMapping("update.ma")

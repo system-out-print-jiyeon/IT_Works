@@ -14,6 +14,8 @@ public interface MemberService {
 	
 	int memberEnroll(Member m);
 	
+	int idCheck(String memId);
+	
 	
 	
 }

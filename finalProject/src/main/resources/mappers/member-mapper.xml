@@ -127,4 +127,11 @@
 			  )
 	</insert>
 	
+	<select id="idCheck" parameterType="String" resultType="_int">
+		select 
+		       count(*)
+		  from employee
+		 where mem_id = #{memId}
+	</select>
+	
 </mapper>

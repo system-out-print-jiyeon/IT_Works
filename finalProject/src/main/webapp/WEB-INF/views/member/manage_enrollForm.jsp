@@ -162,15 +162,15 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
             <br><br>
             <form action="memberEnroll.ma" method="POST" name="enrollForm" id="enrollForm">
                 <div class="enroll">
-                    <div class="con1">
+                    <div class="con1" style="height:200px;">
                             아이디 <input type="text" name="memId" placeholder="사용할 아이디를 입력해주세요" required><br>
-                            <div id="idCheck">사용가능한 아이디 입니다.</div>
+                            <div id="idCheck" style="color:blue;"><아이디 체크></div>
                             <br>
                             비밀번호 <input type="password" name="memPwd" placeholder="사용할 비밀번호를 입력해주세요." required>
                             <br><br>
                             비밀번호 확인 <input type="password" name="checkPwd" placeholder="비밀번호를 다시 입력해주세요" required><br>
-                            <div id="pwdCheck">비밀번호가 일치하지 않습니다.</div>
-                            <br><br>
+                            <div id="pwdCheck" style="color:blue;"><비밀번호 체크></div>
+                            <br>
                     </div>
                     <hr>
                     <div class="con2">
@@ -234,7 +234,7 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                     </div>
                         <br>
                         <div align="center">
-                            <button type="submit">사원 등록</button>
+                            <button type="submit" id="enrollBtn">사원 등록</button>
                             <button type="reset">초기화</button>
                         </div><br><br>
                 </div>
@@ -243,6 +243,68 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
             <br><br><br><br>
         </div>
     </div>
+    <!-- 아이디 중복 체크 -->
+    <script>
+    	$(function(){
+    		var idInput = $("#enrollForm input[name=memId]");
+    		
+    		idInput.keyup(function(){
+    			if(idInput.val().length >=5){
+    				$.ajax({
+    					url:"idCheck.ma",
+    					data:{memId:idInput.val()},
+    					type:"post",
+    					success:function(count){
+    						if(count == 1){
+    							$("#idCheck").show();
+    							$("#idCheck").css("color", "red").text("이미 사용중인 아이디입니다. 다른 아이디를 입력해주세요 :(");
+    							$("enrollBtn").attr("disabled",true);
+    						}else{
+    							$("#idCheck").show();
+    							$("#idCheck").css("color","green").text("사용가능한 아이디입니다. :)");
+    							$("#enrollBtn").removeAttr("disabled");
+    						}
+    					},error:function(){
+    						console.log("idCheck ajax filed");
+    					}
+    				})
+    			}else if(idInput.val().length < 5){
+    				$("#idCheck").show();
+					$("#idCheck").css("color", "blue").text("<아이디 체크>");
+    			}else{
+    				$("#idCheck").hide();
+    				$("#enrollBtn").attr("disabled",true);
+    			}
+    		})
+    	})
+    </script>
+    
+    <!-- 비밀번호 일치 확인 -->
+    <script>
+    	$(function(){
+    		var inputPwd = $("#enrollForm input[name=memPwd]");
+    		var checkPwd = $("#enrollForm input[name=checkPwd]");
+    		
+    		checkPwd.keyup(function(){
+    			if(checkPwd.val().length >= 5){
+    				//console.log("비밀번호 입력 값 : ", inputPwd.val());
+    				//console.log("비밀번호 일치 값 : ", checkPwd.val());
+    				if(inputPwd.val() == checkPwd.val()){
+    					$("#pwdCheck").show();
+    					$("#pwdCheck").css("color","green").text("비밀번호가 일치합니다. :)");
+    					$("enrollBtn").removeAttr("disabled");
+    				}else{
+    					$("#pwdCheck").show();
+    					$("#pwdCheck").css("color","red").text("비밀번호가 일치하지 않습니다. :(");
+    					$("enrollBtn").attr("disabled",true);    							
+    				}
+    			}else if(checkPwd.val().length < 5){
+    				$("#pwdCheck").show();
+					$("#pwdCheck").css("color","blue").text("<비밀번호 체크>");
+    			}
+    		})
+    	})
+    </script>
     
    <!-- 사원 프로필 이미지 미리보기 -->
    <script>
