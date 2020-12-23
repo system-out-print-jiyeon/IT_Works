@@ -63,9 +63,6 @@
     		font-size:12px;
     		color: rgb(57, 146, 230);
     	}
-    	form input{
-    		margin:0px;
-    	}
     </style>
 </head>
 <body>
@@ -104,7 +101,7 @@
             var regExp = /^[a-z\d!@#$%^&*]{8,16}$/i
 
             if(!regExp.test(memPwd.value)){
-                checkPwd.innerHTML = "<p class='fail'>8~16자 영문, 숫자, 특수문자만 사용가능합니다.</p>";
+                checkPwd.innerHTML = "<p class='fail'>8 ~ 16자의 영문, 숫자, 특수문자로만 입력해주세요.</p>";
                 cPwd = false;
                 buttonAble();
             }else{
@@ -122,7 +119,7 @@
             var regExp = /^[a-z\d!@#$%^&*]{8,16}$/i
 
             if(!regExp.test(memPwdCheck.value)){
-                checkPwdCheck.innerHTML = "<p class='fail'>8~16자 영문, 숫자, 특수문자만 사용가능합니다.</p>";
+                checkPwdCheck.innerHTML = "<p class='fail'>8 ~ 16자의 영문, 숫자, 특수문자로만 입력해주세요.</p>";
             }else{
                 if(memPwd.value != memPwdCheck.value){
                     checkPwdCheck.innerHTML = "<p class='fail'>비밀번호가 일치하지 않습니다.</p>";
