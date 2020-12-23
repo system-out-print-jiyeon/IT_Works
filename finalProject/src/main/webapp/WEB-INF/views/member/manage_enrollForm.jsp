@@ -164,12 +164,12 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                 <div class="enroll">
                     <div class="con1" style="height:200px;">
                             아이디 <input type="text" name="memId" placeholder="사용할 아이디를 입력해주세요" required><br>
-                            <div id="idCheck" style="color:blue;"><아이디 체크></div>
+                            <div id="idCheck" style="color:blue;"><아이디 체크 5글자 이상></div>
                             <br>
                             비밀번호 <input type="password" name="memPwd" placeholder="사용할 비밀번호를 입력해주세요." required>
                             <br><br>
                             비밀번호 확인 <input type="password" name="checkPwd" placeholder="비밀번호를 다시 입력해주세요" required><br>
-                            <div id="pwdCheck" style="color:blue;"><비밀번호 체크></div>
+                            <div id="pwdCheck" style="color:blue;"><비밀번호 체크 5글자 이상></div>
                             <br>
                     </div>
                     <hr>
@@ -270,7 +270,7 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
     				})
     			}else if(idInput.val().length < 5){
     				$("#idCheck").show();
-					$("#idCheck").css("color", "blue").text("<아이디 체크>");
+					$("#idCheck").css("color", "blue").text("<아이디 체크 5글자 이상>");
     			}else{
     				$("#idCheck").hide();
     				$("#enrollBtn").attr("disabled",true);
@@ -300,7 +300,7 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
     				}
     			}else if(checkPwd.val().length < 5){
     				$("#pwdCheck").show();
-					$("#pwdCheck").css("color","blue").text("<비밀번호 체크>");
+					$("#pwdCheck").css("color","blue").text("<비밀번호 체크 5글자 이상>");
     			}
     		})
     	})
