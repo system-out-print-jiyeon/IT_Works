@@ -69,7 +69,7 @@
 
                 <br><br><br><br><br><br><br>
 
-                <a href="javascript:history.back()" class="btn btn-primary" type="submit">뒤로가기</a>    
+                <button onclick="location.href='index.jsp'" class="btn btn-primary" type="button">로그인하러 가기</button>    
             </div>
         </div>
     </div>
