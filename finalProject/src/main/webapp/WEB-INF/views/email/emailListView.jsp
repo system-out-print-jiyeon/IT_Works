@@ -26,79 +26,22 @@
     display: flex;
 }
 
-/* 메뉴바 */
-.em_menubar{
-    width:300px;
-    height:0%;
-    background:linear-gradient(  rgb(245, 236, 236),rgb(240, 231, 231), rgb(255, 255, 255));
-    position: fixed;
-
-    animation-name:key1;
-    animation-duration:2s;
-    animation-delay:0.5s;
-    animation-fill-mode:both;
-}
-@keyframes key1{
-    to{
-        height:100%;
-    }
-}
-.em_menubar>button{
-    font-size:20px;
-    margin-top:50px;
-    width:200px;
-    height:100px;
-    border-radius:10px;
-    border:none;
-    background:rgb(133, 182, 255); 
-    color:white;
-}
-.em_menubar>button:hover{
-    cursor:pointer;
-    animation-name:key2;
-    animation-duration:0.5s;
-    animation-fill-mode:both;
-    animation-direction: alternate;
-}
-@keyframes key2{
-    to{
-        background:rgb(80, 150, 255); 
-        padding-right:10px;
-    }
-}
-.em_menubar_list{
-    margin:50px 0px 0px 0px;
-}
-.em_menubar_list li{
-    list-style:none;
-}
-.em_menubar_list>span{
-    font-size:25px;
-    font-weight:900;
-    color:rgb(85, 84, 84);
-}
-.em_menubar_list a{
-    color:gray;
-    font-size:20px;
-}
-.em_menubar_list a:hover{
-    text-decoration:none;
-    animation-name:key3;
-    animation-duration:0.3s;
-    animation-fill-mode:both;
-    animation-direction: alternate;
-}
-@keyframes key3{
-    100%{
-        color:rgb(80, 150, 255); 
-        padding-right:5px;
-    }
-}
 /*내용*/
+.em_title{
+	color:gray;
+	font-size:30px;
+}
 .em_content{
-    margin-top:100px;
     width:100%;
     margin-left:300px;
+}
+.em_navbar {
+	width:100%;
+    position: fixed;
+    background:white;
+}
+.em_content_center{
+    margin-top:100px;
 }
 .em_content_center>table{
     width: 95%;
@@ -182,160 +125,84 @@
 </style>
 </head>
 <body>
+    <div class="em_navbar">
+    	<!-- 상단바 include -->
+		<jsp:include page="../common/approvalNavbar.jsp"/>
+    </div>
 	<div class="em_wrap">
 
-        <!-- 상단바 include -->
-
-        <div class="em_menubar" align="center">
-            <button>메일쓰기&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></button>
-            <div class="em_menubar_list">
-                <span>메일함</span>
-                <ul>
-                    <li><a href="#"><i class="fa fa-envelope"></i> 전체 메일</a></li>
-                    <li><a href="#"><i class="fa fa-paper-plane"></i> 보낸 메일</a></li>
-                    <li><a href="#"><i class="fa fa-reply"></i>받은 메일</a></li>
-                    <li><a href="#"><i class="fa fa-star"></i>중요메일</a></li>
-                </ul>
-            </div>
-            <div class="em_menubar_list">
-                <span>휴지통</span>
-                <ul>
-                    <li><a href="#"><i class="fa fa-trash"></i></i>휴지통</a></li>
-                </ul>
-            </div>
-        </div>
+		<jsp:include page="../common/sideBar_email.jsp"/>
 
         <div class="em_content">
-
-            <div clss="em_content_top">
-
-            </div>
-
             <div class="em_content_center">
+			<span class="em_title">${ title }</span>
 
                 <form name="form_mail" method="post">
 
                     <div class="submit_btn">
                         <input type="checkbox" id="checkall"> 
                         <label class="update" for="checkall">전체선택</label>
-                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("important");'><i class="fa fa-star"></i>중요</button></span>
-                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("delete");'><i class="fa fa-trash"></i>삭제</button></span>             
+                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("important");'><i class="fa fa-star"></i> 중요</button></span>
+                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("delete");'><i class="fa fa-trash"></i> 삭제</button></span>             
                     </div>
                     <table class="table">
                         <tbody>
+							<c:forEach var="em" items="${ list }">
+	                            <tr>
+	                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="15"></td>
+	                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>
+	                                <c:choose>
+	                                	<c:when test='${ em.emInp == "Y" }'>
+	                                		<td width="2%" class="icon"><i class="fa fa-star"></i></td>
+	                                	</c:when>
+	                                	<c:otherwise>
+	                                		<td width="2%" class="icon-none"><i class="fa fa-star"></i></td>
+	                                	</c:otherwise>
+	                                </c:choose>
+	                                
+	                                
+	                                           
+	                                
+	                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
+	                                <td width="15%">${ em.emFrom }</td>
+	                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
+	                                <td>${ em.emTitle }</td>
+	                                <td width="15%">${ em.emEnrollDate }</td>
+	                            </tr>
+<!-- 	                            <tr>
+	                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="20"></td>
+	                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
+	                                <td width="2%" class="icon-none"><i class="fa fa-star"></i></td>
+	                                <td width="2%" class="icon-none"><i class="fa fa-envelope"></i></td>
+	                                <td width="15%">user01@naver.com</td>
+	                                <td width="2%" class="icon-none"><i class="fa fa-download"></i></td>
+	                                <td>안녕하세요 김길순입니다</td>
+	                                <td width="15%">2020-12-13</td>
+	                            </tr> -->
+                           </c:forEach>
 
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="15"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김개똥 입니다.</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="20"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon-none"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon-none"><i class="fa fa-envelope"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon-none"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길순입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
                         </tbody>
                     </table>
                 </form>
+                <c:choose>
+                	<c:when test="${ empty condition }">
                 <div class="paging">
-                    <a href=""><i class="fa fa-angle-double-left"></i></a>
-                    <a href="">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <a href="">4</a>
-                    <a href="">5</a>
-                    <a href=""><i class="fa fa-angle-double-right"></i></a>
+                <div class="em_title" style="text-align:center;">${ pi.currentPage }page</div>
+                	<c:if test="${ pi.currentPage ne 1 }">
+                    	<a href="listFrom.em?currentPage=${ pi.currentPage - 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-left"></i></a>
+                    </c:if>
+                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+
+                    	<a href="listFrom.em?currentPage=${ p }&email=${ loginUser.email }">${ p }</a>
+
+                    </c:forEach>
+                    <c:if test="${ pi.currentPage ne pi.maxPage }">
+                    	<a href="listFrom.em?currentPage=${ pi.currentPage + 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-right"></i></a>
+                    </c:if>
                 </div>
+                	</c:when>
+                
+                </c:choose>
             </div>
         </div>
     </div>
