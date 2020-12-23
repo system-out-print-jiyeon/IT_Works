@@ -183,7 +183,7 @@
 <!-- 탑 네비바-->
     <nav class="navBar">
         <div class="navLogo">
-            <a href="login.me" class="logoText">IT Works</a>
+            <a href="main.me" class="logoText">IT Works</a>
         </div>
         <div class="category" >
         

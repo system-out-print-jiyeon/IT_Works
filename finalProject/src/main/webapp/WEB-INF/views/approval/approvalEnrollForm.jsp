@@ -263,7 +263,11 @@
         
     }
 
-    
+    .table1 tr:hover{
+        background-color:#e7e1e1 ;
+        cursor: pointer;
+        
+    }
 
     .th_numbering{
         width: 30px;
@@ -289,7 +293,7 @@
 
 
     .td_reference{
-        background-color: #878787;
+        background-color: #e7e1e1;
         width: 130px;
         height:55px;
         text-align: center;
