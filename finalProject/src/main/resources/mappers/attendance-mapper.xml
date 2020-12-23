@@ -51,8 +51,9 @@
 </select>
 
 
-<select id="searchId" resultMap="memberResultSet">
+<select id="searchId" parameterType="Member" resultMap="memberResultSet">
  SELECT MEM_ID
+ 	  , MEM_NAME
    FROM EMPLOYEE
    WHERE MEM_NAME = #{memName}
      AND MEM_BIRTH = #{birth}

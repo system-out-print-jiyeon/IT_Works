@@ -58,16 +58,18 @@
     <div class="outer">
         <div class="content">
             <p align="center">Search Id</p>
-            
-            <div class="searchArea" align="center">
-                <br><br>
-                <b style="color: gray;">아이디 찾기 실패!</b>
-                <br><br>
-                <b>일치하는 회원이 없습니다. 다시 시도해주세요.</b>
+            	<c:if test="${ !empty searchId}">
+	            	<div class="searchArea" align="center">
+	                <br><br><br> 
+	                <b>${searchId.memName }님의 아이디는 </b>
+	                <br>
+	                <b>${searchId.memId }입니다</b>
+            	
+            	</c:if>
 
                 <br><br><br><br><br><br><br>
 
-                <a href="login.at" class="btn btn-primary" type="submit">로그인하러 가기</a>    
+                <a href="javascript:history.back()" class="btn btn-primary" type="submit">뒤로가기</a>    
             </div>
         </div>
     </div>

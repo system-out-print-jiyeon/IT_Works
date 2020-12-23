@@ -8,7 +8,7 @@ public interface AttendanceService {
 	Member loginMember(Member m);
 	
 	// 아이디 찾기
-	String searchId(Member m);
+	Member searchId(Member m);
 	
 
 }

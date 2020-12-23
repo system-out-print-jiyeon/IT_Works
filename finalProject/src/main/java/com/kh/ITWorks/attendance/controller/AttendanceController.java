@@ -46,7 +46,6 @@ public class AttendanceController {
 		return "mainPage";
 	}
 	
-	
 	@RequestMapping("searchIdForm.at")
 	public ModelAndView searchIdForm(ModelAndView mv) {
 		mv.setViewName("attendance/searchIdForm");
@@ -54,16 +53,16 @@ public class AttendanceController {
 	}
 	
 	@RequestMapping("searchId.at")
-	public String searchId(Member m, HttpSession session, Model model) {
-		String searchId = aService.searchId(m);
+	public ModelAndView searchId(Member m, HttpSession session, ModelAndView mv) {
+		Member searchId = aService.searchId(m);
 		
-		if(searchId.equals("")) {
-			return "attendance/searchIdFailed";
-			
+		if(searchId != null) {
+			session.setAttribute("searchId", searchId);
+			mv.setViewName("attendance/searchIdSuccess");
 		}else {
-			return "attendance/searchIdSuccess";
+			mv.setViewName("attendance/searchIdFailed");
 		}
-		
+		return mv;
 	}
 	
 	

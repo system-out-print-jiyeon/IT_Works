@@ -83,7 +83,7 @@
                     <br>
                     <input type="text" name="phone" id="phone" required placeholder=" - 포함해서 입력하세요" minlength="13" maxlength="13">
                     <br><br><br>
-                    <a href="login.at" class="btn btn-secondary">&nbsp; 뒤로가기 &nbsp;</a>
+                    <a href="javascript:history.back()" class="btn btn-secondary">&nbsp; 뒤로가기 &nbsp;</a>
                     <button class="btn btn-primary" type="submit">아이디 찾기</button>
                 </form>
                     

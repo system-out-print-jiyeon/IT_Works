@@ -25,7 +25,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 
 	@Override
-	public String searchId(Member m) {
+	public Member searchId(Member m) {
 		return aDao.searchId(sqlSession, m);
 	}
 
