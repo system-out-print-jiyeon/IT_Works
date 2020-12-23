@@ -65,8 +65,24 @@ public class AttendanceController {
 		return mv;
 	}
 	
+	@RequestMapping("searchPwdForm.at")
+	public ModelAndView searchPwdForm(ModelAndView mv) {
+		mv.setViewName("attendance/searchPwdForm");
+		return mv;
+	}
 	
+	@RequestMapping("searchPwd.at")
+	public ModelAndView searchPwd(Member m, HttpSession session, ModelAndView mv) {
+		Member searchPwd = aService.searchPwd(m);
+		
+		if(searchPwd != null) {
+			session.setAttribute("searchPwd", searchPwd);
+			mv.setViewName("attendance/resetPwdForm");
+		}else {
+			mv.setViewName("attendance/searchPwdFailed");
+		}
+		return mv;
+	}
 	
-
 	
 }

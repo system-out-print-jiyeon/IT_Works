@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <link rel="stylesheet" href="../common/navbar.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -41,12 +42,23 @@
             width: 420px;
             margin: auto;
             border:3px solid rgb(57, 146, 230);
-            height:230px;
+            height:430px;
             margin:auto;
             padding:20px;
         }
+        .searchArea label{
+	    font-weight:900;
+        }
+        .searchArea input[type="text"]{
+            border:1px solid gray;
+            width:250px;
+            margin-bottom:30px;
+        }
+        #searchIdForm{
+            margin-left:50px;
+        }
         .btn-primary{
-	    margin-left:20px;
+	    margin-left:50px;
     	}
     </style>
 </head>
@@ -56,21 +68,33 @@
     
     <div class="outer">
         <div class="content">
-            <p align="center">Search Id</p>
-            
-            <div class="searchArea" align="center">
-                <br><br>
-                <b style="color: gray;">아이디 찾기 실패!</b>
-                <br><br>
-                <b>일치하는 회원이 없습니다. 다시 시도해주세요.</b>
-
-                <br><br><br><br><br><br><br>
-
-                <a href="javascript:history.back()" class="btn btn-primary" type="submit">뒤로가기</a>    
+            <p align="center">Search Password</p>
+            <div class="searchArea" >
+                <form action="searchPwd.at" id="searchIdForm" method="post">
+                    <br>
+                    <label for="memName">이름</label>
+                    <br>
+                    <input type="text" name="memName" id="memName" required placeholder="이름을 입력하세요" minlength="2" maxlength="5">
+                    <br>
+                    <label for="memId">아이디</label>
+                    <br>
+                    <input type="text" name="memId" id="memId" required placeholder="아이디를 입력하세요">
+                    <br>
+                    <label for="birth">생년월일</label>
+                    <br>
+                    <input type="text" name="birth" id="birth" required placeholder="6자리의 숫자로 입력하세요" minlength="6" maxlength="6">
+                    <br>
+                    <label for="phone">전화번호</label>
+                    <br>
+                    <input type="text" name="phone" id="phone" required placeholder=" - 포함해서 입력하세요" minlength="13" maxlength="13">
+                    <br><br><br><br>
+                    <a href="" class="btn btn-secondary">&nbsp; 뒤로가기 &nbsp;</a>
+                    <button class="btn btn-primary" type="submit">비밀번호 찾기</button>
+                </form>
+                    
             </div>
         </div>
     </div>
-
 
 </body>
 </html>

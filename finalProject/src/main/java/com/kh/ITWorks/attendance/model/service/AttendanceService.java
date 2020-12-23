@@ -10,5 +10,8 @@ public interface AttendanceService {
 	// 아이디 찾기
 	Member searchId(Member m);
 	
+	// 비밀번호 찾기
+	Member searchPwd(Member m);
+	
 
 }

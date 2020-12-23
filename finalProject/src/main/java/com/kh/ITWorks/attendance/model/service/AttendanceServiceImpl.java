@@ -29,4 +29,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return aDao.searchId(sqlSession, m);
 	}
 
+
+	@Override
+	public Member searchPwd(Member m) {
+		return aDao.searchPwd(sqlSession, m);
+	}
+
 }

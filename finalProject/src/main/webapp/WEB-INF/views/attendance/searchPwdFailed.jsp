@@ -56,11 +56,11 @@
     
     <div class="outer">
         <div class="content">
-            <p align="center">Search Id</p>
+            <p align="center">Search Password</p>
             
             <div class="searchArea" align="center">
                 <br><br>
-                <b style="color: gray;">아이디 찾기 실패!</b>
+                <b style="color: gray;">비밀번호 찾기 실패!</b>
                 <br><br>
                 <b>일치하는 회원이 없습니다. 다시 시도해주세요.</b>
 

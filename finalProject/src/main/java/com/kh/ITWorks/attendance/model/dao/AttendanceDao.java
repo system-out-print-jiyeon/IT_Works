@@ -20,5 +20,8 @@ public class AttendanceDao {
 		return sqlSession.selectOne("attendanceMapper.searchId", m);
 	}
 
-
+	public Member searchPwd(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("attendanceMapper.searchPwd", m);
+	}
+	
 }

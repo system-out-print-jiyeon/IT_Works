@@ -62,6 +62,16 @@
 </select>
 
 
+<select id="searchPwd" parameterType="Member" resultMap="memberResultSet">
+ SELECT MEM_PWD
+ 	  , MEM_NAME
+   FROM EMPLOYEE
+   WHERE MEM_NAME = #{memName}
+     AND MEM_ID = #{memId}
+     AND MEM_BIRTH = #{birth}
+     AND MEM_PHONE = #{phone}
+     AND MEM_STATUS = 'Y'
+</select>
 
 
 </mapper>
