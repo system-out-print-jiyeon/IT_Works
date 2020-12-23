@@ -9,6 +9,7 @@
 	<typeAliases>
 		<typeAlias type="com.kh.ITWorks.approval.model.vo.ApprovalDocument" alias="AppDoc"/>
 		<typeAlias type="com.kh.ITWorks.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.ITWorks.email.model.dto.EmailSelect" alias="EmailSelect"/>
 	</typeAliases>
 	
 	
@@ -17,6 +18,7 @@
 		<mapper resource="/mappers/approval-mapper.xml"/>
 		<mapper resource="/mappers/member-mapper.xml"/>
 		<mapper resource="/mappers/attendance-mapper.xml"/>
+		<mapper resource="/mappers/email-mapper.xml"/>
 	</mappers>
 	
 </configuration>

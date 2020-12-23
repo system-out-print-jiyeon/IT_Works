@@ -31,81 +31,18 @@
     height: 100%;
     display: flex;
 }
-/* 메뉴바 */
-.em_menubar{
-    width:300px;
-    height:0%;
-    background:linear-gradient(  rgb(245, 236, 236),rgb(240, 231, 231), rgb(255, 255, 255));
-    position: fixed;
-
-    animation-name:key1;
-    animation-duration:2s;
-    animation-delay:0.5s;
-    animation-fill-mode:both;
-}
-@keyframes key1{
-    to{
-        height:100%;
-    }
-}
-
-.em_menubar>button{
-    font-size:20px;
-    margin-top:50px;
-    width:200px;
-    height:100px;
-    border-radius:10px;
-    border:none;
-    background:rgb(133, 182, 255); 
-    color:white;
-}
-.em_menubar>button:hover{
-    cursor:pointer;
-    animation-name:key2;
-    animation-duration:0.5s;
-    animation-fill-mode:both;
-    animation-direction: alternate;
-}
-@keyframes key2{
-    to{
-        background:rgb(80, 150, 255); 
-        padding-right:10px;
-    }
-}
-.em_menubar_list{
-    margin:50px 0px 0px 0px;
-}
-.em_menubar_list li{
-    list-style:none;
-}
-.em_menubar_list>span{
-    font-size:25px;
-    font-weight:900;
-    color:rgb(85, 84, 84);
-}
-
-.em_menubar_list a{
-    color:gray;
-    font-size:20px;
-}
-.em_menubar_list a:hover{
-    text-decoration:none;
-    animation-name:key3;
-    animation-duration:0.3s;
-    animation-fill-mode:both;
-    animation-direction: alternate;
-}
-@keyframes key3{
-    100%{   
-        color:rgb(80, 150, 255); 
-        padding-right:5px;
-    }
-}
 /*내용*/
 .em_content{
-    margin-top:100px;
     width:100%;
     margin-left:300px;
+}
+.em_navbar {
+	width:100%;
+    position: fixed;
+    background:white;
+}
+.em_content_center{
+    margin-top:100px;
 }
 .em_content_center{
     padding:20px;
@@ -145,34 +82,17 @@ input[type="submit"]:hover{
 }
 </style>
 </head>
-<body>
+<body>	
+    <div class="em_navbar">
+    	<!-- 상단바 include -->
+		<jsp:include page="../common/approvalNavbar.jsp"/>
+    </div>
+    
 	<div class="em_wrap">
-
-        <!-- 상단바 include -->
-
-        <div class="em_menubar" align="center">
-            <button>메일쓰기&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></button>
-            <div class="em_menubar_list">
-                <span>메일함</span>
-                <ul>
-                    <li><a href=""><i class="fa fa-envelope"></i> 전체 메일</a></li>
-                    <li><a href=""><i class="fa fa-paper-plane"></i> 보낸 메일</a></li>
-                    <li><a href=""><i class="fa fa-reply"></i>받은 메일</a></li>
-                    <li><a href=""><i class="fa fa-star"></i>중요메일</a></li>
-                </ul>
-            </div>
-            <div class="em_menubar_list">
-                <span>휴지통</span>
-                <ul>
-                    <li><a href="#"><i class="fa fa-trash"></i></i>휴지통</a></li>
-                </ul>
-            </div>
-        </div>
-
+		<jsp:include page="../common/sideBar_email.jsp"/>
+		
         <div class="em_content">
-            <div clss="em_content_top">
 
-            </div>
             <div class="em_content_center">
                 <form name="form_mail" method="post">
                     <div class="submit_btn">
@@ -197,7 +117,7 @@ input[type="submit"]:hover{
                     </tr>
                     <tr>
                         <th>내용</th>
-                        <td><textarea style="height:400px; width:100%; resize:none;" readonly>안녕하세요</textarea></td>
+                        <td><p style="width:100%;">안녕하세요</p></td>
                     </tr>
                 </table>
             </div>

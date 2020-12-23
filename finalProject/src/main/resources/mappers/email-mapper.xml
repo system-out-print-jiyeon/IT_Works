@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="emailMapper">
+	
+	<resultMap id="EmailSelectResultSet" type="EmailSelect">
+		<result column="em_no" property="emNo"/>
+		<result column="em_from" property="emFrom"/>
+		<result column="em_title" property="emTitle"/>
+		<result column="em_content" property="emContent"/>
+		<result column="em_enroll_date" property="emEnrollDate"/>
+		<result column="em_inp" property="emInp"/>
+		<result column="em_status" property="emStatus"/>
+	</resultMap>
+	
+
+	<select id="selectEmailFromListCount" parameterType="string" resultType="_int">
+		select count(*)
+		from email e
+		where e.em_from = #{email}
+		  and e.em_status = 'Y'
+	</select>
+	
+	<select id="selectEmailFromList" parameterType="string" resultMap="EmailSelectResultSet">
+		select e.em_no
+             , e.em_from
+             , e.em_title
+             , to_char(e.em_enroll_date, 'YYYY-MM-DD') em_enroll_date
+             , e.em_inp
+             , e.em_status
+          from email e
+         where em_from = #{email}
+           and em_status = 'Y'
+         order 
+            by e.em_no desc
+	</select>
+</mapper>
