@@ -43,4 +43,14 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.idCheck(sqlSession, memId);
 	}
 
+	@Override
+	public ArrayList<Member> selectSearch(String selectList, String keyword, PageInfo pi) {
+		return mDao.selectSearch(sqlSession, selectList, keyword, pi);
+	}
+
+	@Override
+	public int searchListCount(String selectList, String keyword) {
+		return mDao.searchListCount(sqlSession, selectList, keyword);
+	}
+
 }

@@ -190,12 +190,12 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
             <div class="content_1">
                 <h2>사원 리스트 조회</h2>
                 <div class="search" style="margin-left: 770px;">
-                    <form action="search.me" method="GET" id="searchForm">
+                    <form action="search.ma" method="GET" id="searchForm">
                         <select name="selectList" id="selectList">
-                            <option>사원명</option>
-                            <option>부서</option>
-                            <option>직책</option>
-                            <option>상태</option>
+                            <option value="1">사원명</option>
+                            <option value="2">부서</option>
+                            <option value="3">직책</option>
+                            <option value="4">상태</option>
                         </select>
                         <input type="text" id="keyword" name="keyword">
                         <button type="submit">검색</button>

@@ -105,6 +105,27 @@ public class MemberController {
 		return String.valueOf(count);	
 	}
 	
+	@RequestMapping("search.ma")
+	public String searchList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, 
+												Model model, String selectList, String keyword) {
+		System.out.println(selectList);
+		System.out.println(keyword);
+		
+		int searchCount = mService.searchListCount(selectList,keyword);
+		System.out.println("검색결과 갯수 : " + searchCount);
+		PageInfo pi = Pagination.getPageInfo(searchCount, currentPage, 10, 10);
+		ArrayList<Member> list = mService.selectSearch(selectList,keyword,pi);
+		
+		System.out.println(list);
+		
+		model.addAttribute("count", searchCount);
+		model.addAttribute("list", list);
+		
+		// 검색기능 수정중 2020.12.24 ..ing
+		
+		return "member/manage_list";
+	}
+	
 	@RequestMapping("update.ma")
 	public String updateForm() {
 		return "member/manage_updateForm";

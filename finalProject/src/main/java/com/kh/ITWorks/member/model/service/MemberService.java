@@ -16,6 +16,9 @@ public interface MemberService {
 	
 	int idCheck(String memId);
 	
+	int searchListCount(String selectList, String keyword);
+	ArrayList<Member> selectSearch(String selectList, String keyword, PageInfo pi);
+	
 	
 	
 }

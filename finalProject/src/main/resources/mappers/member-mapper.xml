@@ -134,4 +134,69 @@
 		 where mem_id = #{memId}
 	</select>
 	
+	<select id="searchListCount" resultType="_int">
+		select 
+		       count(*)
+		  from employee
+		  join department using(dept_code)
+          join jobgrade using(job_code)
+		  <choose>
+          	<when test="selectList eq '1'">
+		    	where mem_name
+		    </when>
+		    <when test="selectList eq '2'">
+		       	where dept_name
+		    </when>
+		    <when test="selectList eq '3'">
+		       	where job_name
+		    </when>
+          	<otherwise>
+          		where mem_status
+          	</otherwise>
+          </choose>
+               like '%'||#{keyword}||'%'
+	</select>
+	
+	<select id="searchList" parameterType="hashmap" resultMap="memberResultSet">
+		select
+			    mem_no
+			  , mem_id
+			  , mem_pwd
+			  , mem_img
+			  , mem_name
+			  , mem_phone
+			  , mem_email
+			  , mem_gender
+			  , mem_birth
+			  , mem_address
+			  , mem_certification
+			  , mem_career
+			  , mem_status
+			  , mem_enroll
+			  , modify_date
+			  , annual_leave
+              , dept_name
+              , job_name
+		  from employee
+          join department using(dept_code)
+          join jobgrade using(job_code)
+          <choose>
+          	<when test="selectList eq '1'">
+		    	where mem_name
+		    </when>
+		    <when test="selectList eq '2'">
+		       	where dept_name
+		    </when>
+		    <when test="selectList eq '3'">
+		       	where job_name
+		    </when>
+          	<otherwise>
+          		where mem_status
+          	</otherwise>
+          </choose>
+               like '%'||#{keyword}||'%'
+         order 
+            by mem_no asc
+	</select>
+	
 </mapper>
