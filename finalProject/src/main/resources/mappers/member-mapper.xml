@@ -43,6 +43,8 @@
 			  , mem_enroll
 			  , modify_date
 			  , annual_leave
+			  , dept_code
+			  , job_code
               , dept_name
               , job_name
 		  from employee
@@ -72,6 +74,8 @@
 			  , mem_enroll
 			  , modify_date
 			  , annual_leave
+			  , dept_code
+			  , job_code
               , dept_name
               , job_name
 		  from employee
@@ -177,6 +181,8 @@
 			  , annual_leave
               , dept_name
               , job_name
+              , dept_code
+              , job_code
 		  from employee
           join department using(dept_code)
           join jobgrade using(job_code)
