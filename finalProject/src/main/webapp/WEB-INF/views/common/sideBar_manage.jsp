@@ -77,6 +77,7 @@
                     <ul class="menu1">
                         <li><a href="listManage.ma">사원 리스트</a></li>
                         <li><a href="enrollForm.ma">사원 등록</a></li>
+                        <li><a href="chat.do">Chat_Test</a></li>
                     </ul>
                 </li>
             </div>
