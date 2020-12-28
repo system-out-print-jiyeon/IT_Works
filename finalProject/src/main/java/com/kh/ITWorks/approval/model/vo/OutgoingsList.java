@@ -1,7 +1,5 @@
 package com.kh.ITWorks.approval.model.vo;
 
-import java.util.ArrayList;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,15 +8,15 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
+@Setter @Getter
 @ToString
-public class Outgoings {
+public class OutgoingsList {
 	
-	// 지출결의서기본
-	private int docNo;
-	private String outReason;
-	private int outSumprice;
-	
-	private ArrayList<Outgoings> outgoingsList;
-	
+	// 지출결의서 지출 리스트
+	private String outDate;
+	private String outCategory;
+	private int outPrice;
+	private String outHistory;
+	private String outRemark;
+
 }

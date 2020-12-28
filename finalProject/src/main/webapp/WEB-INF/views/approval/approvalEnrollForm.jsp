@@ -338,7 +338,7 @@
                 <table class="infoTable" border="1px">
                     <tr>
                         <th>문서 종류</th>
-                        <td>  <select name="formCategory" id="formCategory">
+                        <td>  <select name="formCategory" id="formCategory" onclick="approvalForm()">
                                 <option value="selectOption">&nbsp;선택</option>
                                 <option value="outgoingEnrollForm">지출 결의서</option>
                                 <option value="documentsRequestEnrollForm">문서 발급 요청서</option>
@@ -437,12 +437,18 @@
             <div class="detailContents">
 
                 <div id="summernote">
-                
              
-                
-               
-                
+             		
+                             
                 </div>
+                
+                <script>                
+                	function approvalForm() {
+                		var form = $("#formCategory option:selected").val();
+                		console.log(form);
+                		
+                	}
+                </script>
 
 
             </div>
