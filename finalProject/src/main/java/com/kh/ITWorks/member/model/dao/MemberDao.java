@@ -58,6 +58,8 @@ public class MemberDao {
 		int skip = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(skip, pi.getBoardLimit());
 		
+		System.out.println(search);
+		
 		return (ArrayList)sqlSession.selectList("memberMapper.searchList", search, rowBounds);
 	}
 	

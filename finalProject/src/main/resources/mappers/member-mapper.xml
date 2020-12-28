@@ -145,13 +145,13 @@
 		  join department using(dept_code)
           join jobgrade using(job_code)
 		  <choose>
-          	<when test="selectList eq '1'">
+          	<when test="selectList eq 'mem'">
 		    	where mem_name
 		    </when>
-		    <when test="selectList eq '2'">
+		    <when test="selectList eq 'dept'">
 		       	where dept_name
 		    </when>
-		    <when test="selectList eq '3'">
+		    <when test="selectList eq 'job'">
 		       	where job_name
 		    </when>
           	<otherwise>
@@ -187,13 +187,13 @@
           join department using(dept_code)
           join jobgrade using(job_code)
           <choose>
-          	<when test="selectList eq '1'">
+          	<when test="selectList == 'mem'">
 		    	where mem_name
 		    </when>
-		    <when test="selectList eq '2'">
+		    <when test="selectList == 'dept'">
 		       	where dept_name
 		    </when>
-		    <when test="selectList eq '3'">
+		    <when test="selectList == 'job'">
 		       	where job_name
 		    </when>
           	<otherwise>
