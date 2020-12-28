@@ -7,6 +7,7 @@ import com.kh.ITWorks.approval.model.vo.ApprovalLine;
 import com.kh.ITWorks.approval.model.vo.Attachment;
 import com.kh.ITWorks.approval.model.vo.DocumentsRequest;
 import com.kh.ITWorks.approval.model.vo.Outgoings;
+import com.kh.ITWorks.approval.model.vo.OutgoingsList;
 import com.kh.ITWorks.approval.model.vo.Referer;
 
 public interface ApprovalService {
@@ -20,7 +21,7 @@ public interface ApprovalService {
 	// 결재문서 상세내용
 	// 1. 지출결의서 입력
 	int insertOutgoings(Outgoings o);
-	int insertOutgoingsList(ArrayList<Outgoings> oList);
+	int insertOutgoingsList(ArrayList<OutgoingsList> oList);
 	
 	// 2. 문서발급요청서 입력
 	int insertDocumentsRequest(ArrayList<DocumentsRequest> drList);
@@ -28,5 +29,9 @@ public interface ApprovalService {
 	// 3. 프로젝트업무보고서 입력
 	
 	// 4. 품의서 입력
+	
+	// 5. 결재문서 상세보기
+	
+	// 6. 결재 승인
 
 }

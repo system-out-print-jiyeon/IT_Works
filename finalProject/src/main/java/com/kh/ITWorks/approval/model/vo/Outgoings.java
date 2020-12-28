@@ -19,6 +19,6 @@ public class Outgoings {
 	private String outReason;
 	private int outSumprice;
 	
-	private ArrayList<Outgoings> outgoingsList;
+	private ArrayList<OutgoingsList> outgoingsList;
 	
 }

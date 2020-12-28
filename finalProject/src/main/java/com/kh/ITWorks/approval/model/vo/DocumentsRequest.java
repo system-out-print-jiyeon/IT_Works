@@ -1,5 +1,7 @@
 package com.kh.ITWorks.approval.model.vo;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +21,7 @@ public class DocumentsRequest {
 	private int docreqAmount;
 	private String docreqSubmission;
 	private String docreqLanguage;
+	
+	private ArrayList<DocumentsRequest> docreqList;
 
 }
