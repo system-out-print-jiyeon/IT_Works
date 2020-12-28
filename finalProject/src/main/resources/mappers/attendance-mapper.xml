@@ -48,7 +48,11 @@
 	     , ANNUAL_LEAVE
 	     , DEPT_CODE
 	     , JOB_CODE
+	     , JOB_NAME
+         , DEPT_NAME
 	 FROM EMPLOYEE
+     JOIN DEPARTMENT USING (DEPT_CODE)
+     JOIN JOBGRADE USING (JOB_CODE)
 	WHERE MEM_ID = #{memId}
 	  <!--AND MEM_PWD = #{memPwd}-->
 	  AND MEM_STATUS = 'Y'
