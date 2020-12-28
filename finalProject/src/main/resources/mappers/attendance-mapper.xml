@@ -18,7 +18,11 @@
 		<result column="mem_status" property="status"/>
 		<result column="mem_enroll" property="enrollDate"/>
 		<result column="modify_date" property="modifyDate"/>
-		<result column="annual_leave" property="annualLeave"/>		
+		<result column="annual_leave" property="annualLeave"/>
+		<result column="dept_code" property="deptCode"/>	
+		<result column="job_code" property="jobCode"/>
+		<result column="job_name" property="jobName"/>
+		<result column="dept_name" property="deptName"/>		
 	</resultMap>
 
 
@@ -82,5 +86,13 @@
     WHERE MEM_ID = #{memId}
 </update>
 
+<!-- 
+<select id="selectMember" parameterType="Member" resultMap="memberResultSet">
+	SELECT DEPT_CODE
+	     , JOB_CODE
+	     , MEM_NAME
+	     
+</select>
+ -->
 
 </mapper>

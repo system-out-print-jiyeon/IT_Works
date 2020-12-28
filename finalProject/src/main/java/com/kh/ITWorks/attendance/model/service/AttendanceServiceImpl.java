@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.ITWorks.attendance.model.dao.AttendanceDao;
+import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
 import com.kh.ITWorks.member.model.vo.Member;
 
 
@@ -39,6 +40,18 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Override
 	public int updateMember(Member m) {
 		return aDao.updateMember(sqlSession, m);
+	}
+
+
+	@Override
+	public Member selectMember(Member m) {
+		return aDao.selectMember(sqlSession, m);
+	}
+
+
+	@Override
+	public int insertBusiness(BusinessTrip bt) {
+		return aDao.insertBusiness(sqlSession, bt);
 	}
 
 }

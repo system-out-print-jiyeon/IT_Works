@@ -1,5 +1,6 @@
 package com.kh.ITWorks.attendance.model.service;
 
+import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
 import com.kh.ITWorks.member.model.vo.Member;
 
 public interface AttendanceService {
@@ -16,5 +17,12 @@ public interface AttendanceService {
 	// 비밀번호 수정
 	int updateMember(Member m);
 	
+	
+	// *근태관리*
+	// 출장신청 서비스
+	// 1. 로그인한 사용자 select
+	Member selectMember(Member m);
+	// 2. 출장신청 제출하기
+	int insertBusiness(BusinessTrip bt);
 
 }
