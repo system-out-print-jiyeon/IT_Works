@@ -34,6 +34,7 @@
     height: 100vh;
     background-color: #e7e1e1;
     position: fixed;
+    margin-top:80px;
     
     
 
