@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reservationMapper">
+	
+	<resultMap type="Reservation" id="reserveRset">
+		<result property="reserveNo" column="reserve_no"/>		
+		<result property="room" column="room"/>		
+		<result property="deptCode" column="dept_code"/>		
+		<result property="startPeriod" column="start_period"/>		
+		<result property="endPeriod" column="end_period"/>		
+		<result property="object" column="object"/>		
+		<result property="visiterYn" column="visiter_yn"/>		
+		<result property="floor" column="floor"/>		
+		<result property="memNo" column="mem_no"/>		
+		<result property="status" column="status"/>	
+		
+		<association property="mem" javaType="Member">
+			<result property="deptName" column="deptName"/>
+			<result property="memName" column="mem_name"/>
+		</association>
+		
+	</resultMap>
+	
+	<select id="selectFloorReservation" parameterType="_int"
+			resultMap="reserveRset">
+		select r.reserve_no,
+			   r.room,
+			   r.dept_code,
+			   d.dept_name||'팀' as "deptName",
+			   r.start_period,
+			   r.end_period,
+			   r.object,
+			   r.visiter_yn,
+			   r.floor,
+			   r.mem_no,
+			   e.mem_name,
+			   r.status
+	      from reservation r,
+	      	   employee e,
+	      	   department d  
+	     where r.mem_no = e.mem_no
+	       and d.dept_code = r.dept_code
+	       and r.status = 'Y'	
+	       and r.floor = #{floor}	   
+	</select>
+	
+	<select id="ajaxCheckReservation" parameterType="hashmap"
+			resultMap="reserveRset">
+	    select r.reserve_no,
+		       r.room,
+		       r.dept_code,
+		       d.dept_name||'팀' as "deptName",
+		       r.start_period,
+		       r.end_period,
+		       r.object,
+		       r.visiter_yn,
+		       r.floor,
+		       mem_no,
+		       e.mem_name,
+		       r.status
+		  from reservation r
+		  join employee e using (mem_no)
+		  join department d on (d.dept_code = r.dept_code)
+		 where r.room = #{room}
+		   and #{date} = substr(r.start_period,0,10) or
+		   	   #{date} = substr(r.end_period,0,10)
+		   and to_number(#{time}) between (substr(r.start_period,14,2)) and to_number(substr(r.end_period,14,2))
+		   and r.floor = #{floor}
+		   and r.status = 'Y'
+	</select>
+	
+	<select id="selectReservation" parameterType="_int" resultMap="reserveRset">
+		select r.reserve_no,
+		       r.room,
+		       r.dept_code,
+		       d.dept_name||'팀' as "deptName",
+		       r.start_period,
+		       r.end_period,
+		       r.object,
+		       r.visiter_yn,
+		       r.floor,
+		       mem_no,
+		       e.mem_name,
+		       r.status
+		from reservation r
+		join employee e using (mem_no)
+		join department d on (d.dept_code = r.dept_code)
+		where status = 'Y'
+		and reserve_no = #{rno}  
+	</select>
+	
+</mapper>
