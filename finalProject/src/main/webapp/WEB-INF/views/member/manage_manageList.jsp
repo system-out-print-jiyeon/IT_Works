@@ -146,12 +146,12 @@ th,td{
 </style>
 </head>
 <body>
-	<jsp:include page="../common/navbar.jsp"/>
 	<div class="wrap">
+	<jsp:include page="../common/approvalNavbar.jsp"/>
         
         <jsp:include page="../common/sideBar_manage.jsp"/>
 
-        <div class="content">
+        <div class="content"><br><br><br>
             <div class="content_1">
                 <h2>사원 리스트 조회</h2>
                 <div class="search" style="margin-left: 770px;">

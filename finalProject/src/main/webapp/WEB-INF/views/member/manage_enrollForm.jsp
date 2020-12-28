@@ -150,12 +150,12 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
 </style>
 </head>
 <body>
-	<jsp:include page="../common/navbar.jsp"/>
 	<div class="wrap">
+	<jsp:include page="../common/approvalNavbar.jsp"/>
         
         <jsp:include page="../common/sideBar_manage.jsp"/>
 
-        <div class="content">
+        <div class="content"><br><br><br>
             <div class="content_1">
                 <h2>신규 사원 등록</h2>
             </div>
