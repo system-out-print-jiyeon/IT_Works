@@ -301,6 +301,9 @@
         cursor: pointer;
 
     }
+    
+    
+   
 
     /* dim */
 
@@ -315,6 +318,8 @@
         display: none;
     }
 </style>
+
+
 </head>
 <body>
 
@@ -325,7 +330,7 @@
     <jsp:include page="../common/sideBar_approval.jsp"/>
         
         
-        <form name="enrollForm" action="approval.me" method="get">
+        <form name="enrollForm" action="approval.do" method="get">
         <div class="enrollForm" id="enrollForm">
 
             <div class="titleBox">
@@ -333,12 +338,12 @@
                 <table class="infoTable" border="1px">
                     <tr>
                         <th>문서 종류</th>
-                        <td>  <select name="" id="">
-                                <option value="">&nbsp;선택</option>
-                                <option value="지출결의서">지출 결의서</option>
-                                <option value="문서발급요청서">문서 발급 요청서</option>
-                                <option value="프로젝트업무보고서">프로젝트 업무 보고서</option>
-                                <option value="품의서">품의서</option>
+                        <td>  <select name="formCategory" id="formCategory">
+                                <option value="selectOption">&nbsp;선택</option>
+                                <option value="outgoingEnrollForm">지출 결의서</option>
+                                <option value="documentsRequestEnrollForm">문서 발급 요청서</option>
+                                <option value="projectReportForm">프로젝트 업무 보고서</option>
+                                <option value="consultDraftForm">품의서</option>
                             </select> 
                         </td>
                         <th>작성자</th>
@@ -431,28 +436,47 @@
 
             <div class="detailContents">
 
-                <div id="summernote"></div>
+                <div id="summernote">
+                
+             
+                
+               
+                
+                </div>
 
 
             </div>
 
-            <div class="attachment" style="border:dashed; width: 800px; margin: 30px; display: flex;">
+            <div class="attachment" style="border:dashed; width: 800px; margin: 30px; ">
+              <div style="height:80px;">
+                <span><h5 style="margin: 30px;">별첨</h5></span>
+                <span><h6 style="margin-top: 30px; margin-bottom: 30px; color: rgb(73, 174, 233); border-right: 1px solid#878787; "><label for="upfile" style="cursor: pointer;">파일 첨부 </label>&nbsp;</h6></span> 
+                <span><h6 style="margin-top: 30px; color: rgb(73, 174, 233);">&nbsp;&nbsp;관련문서 첨부</h6> </span>
+               <span><h6 style="margin-top: 30px; margin-bottom: 30px; margin-left: 100px; text-align: center; color: #878787;" >여기로 파일을 끌어놓으세요</h6></span>
+               
+               </div> 
+               
+                <div style="margin-left:80px">
+                <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>
+                <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>
+                <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>
+                
+                <input type="file" id="upfile" name="upfile" style="display:none;"> 
+                
+                
+                </div>
+
+            </div>
             
-                <h5 style="margin: 30px;">별첨</h5>
-                <h6 style="margin-top: 30px; margin-bottom: 30px; color: rgb(73, 174, 233); border-right: 1px solid#878787;">파일 첨부 &nbsp;</h6> &nbsp; 
-                <h6 style="margin-top: 30px; color: rgb(73, 174, 233);">관련문서 첨부</h6> 
-                <h6 style="margin-top: 30px; margin-bottom: 30px; margin-left: 100px; text-align: center; color: #878787;" >여기로 파일을 끌어놓으세요</h6>
-                
-                
-
-            </div>
 
             <div class="submitButton">
-                <button>기안하기</button>
+                <button type="submit">기안하기</button>
             </div>
 
 
         </div>
+        
+         </form>
 
         
         
@@ -461,13 +485,14 @@
         
 
     </div>
-
+    
+ 	<form name="modalForm" action="approval.me" method="get">
     <div class="modalDiv">
         <div class="modalDiv_1">
             <span>결재선 설정</span> 
             <span class="modalCancel"><i class="fas fa-times fa-2x" style="color: #878787; float: right; margin-right: 10px; cursor: pointer; "></i></span>
         </div>
-
+			
         <div class="modalDiv_2">
             <input type="text" placeholder="이름, 조직 검색" style="margin-left: 12px; width: 180px; height: 20px;" > &nbsp;<i class="fas fa-redo"></i>
             <select name="" id="" style="float: right;  margin-right: 30px; width: 180px; height: 25px;" >
@@ -482,14 +507,13 @@
 
             <div class="modalDiv_3_1">
                 <div class="modalDiv_3_1_1">
-                    <div class="modalDiv_business"><i class="fas fa-plus-circle"></i> 경영지원팀(13)
+                    <div class="modalDiv_business"><i class="fas fa-plus-circle"></i> 경영지원팀( )
                         
                     </div>
                         <div class="member1" style="display: none;">
-                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="business" id="">부장 박동성</div>
+                         <c:forEach var="m" items="${ list }">
+                            <div><input type="checkbox" name="business" id=""> </div>
+                          </c:forEach>  
                         </div>
                     <div class="modalDiv_personnel"><i class="fas fa-plus-circle"></i> 인사팀(12)
                         
@@ -546,7 +570,9 @@
                             </td>
                             <td colspan="2" class="td_nameSpace2" >
                                 부장 홍길동
+                                <i class="fas fa-times fa" id="deleteBox" style="color: #878787; float: right; margin-right: 10px; margin-top: 2px; display:none; cursor: pointer; "></i>
                             </td>
+                             
                            
                             
                         </tr>
@@ -660,11 +686,12 @@
         </div>
         
     </div>
+    </form>
 
 
     <div class="dim"></div>
 
-    </form>
+   
 
 
 
@@ -688,8 +715,12 @@
         ]
       });
 
-     
+    
+    
+    
+    
 
+    
     
     
     
