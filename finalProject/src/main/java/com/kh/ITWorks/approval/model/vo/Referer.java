@@ -8,14 +8,11 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 @ToString
-public class ApprovalLine {
+public class Referer {
 	
 	private int docNo;
 	private String memNo;
-	private String approvalStatus;
-	private int approvalOrder;
 
 }
