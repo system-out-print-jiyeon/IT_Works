@@ -18,7 +18,7 @@ public class ApprovalDocument {		// 결재문서 테이블
 	
 	private int docNo;                           // 결재문서 고유번호
 	private int memNo;    						 // 사원번호(SEQ_ENO)
-	private String doc_title;					 // 결재문서 제목
+	private String docTitle;					 // 결재문서 제목
 	private String docContents; 				 // 결재문서 내용
 	private Date docEnrollDate;					 // 결재문서 기안일
 	private int docRetention;					 // 문서 보존기간

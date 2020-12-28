@@ -1,5 +1,7 @@
 package com.kh.ITWorks.approval.model.vo;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,5 +25,7 @@ public class Outgoings {
 	private int outPrice;
 	private String outHistory;
 	private String outRemark;
+	
+	private ArrayList<Outgoings> outgoingsList;
 	
 }
