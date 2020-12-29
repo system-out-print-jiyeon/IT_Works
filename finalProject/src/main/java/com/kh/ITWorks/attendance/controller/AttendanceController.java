@@ -123,7 +123,7 @@ public class AttendanceController {
 		
 		if(result > 0) { // 성공
 			session.setAttribute("alertMsg", "출장신청이 성공적으로 등록되었습니다.");
-			return "redirect:insert.bt"; // 나중에 근태첫페이지로 바꾸기
+			return "redirect:insertForm.bt"; // 나중에 근태첫페이지로 바꾸기
 		}else { // 실패
 			model.addAttribute("errorMsg", "출장신청 등록에 실패했습니다. 다시 시도해주세요.");
 			return "common/errorPage";
