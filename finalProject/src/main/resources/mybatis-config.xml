@@ -10,7 +10,9 @@
 		<typeAlias type="com.kh.ITWorks.approval.model.vo.ApprovalDocument" alias="AppDoc"/>
 		<typeAlias type="com.kh.ITWorks.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.ITWorks.email.model.dto.EmailSelect" alias="EmailSelect"/>
-		<typeAlias type="com.kh.ITWorks.attendance.model.vo.BusinessTrip" alias="BusinessTrip"/>
+		<typeAlias type="com.kh.ITWorks.attendance.model.vo.BusinessTrip" alias="BusinessTrip"/>		
+		<typeAlias alias="Reservation" type="com.kh.ITWorks.reservation.model.vo.Reservation"/>
+		<typeAlias alias="Support" type="com.kh.ITWorks.support.model.vo.WorkSupport"/>
 	</typeAliases>
 	
 	
@@ -19,7 +21,9 @@
 		<mapper resource="/mappers/approval-mapper.xml"/>
 		<mapper resource="/mappers/member-mapper.xml"/>
 		<mapper resource="/mappers/attendance-mapper.xml"/>
-		<mapper resource="/mappers/email-mapper.xml"/>
+		<mapper resource="/mappers/email-mapper.xml"/>	
+		<mapper resource="/mappers/support-mapper.xml"/>
+		<mapper resource="/mappers/reservation-mapper.xml"/>
 	</mappers>
 	
 </configuration>
