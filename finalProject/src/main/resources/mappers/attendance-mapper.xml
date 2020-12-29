@@ -90,13 +90,38 @@
     WHERE MEM_ID = #{memId}
 </update>
 
-<!-- 
-<select id="selectMember" parameterType="Member" resultMap="memberResultSet">
-	SELECT DEPT_CODE
-	     , JOB_CODE
-	     , MEM_NAME
-	     
-</select>
- -->
+ 
+<insert id="insertBusiness" parameterType="BusinessTrip">
+	INSERT
+	  INTO BUSINESS_TRIP
+	  (
+	       BUSINESS_NO
+	     , BU_PROPOSER 
+	     , CREATE_DATE
+	     , BUSINESS_START
+	     , BUSINESS_END
+	     , BUSINESS_PLACE
+	     , BUSINESS_PHONE
+	     , BUSINESS_PURPOSE
+	     , BUSINESS_PLAN
+	     , BUDGET
+	     , BU_STATUS
+	  )
+	  VALUES
+	  (
+	       SEQ_BNO.NEXTVAL
+	     , #{buProposer}
+	     , DEFAULT
+	     , #{businessStart}
+	     , #{businessEnd}
+	     , #{businessPlace}
+	     , #{businessPhone}
+	     , #{businessPurpose}
+	     , #{businessPlan}
+	     , #{budget}
+	     , DEFAULT
+	  )
+</insert>
+ 
 
 </mapper>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ITWorks.attendance.model.service.AttendanceService;
+import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
 import com.kh.ITWorks.member.model.vo.Member;
 
 @Controller
@@ -106,6 +107,30 @@ public class AttendanceController {
 		}
 	}
 
+	
+	@RequestMapping("insertForm.bt")
+	public ModelAndView insertBusinessForm(ModelAndView mv) {
+		mv.setViewName("attendance/submitBusinessTrip");
+		return mv;
+	}
+	
+	
+	@RequestMapping("insert.bt")
+	public String insertBoard(BusinessTrip bt, HttpSession session,
+							Model model) {
+		
+		int result = aService.insertBusiness(bt);
+		
+		if(result > 0) { // 성공
+			session.setAttribute("alertMsg", "출장신청이 성공적으로 등록되었습니다.");
+			return "redirect:insert.bt"; // 나중에 근태첫페이지로 바꾸기
+		}else { // 실패
+			model.addAttribute("errorMsg", "출장신청 등록에 실패했습니다. 다시 시도해주세요.");
+			return "common/errorPage";
+		}
+		
+	}
+	
 	
 	
 }

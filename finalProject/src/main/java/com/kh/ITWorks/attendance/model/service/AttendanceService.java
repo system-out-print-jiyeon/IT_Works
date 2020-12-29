@@ -21,7 +21,7 @@ public interface AttendanceService {
 	// *근태관리*
 	// 출장신청 서비스
 	// 1. 로그인한 사용자 select
-	Member selectMember(Member m);
+	//Member selectMember(Member m);
 	// 2. 출장신청 제출하기
 	int insertBusiness(BusinessTrip bt);
 

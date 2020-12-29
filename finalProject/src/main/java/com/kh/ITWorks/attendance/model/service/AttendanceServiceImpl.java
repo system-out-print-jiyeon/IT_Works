@@ -43,10 +43,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 	}
 
 
-	@Override
-	public Member selectMember(Member m) {
-		return aDao.selectMember(sqlSession, m);
-	}
+	//@Override
+	//public Member selectMember(Member m) {
+	//	return aDao.selectMember(sqlSession, m);
+	//}
 
 
 	@Override

@@ -108,6 +108,7 @@
 
 #businessTable tr td{
     height: 40px;
+    padding: 0px;	
 }
 #businessTable{
     table-layout: fixed;
@@ -123,6 +124,14 @@
     font-family: 'Noto Sans KR', sans-serif;
     height: 150px !important;
     padding-top: 60px;
+}
+textarea {
+    display:block;
+}
+ input[type=text] {
+ padding: 15px;
+ text-align: center;
+ margin: 0px;
 }
 
 </style>
@@ -189,48 +198,55 @@
                 <h4>출장신청</h4>
 
                 <div class="businessFormArea" align="center">
-                    <form action="">
+                    <form action="insert.bt">
+                    	<input type="hidden" name="buProposer" id="buProposer" value="${ loginUser.memNo }">
                         <table id="businessTable" class="table-bordered" width="1000px">
                             <tr>
                                 <td width="60" class="tdTitle">소속 부서</td>
-                                <td width="100">로그인한사람의 부서 보여짐</td>
+                                <td width="100">${ loginUser.deptName}</td>
                                 <td width="60" class="tdTitle">직위</td>
-                                <td width="100">로그인한사람의 직위 보여짐</td>
+                                <td width="100">${ loginUser.jobName }</td>
                             </tr>
                             <tr>
                                 <td class="tdTitle">성명</td>
-                                <td>로그인한사람의 성명 보여짐</td>
+                                <td>${ loginUser.memName }</td>
                                 <td class="tdTitle">기안 일시</td>
                                 <td>sysdate</td>
                             </tr>
                             <tr>
                                 <td class="tdTitle">출장 기간</td>
-                                <td colspan="3" align="center"> ~ </td>
+                                <td align="center"> 
+                                <input type="text" name="businessStart" id="businessStart">
+                                </td>
+                                 <td align="center" style="font-weight:900">~</td>
+                                <td align="center"> 
+                                 <input type="text" name="businessEnd" id="businessEnd">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="tdTitle">출장지</td>
-                                <td></td>
+                                <td align="center"><input type="text" name="businessPlace" id="businessPlace"></td>
                                 <td class="tdTitle">출장중 연락처</td>
-                                <td></td>
+                                <td align="center"><input type="text" name="businessPhone" id="businessPhone"></td>
                             </tr>
                             <tr>
                                 <td class="tdTitleHeight">출장 목적</td>
-                                <td colspan="3"></td>
+                                <td colspan="3"><textarea name="businessPurpose" id="businessPurpose" cols="88" rows="8" style="resize: none;"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="tdTitleHeight">업무 계획</td>
-                                <td colspan="3"></td>
+                                <td colspan="3"><textarea name="businessPlan" id="businessPlan" cols="88" rows="8" style="resize: none;"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="tdTitleHeight">예상 경비</td>
-                                <td colspan="3"></td>
+                                <td colspan="3"><textarea name="budget" id="budget" cols="88" rows="8" style="resize: none;"></textarea></td>
                             </tr>    
                         </table>
 
                         <br><br>
 
                         <div class="btnArea" align="center">
-                            <button class="btn btn-secondary" type="button">초기화</button>
+                            <button class="btn btn-secondary" type="reset">초기화</button>
                             &nbsp;&nbsp;
                             <button class="btn btn-primary" type="submit">제출하기</button>
                         </div>
