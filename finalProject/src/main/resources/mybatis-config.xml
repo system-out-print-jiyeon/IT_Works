@@ -13,6 +13,12 @@
 		<typeAlias type="com.kh.ITWorks.attendance.model.vo.BusinessTrip" alias="BusinessTrip"/>		
 		<typeAlias alias="Reservation" type="com.kh.ITWorks.reservation.model.vo.Reservation"/>
 		<typeAlias alias="Support" type="com.kh.ITWorks.support.model.vo.WorkSupport"/>
+		
+		<typeAlias type="com.kh.ITWorks.approval.model.vo.ApprovalLine" alias="ApprovalLine"/>
+		<typeAlias type="com.kh.ITWorks.approval.model.vo.Attachment" alias="Attachment"/>
+		<typeAlias type="com.kh.ITWorks.approval.model.vo.Outgoings" alias="Outgoings"/>
+		<typeAlias type="com.kh.ITWorks.approval.model.vo.OutgoingsList" alias="OutgoingsList"/>
+		<typeAlias type="com.kh.ITWorks.approval.model.vo.Referer" alias="Referer"/>
 	</typeAliases>
 	
 	
