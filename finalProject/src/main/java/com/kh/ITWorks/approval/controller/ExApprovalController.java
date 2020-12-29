@@ -31,47 +31,50 @@ public class ExApprovalController {
 		
 	}
 	
-	public void insertApprovalDocument(ApprovalDocument ad, Attachment a, ApprovalLine al, Referer r, Outgoings o, DocumentsRequest dr,HttpSession session, Model model) {
+	public void insertApprovalDocument(ApprovalDocument ad, Attachment a, ApprovalLine al, Referer r, HttpSession session, Model model) {
 		
 		int result1 = aService.insertApprovalDocument(ad);
 		int result2 = aService.insertApprovalAttachment(a);
 		int result3 = aService.insertApprovalLine(al);
 		int result4 = aService.insertApprovalReferer(r);
 		
-		int insertResult = result1 * result2 * result3 * result4;
-		
-		if (insertResult > 0) {	// 입력성공
-			
-			if (ad.getDocForm() == 1) {			// 지출결의서
-				int outgoingsResult1 = aService.insertOutgoings(o);
-				ArrayList<OutgoingsList> oList = o.getOutgoingsList();
-				
-				int outgoingsResult2 = aService.insertOutgoingsList(oList);
-				
-				if (outgoingsResult1 * outgoingsResult2 > 0) {
-					
-				} else {
-					
-				}
-			} else if (ad.getDocForm() == 2) {	// 문서발급요청서
-				ArrayList<DocumentsRequest> drList = dr.getDocreqList();
-				
-				int docreqResult = aService.insertDocumentsRequest(drList);
-				
-				if (docreqResult > 0) {
-					
-				} else {
-					
-				}
-			} else if (ad.getDocForm() == 3) {	// 프로젝트업무보고서
-				
-			} else if (ad.getDocForm() == 4) {	// 품의서
-				
-			}
+		if (result1 * result2 * result3 * result4 > 0) {	// 입력성공
 			
 		} else {	// 입력실패
 			
 		}
+		
+	}
+	
+	public void insertApprovalDocument() {
+		
+	}
+	
+	// 지출결의서insert
+	@RequestMapping("outgoingsInsert.ap")
+	public String insertOutgoingsList(Outgoings o, HttpSession session, Model model) {
+		
+		int result1 = aService.insertOutgoings(o);
+		ArrayList<OutgoingsList> oList = o.getOutgoingsList();
+		
+		int result2 = aService.insertOutgoingsList(oList);
+		
+		if (result1 * result2 > 0) {
+			return "";
+		} else {
+			model.addAttribute("errorMsg", "잘못된 문서 입력!");
+			return "common/errorPage.jsp";
+		}
+		
+	}
+	
+	// 문서발급요청서insert
+	public String insertDocumentsRequest(DocumentsRequest dr, HttpSession session, Model model) {
+		
+		ArrayList<DocumentsRequest> drList = dr.getDocreqList();
+		int result = aService.insertDocumentsRequest(drList);
+		
+		return "";
 		
 	}
 	
