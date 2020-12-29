@@ -1,6 +1,10 @@
 package com.kh.ITWorks.member.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -81,22 +85,51 @@ public class MemberController {
 	}
 	
 	@RequestMapping("memberEnroll.ma")
-	public String memberEnroll(Member m, Model model, HttpSession session, MultipartFile memImg) {
-		System.out.println(m);
+	public String memberEnroll(Member m, Model model, HttpSession session, MultipartFile profile) {
+		//System.out.println(m);
 		//System.out.println("암호화 전에 암호 체크용 - " + m.getMemPwd());
+		//System.out.println("프로필 이미지 체크용 : " + profile.getOriginalFilename());
+		
+		if(!profile.getOriginalFilename().equals("")) {
+			String changeName = profileSave(session,profile);
+			
+			m.setMemImg("resources/profileImgs/" + changeName);
+			//System.out.println("프로필 이미지 이름변환 체크용 : " + changeName);
+		}
 		
 		String encPwd = pwdEncoder.encode(m.getMemPwd());
-		System.out.println(encPwd);
+		//System.out.println(encPwd);
 		m.setMemPwd(encPwd);
 		
 		int result = mService.memberEnroll(m);
 		
 		if(result > 0) {
-			session.setAttribute("alertMsg", "회원가입 성공!");
+			session.setAttribute("alertMsg", "사원등록 성공!");
 			return "redirect:manageList.ma";
 		}else {
 			return "common/errorPage";
 		}
+	}
+	
+	public String profileSave(HttpSession session, MultipartFile profile) {
+		String profilePath = session.getServletContext().getRealPath("/resources/profileImgs/");
+		
+		String originName = profile.getOriginalFilename();
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		int randomFormat = (int)(Math.random() * 90000 + 10000);
+		String ext = originName.substring(originName.lastIndexOf("."));
+		
+		String changeName = currentTime + randomFormat + ext;
+		
+		try {
+			profile.transferTo(new File(profilePath + changeName));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return changeName;
 	}
 	
 	@ResponseBody
