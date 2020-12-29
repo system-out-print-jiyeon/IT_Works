@@ -209,14 +209,14 @@ th,td{
                 <table class="table" style="margin: auto; text-align: center;" border="1px">
                     <thead class="thead-dark">
                         <tr>
-                            <th rowspan="2">프로필 이미지</th>
-                            <td rowspan="2"><div><img src="images/프로필.PNG" alt=""></div></td>
-                            <th>사원명</th>
-                            <td>${ m.memName }</td>
+                            <th rowspan="2"><p align="center">프로필 이미지</p></th>
+                            <td rowspan="2"><div><img src="${ m.memImg }" alt="프로필 이미지" style="height:200px;"></div></td>
+                            <th><p align="center">사원명</p></th>
+                            <td><p align="center">${ m.memName }</p></td>
                         </tr>
                         <tr>
-                            <th>사원번호</th>
-                            <td>no${ m.memNo }</td>
+                            <th><p align="center">사원번호</p></th>
+                            <td><p align="center">no${ m.memNo }</p></td>
                         </tr>
                         <tr>
                             <th>생년월일</th>

@@ -160,7 +160,7 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                 <h2>신규 사원 등록</h2>
             </div>
             <br><br>
-            <form action="memberEnroll.ma" method="POST" name="enrollForm" id="enrollForm">
+            <form action="memberEnroll.ma" method="POST" name="enrollForm" id="enrollForm" enctype="multipart/form-data">
                 <div class="enroll">
                     <div class="con1" style="height:200px;">
                             아이디 <input type="text" name="memId" placeholder="사용할 아이디를 입력해주세요" required><br>
@@ -195,7 +195,7 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                         
                             </div>
                             *프로필 이미지 <br>
-                            <input type="file" name="memImg" id="memImg" onchange="preview(this);" required>
+                            <input type="file" name="profile" id="profile" onchange="preview(this);" required>
                         </div>
                     </div>
                     <div class="con3">
