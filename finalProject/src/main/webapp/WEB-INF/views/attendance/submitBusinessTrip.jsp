@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +56,7 @@
     justify-content: space-between;
     padding: 8px 24px;
     width: 300px;
-    height: 1000px;
+    height: 1200px;
     background-color: #e7e1e1;
 }
 
@@ -108,7 +114,7 @@
 
 #businessTable tr td{
     height: 40px;
-    padding: 0px;	
+    padding: 10px;	
 }
 #businessTable{
     table-layout: fixed;
@@ -137,6 +143,13 @@ textarea {
 </style>
 </head>
 <body>
+<c:if test="${ !empty alertMsg }">
+		<script>
+			alertify.alert("${ alertMsg }");
+		</script>
+		<c:remove var="alertMsg" scope="session"/>
+		
+	</c:if>
     
  	<jsp:include page="../common/navbar.jsp"/>
  
@@ -211,35 +224,35 @@ textarea {
                                 <td class="tdTitle">성명</td>
                                 <td>${ loginUser.memName }</td>
                                 <td class="tdTitle">기안 일시</td>
-                                <td>sysdate</td>
+                                <td><%= sf.format(nowTime) %></td>
                             </tr>
                             <tr>
                                 <td class="tdTitle">출장 기간</td>
                                 <td align="center"> 
-                                <input type="text" name="businessStart" id="businessStart">
+                                <input type="text" name="businessStart" id="businessStart" required>
                                 </td>
                                  <td align="center" style="font-weight:900">~</td>
                                 <td align="center"> 
-                                 <input type="text" name="businessEnd" id="businessEnd">
+                                 <input type="text" name="businessEnd" id="businessEnd" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="tdTitle">출장지</td>
-                                <td align="center"><input type="text" name="businessPlace" id="businessPlace"></td>
+                                <td align="center"><input type="text" name="businessPlace" id="businessPlace" required></td>
                                 <td class="tdTitle">출장중 연락처</td>
-                                <td align="center"><input type="text" name="businessPhone" id="businessPhone"></td>
+                                <td align="center"><input type="text" name="businessPhone" id="businessPhone" required></td>
                             </tr>
                             <tr>
                                 <td class="tdTitleHeight">출장 목적</td>
-                                <td colspan="3"><textarea name="businessPurpose" id="businessPurpose" cols="88" rows="8" style="resize: none;"></textarea></td>
+                                <td colspan="3"><textarea name="businessPurpose" id="businessPurpose" cols="88" rows="8" style="resize: none;" required></textarea></td>
                             </tr>
                             <tr>
                                 <td class="tdTitleHeight">업무 계획</td>
-                                <td colspan="3"><textarea name="businessPlan" id="businessPlan" cols="88" rows="8" style="resize: none;"></textarea></td>
+                                <td colspan="3"><textarea name="businessPlan" id="businessPlan" cols="88" rows="8" style="resize: none;" required></textarea></td>
                             </tr>
                             <tr>
                                 <td class="tdTitleHeight">예상 경비</td>
-                                <td colspan="3"><textarea name="budget" id="budget" cols="88" rows="8" style="resize: none;"></textarea></td>
+                                <td colspan="3"><textarea name="budget" id="budget" cols="88" rows="8" style="resize: none;" required></textarea></td>
                             </tr>    
                         </table>
 

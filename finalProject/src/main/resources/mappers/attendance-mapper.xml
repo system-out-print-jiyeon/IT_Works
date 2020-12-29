@@ -24,6 +24,22 @@
 		<result column="job_name" property="jobName"/>
 		<result column="dept_name" property="deptName"/>		
 	</resultMap>
+	
+	
+	<resultMap type="BusinessTrip" id="businessTripResultSet">
+		<result column="business_no" property="businessNo"/>
+		<result column="create_date" property="createDate"/>
+		<result column="business_start" property="businessStart"/>
+		<result column="business_end" property="businessEnd"/>
+		<result column="business_place" property="businessPlace"/>
+		<result column="business_phone" property="businessPhone"/>
+		<result column="business_purpose" property="businessPurpose"/>
+		<result column="business_plan" property="businessPlan"/>
+		<result column="budget" property="budget"/>
+		<result column="bu_status" property="buStatus"/>
+		<result column="bu_proposer" property="buProposer"/>
+		<result column="bu_approver" property="buApprover"/>	
+	</resultMap>
 
 
 <select id="loginMember"
