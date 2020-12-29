@@ -106,6 +106,28 @@
     WHERE MEM_ID = #{memId}
 </update>
 
+
+<select id="selectListCount" resultType="_int">
+	select
+	       count(*)
+	  from BUSINESS_TRIP
+</select>
+
+<select id="selectBusinessTripList" resultMap="businessTripResultSet">
+	SELECT
+	       BUSINESS_NO
+	     , CREATE_DATE
+	     , BUSINESS_PLACE
+	     , BUSINESS_START
+	     , BUSINESS_END
+	     , BU_STATUS
+	     , BU_PROPOSER
+	  FROM BUSINESS_TRIP
+	 ORDER
+	    BY BUSINESS_NO DESC
+</select>
+
+
  
 <insert id="insertBusiness" parameterType="BusinessTrip">
 	INSERT

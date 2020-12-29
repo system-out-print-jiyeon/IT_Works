@@ -1,5 +1,7 @@
 package com.kh.ITWorks.attendance.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +9,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ITWorks.attendance.model.service.AttendanceService;
 import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
+import com.kh.ITWorks.common.model.vo.PageInfo;
+import com.kh.ITWorks.common.template.Pagination;
 import com.kh.ITWorks.member.model.vo.Member;
 
 @Controller
@@ -108,6 +113,26 @@ public class AttendanceController {
 	}
 
 	
+	
+	
+	@RequestMapping("list.bt")
+	public String selectBusinessTripList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, 
+								Model model) {
+		
+		int listCount = aService.selectListCount();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+		ArrayList<BusinessTrip> list = aService.selectBusinessTripList(pi);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		
+		return "attendance/businessTripListView";
+	}
+	
+	
+	
+	
+	
 	@RequestMapping("insertForm.bt")
 	public ModelAndView insertBusinessForm(ModelAndView mv) {
 		mv.setViewName("attendance/submitBusinessTrip");
@@ -131,6 +156,7 @@ public class AttendanceController {
 		
 	}
 	
+
 	
 	
 }

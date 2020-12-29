@@ -1,6 +1,9 @@
 package com.kh.ITWorks.attendance.model.service;
 
+import java.util.ArrayList;
+
 import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
+import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.member.model.vo.Member;
 
 public interface AttendanceService {
@@ -19,10 +22,13 @@ public interface AttendanceService {
 	
 	
 	// *근태관리*
-	// 출장신청 서비스
-	// 1. 로그인한 사용자 select
-	//Member selectMember(Member m);
-	// 2. 출장신청 제출하기
+	// 출장신청 리스트 조회
+	int selectListCount();
+	ArrayList<BusinessTrip> selectBusinessTripList(PageInfo pi);
+	
+	// 출장신청 제출하기
 	int insertBusiness(BusinessTrip bt);
+	
+		
 
 }

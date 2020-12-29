@@ -143,14 +143,7 @@ textarea {
 </style>
 </head>
 <body>
-<c:if test="${ !empty alertMsg }">
-		<script>
-			alertify.alert("${ alertMsg }");
-		</script>
-		<c:remove var="alertMsg" scope="session"/>
-		
-	</c:if>
-    
+
  	<jsp:include page="../common/navbar.jsp"/>
  
         <div class="wrap">      
