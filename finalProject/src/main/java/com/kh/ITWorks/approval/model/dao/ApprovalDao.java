@@ -3,6 +3,7 @@ package com.kh.ITWorks.approval.model.dao;
 import java.util.ArrayList;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.kh.ITWorks.approval.model.vo.ApprovalDocument;
 import com.kh.ITWorks.approval.model.vo.ApprovalLine;
@@ -12,6 +13,7 @@ import com.kh.ITWorks.approval.model.vo.Outgoings;
 import com.kh.ITWorks.approval.model.vo.OutgoingsList;
 import com.kh.ITWorks.approval.model.vo.Referer;
 
+@Repository
 public class ApprovalDao {
 
 	public int insertApprovalDocument(ApprovalDocument ad, SqlSessionTemplate sqlSession) {
