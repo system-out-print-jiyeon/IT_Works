@@ -155,12 +155,13 @@ th,td{
             <div class="content_1">
                 <h2>사원 리스트 조회</h2>
                 <div class="search" style="margin-left: 770px;">
-                    <form action="search.me" method="GET" id="searchForm">
+                    <form action="searchM.ma" method="POST" id="searchForm">
+                    	<input type="hidden" name="currentPage" value="1">
                         <select name="selectList" id="selectList">
-                            <option>사원명</option>
-                            <option>부서</option>
-                            <option>직책</option>
-                            <option>상태</option>
+                            <option value="mem">사원명</option>
+                            <option value="dept">부서</option>
+                            <option value="job">직책</option>
+                            <option value="status">상태(Y/N으로 검색)</option>
                         </select>
                         <input type="text" id="keyword" name="keyword">
                         <button type="submit">검색</button>
@@ -169,7 +170,7 @@ th,td{
             </div>
             <br>
             <div class="content_2">
-                <form action="update.me" method="GET" id="updateBox">
+                <form action="updateForm.ma" method="GET" id="updateBox">
                     <div style="margin-left: 30px;">
                         <button type="submit" class="btn btn-primary" id="update">수정</button>
                         <button type="button" class="btn btn-danger" id="delete" data-toggle="modal" data-target="#myModal">
@@ -196,6 +197,16 @@ th,td{
                         	<c:forEach var="m" items="${ list }">
 	                            <tr>
 	                                <td><input type="checkbox" class="checked" name="memNo" value="${ m.memNo }"></td>
+	                                <td>
+		                            	<c:choose>
+			                            	<c:when test="${ m.jobName == 'j0' }">
+			                            		계약직
+			                            	</c:when>
+		                            		<c:otherwise>
+		                            			정규직
+		                            		</c:otherwise>
+		                            	</c:choose>
+		                            </td>
 	                                <td class="memNo">${ m.memNo }</td>
 		                            <td>${ m.memName }</td>
 		                            <td>${ m.deptName }</td>
@@ -230,12 +241,28 @@ th,td{
             </div>
             <br>
             <div class="w3-bar">
-                <a href="#" class="w3-button">&laquo;</a>
-                <a href="#" class="w3-button">1</a>
-                <a href="#" class="w3-button">2</a>
-                <a href="#" class="w3-button">3</a>
-                <a href="#" class="w3-button">4</a>
-                <a href="#" class="w3-button">&raquo;</a>
+            	<c:choose>
+	            	<c:when test="${ pi.currentPage eq 1 }">
+		                <a href="#" class="w3-button" disabled>&laquo;</a>
+	            	</c:when>
+	            	<c:otherwise>
+	            		<a href="listManage.ma?currentPage=${ pi.currentPage-1 }" class="w3-button">&laquo;</a>
+	            	</c:otherwise>
+            	</c:choose>
+                
+                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+	                <a href="listManage.ma?currentPage=${ p }" class="w3-button">${ p }</a>
+                </c:forEach>
+                
+                <c:choose>
+	                <c:when test="${ pi.currentPage eq pi.maxPage }">
+		                <a href="listManage.ma?currentPage=${ pi.currentPage+1 }" class="w3-button">&raquo;</a>
+	                </c:when>
+	                <c:otherwise>
+	                	<a href="#" class="w3-button" disabled>&raquo;</a>
+	                </c:otherwise>
+                </c:choose>
+                
             </div>
             <br><br><br><br>
         </div>

@@ -19,6 +19,8 @@ public interface MemberService {
 	int searchListCount(String selectList, String keyword);
 	ArrayList<Member> selectSearch(String selectList, String keyword, PageInfo pi);
 	
+	int memberUpdate(Member m);
+	
 	
 	
 }

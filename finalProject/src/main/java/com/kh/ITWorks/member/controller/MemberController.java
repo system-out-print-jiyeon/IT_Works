@@ -160,9 +160,59 @@ public class MemberController {
 		return "member/manage_list";
 	}
 	
-	@RequestMapping("update.ma")
-	public String updateForm() {
+	@RequestMapping("searchM.ma")
+	public String searchManageList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, 
+												Model model, String selectList, String keyword) {
+		System.out.println(selectList);
+		System.out.println(keyword);
+		
+		int searchCount = mService.searchListCount(selectList,keyword);
+		System.out.println("검색결과 갯수 : " + searchCount);
+		PageInfo pi = Pagination.getPageInfo(searchCount, currentPage, 10, 10);
+		ArrayList<Member> list = mService.selectSearch(selectList,keyword,pi);
+		
+		System.out.println(list);
+		
+		model.addAttribute("count", searchCount);
+		model.addAttribute("list", list);
+		
+		return "member/manage_manageList";
+	}
+	
+	@RequestMapping("updateForm.ma")
+	public String updateForm(int memNo, Model model) {
+		Member m = mService.detailView(memNo);
+		
+		model.addAttribute("m", m);
+		
+		//model.addAttribute("m", mService.detailView(memNo)); --> 이렇게도 변형 가능
+		
 		return "member/manage_updateForm";
+	}
+	
+	@RequestMapping("update.ma")
+	public String memberUpdate(Member m, Model model, HttpSession session, MultipartFile reprofile ) {
+		System.out.println("첨부파일 잘 넘어오나 결과 --> " + reprofile.getOriginalFilename());
+		if(!reprofile.getOriginalFilename().equals("")) {
+			if(m.getMemImg() != null) {
+				new File(session.getServletContext().getRealPath(m.getMemImg())).delete();
+			}
+			
+			String changeName = profileSave(session, reprofile);
+			m.setMemImg("resources/profileImgs/" + changeName);
+		}
+		System.out.println("첨부파일 통과" + reprofile.getOriginalFilename());
+		
+		int result = mService.memberUpdate(m);
+		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "사원 정보 수정 성공 :)");
+			return "redirect:listManage.ma";
+		}else {
+			model.addAttribute("errorMsg", "사원 정보 수정 실패 :(");
+			return "common/errorPage";
+		}
+		
 	}
 	
 }

@@ -53,4 +53,9 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.searchListCount(sqlSession, selectList, keyword);
 	}
 
+	@Override
+	public int memberUpdate(Member m) {
+		return mDao.memberUpdate(sqlSession, m);
+	}
+
 }

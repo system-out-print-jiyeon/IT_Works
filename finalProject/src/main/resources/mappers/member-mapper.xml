@@ -205,4 +205,25 @@
             by mem_no asc
 	</select>
 	
+	<update id="memberUpdate" parameterType="Member">
+		UPDATE
+		        EMPLOYEE
+		   SET  MEM_ID = #{memId}
+		   	  , MEM_PWD = #{memPwd}
+		      , MEM_IMG = #{memImg}
+		      , MEM_NAME = #{memName}
+		      , MEM_PHONE = #{phone}
+		      , MEM_EMAIL = #{email}
+		      , MEM_GENDER = #{gender}
+		      , MEM_BIRTH = #{birth}
+		      , MEM_ADDRESS = #{address}
+		      , MEM_CERTIFICATION = #{certification}
+		      , MEM_CAREER = #{career}
+		  <!--    , MEM_STATUS = 'Y' -->
+		      , MEM_ENROLL = #{enrollDate}
+		      , DEPT_CODE = #{deptCode}
+		      , JOB_CODE = #{jobCode}
+		  WHERE MEM_NO = #{memNo}
+	</update>
+	
 </mapper>
