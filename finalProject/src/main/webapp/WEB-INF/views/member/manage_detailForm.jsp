@@ -193,41 +193,14 @@ th,td{
 </style>
 </head>
 <body>
-	<!-- 네비바 자리 -->
 	
 	<div class="wrap">
+		<!-- 네비바 자리 -->
+		<jsp:include page="../common/approvalNavbar.jsp"/>
         
-        <div class="sidebar">
+        <jsp:include page="../common/sideBar_manage.jsp"/>
 
-                <br>
-                <h2 align="center">사원 관리</h2>
-                <br><br>
-
-            <div class="sidebar_menu">
-                <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>사원 리스트</a>
-                    <ul class="menu1">
-                        <li><a href="#">사원리스트 조회</a></li>
-                        <li><a href="#">사원 상세 조회</a></li>
-                    </ul>
-                </li>
-                <br><br>
-                <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>조직도</a>
-                    <ul class="menu1">
-                        <li><a href="#">조직도 조회</a></li>
-                    </ul>
-                </li>
-                <br><br>
-                <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>* 수정/삭제</a>
-                    <ul class="menu1">
-                        <li><a href="#">사원 리스트</a></li>
-                        <li><a href="#">사원 등록</a></li>
-                    </ul>
-                </li>
-            </div>
-        
-        </div>
-
-        <div class="content">
+        <div class="content"><br><br><br>
             <div class="content_1">
                 <h2>사원 상세 조회</h2>
             </div>

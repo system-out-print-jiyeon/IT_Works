@@ -2,8 +2,6 @@ package com.kh.ITWorks.member.controller;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.common.template.Pagination;
@@ -83,8 +81,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping("memberEnroll.ma")
-	public String memberEnroll(Member m, Model model, HttpSession session) {
-		//System.out.println(m);
+	public String memberEnroll(Member m, Model model, HttpSession session, MultipartFile memImg) {
+		System.out.println(m);
 		//System.out.println("암호화 전에 암호 체크용 - " + m.getMemPwd());
 		
 		String encPwd = pwdEncoder.encode(m.getMemPwd());
