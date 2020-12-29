@@ -194,8 +194,8 @@ tbody tr:hover{background-color: rgb(52, 152, 219); color: white;}
                             <div class="profile" id="profile" style="width: 70%; height: 100%; border: 1px dotted gray;">
                         	<img src="${ m.memImg }" style="height:100%; width:100%;">
                             </div>
-                            *프로필 이미지 <br>
-                            <input type="file" name="reprofile" id="reprofile" onchange="preview(this);" value="" required>
+             *프로필 이미지 <br>
+                            <input type="file" name="reprofile" id="reprofile" onchange="preview(this);" accept="image/*" required>
                         </div>
                     </div>
                     <div class="con3">
