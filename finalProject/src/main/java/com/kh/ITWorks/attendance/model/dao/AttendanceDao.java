@@ -53,5 +53,13 @@ public class AttendanceDao {
 	}
 	
 	
+	public int increaseCount(SqlSessionTemplate sqlSession, int btno) {
+		return sqlSession.update("attendanceMapper.increaseCount", btno);
+	}
+	
+	public BusinessTrip selectBusinessTrip(SqlSessionTemplate sqlSession, int btno) {
+		return sqlSession.selectOne("attendanceMapper.selectBusinessTripList", btno);
+	}
+	
 	
 }

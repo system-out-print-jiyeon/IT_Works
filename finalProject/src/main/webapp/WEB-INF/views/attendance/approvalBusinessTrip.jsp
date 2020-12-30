@@ -142,8 +142,8 @@
                     <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>출장</a>
                         <ul class="menu1">
                             <li><a href="insertForm.bt">출장 신청</a></li>
-                            <li class="selectedTitle"><a href="list.bt">출장 내역 조회</a></li>
-                            <li><a href="approval.bt">출장 승인</a></li>
+                            <li><a href="list.bt">출장 내역 조회</a></li>
+                            <li class="selectedTitle"><a href="#">출장 승인</a></li>
                         </ul>
                     </li>
                     <br>
@@ -179,7 +179,7 @@
 
                 <div class="content1">
                     <br>
-                    <div class="nameBar"><h5>출장 내역 조회</h5></div>
+                    <div class="nameBar"><h5>출장 승인</h5></div>
                     <br>
                     <div class="businessTableArea">
                         <table id="businessTable" class="table">
@@ -255,10 +255,7 @@
 		                </ul>
 		            </div>
                     
-                    
-                    
-                    
-                    
+                
                     
                 </div>
 

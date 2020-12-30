@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ITWorks.attendance.model.service.AttendanceService;
@@ -130,6 +131,21 @@ public class AttendanceController {
 	}
 	
 	
+	@RequestMapping("approval.bt")
+	public String approvalBusinessTrip(@RequestParam(value="currentPage", defaultValue="1")int currentPage, 
+								Model model) {
+		
+		int listCount = aService.selectListCount();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+		ArrayList<BusinessTrip> list = aService.selectBusinessTripList(pi);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		
+		return "attendance/approvalBusinessTrip";
+	}
+	
+	
 	
 	
 	
@@ -155,6 +171,30 @@ public class AttendanceController {
 		}
 		
 	}
+	
+	
+	
+	@RequestMapping("detail.bt")
+	public String selectBusinessTrip(int btno, Model model) {
+		
+		int result = aService.increaseCount(btno);
+		
+		if(result > 0) { // 유효한 게시글
+			
+			BusinessTrip bt = aService.selectBusinessTrip(btno);
+			
+			model.addAttribute("bt", bt);
+			
+			return "attendance/detailBusinessTrip";
+			
+		}else { // 유효한 게시글 X
+			model.addAttribute("errorMsg", "존재하지 않는 게시글이거나 열람할 수 없는 게시글입니다.");
+			return "common/errorPage";
+		}
+		
+	}
+
+	
 	
 
 	

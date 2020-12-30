@@ -29,6 +29,10 @@ public interface AttendanceService {
 	// 출장신청 제출하기
 	int insertBusiness(BusinessTrip bt);
 	
+	// 3. 게시판 상세조회용 서비스
+	int increaseCount(int btno);
+	BusinessTrip selectBusinessTrip(int btno);
+	
 		
 
 }

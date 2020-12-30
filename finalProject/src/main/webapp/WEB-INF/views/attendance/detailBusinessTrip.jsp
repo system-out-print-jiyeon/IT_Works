@@ -165,8 +165,8 @@ textarea {
                     <br>
                     <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>출장</a>
                         <ul class="menu1">
-                            <li class="selectedTitle"><a href="insertForm.bt">출장 신청</a></li>
-                            <li><a href="list.bt">출장 내역 조회</a></li>
+                            <li><a href="insertForm.bt">출장 신청</a></li>
+                            <li class="selectedTitle"><a href="list.bt">출장 내역 조회</a></li>
                             <li><a href="approval.bt">출장 승인</a></li>
                         </ul>
                     </li>
@@ -201,7 +201,7 @@ textarea {
             <div class="contentArea">
 
                 <br><br>
-                <h4>출장신청</h4>
+                <h4>나의 출장신청서</h4>
 
                 <div class="businessFormArea" align="center">
                     <form action="insert.bt">
@@ -209,53 +209,44 @@ textarea {
                         <table id="businessTable" class="table-bordered" width="1000px">
                             <tr>
                                 <td width="60" class="tdTitle">소속 부서</td>
-                                <td width="100">${ loginUser.deptName}</td>
+                                <td width="100">${ bt.deptName}</td>
                                 <td width="60" class="tdTitle">직위</td>
-                                <td width="100">${ loginUser.jobName }</td>
+                                <td width="100">${ bt.jobName }</td>
                             </tr>
                             <tr>
                                 <td class="tdTitle">성명</td>
-                                <td>${ loginUser.memName }</td>
+                                <td>${ bt.buProposer }</td>
                                 <td class="tdTitle">기안 일시</td>
-                                <td><%= sf.format(nowTime) %></td>
+                                <td>${ bt.createDate }</td>
                             </tr>
                             <tr>
                                 <td class="tdTitle">출장 기간</td>
-                                <td align="center"> 
-                                <input type="text" name="businessStart" id="businessStart" required>
-                                </td>
+                                <td align="center">${ bt.businessStart }</td>
                                  <td align="center" style="font-weight:900">~</td>
-                                <td align="center"> 
-                                 <input type="text" name="businessEnd" id="businessEnd" required>
-                                </td>
+                                <td align="center">${ bt.businessEnd }</td>
                             </tr>
                             <tr>
                                 <td class="tdTitle">출장지</td>
-                                <td align="center"><input type="text" name="businessPlace" id="businessPlace" required></td>
+                                <td align="center">${ bt.businessPlace }</td>
                                 <td class="tdTitle">출장중 연락처</td>
-                                <td align="center"><input type="text" name="businessPhone" id="businessPhone" required></td>
+                                <td align="center">${ bt.businessPhone }</td>
                             </tr>
                             <tr>
                                 <td class="tdTitleHeight">출장 목적</td>
-                                <td colspan="3"><textarea name="businessPurpose" id="businessPurpose" cols="88" rows="8" style="resize: none;" required></textarea></td>
+                                <td colspan="3">${ bt.businessPurpose }</td>
                             </tr>
                             <tr>
                                 <td class="tdTitleHeight">업무 계획</td>
-                                <td colspan="3"><textarea name="businessPlan" id="businessPlan" cols="88" rows="8" style="resize: none;" required></textarea></td>
+                                <td colspan="3">${ bt.businessPhone }</td>
                             </tr>
                             <tr>
                                 <td class="tdTitleHeight">예상 경비</td>
-                                <td colspan="3"><textarea name="budget" id="budget" cols="88" rows="8" style="resize: none;" required></textarea></td>
+                                <td colspan="3">${ bt.budget }</td>
                             </tr>    
                         </table>
 
                         <br><br>
 
-                        <div class="btnArea" align="center">
-                            <button class="btn btn-secondary" type="reset">초기화</button>
-                            &nbsp;&nbsp;
-                            <button class="btn btn-primary" type="submit">제출하기</button>
-                        </div>
 
 
                     </form>

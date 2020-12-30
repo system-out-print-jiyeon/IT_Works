@@ -26,6 +26,12 @@ public class BusinessTrip {					// 출장 테이블
 	 private String buStatus;				// 출장 승인/미승인
 	 private int buProposer;				// 제출자
 	 private int buApprover;				// 승인자
+	 
+	 
+	 private String deptName;
+	 private String jobName;
+	 
+	 
 	
 	
 }
