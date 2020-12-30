@@ -70,4 +70,8 @@ public class MemberDao {
 		
 		return sqlSession.selectOne("memberMapper.searchListCount", search);
 	}
+	
+	public int memberUpdate(SqlSessionTemplate sqlSession ,Member m) {
+		return sqlSession.update("memberMapper.memberUpdate", m);
+	}
 }

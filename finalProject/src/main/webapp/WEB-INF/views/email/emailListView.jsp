@@ -132,135 +132,13 @@
 	<div class="em_wrap">
 
 		<jsp:include page="../common/sideBar_email.jsp"/>
-
+		
         <div class="em_content">
-            <div class="em_content_center">
-			<span class="em_title">${ title }</span>
 
-                <form name="form_mail" method="post">
-
-                    <div class="submit_btn">
-                        <input type="checkbox" id="checkall"> 
-                        <label class="update" for="checkall">전체선택</label>
-                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("important");'><i class="fa fa-star"></i> 중요</button></span>
-                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("delete");'><i class="fa fa-trash"></i> 삭제</button></span>             
-                    </div>
-                    <table class="table">
-                        <tbody>
-							<c:forEach var="em" items="${ list }">
-	                            <tr>
-	                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="15"></td>
-	                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>
-	                                <c:choose>
-	                                	<c:when test='${ em.emInp == "Y" }'>
-	                                		<td width="2%" class="icon"><i class="fa fa-star"></i></td>
-	                                	</c:when>
-	                                	<c:otherwise>
-	                                		<td width="2%" class="icon-none"><i class="fa fa-star"></i></td>
-	                                	</c:otherwise>
-	                                </c:choose>
-	                                
-	                                
-	                                           
-	                                
-	                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-	                                <td width="15%">${ em.emFrom }</td>
-	                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-	                                <td>${ em.emTitle }</td>
-	                                <td width="15%">${ em.emEnrollDate }</td>
-	                            </tr>
-<!-- 	                            <tr>
-	                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="20"></td>
-	                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-	                                <td width="2%" class="icon-none"><i class="fa fa-star"></i></td>
-	                                <td width="2%" class="icon-none"><i class="fa fa-envelope"></i></td>
-	                                <td width="15%">user01@naver.com</td>
-	                                <td width="2%" class="icon-none"><i class="fa fa-download"></i></td>
-	                                <td>안녕하세요 김길순입니다</td>
-	                                <td width="15%">2020-12-13</td>
-	                            </tr> -->
-                           </c:forEach>
-
-                        </tbody>
-                    </table>
-                </form>
-                <c:choose>
-                	<c:when test="${ empty condition }">
-                <div class="paging">
-                <div class="em_title" style="text-align:center;">${ pi.currentPage }page</div>
-                	<c:if test="${ pi.currentPage ne 1 }">
-                    	<a href="listFrom.em?currentPage=${ pi.currentPage - 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-left"></i></a>
-                    </c:if>
-                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-
-                    	<a href="listFrom.em?currentPage=${ p }&email=${ loginUser.email }">${ p }</a>
-
-                    </c:forEach>
-                    <c:if test="${ pi.currentPage ne pi.maxPage }">
-                    	<a href="listFrom.em?currentPage=${ pi.currentPage + 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-right"></i></a>
-                    </c:if>
-                </div>
-                	</c:when>
-                
-                </c:choose>
-            </div>
         </div>
+          
     </div>
+                      
 
-    <!-- 푸터바 include -->
-
-    <!-- 스크립트 -->
-    <!-- 전체 체크박스 선택 -->
-    <script>
-    $(document).ready(function(){
-        $("#checkall").click(function(){
-            if($("#checkall").prop("checked")){ 
-                $("input[name=chk]").prop("checked",true);
-            }else{
-                $("input[name=chk]").prop("checked",false);
-
-                // 전체선택 체크박스 체크 해제시 버튼 비활성화
-                $(".submit_btn button").css({"color":"gray"}).prop("disabled",true);
-            }
-        })
-    })
-
-    // 체크박스가 체크되면 버튼 활성화 되게 만들기 
-    $('.em_content_center input[type="checkbox"]').click(function(){
-        var tmpp = $(this).prop('checked'); 
-        var tt=$("[name='chk']:checked").length;
-        // 하나라도 체크되어있을 때 버튼 활성화 시키기 위해 length로 체크된 값의 개수를 구함
-        
-        if(tmpp==true || tt>0){
-            // 버튼 활성화
-            $(".submit_btn button").css({"color":"rgb(80, 150, 255)"}).prop("disabled",false);
-        }
-        else{
-            // 버튼 비활성화
-            $(".submit_btn button").css({"color":"gray"}).prop("disabled",true);
-        }
-    });
-    </script>
-
-    <!-- 중요/삭제 클릭시 action -->
-    <script>
-
-        function btn_click(str){                             
-            if(str=="important"){  // 중요메일 등록
-
-                alert("중요메일 등록이 완료되었습니다.");
-
-                form_mail.action="important.em";
-
-            } else if(str=="delete"){   // 메일 삭제
-
-                alert("메일을 삭제하였습니다.");
-                
-                form_mail.action="delete.em";  
-
-            }
-        }  
-
-    </script>
 </body>
 </html>

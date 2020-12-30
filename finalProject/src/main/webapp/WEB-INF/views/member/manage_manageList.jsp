@@ -155,12 +155,13 @@ th,td{
             <div class="content_1">
                 <h2>사원 리스트 조회</h2>
                 <div class="search" style="margin-left: 770px;">
-                    <form action="search.me" method="GET" id="searchForm">
+                    <form action="searchM.ma" method="POST" id="searchForm">
+                    	<input type="hidden" name="currentPage" value="1">
                         <select name="selectList" id="selectList">
-                            <option>사원명</option>
-                            <option>부서</option>
-                            <option>직책</option>
-                            <option>상태</option>
+                            <option value="mem">사원명</option>
+                            <option value="dept">부서</option>
+                            <option value="job">직책</option>
+                            <option value="status">상태(Y/N으로 검색)</option>
                         </select>
                         <input type="text" id="keyword" name="keyword">
                         <button type="submit">검색</button>
@@ -169,10 +170,10 @@ th,td{
             </div>
             <br>
             <div class="content_2">
-                <form action="update.me" method="GET" id="updateBox">
+                <form action="updateForm.ma" method="GET" id="updateBox">
                     <div style="margin-left: 30px;">
-                        <button type="submit" class="btn btn-primary" id="update">수정</button>
-                        <button type="button" class="btn btn-danger" id="delete" data-toggle="modal" data-target="#myModal">
+                        <button type="button" class="btn btn-primary" id="update" onclick="checked1();">수정</button>
+                        <button type="button" class="btn btn-danger" id="delete" onclick="checked2();" data-toggle="modal" data-target="#myModal">
                             삭제
                         </button>
                     </div>
@@ -196,6 +197,16 @@ th,td{
                         	<c:forEach var="m" items="${ list }">
 	                            <tr>
 	                                <td><input type="checkbox" class="checked" name="memNo" value="${ m.memNo }"></td>
+	                                <td>
+		                            	<c:choose>
+			                            	<c:when test="${ m.jobName == 'j0' }">
+			                            		계약직
+			                            	</c:when>
+		                            		<c:otherwise>
+		                            			정규직
+		                            		</c:otherwise>
+		                            	</c:choose>
+		                            </td>
 	                                <td class="memNo">${ m.memNo }</td>
 		                            <td>${ m.memName }</td>
 		                            <td>${ m.deptName }</td>
@@ -230,26 +241,38 @@ th,td{
             </div>
             <br>
             <div class="w3-bar">
-                <a href="#" class="w3-button">&laquo;</a>
-                <a href="#" class="w3-button">1</a>
-                <a href="#" class="w3-button">2</a>
-                <a href="#" class="w3-button">3</a>
-                <a href="#" class="w3-button">4</a>
-                <a href="#" class="w3-button">&raquo;</a>
+            	<c:choose>
+	            	<c:when test="${ pi.currentPage eq 1 }">
+		                <a href="#" class="w3-button" disabled>&laquo;</a>
+	            	</c:when>
+	            	<c:otherwise>
+	            		<a href="listManage.ma?currentPage=${ pi.currentPage-1 }" class="w3-button">&laquo;</a>
+	            	</c:otherwise>
+            	</c:choose>
+                
+                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+	                <a href="listManage.ma?currentPage=${ p }" class="w3-button">${ p }</a>
+                </c:forEach>
+                
+                <c:choose>
+	                <c:when test="${ pi.currentPage eq pi.maxPage }">
+		                <a href="listManage.ma?currentPage=${ pi.currentPage+1 }" class="w3-button">&raquo;</a>
+	                </c:when>
+	                <c:otherwise>
+	                	<a href="#" class="w3-button" disabled>&raquo;</a>
+	                </c:otherwise>
+                </c:choose>
+                
             </div>
             <br><br><br><br>
         </div>
     </div>
 
-    <script>
-        // 조건식으로 넘어오는 값이 없으면 알람뜨게끔 제이쿼리 조건식 작성해야됨(잘모르겠음) --> 수정할것
-    </script>
-
-    <!-- 삭제 재확인 창 -->
+    <!-- 삭제 재확인 창(Modal) -->
     <div class="modal" id="myModal">
         <div class="modal-dialog">
         <div class="modal-content">
-            <form action="test.do" method="GET">
+            <form action="delete.ma" method="GET">
                 <!-- Modal Header -->
                 <div class="modal-header">
                 <h4 class="modal-title">사원 삭제</h4>
@@ -260,6 +283,9 @@ th,td{
                 <div class="modal-body" align="center">
                     사원 정보를 삭제하시겠습니까?<br>
                     (다시 한번 확인 해주세요)<br><br>
+                    <!-- 
+                    <input type="hidden" name="memNo" value="${ memNo }">
+                     -->
                     <input type="password" name="deletePwd" placeholder="관리자 비밀번호를 입력해주세요." style="width: 250px;">
                 </div>
         
@@ -273,6 +299,39 @@ th,td{
         </div>
         </div>
     </div>
+    
+    <!-- 사원 리스트 체크박스 조건문 -->
+    <script>
+        function checked1(){
+        	//alert("테스트중"); 	//--> 수정관련 test function 테스트
+        	var checkedCount = $("input[class=checked]:checked").length;
+        	
+       		if($("input[class=checked]").is(":checked") == false){
+       			alert("수정을 원하는 사원을 체크해주세요!");
+       			
+       		}else if(checkedCount > 1){
+       			alert("한명의 사원만 선택해주세요!");
+       		}else{
+       			$("#updateBox").submit();
+       		}
+        }
+    </script>
+    
+    <script>
+    function checked2(){
+    	var checkedCount = $("input[class=checked]:checked").length;
+    	
+   		if($("input[class=checked]").is(":checked") == false){
+   			alert("삭제를 원하는 사원을 체크해주세요!");
+			$("#updateBox #delete").attr("data-target","#");
+   		}else if(checkedCount > 1){
+   			alert("한명의 사원만 선택해주세요!");
+   			$("#updateBox #delete").attr("data-target","#");
+   		}else{
+   			$("#updateBox #delete").attr("data-target","#myModal");
+   		}
+    }
+    </script>
 
   <script>
 

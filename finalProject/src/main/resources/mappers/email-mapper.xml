@@ -10,6 +10,13 @@
 		<result column="em_enroll_date" property="emEnrollDate"/>
 		<result column="em_inp" property="emInp"/>
 		<result column="em_status" property="emStatus"/>
+		<result column="em_to" property="emTo"/>
+	</resultMap>
+	
+	<resultMap id="EmailAttachSelectResultSet" type="com.kh.ITWorks.email.model.dto.EmailAttachSelect">
+		<result column="em_att_no" property="emAttNo" />
+		<result column="em_origin_name" property="emOriginName"/>
+		<result column="em_change_name" property="emChangeName"/>
 	</resultMap>
 	
 
@@ -22,15 +29,56 @@
 	
 	<select id="selectEmailFromList" parameterType="string" resultMap="EmailSelectResultSet">
 		select e.em_no
-             , e.em_from
              , e.em_title
-             , to_char(e.em_enroll_date, 'YYYY-MM-DD') em_enroll_date
+             , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mm""') em_enroll_date
              , e.em_inp
              , e.em_status
           from email e
          where em_from = #{email}
-           and em_status = 'Y'
+           and e.em_status = 'Y'
          order 
             by e.em_no desc
 	</select>
+	
+	<select id="selectEmailFromListRec" parameterType="_int" resultType="string">
+		select er.em_to
+		from email_recipient er
+		where er.em_no = #{emNo}
+	</select>
+	
+	<select id="selectEmailFromDetail" parameterType="_int" resultMap="EmailSelectResultSet">
+		select e.em_no
+		     , e.em_from
+		     , e.em_title
+		     , e.em_content
+             , to_char(e.em_enroll_date, '""YYYY"년"MM"월"DD"일 ("DAY") "HH24":"mm":"SS"""') em_enroll_date
+		     , e.em_inp
+		     , e.em_status
+		from email e
+		where e.em_no = #{emNo}
+		  and e.em_status = 'Y'
+	</select>
+	
+	<select id="selectEmailFromListAtt" parameterType="_int" resultMap="EmailAttachSelectResultSet">
+		select ea.em_att_no
+		     , ea.em_origin_name
+		     , ea.em_change_name
+		from email_attach ea
+		where ea.em_no = #{emNo}
+		 order by ea.em_att_no
+	</select>
+	
+	<select id="selectEmailFromListAttCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from email_attach ea
+		where ea.em_no = #{emNo}
+	</select>
+	
+	<select id="selectEmailToListCount" parameterType="string" resultType="_int">
+		select count(*)
+		from email_recipient er
+		where er.em_to = #{email}
+		and er.em_status='Y'
+	</select>
+	
 </mapper>
