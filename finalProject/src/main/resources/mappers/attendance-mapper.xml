@@ -205,6 +205,12 @@ UPDATE
  WHERE BUSINESS_NO = #{btno}
 </update>
  
+<update id="approvalBusinessTrip">
+UPDATE
+       BUSINESS_TRIP
+   SET BU_STATUS = 'Y'
+ WHERE BUSINESS_NO = #{btno}
+</update>
 
 
 

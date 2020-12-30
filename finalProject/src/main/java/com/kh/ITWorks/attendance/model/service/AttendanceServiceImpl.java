@@ -81,6 +81,12 @@ public class AttendanceServiceImpl implements AttendanceService {
 	}
 
 
+	@Override
+	public int approvalBusinessTrip(int btno) {
+		return aDao.approvalBusinessTrip(sqlSession, btno);
+	}
+
+
 
 
 

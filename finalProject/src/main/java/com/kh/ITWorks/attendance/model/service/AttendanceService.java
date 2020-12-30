@@ -35,6 +35,9 @@ public interface AttendanceService {
 	
 	// 출장 반려용 서비스
 	int returnBusinessTrip(int btno);
-		
+	
+	// 출장 승인용 서비스
+	int approvalBusinessTrip(int btno);
+	
 
 }

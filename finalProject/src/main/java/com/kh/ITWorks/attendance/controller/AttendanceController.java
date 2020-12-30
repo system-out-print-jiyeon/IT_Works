@@ -164,7 +164,7 @@ public class AttendanceController {
 		
 		if(result > 0) { // 성공
 			session.setAttribute("alertMsg", "출장신청이 성공적으로 등록되었습니다.");
-			return "redirect:insertForm.bt"; // 나중에 근태첫페이지로 바꾸기
+			return "redirect:list.bt"; 
 		}else { // 실패
 			model.addAttribute("errorMsg", "출장신청 등록에 실패했습니다. 다시 시도해주세요.");
 			return "common/errorPage";
@@ -235,6 +235,38 @@ public class AttendanceController {
 		
 		
 	}
+	
+	
+	
+	@RequestMapping("clickApproval.bt")
+	public String approvalBusinessTrip(int btno, HttpSession session, Model model) {
+		
+		int result = aService.approvalBusinessTrip(btno);
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "휴가신청이 승인되었습니다.");
+			return "redirect:approval.bt";
+			
+		}else {
+			model.addAttribute("errorMsg", "휴가신청 승인 처리 실패");
+			return "common/errorPage";
+		}
+		
+		
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 	

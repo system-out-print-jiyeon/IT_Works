@@ -64,6 +64,10 @@ public class AttendanceDao {
 	public int returnBusinessTrip(SqlSessionTemplate sqlSession, int btno) {
 		return sqlSession.update("attendanceMapper.returnBusinessTrip", btno);
 	}
+	
+	public int approvalBusinessTrip(SqlSessionTemplate sqlSession, int btno) {
+		return sqlSession.update("attendanceMapper.approvalBusinessTrip", btno);
+	}
 
 	
 	
