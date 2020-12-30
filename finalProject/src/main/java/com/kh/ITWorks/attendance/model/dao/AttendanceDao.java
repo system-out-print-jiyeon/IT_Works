@@ -61,5 +61,10 @@ public class AttendanceDao {
 		return sqlSession.selectOne("attendanceMapper.selectBusinessTrip", btno);
 	}
 	
+	public int returnBusinessTrip(SqlSessionTemplate sqlSession, int btno) {
+		return sqlSession.update("attendanceMapper.returnBusinessTrip", btno);
+	}
+
+	
 	
 }

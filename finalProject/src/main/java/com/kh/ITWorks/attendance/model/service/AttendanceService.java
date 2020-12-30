@@ -33,6 +33,8 @@ public interface AttendanceService {
 	int increaseCount(int btno);
 	BusinessTrip selectBusinessTrip(int btno);
 	
+	// 출장 반려용 서비스
+	int returnBusinessTrip(int btno);
 		
 
 }

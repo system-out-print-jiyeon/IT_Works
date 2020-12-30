@@ -162,8 +162,6 @@
       JOIN DEPARTMENT USING(DEPT_CODE)
       JOIN JOBGRADE USING(JOB_CODE)
      WHERE BUSINESS_NO = #{btno}
-	 ORDER
-	    BY BUSINESS_NO DESC
 </select>
 
 
@@ -200,6 +198,12 @@
 	  )
 </insert>
 
+<update id="returnBusinessTrip">
+UPDATE
+       BUSINESS_TRIP
+   SET BU_STATUS = 'R'
+ WHERE BUSINESS_NO = #{btno}
+</update>
  
 
 

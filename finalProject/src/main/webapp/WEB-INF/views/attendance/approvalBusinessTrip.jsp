@@ -205,6 +205,9 @@
 				                                	<c:when test="${bt.buStatus eq 'Y'}">
 				                                    	<p class="btn btn-primary">처리완료</p>
 													</c:when>
+													<c:when test="${bt.buStatus eq 'R'}">
+														<p class="btn btn-danger">반려</p>
+													</c:when>
 													<c:otherwise>
 														<p class="btn btn-secondary">미처리</p>
 													</c:otherwise>
@@ -219,7 +222,7 @@
             <script>
             	$(function(){
             		$("#businessTable tbody tr").click(function(){
-            			location.href = "detail.bt?btno=" + $(this).children(".btno").text();
+            			location.href = "detailApproval.bt?btno=" + $(this).children(".btno").text();
             		})
             	})
             </script>

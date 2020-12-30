@@ -193,8 +193,48 @@ public class AttendanceController {
 		}
 		
 	}
+	
+	
+	
+	@RequestMapping("detailApproval.bt")
+	public String selectApprovalBusinessTrip(int btno, Model model) {
+		
+		int result = aService.increaseCount(btno);
+		
+		if(result > 0) { // 유효한 게시글
+			
+			BusinessTrip bt = aService.selectBusinessTrip(btno);
+			
+			model.addAttribute("bt", bt);
+			
+			return "attendance/detailApprovalBusinessTrip";
+			
+		}else { // 유효한 게시글 X
+			model.addAttribute("errorMsg", "존재하지 않는 게시글이거나 열람할 수 없는 게시글입니다.");
+			return "common/errorPage";
+		}
+		
+	}
+
 
 	
+	@RequestMapping("clickReturn.bt")
+	public String returnBusinessTrip(int btno, HttpSession session, Model model) {
+		
+		int result = aService.returnBusinessTrip(btno);
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "휴가신청이 반려되었습니다.");
+			return "redirect:approval.bt";
+			
+		}else {
+			model.addAttribute("errorMsg", "휴가신청 반려 처리 실패");
+			return "common/errorPage";
+		}
+		
+		
+	}
 	
 
 	

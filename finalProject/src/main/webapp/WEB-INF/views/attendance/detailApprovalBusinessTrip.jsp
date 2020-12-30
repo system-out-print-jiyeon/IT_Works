@@ -166,8 +166,8 @@ textarea {
                     <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>출장</a>
                         <ul class="menu1">
                             <li><a href="insertForm.bt">출장 신청</a></li>
-                            <li class="selectedTitle"><a href="list.bt">출장 내역 조회</a></li>
-                            <li><a href="approval.bt">출장 승인</a></li>
+                            <li><a href="list.bt">출장 내역 조회</a></li>
+                            <li class="selectedTitle"><a href="approval.bt">출장 승인</a></li>
                         </ul>
                     </li>
                     <br>
@@ -201,10 +201,10 @@ textarea {
             <div class="contentArea">
 
                 <br><br>
-                <h4>나의 출장신청서</h4>
+                <h4>출장 승인</h4>
 
                 <div class="businessFormArea" align="center">
-
+                    <form method="post" name="form">
                     	<input type="hidden" name="buProposer" id="buProposer" value="${ loginUser.memNo }">
                         <table id="businessTable" class="table-bordered" width="1000px">
                             <tr>
@@ -247,7 +247,15 @@ textarea {
 
                         <br><br>
 
+                        <div class="btnArea" align="center">
+                            <button type="submit" value="return" onclick="javascript: form.action='clickReturn.bt?btno='+${bt.businessNo};" class="btn btn-danger">반려</button>
+                            &nbsp;&nbsp;
+                            <button type="submit" value="approval" onclick="javascript: form.action='clickApproval.bt?btno='+${bt.businessNo};" class="btn btn-primary">승인</button>
+                        </div>
 
+
+
+                    </form>
                 </div>
 
 
