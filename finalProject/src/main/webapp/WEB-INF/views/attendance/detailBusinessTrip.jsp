@@ -237,7 +237,7 @@ textarea {
                             </tr>
                             <tr>
                                 <td class="tdTitleHeight">업무 계획</td>
-                                <td colspan="3">${ bt.businessPhone }</td>
+                                <td colspan="3">${ bt.businessPlan }</td>
                             </tr>
                             <tr>
                                 <td class="tdTitleHeight">예상 경비</td>

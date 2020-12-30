@@ -133,6 +133,39 @@
 	    BY BUSINESS_NO DESC
 </select>
 
+<update id="increaseCount" parameterType="_int">
+	UPDATE
+	       BUSINESS_TRIP
+	   SET COUNT = COUNT + 1
+	 WHERE BUSINESS_NO = #{btno}
+</update>
+
+<select id="selectBusinessTrip" parameterType="_int" resultMap="businessTripResultSet">
+	SELECT
+	       BUSINESS_NO
+         , DEPT_NAME
+         , JOB_NAME
+         , MEM_NAME
+         , BU_PROPOSER
+	     , CREATE_DATE
+	     , BUSINESS_PLACE
+	     , BUSINESS_START
+	     , BUSINESS_END
+	     , BUSINESS_PLACE
+	     , BUSINESS_PHONE
+	     , BUSINESS_PURPOSE
+	     , BUSINESS_PLAN
+	     , BUDGET
+	     , BU_STATUS
+	  FROM BUSINESS_TRIP
+      JOIN EMPLOYEE ON (BU_PROPOSER = MEM_NO)
+      JOIN DEPARTMENT USING(DEPT_CODE)
+      JOIN JOBGRADE USING(JOB_CODE)
+     WHERE BUSINESS_NO = #{btno}
+	 ORDER
+	    BY BUSINESS_NO DESC
+</select>
+
 
  
 <insert id="insertBusiness" parameterType="BusinessTrip">
@@ -168,12 +201,7 @@
 </insert>
 
  
-<update id="updateBusinessTrip" parameterType="_int">
-UPDATE
-       BUSINESS_TRIP
-   SET BU_STATUS = 'Y'
- WHERE BUSINESS_NO = #{btno}
-</update> 
+
 
 
 

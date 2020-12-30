@@ -196,7 +196,7 @@
 	                            <c:forEach var="bt" items="${ list }">
 	                            	<c:if test="${loginUser.memNo eq bt.buProposer }"> 
 			                            <tr>
-			                            	<td class="btno"> ${ bt.businessNo }</td>
+			                            	<td class="btno">${ bt.businessNo }</td>
 			                                <td>${ bt.createDate }</td>
 			                                <td>${ bt.businessPlace }</td>
 			                                <td>${bt.businessStart } ~ ${ bt.businessEnd }</td>

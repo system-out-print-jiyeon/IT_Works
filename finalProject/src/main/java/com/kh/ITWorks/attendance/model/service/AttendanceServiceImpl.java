@@ -65,13 +65,13 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 	@Override
 	public int increaseCount(int btno) {
-		return 0;
+		return aDao.increaseCount(sqlSession, btno);
 	}
 
 
 	@Override
 	public BusinessTrip selectBusinessTrip(int btno) {
-		return null;
+		return aDao.selectBusinessTrip(sqlSession, btno);
 	}
 
 

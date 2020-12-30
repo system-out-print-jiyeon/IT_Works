@@ -58,7 +58,7 @@ public class AttendanceDao {
 	}
 	
 	public BusinessTrip selectBusinessTrip(SqlSessionTemplate sqlSession, int btno) {
-		return sqlSession.selectOne("attendanceMapper.selectBusinessTripList", btno);
+		return sqlSession.selectOne("attendanceMapper.selectBusinessTrip", btno);
 	}
 	
 	

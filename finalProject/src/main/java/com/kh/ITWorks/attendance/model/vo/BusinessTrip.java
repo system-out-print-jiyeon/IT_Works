@@ -30,7 +30,7 @@ public class BusinessTrip {					// 출장 테이블
 	 
 	 private String deptName;
 	 private String jobName;
-	 
+	 private String memName;
 	 
 	
 	
