@@ -207,73 +207,75 @@ th,td{
             <br>
             <div class="content_2">
                 <table class="table" style="margin: auto; text-align: center;" border="1px">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th rowspan="2"><p align="center">프로필 이미지</p></th>
-                            <td rowspan="2"><div><img src="${ m.memImg }" alt="프로필 이미지" style="height:200px;"></div></td>
-                            <th><p align="center">사원명</p></th>
-                            <td><p align="center">${ m.memName }</p></td>
-                        </tr>
-                        <tr>
-                            <th><p align="center">사원번호</p></th>
-                            <td><p align="center">no${ m.memNo }</p></td>
-                        </tr>
-                        <tr>
-                            <th>생년월일</th>
-                            <td>${ m.birth }</td>
-                            <th>성별</th>
-                            <td>
-                            	<c:choose>
-                            		<c:when test="${ m.gender == 'M' }">
-                            			남
-                            		</c:when>
-                            		<c:otherwise>
-                            			여
-                            		</c:otherwise>
-                            	</c:choose>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>직 책</th>
-                            <td>${ m.jobName }</td>
-                            <th>입사일</th>
-                            <td>${ m.enrollDate }</td>
-                        </tr>
-                        <tr>
-                            <th>휴대폰</th>
-                            <td>${ m.phone }</td>
-                            <th>이메일</th>
-                            <td>${ m.email }</td>
-                        </tr>
-                        <tr>
-                            <th>부서명</th>
-                            <td>${ m.deptName }</td>
-                            <th>현재상태</th>
-                            <td>
-                            	<c:choose>
-                            		<c:when test="${ m.status == 'Y' }">
-                            			재직중
-                            		</c:when>
-                            		<c:otherwise>
-                            			재직중이 아님
-                            		</c:otherwise>
-                            	</c:choose>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>주 소</th>
-                            <td colspan="3">${ m.address }</td>
-                        </tr>
-                        <tr>
-                            <th>자격증</th>
-                            <td colspan="3">${ m.certification }</td>
-                        </tr>
-                        <tr>
-                            <th>경력사항</th>
-                            <td colspan="3">${ m.career }</td>
-                        </tr>
-                    </thead>
-                </table>
+        <thead class="thead-dark">
+            <tr>
+                <th rowspan="4">프로필 이미지<br><br><br><br><br></th>
+                <td rowspan="4"><div><img src="${ m.memImg }" alt="프로필 이미지" style="height:200px;"></div></td>
+                <th>사원명</th>
+                <td>${ m.memName }</td>
+            </tr>
+            <tr>
+                <th>사원번호</th>
+                <td>no${ m.memNo }</td>
+            </tr>
+            <tr>
+                <th>생년월일</th>
+                <td>${ m.birth }</td>
+            </tr>
+            <tr>
+                <th>성별</th>
+                <td>
+                    <c:choose>
+                        <c:when test="${ m.gender == 'M' }">
+                            남
+                        </c:when>
+                        <c:otherwise>
+                            여
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+            <tr>
+                <th>직 책</th>
+                <td>${ m.jobName }</td>
+                <th>입사일</th>
+                <td>${ m.enrollDate }</td>
+            </tr>
+            <tr>
+                <th>휴대폰</th>
+                <td>${ m.phone }</td>
+                <th>이메일</th>
+                <td>${ m.email }</td>
+            </tr>
+            <tr>
+                <th>부서명</th>
+                <td>${ m.deptName }</td>
+                <th>현재상태</th>
+                <td>
+                    <c:choose>
+                        <c:when test="${ m.status == 'Y' }">
+                            재직중
+                        </c:when>
+                        <c:otherwise>
+                            재직중이 아님
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+            <tr>
+                <th>주 소</th>
+                <td colspan="3">${ m.address }</td>
+            </tr>
+            <tr>
+                <th>자격증</th>
+                <td colspan="3">${ m.certification }</td>
+            </tr>
+            <tr>
+                <th>경력사항</th>
+                <td colspan="3">${ m.career }</td>
+            </tr>
+        </thead>
+    </table>
             </div>
             <br>
             <div class="content_3" align="center">

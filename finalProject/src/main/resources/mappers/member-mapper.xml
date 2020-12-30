@@ -226,4 +226,9 @@
 		  WHERE MEM_NO = #{memNo}
 	</update>
 	
+	<select id="pwdCheck" parameterType="String">
+		select
+		      
+	</select>
+	
 </mapper>

@@ -58,4 +58,9 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.memberUpdate(sqlSession, m);
 	}
 
+	@Override
+	public int pwdCheck(String deletePwd) {
+		return mDao.pwdCheck(sqlSession, deletePwd);
+	}
+
 }

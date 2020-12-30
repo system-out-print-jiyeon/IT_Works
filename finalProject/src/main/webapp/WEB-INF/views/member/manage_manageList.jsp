@@ -300,6 +300,15 @@ th,td{
         </div>
     </div>
     
+    <!-- modal 값 넘겨주기 테스트중 -->
+    <script>
+	    var check = $("input[class=checked]:checked").val();
+	    
+    	$(function(){
+    		console.log(check);
+    	})
+    </script>
+    
     <!-- 사원 리스트 체크박스 조건문 -->
     <script>
         function checked1(){

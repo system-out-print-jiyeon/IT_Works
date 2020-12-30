@@ -63,6 +63,7 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.searchList", search, rowBounds);
 	}
 	
+	// 검색결과 수 카운트
 	public int searchListCount(SqlSessionTemplate sqlSession, String selectList, String keyword) {
 		HashMap<String, String> search = new HashMap<String,String>();
 		search.put("selectList", selectList);
@@ -71,7 +72,13 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.searchListCount", search);
 	}
 	
+	// 사원 업데이트
 	public int memberUpdate(SqlSessionTemplate sqlSession ,Member m) {
 		return sqlSession.update("memberMapper.memberUpdate", m);
+	}
+	
+	// 사원 삭제 비밀번호 확인
+	public int pwdCheck(SqlSessionTemplate sqlSession, String deletePwd) {
+		return sqlSession.selectOne("memberMapper.pwdCheck", deletePwd);
 	}
 }
