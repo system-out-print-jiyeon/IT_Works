@@ -9,8 +9,23 @@ import com.kh.ITWorks.approval.model.vo.DocumentsRequest;
 import com.kh.ITWorks.approval.model.vo.Outgoings;
 import com.kh.ITWorks.approval.model.vo.OutgoingsList;
 import com.kh.ITWorks.approval.model.vo.Referer;
+import com.kh.ITWorks.member.model.vo.Member;
 
 public interface ApprovalService {
+	
+	// 부서별 사원수 조회
+	int businessCount();
+	int personnelCount();
+	int accountingCount();
+	int developerCount();
+	int planningCount();
+	
+	// 부서별 사원 조회
+	ArrayList<Member> businessList(Member m);
+	ArrayList<Member> personnelList(Member m);
+	ArrayList<Member> accountingList(Member m);
+	ArrayList<Member> developerList(Member m);
+	ArrayList<Member> planningList(Member m);
 	
 	// 결재문서 기본정보 입력
 	int insertApprovalDocument(ApprovalDocument ad);

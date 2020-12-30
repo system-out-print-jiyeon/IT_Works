@@ -2,9 +2,152 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="approvalMapper">
 
+<resultMap type="Member" id="memberResultSet">
+		<result column="mem_no" property="memNo"/>
+		<result column="mem_id" property="memId"/>
+		<result column="mem_pwd" property="memPwd"/>
+		<result column="mem_img" property="memImg"/>
+		<result column="mem_name" property="memName"/>
+		<result column="mem_phone" property="phone"/>
+		<result column="mem_email" property="email"/>
+		<result column="mem_gender" property="gender"/>
+		<result column="mem_birth" property="birth"/>
+		<result column="mem_address" property="address"/>
+		<result column="mem_certification" property="certification"/>
+		<result column="mem_career" property="career"/>
+		<result column="mem_status" property="status"/>
+		<result column="mem_enroll" property="enrollDate"/>
+		<result column="modify_date" property="modifyDate"/>
+		<result column="annual_leave" property="annualLeave"/>
+		<result column="dept_code" property="deptCode"/>	
+		<result column="job_code" property="jobCode"/>
+		<result column="job_name" property="jobName"/>
+		<result column="dept_name" property="deptName"/>			
+	</resultMap>
 
 
+	<!-- 부서별 사원 수 조회 -->
+	<select id="businessCount" resultType="_int">
+		select
+		count(*)
+		from employee
+		where mem_status = 'Y'
+		and dept_code = 'D3'
+	</select>
 
+	<select id="personnelCount" resultType="_int">
+		select
+		count(*)
+		from employee
+		where mem_status = 'Y'
+		and dept_code = 'D2'
+	</select>
+
+	<select id="accountingCount" resultType="_int">
+		select
+		count(*)
+		from employee
+		where mem_status = 'Y'
+		and dept_code = 'D5'
+	</select>
+
+	<select id="developerCount" resultType="_int">
+		select
+		count(*)
+		from employee
+		where mem_status = 'Y'
+		and dept_code = 'D1'
+	</select>
+
+	<select id="planningCount" resultType="_int">
+		select
+		count(*)
+		from employee
+		where mem_status = 'Y'
+		and dept_code = 'D4'
+	</select>
+	
+	
+	<!-- 부서별 사원 조회 -->
+	<select id="businessList" resultMap="memberResultSet">
+		
+		select
+			 
+			    mem_name
+              , dept_name
+              , job_name
+		  from employee
+          join department using(dept_code)
+          join jobgrade using(job_code)
+         where dept_code = 'D3'
+         order 
+            by job_code desc
+		
+	</select>
+	
+	<select id="personnelList" resultMap="memberResultSet">
+		
+		select
+			 
+			    mem_name
+              , dept_name
+              , job_name
+		  from employee
+          join department using(dept_code)
+          join jobgrade using(job_code)
+         where dept_code = 'D2'
+         order 
+            by job_code desc
+		
+	</select>
+	
+	<select id="accountingList" resultMap="memberResultSet">
+		
+		select
+			 
+			    mem_name
+              , dept_name
+              , job_name
+		  from employee
+          join department using(dept_code)
+          join jobgrade using(job_code)
+         where dept_code = 'D5'
+         order 
+            by job_code desc
+		
+	</select>
+	
+	<select id="developerList" resultMap="memberResultSet">
+		
+		select
+			 
+			    mem_name
+              , dept_name
+              , job_name
+		  from employee
+          join department using(dept_code)
+          join jobgrade using(job_code)
+         where dept_code = 'D1'
+         order 
+            by job_code desc
+		
+	</select>
+	
+	<select id="planningList" resultMap="memberResultSet">
+		
+		select
+			 
+			    mem_name
+              , dept_name
+              , job_name
+		  from employee
+          join department using(dept_code)
+          join jobgrade using(job_code)
+         where dept_code = 'D4'
+         order 
+            by job_code desc
+		
+	</select>
 
 
 

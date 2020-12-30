@@ -14,6 +14,8 @@ import com.kh.ITWorks.approval.model.vo.DocumentsRequest;
 import com.kh.ITWorks.approval.model.vo.Outgoings;
 import com.kh.ITWorks.approval.model.vo.OutgoingsList;
 import com.kh.ITWorks.approval.model.vo.Referer;
+import com.kh.ITWorks.common.model.vo.PageInfo;
+import com.kh.ITWorks.member.model.vo.Member;
 
 @Service
 public class ApprovalServiceImpl implements ApprovalService {
@@ -23,7 +25,53 @@ public class ApprovalServiceImpl implements ApprovalService {
 	
 	@Autowired
 	private ApprovalDao aDao;
+	
+	// 부서별 사원수 조회
+	@Override
+	public int businessCount() {
+		return aDao.businessCount(sqlSession);
+	}
+	@Override
+	public int personnelCount() {
+		return aDao.personnelCount(sqlSession);
+	}
+	@Override
+	public int accountingCount() {
+		return aDao.accountingCount(sqlSession);
+	}
+	@Override
+	public int developerCount() {
+		return aDao.developerCount(sqlSession);
+	}
+	@Override
+	public int planningCount() {
+		return aDao.planningCount(sqlSession);
+	}
 
+	// 부서별 사원 조회
+
+	@Override
+	public ArrayList<Member> businessList(Member m) {
+		return aDao.businessList(sqlSession, m);
+	}
+	@Override
+	public ArrayList<Member> personnelList(Member m) {
+		return aDao.personnelList(sqlSession, m);
+	}
+	@Override
+	public ArrayList<Member> accountingList(Member m) {
+		return aDao.accountingList(sqlSession, m);
+	}
+	@Override
+	public ArrayList<Member> developerList(Member m) {
+		return aDao.developerList(sqlSession, m);
+	}
+	@Override
+	public ArrayList<Member> planningList(Member m) {
+		return aDao.planningList(sqlSession, m);
+	}
+	
+	
 	@Override
 	public int insertApprovalDocument(ApprovalDocument ad) {
 		return aDao.insertApprovalDocument(ad, sqlSession);

@@ -469,7 +469,9 @@
                 <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>
                 <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>
                 
-                <input type="file" id="upfile" name="upfile" style="display:none;"> 
+                <input type="file" id="upfile" name="upfile" style="display:none;">
+                
+                 
                 
                 
                 </div>
@@ -516,50 +518,46 @@
 
             <div class="modalDiv_3_1">
                 <div class="modalDiv_3_1_1">
-                    <div class="modalDiv_business"><i class="fas fa-plus-circle"></i> 경영지원팀( )
+                    <div class="modalDiv_business"><i class="fas fa-plus-circle"></i> 경영지원팀(${ bCount })
                         
                     </div>
                         <div class="member1" style="display: none;">
-                         <c:forEach var="m" items="${ list }">
-                            <div><input type="checkbox" name="business" id=""> </div>
+                         <c:forEach var="m" items="${ bList }">
+                            <div><input type="checkbox" name="business" id=""> ${ m.jobName} ${ m.memName}</div>
                           </c:forEach>  
                         </div>
-                    <div class="modalDiv_personnel"><i class="fas fa-plus-circle"></i> 인사팀(12)
+                    <div class="modalDiv_personnel"><i class="fas fa-plus-circle"></i> 인사팀(${ pCount })
                         
                     </div> 
                     		<div class="member2" style="display: none;">
-                            <div><input type="checkbox" name="personnel" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="personnel" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="personnel" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="personnel" id="">부장 박동성</div>
+                    		<c:forEach var="m" items="${ pList }">
+                            <div><input type="checkbox" name="personnel" id=""> ${ m.jobName} ${ m.memName}</div>
+                             </c:forEach>  
                         </div>
-                    <div class="modalDiv_accounting"><i class="fas fa-plus-circle"></i> 총무팀(15)
+                    <div class="modalDiv_accounting"><i class="fas fa-plus-circle"></i> 총무팀(${ aCount })
                         
                     </div>
                     		<div class="member3" style="display: none;">
-                            <div><input type="checkbox" name="accounting" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="accounting" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="accounting" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="accounting" id="">부장 박동성</div>
+                    		<c:forEach var="m" items="${ aList }">
+                            <div><input type="checkbox" name="accounting" id=""> ${ m.jobName} ${ m.memName}</div>
+                             </c:forEach> 
                         </div>
-                    <div class="modalDiv_developer"><i class="fas fa-plus-circle"></i> 개발팀(10)
+                    <div class="modalDiv_developer"><i class="fas fa-plus-circle"></i> 개발팀(${ dCount })
                         
                     </div>
                     		<div class="member4" style="display: none;">
-                            <div><input type="checkbox" name="developer" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="developer" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="developer" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="developer" id="">부장 박동성</div>
+                    		<c:forEach var="m" items="${ dList }">
+                            <div><input type="checkbox" name="developer" id=""> ${ m.jobName} ${ m.memName}</div>
+                            </c:forEach> 
                         </div>
-                    <div class="modalDiv_planning"><i class="fas fa-plus-circle"></i> 기획팀(8)
+                    <div class="modalDiv_planning"><i class="fas fa-plus-circle"></i> 기획팀(${ plCount })
                         
                     </div>
                     
                     <div class="member5" style="display: none;">
-                            <div><input type="checkbox" name="planning" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="planning" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="planning" id="">부장 박동성</div>
-                            <div><input type="checkbox" name="planning" id="">부장 박동성</div>
+                    		<c:forEach var="m" items="${ plList }">
+                            <div><input type="checkbox" name="planning" id=""> ${ m.jobName} ${ m.memName}</div>
+                             </c:forEach> 
                         </div>
                 </div>
             </div>
