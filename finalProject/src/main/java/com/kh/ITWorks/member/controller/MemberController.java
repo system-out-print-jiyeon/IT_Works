@@ -193,6 +193,7 @@ public class MemberController {
 	@RequestMapping("update.ma")
 	public String memberUpdate(Member m, Model model, HttpSession session, MultipartFile reprofile ) {
 		System.out.println("첨부파일 잘 넘어오나 결과 --> " + reprofile.getOriginalFilename());
+		System.out.println("첨부파일 수정없이 기존 값 받아오기 --->" + m.getMemImg());
 		if(!reprofile.getOriginalFilename().equals("")) {
 			if(m.getMemImg() != null) {
 				new File(session.getServletContext().getRealPath(m.getMemImg())).delete();
@@ -205,6 +206,8 @@ public class MemberController {
 		
 		int result = mService.memberUpdate(m);
 		
+		System.out.println(result);
+		
 		if(result > 0) {
 			session.setAttribute("alertMsg", "사원 정보 수정 성공 :)");
 			return "redirect:listManage.ma";
@@ -212,6 +215,17 @@ public class MemberController {
 			model.addAttribute("errorMsg", "사원 정보 수정 실패 :(");
 			return "common/errorPage";
 		}
+		
+	}
+	
+	@RequestMapping("delete.ma")
+	public void memberDelete(String deletePwd, int memNo) {
+		
+		System.out.println(deletePwd);
+		
+		// 1차 비밀번호 확인
+		int pwdCheck = mService.pwdCheck(deletePwd);
+		
 		
 	}
 	

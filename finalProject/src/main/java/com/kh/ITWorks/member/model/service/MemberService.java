@@ -21,6 +21,8 @@ public interface MemberService {
 	
 	int memberUpdate(Member m);
 	
+	int pwdCheck(String deletePwd);
+	
 	
 	
 }
