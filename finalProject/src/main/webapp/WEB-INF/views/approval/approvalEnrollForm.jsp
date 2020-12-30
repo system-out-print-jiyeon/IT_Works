@@ -13,11 +13,15 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   
   
   
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+  
+
+
 
 <style>
   
@@ -50,9 +54,7 @@
     position: relative;
 }
 
-.titleBox:hover{
-    cursor: pointer;
-}
+
 
 .infoTable{
     border-collapse: collapse;
@@ -319,9 +321,12 @@
     }
 </style>
 
-
 </head>
+
+  
+  
 <body>
+
 
 	<jsp:include page="../common/approvalNavbar.jsp"/>
 
@@ -338,7 +343,7 @@
                 <table class="infoTable" border="1px">
                     <tr>
                         <th>문서 종류</th>
-                        <td>  <select name="formCategory" id="formCategory" onclick="approvalForm()">
+                        <td>  <select name="formCategory" id="formCategory">
                                 <option value="selectOption">&nbsp;선택</option>
                                 <option value="outgoingEnrollForm">지출 결의서</option>
                                 <option value="documentsRequestEnrollForm">문서 발급 요청서</option>
@@ -378,7 +383,7 @@
             </div>
 
             <div class="titleBox" style="display: flex; margin-left: 30px;">
-                <h5>결재선</h5> <a class="modalOpen"><h6 style="margin-left: 40px; color: rgb(73, 174, 233);">결재선 설정</h6> </a>
+                <h5>결재선</h5> <a class="modalOpen"><h6 style="margin-left: 40px; color: rgb(73, 174, 233); cursor:pointer;">결재선 설정</h6> </a>
             </div>
 
             <div class="approvalLine">
@@ -435,20 +440,17 @@
             </div>
 
             <div class="detailContents">
-
+										
                 <div id="summernote">
              
              		
+				
+            
+					
                              
-                </div>
+                </div> 
                 
-                <script>                
-                	function approvalForm() {
-                		var form = $("#formCategory option:selected").val();
-                		console.log(form);
-                		
-                	}
-                </script>
+               
 
 
             </div>
@@ -491,6 +493,7 @@
         
 
     </div>
+    
     
  	<form name="modalForm" action="approval.me" method="get">
     <div class="modalDiv">
@@ -696,46 +699,58 @@
 
 
     <div class="dim"></div>
+    
+    
+    <script>
+    
+		/* 써머노트 */
+		$('#summernote').summernote({
+		    
+			
+		    tabsize: 2,
+		    width:800,
+		    height: 500,
+		    toolbar: [
+		      ['style', ['style']],
+		      ['font', ['bold', 'underline', 'clear']],
+		      ['color', ['color']],
+		      ['para', ['ul', 'ol', 'paragraph']],
+		      ['table', ['table']],
+		      ['insert', ['link', 'picture', 'video']],
+		      ['view', ['fullscreen', 'codeview', 'help']]
+		    ]
+		  });
+		
+	</script>
 
-   
+   <script>
 
-
-
-  <script>
-
-
-    /* 써머노트 */
-    $('#summernote').summernote({
-        
-        tabsize: 2,
-        width:800,
-        height: 500,
-        toolbar: [
-          ['style', ['style']],
-          ['font', ['bold', 'underline', 'clear']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['table', ['table']],
-          ['insert', ['link', 'picture', 'video']],
-          ['view', ['fullscreen', 'codeview', 'help']]
-        ]
-      });
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-     
-    
-   
+   			/* 문서 종류 선택시 에디터적용 */
+		$('#formCategory').change(function(){
+	    	var formList = $("#formCategory option:selected").val();
+	    	
+	    	$.ajax({
+				url:"docList.me", 
+				data:{selectoption : formList},
+				type:"post",
+				success:function(data){
+					
+					
+					
+					$('.note-editable').html(data);
+					
+				},error:function(){
+					$('.note-editable').html("");
+					console.log("아이디 중복체크용 ajax통신 실패");
+				}
+			});
+	    });
 
   </script>
 
+
+
+  
 
 
 </body>

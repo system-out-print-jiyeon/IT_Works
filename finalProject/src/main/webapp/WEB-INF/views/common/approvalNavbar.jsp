@@ -198,7 +198,9 @@
       	 <% String url = request.getRequestURI(); %>
         
            <% if(url.contains("approval")){ %> 전자결재 <% } 
-           else  {%> 오피스 홈 <% } %>
+           else if(url.contains("manage")) {%> 인사관리 <% } 
+           else if(url.contains("reservation")) {%> 회의실 예약 <% } 
+           else {%> 오피스 홈 <% } %>
             
             &nbsp;<i class="fas fa-sort-down">&nbsp;</i>
         </div>
@@ -227,10 +229,8 @@
 
    
 
-        <a href=""><div><p class="listCategory"><i class="fas fa-business-time"></i><br>회의실 예약</p></div></a>
-        <a href="manageList.ma"><div><p class="listCategory"><i class="fas fa-users"></i><br>인사관리</p></div></a>
         <a href="reservation.re?floor=3"><div><p class="listCategory"><i class="fas fa-business-time"></i><br>회의실 예약</p></div></a>
-        <a href="manage.me"><div><p class="listCategory"><i class="fas fa-users"></i><br>인사관리</p></div></a>
+        <a href="manageList.ma"><div><p class="listCategory"><i class="fas fa-users"></i><br>인사관리</p></div></a>
         <a href=""><div><p class="listCategory"><i class="far fa-id-badge"></i><br>근태관리</p></div></a>
         <a href="approval.me"><div><p class="listCategory"><i class="fas fa-file-signature"></i><br>전자결재</p></div></a>
     
