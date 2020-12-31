@@ -26,36 +26,36 @@
 	</resultMap>
 	
 	<resultMap type="ApprovalDocument" id="approvalDocumentResultSet">
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
+		<result column="doc_no" property="docNo"/>
+		<result column="mem_no" property="memNo"/>
+		<result column="doc_title" property="docTitle"/>
+		<result column="doc_contents" property="docContents"/>
+		<result column="doc_enroll_date" property="docEnrollDate"/>
+		<result column="doc_retention" property="docRetention"/>
+		<result column="doc_grade" property="docGrade"/>
+		<result column="doc_status" property="docStatus"/>
+		<result column="doc_form" property="docForm"/>
 	</resultMap>
 	
 	<resultMap type="ApprovalAttachment" id="approvalAttachmentResultSet">
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
+		<result column="att_no" property="attNo"/>
+		<result column="doc_no" property="docNo"/>
+		<result column="att_origin_name" property="attOriginName"/>
+		<result column="att_change_name" property="attChangeName"/>
+		<result column="att_path" property="attPath"/>
+		<result column="att_loadpath" property="attLoadpath"/>
 	</resultMap>
 	
 	<resultMap type="ApprovalLine" id="approvalLineResultSet">
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
-		<result column="" property=""/>
+		<result column="doc_no" property="docNo"/>
+		<result column="mem_no" property="memNo"/>
+		<result column="approval_status" property="approvalStatus"/>
+		<result column="approval_order" property="approvalOrder"/>
 	</resultMap>
 	
 	<resultMap type="Referer" id="refererResultSet">
-		<result column="" property=""/>
-		<result column="" property=""/>
+		<result column="doc_no" property="docNo"/>
+		<result column="mem_no" property="memNo"/>
 	</resultMap>
 	
 	<resultMap type="" id=""></resultMap>
