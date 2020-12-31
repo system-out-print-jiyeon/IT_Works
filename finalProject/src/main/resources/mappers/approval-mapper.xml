@@ -25,7 +25,7 @@
 		<result column="dept_name" property="deptName"/>			
 	</resultMap>
 	
-	<resultMap type="ApprovalDocument" id="approvalDocumentResultSet">
+<!-- 	<resultMap type="ApprovalDocument" id="approvalDocumentResultSet">
 		<result column="doc_no" property="docNo"/>
 		<result column="mem_no" property="memNo"/>
 		<result column="doc_title" property="docTitle"/>
@@ -56,9 +56,7 @@
 	<resultMap type="Referer" id="refererResultSet">
 		<result column="doc_no" property="docNo"/>
 		<result column="mem_no" property="memNo"/>
-	</resultMap>
-	
-	<resultMap type="" id=""></resultMap>
+	</resultMap> -->
 
 
 	<!-- 부서별 사원 수 조회 -->
