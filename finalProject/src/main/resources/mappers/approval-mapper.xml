@@ -24,6 +24,41 @@
 		<result column="job_name" property="jobName"/>
 		<result column="dept_name" property="deptName"/>			
 	</resultMap>
+	
+	<resultMap type="ApprovalDocument" id="approvalDocumentResultSet">
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+	</resultMap>
+	
+	<resultMap type="ApprovalAttachment" id="approvalAttachmentResultSet">
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+	</resultMap>
+	
+	<resultMap type="ApprovalLine" id="approvalLineResultSet">
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+		<result column="" property=""/>
+	</resultMap>
+	
+	<resultMap type="Referer" id="refererResultSet">
+		<result column="" property=""/>
+		<result column="" property=""/>
+	</resultMap>
+	
+	<resultMap type="" id=""></resultMap>
 
 
 	<!-- 부서별 사원 수 조회 -->
