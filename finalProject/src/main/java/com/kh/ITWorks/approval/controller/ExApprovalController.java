@@ -34,9 +34,14 @@ public class ExApprovalController {
 	public void insertApprovalDocument(ApprovalDocument ad, Attachment a, ApprovalLine al, Referer r, Outgoings o, DocumentsRequest dr,HttpSession session, Model model) {
 		
 		int result1 = aService.insertApprovalDocument(ad);
+		
 		int result2 = aService.insertApprovalAttachment(a);
-		int result3 = aService.insertApprovalLine(al);
-		int result4 = aService.insertApprovalReferer(r);
+		
+		ArrayList<ApprovalLine> apLineList = al.getApLineList();
+		int result3 = aService.insertApprovalLine(apLineList);
+		
+		ArrayList<Referer> refererList = r.getRefererList();
+		int result4 = aService.insertApprovalReferer(refererList);
 		
 		int insertResult = result1 * result2 * result3 * result4;
 		

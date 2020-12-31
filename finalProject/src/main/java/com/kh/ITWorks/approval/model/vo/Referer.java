@@ -1,5 +1,7 @@
 package com.kh.ITWorks.approval.model.vo;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +16,7 @@ public class Referer {
 	
 	private int docNo;
 	private String memNo;
+	
+	private ArrayList<Referer> refererList;
 
 }

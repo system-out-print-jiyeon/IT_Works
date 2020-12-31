@@ -83,13 +83,13 @@ public class ApprovalServiceImpl implements ApprovalService {
 	}
 
 	@Override
-	public int insertApprovalLine(ApprovalLine al) {
-		return aDao.insertApprovalLine(al, sqlSession);
+	public int insertApprovalLine(ArrayList<ApprovalLine> apLineList) {
+		return aDao.insertApprovalLine(apLineList, sqlSession);
 	}
 
 	@Override
-	public int insertApprovalReferer(Referer r) {
-		return aDao.insertApprovalRefere(r, sqlSession);
+	public int insertApprovalReferer(ArrayList<Referer> refererList) {
+		return aDao.insertApprovalRefere(refererList, sqlSession);
 	}
 
 	@Override

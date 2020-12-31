@@ -30,8 +30,8 @@ public interface ApprovalService {
 	// 결재문서 기본정보 입력
 	int insertApprovalDocument(ApprovalDocument ad);
 	int insertApprovalAttachment(Attachment a);
-	int insertApprovalLine(ApprovalLine al);
-	int insertApprovalReferer(Referer r);
+	int insertApprovalLine(ArrayList<ApprovalLine> apLineList);
+	int insertApprovalReferer(ArrayList<Referer> refererList);
 	
 	// 결재문서 상세내용
 	// 1. 지출결의서 입력
