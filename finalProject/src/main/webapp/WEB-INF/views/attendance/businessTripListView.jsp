@@ -149,9 +149,9 @@
                     <br>
                     <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>연차</a>
                         <ul class="menu1">
-                            <li><a href="#">연차 신청</a></li>
-                            <li><a href="#">연차 내역 조회</a></li>
-                            <li><a href="#">연차 승인</a></li>
+                            <li><a href="insertForm.an">연차 신청</a></li>
+                            <li><a href="list.an">연차 내역 조회</a></li>
+                            <li><a href="approval.an">연차 승인</a></li>
                         </ul>
                     </li>
                 </div>

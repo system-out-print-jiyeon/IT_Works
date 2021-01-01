@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.ITWorks.attendance.model.dao.AttendanceDao;
+import com.kh.ITWorks.attendance.model.vo.AnnualLeave;
 import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.member.model.vo.Member;
@@ -85,6 +86,60 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Override
 	public int approvalBusinessTrip(Map<String, Object> approval) {
 		return aDao.approvalBusinessTrip(sqlSession, approval);
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public int selectListCountAL() {
+		return aDao.selectListCountAL(sqlSession);
+	}
+
+
+	@Override
+	public ArrayList<AnnualLeave> selectAnnualLeaveList(PageInfo pi) {
+		return aDao.selectAnnualLeaveList(sqlSession, pi);
+	}
+
+
+	@Override
+	public int insertAnnualLeave(AnnualLeave an) {
+		return aDao.insertAnnualLeave(sqlSession, an);
+	}
+
+
+	@Override
+	public int increaseCountAL(int anno) {
+		return  aDao.increaseCountAL(sqlSession, anno);
+	}
+
+
+	@Override
+	public AnnualLeave selectAnnualLeave(int anno) {
+		return aDao.selectAnnualLeave(sqlSession, anno);
+	}
+
+
+	@Override
+	public int returnAnnualLeave(Map<String, Object> approval) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int approvalAnnualLeave(Map<String, Object> approval) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

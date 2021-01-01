@@ -38,8 +38,30 @@
 		<result column="budget" property="budget"/>
 		<result column="bu_status" property="buStatus"/>
 		<result column="bu_proposer" property="buProposer"/>
-		<result column="bu_approver" property="buApprover"/>	
+		<result column="bu_approver" property="buApprover"/>
+		<result column="count" property="count"/>	
 	</resultMap>
+
+
+	
+	<resultMap type="AnnualLeave" id="annualLeaveResultSet">
+		<result column="annual_no" property="annualNo"/>
+		<result column="left_annual" property="leftAnnual"/>
+		<result column="create_date" property="createDate"/>
+		<result column="annual_start" property="annualStart"/>
+		<result column="annual_end" property="annualEnd"/>
+		<result column="emergency_phone" property="emergencyPhone"/>
+		<result column="reason" property="reason"/>
+		<result column="an_status" property="anStatus"/>
+		<result column="an_proposer" property="anProposer"/>
+		<result column="an_approver" property="anApprover"/>	
+		<result column="count" property="count"/>
+	</resultMap>
+
+
+
+
+
 
 
 <select id="loginMember"
@@ -213,6 +235,86 @@ UPDATE
      , BU_APPROVER = #{apno}
  WHERE BUSINESS_NO = #{btno}
 </update>
+
+
+
+
+
+
+
+
+
+<select id="selectListCountAL" resultType="_int">
+	SELECT
+	       COUNT(*)
+	  FROM ANNUAL_LEAVE
+</select>
+
+<select id="selectAnnualLeaveList" resultMap="annualLeaveResultSet">
+	SELECT
+	       ANNUAL_NO
+         , AN_PROPOSER
+	     , CREATE_DATE
+	     , ANNUAL_START
+	     , ANNUAL_END
+	     , AN_STATUS
+	  FROM ANNUAL_LEAVE
+	 ORDER
+	    BY ANNUAL_NO DESC
+</select>
+
+ 
+<insert id="insertAnnualLeave" parameterType="AnnualLeave">
+	INSERT
+	  INTO ANNUAL_LEAVE
+	  (
+	       ANNUAL_NO
+	     , AN_PROPOSER 
+	     , CREATE_DATE
+	     , ANNUAL_START
+	     , ANNUAL_END
+	     , EMERGENCY_PHONE
+	     , REASON
+	     , AN_STATUS
+	  )
+	  VALUES
+	  (
+	       SEQ_ANO.NEXTVAL
+	     , #{anProposer}
+	     , DEFAULT
+	     , #{annualStart}
+	     , #{annualEnd}
+	     , #{emergencyPhone}
+	     , #{reason}
+	     , DEFAULT
+	  )
+</insert>
+
+<update id="increaseCountAL" parameterType="_int">
+	UPDATE
+	       ANNUAL_LEAVE
+	   SET COUNT = COUNT + 1
+	 WHERE ANNUAL_NO = #{anno}
+</update>
+
+<select id="selectAnnualLeave" parameterType="_int" resultMap="annualLeaveResultSet">
+	SELECT
+	       ANNUAL_NO
+         , DEPT_NAME
+         , JOB_NAME
+         , MEM_NAME
+         , AN_PROPOSER
+	     , CREATE_DATE
+	     , ANNUAL_START
+	     , ANNUAL_END
+	     , EMERGENCY_PHONE
+	     , REASON
+	  FROM ANNUAL_LEAVE
+	  JOIN EMPLOYEE ON (AN_PROPOSER = MEM_NO)
+      JOIN DEPARTMENT USING(DEPT_CODE)
+      JOIN JOBGRADE USING(JOB_CODE)
+     WHERE ANNUAL_NO = #{anno}
+</select>
 
 
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ITWorks.attendance.model.service.AttendanceService;
+import com.kh.ITWorks.attendance.model.vo.AnnualLeave;
 import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.common.template.Pagination;
@@ -118,6 +119,10 @@ public class AttendanceController {
 	
 	
 	
+	
+	
+	
+	
 	@RequestMapping("list.bt")
 	public String selectBusinessTripList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, 
 								Model model) {
@@ -159,7 +164,7 @@ public class AttendanceController {
 	
 	
 	@RequestMapping("insert.bt")
-	public String insertBoard(BusinessTrip bt, HttpSession session,
+	public String insertBusinessTrip(BusinessTrip bt, HttpSession session,
 							Model model) {
 		
 		int result = aService.insertBusiness(bt);
@@ -273,6 +278,109 @@ public class AttendanceController {
 	
 	
 	
+	
+	
+
+	@RequestMapping("list.an")
+	public String selectAnnualLeaveList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, 
+								Model model) {
+		
+		int listCount = aService.selectListCountAL();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+		ArrayList<AnnualLeave> anList = aService.selectAnnualLeaveList(pi);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("anList", anList);
+		
+		return "attendance/annualLeaveListView";
+	}
+	
+	
+	@RequestMapping("approval.an")
+	public String approvalAnnualLeave(@RequestParam(value="currentPage", defaultValue="1")int currentPage, 
+								Model model) {
+		
+		int listCount = aService.selectListCountAL();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+		ArrayList<AnnualLeave> anList = aService.selectAnnualLeaveList(pi);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("anList", anList);
+		
+		return "attendance/approvalAnnualLeave";
+	}
+	
+
+	@RequestMapping("insertForm.an")
+	public ModelAndView insertAnnualForm(ModelAndView mv) {
+		mv.setViewName("attendance/submitAnnualLeave");
+		return mv;
+	}
+	
+
+	@RequestMapping("insert.an")
+	public String insertAnnualLeave(AnnualLeave an, HttpSession session,
+							Model model) {
+		
+		int result = aService.insertAnnualLeave(an);
+		
+		if(result > 0) { // 성공
+			session.setAttribute("alertMsg", "연차신청이 성공적으로 등록되었습니다.");
+			return "redirect:list.an"; 
+		}else { // 실패
+			model.addAttribute("errorMsg", "연차신청 등록에 실패했습니다. 다시 시도해주세요.");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	
+	@RequestMapping("detail.an")
+	public String selectAnnualLeave(int anno, Model model) {
+		
+		int result = aService.increaseCountAL(anno);
+		
+		if(result > 0) { // 유효한 게시글
+			
+			AnnualLeave an = aService.selectAnnualLeave(anno);
+			
+			model.addAttribute("an", an);
+			
+			return "attendance/detailAnnualLeave";
+			
+		}else { // 유효한 게시글 X
+			model.addAttribute("errorMsg", "존재하지 않는 게시글이거나 열람할 수 없는 게시글입니다.");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	
+	
+	@RequestMapping("detailApproval.an")
+	public String selectApprovalAnnualLeave(int anno, Model model) {
+		
+		int result = aService.increaseCountAL(anno);
+		
+		if(result > 0) { // 유효한 게시글
+			
+			AnnualLeave an = aService.selectAnnualLeave(anno);
+			
+			model.addAttribute("an", an);
+			
+			return "attendance/detailApprovalAnnualLeave";
+			
+		}else { // 유효한 게시글 X
+			model.addAttribute("errorMsg", "존재하지 않는 게시글이거나 열람할 수 없는 게시글입니다.");
+			return "common/errorPage";
+		}
+		
+	}
+
+
+	
+
+
 	
 	
 	

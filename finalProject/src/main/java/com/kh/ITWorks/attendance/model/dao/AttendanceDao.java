@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.ITWorks.attendance.model.vo.AnnualLeave;
 import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.member.model.vo.Member;
@@ -71,5 +72,32 @@ public class AttendanceDao {
 	}
 
 	
+	
+	
+	public int selectListCountAL(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("attendanceMapper.selectListCountAL");
+	}
+	
+	
+	public ArrayList<AnnualLeave> selectAnnualLeaveList(SqlSessionTemplate sqlSession, PageInfo pi){
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("attendanceMapper.selectAnnualLeaveList", null, rowBounds);
+	}
+
+	public int insertAnnualLeave(SqlSessionTemplate sqlSession, AnnualLeave an) {
+		return sqlSession.insert("attendanceMapper.insertAnnualLeave", an);
+	}
+	
+	public int increaseCountAL(SqlSessionTemplate sqlSession, int anno) {
+		return sqlSession.update("attendanceMapper.increaseCountAL", anno);
+	}
+	
+	public AnnualLeave selectAnnualLeave(SqlSessionTemplate sqlSession, int anno) {
+		return sqlSession.selectOne("attendanceMapper.selectAnnualLeave", anno);
+	}
 	
 }

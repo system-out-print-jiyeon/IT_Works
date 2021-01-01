@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%
-	Date nowTime = new Date();
-	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +50,7 @@
     justify-content: space-between;
     padding: 8px 24px;
     width: 300px;
-    height: 1200px;
+    height: 1000px;
     background-color: #e7e1e1;
 }
 
@@ -139,7 +133,12 @@ textarea {
  text-align: center;
  margin: 0px;
 }
-
+#emergencyPhone{
+ padding: 15px;
+ text-align: center;
+ margin: 0px;
+ width:750px;
+}
 </style>
 </head>
 <body>
@@ -165,7 +164,7 @@ textarea {
                     <br>
                     <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>출장</a>
                         <ul class="menu1">
-                            <li class="selectedTitle"><a href="insertForm.bt">출장 신청</a></li>
+                            <li><a href="insertForm.bt">출장 신청</a></li>
                             <li><a href="list.bt">출장 내역 조회</a></li>
                             <li><a href="approval.bt">출장 승인</a></li>
                         </ul>
@@ -175,7 +174,7 @@ textarea {
                         <ul class="menu1">
                             <li><a href="insertForm.an">연차 신청</a></li>
                             <li><a href="list.an">연차 내역 조회</a></li>
-                            <li><a href="approval.an">연차 승인</a></li>
+                            <li class="selectedTitle"><a href="approval.an">연차 승인</a></li>
                         </ul>
                     </li>
                 </div>
@@ -201,61 +200,46 @@ textarea {
             <div class="contentArea">
 
                 <br><br>
-                <h4>출장신청</h4>
+                <h4>연차승인</h4>
 
                 <div class="businessFormArea" align="center">
-                    <form action="insert.bt">
-                    	<input type="hidden" name="buProposer" id="buProposer" value="${ loginUser.memNo }">
+                	<form method="post" name="form">
                         <table id="businessTable" class="table-bordered" width="1000px">
                             <tr>
                                 <td width="60" class="tdTitle">소속 부서</td>
-                                <td width="100">${ loginUser.deptName}</td>
+                                <td width="100">${ an.deptName}</td>
                                 <td width="60" class="tdTitle">직위</td>
-                                <td width="100">${ loginUser.jobName }</td>
+                                <td width="100">${ an.jobName }</td>
                             </tr>
                             <tr>
                                 <td class="tdTitle">성명</td>
-                                <td>${ loginUser.memName }</td>
+                                <td>${an.anProposer}</td>
                                 <td class="tdTitle">기안 일시</td>
-                                <td><%= sf.format(nowTime) %></td>
+                                <td>${an.createDate }</td>
                             </tr>
                             <tr>
-                                <td class="tdTitle">출장 기간</td>
-                                <td align="center"> 
-                                <input type="text" name="businessStart" id="businessStart" required>
-                                </td>
+                                <td class="tdTitle">연차 기간</td>
+                                <td align="center">${an.annualStart }</td>
                                  <td align="center" style="font-weight:900">~</td>
-                                <td align="center"> 
-                                 <input type="text" name="businessEnd" id="businessEnd" required>
-                                </td>
+                                <td align="center">${ an.annualEnd }</td>
                             </tr>
                             <tr>
-                                <td class="tdTitle">출장지</td>
-                                <td align="center"><input type="text" name="businessPlace" id="businessPlace" required></td>
-                                <td class="tdTitle">출장중 연락처</td>
-                                <td align="center"><input type="text" name="businessPhone" id="businessPhone" required></td>
+		                        <td class="tdTitle">비상 연락처</td>
+                                <td colspan="3" align="center">${ an.emergencyPhone }</td>
                             </tr>
                             <tr>
-                                <td class="tdTitleHeight">출장 목적</td>
-                                <td colspan="3"><textarea name="businessPurpose" id="businessPurpose" cols="88" rows="8" style="resize: none;" required></textarea></td>
-                            </tr>
-                            <tr>
-                                <td class="tdTitleHeight">업무 계획</td>
-                                <td colspan="3"><textarea name="businessPlan" id="businessPlan" cols="88" rows="8" style="resize: none;" required></textarea></td>
-                            </tr>
-                            <tr>
-                                <td class="tdTitleHeight">예상 경비</td>
-                                <td colspan="3"><textarea name="budget" id="budget" cols="88" rows="8" style="resize: none;" required></textarea></td>
+                                <td class="tdTitleHeight">사유</td>
+                                <td colspan="3">${ an.reason }</td>
                             </tr>    
                         </table>
 
                         <br><br>
-
-                        <div class="btnArea" align="center">
-                            <button class="btn btn-secondary" type="reset">초기화</button>
+     					<div class="btnArea" align="center">
+                            <button type="submit" value="return" onclick="javascript: form.action='clickReturn.an?anno='+${an.annualNo}+'&apno='+${loginUser.memNo };" class="btn btn-danger">반려</button>
                             &nbsp;&nbsp;
-                            <button class="btn btn-primary" type="submit">제출하기</button>
+                            <button type="submit" value="approval" onclick="javascript: form.action='clickApproval.an?anno='+${an.annualNo}+'&apno='+${loginUser.memNo };" class="btn btn-primary">승인</button>
                         </div>
+
 
 
                     </form>

@@ -173,9 +173,9 @@ textarea {
                     <br>
                     <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>연차</a>
                         <ul class="menu1">
-                            <li><a href="#">연차 신청</a></li>
-                            <li><a href="#">연차 내역 조회</a></li>
-                            <li><a href="#">연차 승인</a></li>
+                            <li><a href="insertForm.an">연차 신청</a></li>
+                            <li><a href="list.an">연차 내역 조회</a></li>
+                            <li><a href="approval.an">연차 승인</a></li>
                         </ul>
                     </li>
                 </div>
@@ -205,22 +205,19 @@ textarea {
 
                 <div class="businessFormArea" align="center">
 						
-                    	<input type="hidden" name="buProposer" id="buProposer" value="${ loginUser.memNo }">
                         <table id="businessTable" class="table-bordered" width="1000px">
-                            <c:forEach var="business" items="${bt.buProposer }">
 	                            <tr>
 	                                <td width="60" class="tdTitle">소속 부서</td>
-	                                <td width="100">${ business.deptName}</td>
+	                                <td width="100">${ bt.deptName}</td>
 	                                <td width="60" class="tdTitle">직위</td>
-	                                <td width="100">${ business.jobName }</td>
+	                                <td width="100">${ bt.jobName }</td>
 	                            </tr>
 	                            <tr>
 	                                <td class="tdTitle">성명</td>
-	                                <td>${ business.memName }</td>
+	                                <td>${ bt.memName }</td>
 	                                <td class="tdTitle">기안 일시</td>
 	                                <td>${ bt.createDate }</td>
 	                            </tr>
-                            </c:forEach>
                             <tr>
                                 <td class="tdTitle">출장 기간</td>
                                 <td align="center">${ bt.businessStart }</td>

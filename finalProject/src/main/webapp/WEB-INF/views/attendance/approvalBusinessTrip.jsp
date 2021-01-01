@@ -110,7 +110,7 @@
       tbody tr td:hover{
       		cursor:pointer;
       }
-      
+      #workListTable tbody tr:hover{cursor:pointer;}
       /* 페이징 */
       .paginationBar{
           align-items: center;
@@ -143,15 +143,15 @@
                         <ul class="menu1">
                             <li><a href="insertForm.bt">출장 신청</a></li>
                             <li><a href="list.bt">출장 내역 조회</a></li>
-                            <li class="selectedTitle"><a href="#">출장 승인</a></li>
+                            <li class="selectedTitle"><a href="approval.bt">출장 승인</a></li>
                         </ul>
                     </li>
                     <br>
                     <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>연차</a>
                         <ul class="menu1">
-                            <li><a href="#">연차 신청</a></li>
-                            <li><a href="#">연차 내역 조회</a></li>
-                            <li><a href="#">연차 승인</a></li>
+                            <li><a href="insertForm.an">연차 신청</a></li>
+                            <li><a href="list.an">연차 내역 조회</a></li>
+                            <li><a href="approval.an">연차 승인</a></li>
                         </ul>
                     </li>
                 </div>
@@ -235,21 +235,21 @@
 			                    	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
 			                    </c:when>
 			                    <c:otherwise>
-			                    	<li class="page-item"><a class="page-link" href="list.bt?currentPage=${ pi.currentPage - 1 }">Previous</a></li>
+			                    	<li class="page-item"><a class="page-link" href="approval.bt?currentPage=${ pi.currentPage - 1 }">Previous</a></li>
 			                    </c:otherwise>
 		                    </c:choose>
 		                    
 		                    
 		                    
 		                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-		                    <li class="page-item"><a class="page-link" href="list.bt?currentPage=${ p }">${ p }</a></li>
+		                    <li class="page-item"><a class="page-link" href="approval.bt?currentPage=${ p }">${ p }</a></li>
 		                    </c:forEach>
 		                    <c:choose>
 		                    	<c:when test="${ pi.currentPage eq pi.maxPage }">
 		                    		<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
 		                    	</c:when>
 		                    	<c:otherwise>
-		                        	<li class="page-item"><a class="page-link" href="list.bt?currentPage=${ pi.currentPage + 1 }">Next</a></li>
+		                        	<li class="page-item"><a class="page-link" href="approval.bt?currentPage=${ pi.currentPage + 1 }">Next</a></li>
 		                   		</c:otherwise>
 		                    </c:choose>
 		                    

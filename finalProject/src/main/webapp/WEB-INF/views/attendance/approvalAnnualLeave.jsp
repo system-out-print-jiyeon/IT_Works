@@ -1,18 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%
-	Date nowTime = new Date();
-	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <link rel="stylesheet" href="../common/navbar.css">
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -26,8 +20,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
-  
+    
 </head>
 <style>
 /* *{
@@ -50,13 +43,12 @@
    background-color: rgb(84, 129, 189);
    padding-top: 10px;
 }
-
 /* 사이드바 */
 .sidebar{    
     justify-content: space-between;
     padding: 8px 24px;
     width: 300px;
-    height: 1000px;
+    height: 1300px;
     background-color: #e7e1e1;
 }
 
@@ -83,74 +75,62 @@
     list-style: none; 
 }
 
-
-/*선택된메뉴*/
-.selectedTitle{
-    background-color: rgba(76, 135, 212, 0.616);
-    border-radius: 10px;
-}  
-
-
-
 .profile:hover{cursor: pointer;}
 .profile .menu1{display: none;}
 
+
 /* 컨텐트 */
-.contentArea{width: 100%; height: 1000px;}
-.contentArea h4{
-    padding: 20px;
-    font-weight: 700;
-    padding-left: 110px;
-}
-.businessFormArea{
+.contentArea{width: 100%; height: 1200px;}
+.content1{
     width: 100%;
-    height: 700px;
+    float: left;
+    padding: 20px;
+    }
+.content2{width: 100%; height: 850px; float: left;}
+.content1 div{float: left;}
+
+.nameBar{
+    padding-top: 50px;
+    padding-left: 40px;
+}
+.nameBar h5{
+    font-weight: 900;
+}
+.anuualBar{
+    background: lightgray;
+    width: 240px;
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-top: 8px;
+    font-size: 16px;
 }
 
 /* 테이블 */
-.businessFormArea{
-    padding: 50px;
+#annualTable tr td{
+    padding: 20px;
 }
+.workList{
+    padding: 20px;
+}
+.tdTitle td{
+    text-align: center;
+    background: lightgray;
+}
+#workListTable tr td{
+    text-align: center;
+}
+#workListTable tbody tr:hover{cursor:pointer;}
 
-#businessTable tr td{
-    height: 40px;
-    padding: 10px;	
-}
-#businessTable{
-    table-layout: fixed;
-}
-.tdTitle{
-    text-align: center;
-    background: lightgray;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-.tdTitleHeight{
-    text-align: center;
-    background: lightgray;
-    font-family: 'Noto Sans KR', sans-serif;
-    height: 150px !important;
-    padding-top: 60px;
-}
-textarea {
-    display:block;
-}
- input[type=text] {
- padding: 15px;
- text-align: center;
- margin: 0px;
-}
-#emergencyPhone{
- padding: 15px;
- text-align: center;
- margin: 0px;
- width:750px;
+/* 페이징 */
+.paginationBar{
+    align-items: center;
 }
 </style>
 </head>
 <body>
 
  	<jsp:include page="../common/navbar.jsp"/>
- 
         <div class="wrap">      
             <div class="sidebar">
 
@@ -178,9 +158,9 @@ textarea {
                     <br>
                     <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>연차</a>
                         <ul class="menu1">
-                            <li class="selectedTitle"><a href="insertForm.an">연차 신청</a></li>
+                            <li><a href="insertForm.an">연차 신청</a></li>
                             <li><a href="list.an">연차 내역 조회</a></li>
-                            <li><a href="approval.an">연차 승인</a></li>
+                            <li class="selectedTitle"><a href="approval.an">연차 승인</a></li>
                         </ul>
                     </li>
                 </div>
@@ -204,65 +184,97 @@ textarea {
             </script>
 
             <div class="contentArea">
+                <br><br><br>
+                <div class="nameBar"><h5>연차 승인</h5></div>
 
-                <br><br>
-                <h4>연차신청</h4>
+				<br><br>
 
-                <div class="businessFormArea" align="center">
-                    <form action="insert.an">
-                    	<input type="hidden" name="anProposer" id="anProposer" value="${ loginUser.memNo }">
-                        <table id="businessTable" class="table-bordered" width="1000px">
-                            <tr>
-                                <td width="60" class="tdTitle">소속 부서</td>
-                                <td width="100">${ loginUser.deptName}</td>
-                                <td width="60" class="tdTitle">직위</td>
-                                <td width="100">${ loginUser.jobName }</td>
-                            </tr>
-                            <tr>
-                                <td class="tdTitle">성명</td>
-                                <td>${ loginUser.memName }</td>
-                                <td class="tdTitle">기안 일시</td>
-                                <td><%= sf.format(nowTime) %></td>
-                            </tr>
-                            <tr>
-                                <td class="tdTitle">연차 기간</td>
-                                <td align="center"> 
-                                <input type="text" name="annualStart" id="annualStart" required>
-                                </td>
-                                 <td align="center" style="font-weight:900">~</td>
-                                <td align="center"> 
-                                 <input type="text" name="annualEnd" id="annualEnd" required>
-                                </td>
-                            </tr>
-                            <tr>
-		                        <td class="tdTitle">비상 연락처</td>
-                                <td colspan="3" align="center"><input type="text" name="emergencyPhone" id="emergencyPhone" required></td>
-                            </tr>
-                            <tr>
-                                <td class="tdTitleHeight">사유</td>
-                                <td colspan="3"><textarea name="reason" id="reason" cols="88" rows="8" style="resize: none;" required></textarea></td>
-                            </tr>    
+                <div class="content2">
+
+                    <div class="workList">
+                        <table id="workListTable" class="table">
+	                        <thead>
+	                            <tr class="tdTitle">
+	                                <td>글번호</td>
+	                                <td>일자</td>
+	                                <td>연차 기간</td>
+	                                <td>상태</td>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                        	<c:forEach var="an" items="${ anList }">
+			                            <tr>
+			                            	<td class="anno">${ an.annualNo }</td>
+			                                <td>${an.createDate }</td>
+			                                <td>${an.annualStart } ~ ${an.annualEnd }</td>
+			                                <td>
+			                                   <c:choose>
+					                                	<c:when test="${an.anStatus eq 'Y'}">
+					                                    	<p class="btn btn-primary">처리완료</p>
+														</c:when>
+														<c:when test="${an.anStatus eq 'R'}">
+															<p class="btn btn-danger">반려</p>
+														</c:when>
+														<c:otherwise>
+															<p class="btn btn-secondary">미처리</p>
+														</c:otherwise>
+													</c:choose>	          
+			                                </td>
+			                            </tr>
+                            	</c:forEach>
+                            </tbody>
                         </table>
+                        
+                                             
+		            <script>
+		            	$(function(){
+		            		$("#workListTable tbody tr").click(function(){
+		            			location.href = "detailApproval.an?anno=" + $(this).children(".anno").text();
+		            		})
+		            	})
+		            </script>
+  
+  
+                        
+             	</div>
+             	
+             	
+                    <div class="paginationBar">
+		                <ul class="pagination justify-content-center" style="margin:20px 0">
+		                
+		                	<c:choose>
+		                		<c:when test="${ pi.currentPage eq 1 }">
+			                    	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+			                    </c:when>
+			                    <c:otherwise>
+			                    	<li class="page-item"><a class="page-link" href="approval.an?currentPage=${ pi.currentPage - 1 }">Previous</a></li>
+			                    </c:otherwise>
+		                    </c:choose>
+		                    
+		                    
+		                    
+		                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+		                    <li class="page-item"><a class="page-link" href="approval.an?currentPage=${ p }">${ p }</a></li>
+		                    </c:forEach>
+		                    <c:choose>
+		                    	<c:when test="${ pi.currentPage eq pi.maxPage }">
+		                    		<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+		                    	</c:when>
+		                    	<c:otherwise>
+		                        	<li class="page-item"><a class="page-link" href="approval.an?currentPage=${ pi.currentPage + 1 }">Next</a></li>
+		                   		</c:otherwise>
+		                    </c:choose>
+		                    
+		                </ul>
+		            </div>
+                    
+        
+              </div>
+           </div>
 
-                        <br><br>
-
-                        <div class="btnArea" align="center">
-                            <button class="btn btn-secondary" type="reset">초기화</button>
-                            &nbsp;&nbsp;
-                            <button class="btn btn-primary" type="submit">제출하기</button>
-                        </div>
 
 
-                    </form>
-                </div>
+   </div>
 
-
-            </div>
-
-
-
-
-
-        </div>
 </body>
 </html>
