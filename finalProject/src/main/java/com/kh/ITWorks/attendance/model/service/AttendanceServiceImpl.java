@@ -1,6 +1,7 @@
 package com.kh.ITWorks.attendance.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,14 +77,14 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 
 	@Override
-	public int returnBusinessTrip(int btno) {
-		return aDao.returnBusinessTrip(sqlSession, btno);
+	public int returnBusinessTrip(Map<String, Object> approval) {
+		return aDao.returnBusinessTrip(sqlSession, approval);
 	}
 
 
 	@Override
-	public int approvalBusinessTrip(int btno) {
-		return aDao.approvalBusinessTrip(sqlSession, btno);
+	public int approvalBusinessTrip(Map<String, Object> approval) {
+		return aDao.approvalBusinessTrip(sqlSession, approval);
 	}
 
 

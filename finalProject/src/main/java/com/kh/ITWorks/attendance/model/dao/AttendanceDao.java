@@ -1,6 +1,7 @@
 package com.kh.ITWorks.attendance.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -61,12 +62,12 @@ public class AttendanceDao {
 		return sqlSession.selectOne("attendanceMapper.selectBusinessTrip", btno);
 	}
 	
-	public int returnBusinessTrip(SqlSessionTemplate sqlSession, int btno) {
-		return sqlSession.update("attendanceMapper.returnBusinessTrip", btno);
+	public int returnBusinessTrip(SqlSessionTemplate sqlSession, Map<String, Object> approval) {
+		return sqlSession.update("attendanceMapper.returnBusinessTrip", approval);
 	}
 	
-	public int approvalBusinessTrip(SqlSessionTemplate sqlSession, int btno) {
-		return sqlSession.update("attendanceMapper.approvalBusinessTrip", btno);
+	public int approvalBusinessTrip(SqlSessionTemplate sqlSession, Map<String, Object> approval) {
+		return sqlSession.update("attendanceMapper.approvalBusinessTrip", approval);
 	}
 
 	

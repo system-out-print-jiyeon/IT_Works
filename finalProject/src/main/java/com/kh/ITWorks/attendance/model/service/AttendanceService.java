@@ -1,6 +1,7 @@
 package com.kh.ITWorks.attendance.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
 import com.kh.ITWorks.common.model.vo.PageInfo;
@@ -34,10 +35,10 @@ public interface AttendanceService {
 	BusinessTrip selectBusinessTrip(int btno);
 	
 	// 출장 반려용 서비스
-	int returnBusinessTrip(int btno);
+	int returnBusinessTrip(Map<String, Object> approval);
 	
 	// 출장 승인용 서비스
-	int approvalBusinessTrip(int btno);
+	int approvalBusinessTrip(Map<String, Object> approval);
 	
 
 }

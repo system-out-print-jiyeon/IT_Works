@@ -248,9 +248,9 @@ textarea {
                         <br><br>
 
                         <div class="btnArea" align="center">
-                            <button type="submit" value="return" onclick="javascript: form.action='clickReturn.bt?btno='+${bt.businessNo};" class="btn btn-danger">반려</button>
+                            <button type="submit" value="return" onclick="javascript: form.action='clickReturn.bt?btno='+${bt.businessNo}+'&apno='+${loginUser.memNo };" class="btn btn-danger">반려</button>
                             &nbsp;&nbsp;
-                            <button type="submit" value="approval" onclick="javascript: form.action='clickApproval.bt?btno='+${bt.businessNo};" class="btn btn-primary">승인</button>
+                            <button type="submit" value="approval" onclick="javascript: form.action='clickApproval.bt?btno='+${bt.businessNo}+'&apno='+${loginUser.memNo };" class="btn btn-primary">승인</button>
                         </div>
 
 

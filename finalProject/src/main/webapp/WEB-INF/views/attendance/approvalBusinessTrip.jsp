@@ -194,7 +194,6 @@
 	                         </thead>
 	                         <tbody>
 	                            <c:forEach var="bt" items="${ list }">
-	                            	<c:if test="${loginUser.memNo eq bt.buProposer }"> 
 			                            <tr>
 			                            	<td class="btno"> ${ bt.businessNo }</td>
 			                                <td>${ bt.createDate }</td>
@@ -214,7 +213,6 @@
 												</c:choose>	                                
 			                                </td>
 			                            </tr>
-		                       		</c:if>
 								</c:forEach> 
 							</tbody>                      
                         </table>

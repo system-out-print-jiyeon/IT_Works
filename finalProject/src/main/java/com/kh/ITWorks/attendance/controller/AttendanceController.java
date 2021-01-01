@@ -1,6 +1,8 @@
 package com.kh.ITWorks.attendance.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -219,9 +221,14 @@ public class AttendanceController {
 
 	
 	@RequestMapping("clickReturn.bt")
-	public String returnBusinessTrip(int btno, HttpSession session, Model model) {
+	public String returnBusinessTrip(int apno, int btno, HttpSession session, Model model) {
 		
-		int result = aService.returnBusinessTrip(btno);
+		Map<String, Object> approval = new HashMap<String, Object>();
+		approval.put("apno", apno);
+		approval.put("btno", btno);
+
+		
+		int result = aService.returnBusinessTrip(approval);
 		
 		if(result > 0) {
 			
@@ -239,9 +246,14 @@ public class AttendanceController {
 	
 	
 	@RequestMapping("clickApproval.bt")
-	public String approvalBusinessTrip(int btno, HttpSession session, Model model) {
+	public String approvalBusinessTrip(int apno, int btno, HttpSession session, Model model) {
 		
-		int result = aService.approvalBusinessTrip(btno);
+		Map<String, Object> approval = new HashMap<String, Object>();
+		approval.put("apno", apno);
+		approval.put("btno", btno);
+
+		
+		int result = aService.approvalBusinessTrip(approval);
 		
 		if(result > 0) {
 			

@@ -202,6 +202,7 @@
 UPDATE
        BUSINESS_TRIP
    SET BU_STATUS = 'R'
+     , BU_APPROVER = #{apno}
  WHERE BUSINESS_NO = #{btno}
 </update>
  
@@ -209,6 +210,7 @@ UPDATE
 UPDATE
        BUSINESS_TRIP
    SET BU_STATUS = 'Y'
+     , BU_APPROVER = #{apno}
  WHERE BUSINESS_NO = #{btno}
 </update>
 
