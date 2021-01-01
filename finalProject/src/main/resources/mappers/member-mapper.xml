@@ -226,9 +226,18 @@
 		  WHERE MEM_NO = #{memNo}
 	</update>
 	
-	<select id="pwdCheck" parameterType="String">
-		select
-		      
+	<select id="getPass" parameterType="String" resultType="String">
+		select 
+		       mem_pwd
+		  from employee
+		 where mem_id = #{delId}
 	</select>
+	
+	<update id="deleteMember">
+		update
+		       employee
+		   set mem_status = 'N'
+		 where mem_no = #{ delNo }
+	</update>
 	
 </mapper>

@@ -21,8 +21,9 @@ public interface MemberService {
 	
 	int memberUpdate(Member m);
 	
-	int pwdCheck(String deletePwd);
+	String getPass(String delId);
 	
+	int deleteMember(int delNo);
 	
 	
 }

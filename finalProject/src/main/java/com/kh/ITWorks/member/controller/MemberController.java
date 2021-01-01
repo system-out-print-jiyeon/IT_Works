@@ -219,14 +219,35 @@ public class MemberController {
 	}
 	
 	@RequestMapping("delete.ma")
-	public void memberDelete(String deletePwd, int memNo) {
+	public String memberDelete(String deletePwd, int delNo, String delId, HttpSession session, Model model) {
+		//모달에서 값이 제대로 넘어오나 테스트용
+		System.out.println("삭제하려는 사원 번호 : " + delNo);
+		System.out.println("로그인한 사원 아이디 : " + delId);
+		System.out.println("입력받은 비밀번호(평문) : " + deletePwd);
+		//System.out.println("로그인 한 사원의 비밀번호 : " + delPwd);	
 		
-		System.out.println(deletePwd);
+		// 아이디 조회로 로그인사원의 패스워드 가져오기
+		String pass = mService.getPass(delId);
 		
-		// 1차 비밀번호 확인
-		int pwdCheck = mService.pwdCheck(deletePwd);
+		System.out.println("삭제 권한 있는 사원의 비밀번호 : " + pass);
 		
-		
+		if(pwdEncoder.matches(deletePwd, pass)) {
+			System.out.println("비밀번호 일치 --> 삭제");
+			
+			int result = mService.deleteMember(delNo);
+			
+			if(result > 0) {
+				session.setAttribute("alertMsg", "사원 정보 삭제에 성공했습니다!");
+				return "redirect:/listManage.ma";
+			}else {
+				session.setAttribute("alertMsg", "사원 정보 삭제에 실패했습니다.");
+				return "redirect:/";
+			}
+		}else {
+			System.out.println("비밀번호 불일치 --> 삭제 불가");
+			session.setAttribute("alertMsg", "비밀번호가 일치 하지 않습니다!");
+			return "redirect:/listManage.ma";
+		}		
 	}
 	
 }

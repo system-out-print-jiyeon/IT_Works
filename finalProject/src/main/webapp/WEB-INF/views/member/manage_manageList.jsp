@@ -171,6 +171,8 @@ th,td{
             <br>
             <div class="content_2">
                 <form action="updateForm.ma" method="GET" id="updateBox">
+                	<input type="hidden" name="delId" value="${ loginUser.memId }">
+                	<input type="hidden" name="delPwd" value="${ loginUser.memPwd }">
                     <div style="margin-left: 30px;">
                         <button type="button" class="btn btn-primary" id="update" onclick="checked1();">수정</button>
                         <button type="button" class="btn btn-danger" id="delete" onclick="checked2();" data-toggle="modal" data-target="#myModal">
@@ -283,15 +285,16 @@ th,td{
                 <div class="modal-body" align="center">
                     사원 정보를 삭제하시겠습니까?<br>
                     (다시 한번 확인 해주세요)<br><br>
-                    <!-- 
-                    <input type="hidden" name="memNo" value="${ memNo }">
-                     -->
+                     
+                    <input type="hidden" id="delNo" name="delNo">
+                    <input type="hidden" id="delId" name="delId">
+                    <input type="hidden" id="delPwd" name="delPwd">
                     <input type="password" name="deletePwd" placeholder="관리자 비밀번호를 입력해주세요." style="width: 250px;">
                 </div>
         
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">삭제</button>
+                    <button type="submit" class="btn btn-primary" id="submit">삭제</button>
                     <button type="reset" class="btn btn-danger" data-dismiss="modal">취소</button>
                 </div>
             </form>
@@ -300,13 +303,13 @@ th,td{
         </div>
     </div>
     
-    <!-- modal 값 넘겨주기 테스트중 -->
+    <!-- modal로 체크박스 값 넘겨주기 -->
     <script>
-	    var check = $("input[class=checked]:checked").val();
-	    
-    	$(function(){
-    		console.log(check);
-    	})
+	    $("#delete").on("click",function(){
+	    	$("#delNo").val($("input[class=checked]:checked").val());
+	    	$("#delId").val($("input[name=delId]").val());
+	    	$("#delPwd").val($("input[name=delPwd]").val());
+	    });
     </script>
     
     <!-- 사원 리스트 체크박스 조건문 -->

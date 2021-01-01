@@ -77,8 +77,13 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.memberUpdate", m);
 	}
 	
-	// 사원 삭제 비밀번호 확인
-	public int pwdCheck(SqlSessionTemplate sqlSession, String deletePwd) {
-		return sqlSession.selectOne("memberMapper.pwdCheck", deletePwd);
+	// 로그인 사원 정보 가져오기
+	public String getPass(SqlSessionTemplate sqlSession, String delId) {
+		return sqlSession.selectOne("memberMapper.getPass", delId);
+	}
+	
+	// 사원 삭제 요청
+	public int deleteMember(SqlSessionTemplate sqlSession, int delNo) {
+		return sqlSession.update("memberMapper.deleteMember", delNo);
 	}
 }
