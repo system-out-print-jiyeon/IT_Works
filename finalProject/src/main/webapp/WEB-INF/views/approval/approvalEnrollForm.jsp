@@ -283,7 +283,7 @@
     }
 
     .td_nameSpace{
-        width: 140px;
+        width: 150px;
         
     }
     
@@ -506,6 +506,7 @@
 			
         <div class="modalDiv_2">
             <input type="text" placeholder="이름, 조직 검색" style="margin-left: 12px; width: 180px; height: 20px;" > &nbsp;<i class="fas fa-redo"></i>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;결재
             <select name="" id="" style="float: right;  margin-right: 30px; width: 180px; height: 25px;" >
                 <option value="">자주 쓰는 결재선</option>
                 <option value="">자주 쓰는 결재선1</option>
@@ -523,7 +524,7 @@
                     </div>
                         <div class="member1" style="display: none;">
                          <c:forEach var="m" items="${ bList }">
-                            <div><input type="checkbox" name="business" id=""> ${ m.jobName} ${ m.memName}</div>
+                            <div><input type="radio" name="radioBox" class="checkPerson" value="${ m.deptName}팀 ${ m.jobName} ${ m.memName}"> ${ m.jobName} ${ m.memName}</div>
                           </c:forEach>  
                         </div>
                     <div class="modalDiv_personnel"><i class="fas fa-plus-circle"></i> 인사팀(${ pCount })
@@ -531,7 +532,7 @@
                     </div> 
                     		<div class="member2" style="display: none;">
                     		<c:forEach var="m" items="${ pList }">
-                            <div><input type="checkbox" name="personnel" id=""> ${ m.jobName} ${ m.memName}</div>
+                            <div><input type="radio" name="radioBox" class="checkPerson" value="${ m.deptName}팀 ${ m.jobName} ${ m.memName}"> ${ m.jobName} ${ m.memName}</div>
                              </c:forEach>  
                         </div>
                     <div class="modalDiv_accounting"><i class="fas fa-plus-circle"></i> 총무팀(${ aCount })
@@ -539,7 +540,7 @@
                     </div>
                     		<div class="member3" style="display: none;">
                     		<c:forEach var="m" items="${ aList }">
-                            <div><input type="checkbox" name="accounting" id=""> ${ m.jobName} ${ m.memName}</div>
+                            <div><input type="radio" name="radioBox" class="checkPerson" value="${ m.deptName}팀 ${ m.jobName} ${ m.memName}"> ${ m.jobName} ${ m.memName}</div>
                              </c:forEach> 
                         </div>
                     <div class="modalDiv_developer"><i class="fas fa-plus-circle"></i> 개발팀(${ dCount })
@@ -547,7 +548,7 @@
                     </div>
                     		<div class="member4" style="display: none;">
                     		<c:forEach var="m" items="${ dList }">
-                            <div><input type="checkbox" name="developer" id=""> ${ m.jobName} ${ m.memName}</div>
+                            <div><input type="radio" name="radioBox" class="checkPerson" value="${ m.deptName}팀 ${ m.jobName} ${ m.memName}"> ${ m.jobName} ${ m.memName}</div>
                             </c:forEach> 
                         </div>
                     <div class="modalDiv_planning"><i class="fas fa-plus-circle"></i> 기획팀(${ plCount })
@@ -556,129 +557,32 @@
                     
                     <div class="member5" style="display: none;">
                     		<c:forEach var="m" items="${ plList }">
-                            <div><input type="checkbox" name="planning" id=""> ${ m.jobName} ${ m.memName}</div>
+                            <div><input type="radio" name="radioBox" class="checkPerson" value="${ m.deptName}팀 ${ m.jobName} ${ m.memName}"> ${ m.jobName} ${ m.memName}</div>
                              </c:forEach> 
                         </div>
                 </div>
             </div>
             <div class="modalDiv_3_2">
-                <button style="margin-top: 140px;">결재 <i class="fas fa-chevron-right" style="float: right; margin-right: 10px; margin-top: 1px;"></i></button>
+                <button id="moveCheckedButton1" type="button" style="margin-top: 140px;">결재 <i class="fas fa-chevron-right" style="float: right; margin-right: 10px; margin-top: 1px;"></i></button>
                
-                <button>참조 <i class="fas fa-chevron-right" style="float: right; margin-right: 10px; margin-top: 1px;"></i></button>
+                <button id="moveCheckedButton2" type="button">참조 <i class="fas fa-chevron-right" style="float: right; margin-right: 10px; margin-top: 1px;"></i></button>
             </div>
             <div class="modalDiv_3_3">
                 <div class="modalDiv_3_3_1">
-                    <table class="table1" border="1px" style="border-collapse: collapse;">
-                        <tr>
-                            <th class="th_numbering">1</th>
-                            <th class="th_category">결재</th>
-                            <td class="td_nameSpace" style="border-right-style:hidden; ">
-                                인사팀
-                            </td>
-                            <td colspan="2" class="td_nameSpace2" >
-                                부장 홍길동
-                                <i class="fas fa-times fa" id="deleteBox" style="color: #878787; float: right; margin-right: 10px; margin-top: 2px; display:none; cursor: pointer; "></i>
-                            </td>
-                             
-                           
-                            
-                        </tr>
-                        <tr>
-                            <th class="th_numbering">2</th>
-                            <th class="th_category">결재</th>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                인사팀
-                            </td>
-                            <td  colspan="2" class="td_nameSpace2" >
-                                부장 홍길동
-                            </td>
-                            
-                           
-                        </tr>
-                        <tr>
-                            <th class="th_numbering">3</th>
-                            <th class="th_category">결재</th>
-                             <td class="td_nameSpace" style="border-right-style:hidden;">
-                                인사팀
-                            </td>
-                            <td  colspan="2" class="td_nameSpace2" >
-                                부장 홍길동
-                            </td>
-                            
-                          
-                        </tr>
-                        <tr>
-                            <th class="th_numbering">4</th>
-                            <th class="th_category">결재</th>
-                             <td class="td_nameSpace" style="border-right-style:hidden;">
-                                인사팀
-                            </td>
-                            <td  colspan="2" class="td_nameSpace2" >
-                                부장 홍길동
-                            </td>
-                            
-                           
-                        </tr>
-                        <tr>
-                            <th class="th_numbering">5</th>
-                            <th class="th_category">결재</th>
-                             <td class="td_nameSpace" style="border-right-style:hidden;">
-                                인사팀
-                            </td>
-                            <td  colspan="2" class="td_nameSpace2" >
-                                부장 홍길동
-                            </td>
-                            
-                          
-                        </tr>
-                        <tr>
-                            <th class="th_numbering">6</th>
-                            <th class="th_category">결재</th>
-                            <td class="td_nameSpace" style="border-right-style:hidden;">
-                                인사팀
-                            </td>
-                            <td  colspan="2" class="td_nameSpace2" >
-                                부장 홍길동
-                            </td>
-                            
-                            
-                        </tr>
-                        <tr>
-                            <th class="th_numbering">7</th>
-                            <th class="th_category">결재</th>
-                             <td class="td_nameSpace" style="border-right-style:hidden;">
-                                인사팀
-                            </td>
-                            <td  colspan="2" class="td_nameSpace2" >
-                                부장 홍길동
-                            </td>
-                            
-                          
-                        </tr>
+                    <table class="table1" id="appendLineTable" border="1px" style="border-collapse: collapse;">
+                        
+                       
                     </table>
                 </div>
                 <div class="modalDiv_3_3_2"  style="margin-top: 13px; margin-bottom: 13px;">
                     <p>참조</p>
                 </div>
                 <div class="modalDiv_3_3_3">
-                    <table>
-                        <tr>
-                            <td class="td_reference">
-                                인사팀 <br>
-                               부장 홍길동
-                            </td>
-                            <td class="td_reference">
-                                 인사팀 <br>
-                               부장 홍길동
-                            </td>
-                            <td class="td_reference">
-                                 인사팀 <br>
-                               부장 홍길동
-                            </td>
-                            <td class="td_reference">
-                                 인사팀 <br>
-                               부장 홍길동
-                            </td>
+                    <table  >
+                        <tr id="referenceLineTable">
+                           
+                           
+                            
                         </tr>
                     </table>
 
@@ -739,13 +643,188 @@
 					
 				},error:function(){
 					$('.note-editable').html("");
-					console.log("아이디 중복체크용 ajax통신 실패");
+					
 				}
 			});
 	    });
 
   </script>
 
+  <script>
+  
+  $(document).ready(function () {
+      $('#moveCheckedButton1').click(function () {
+        // 결재버튼 누르면 결재 div로 사원 넘김
+        
+        var arr = new Array();
+        
+        var checkedCount = $('input[class="checkPerson"]:checked').length;
+        
+        
+        var size = document.getElementsByClassName("checkPerson").length;
+
+        
+        
+        
+
+        	for(var i=0; i<size; i++){
+                if(document.getElementsByClassName("checkPerson")[i].checked == true){
+                	console.log(document.getElementsByClassName("checkPerson")[i].value);
+                	createItem();
+                }
+                
+            }
+
+
+       
+        		
+        		
+        
+       
+      });
+
+      $('#moveCheckedButton2').click(function () {
+    	// 참조버튼 누르면 참조 div로 사원 넘김
+    	
+    	 var arr = new Array();
+    	
+    	 var checkedCount = $('input[class="checkPerson"]:checked').length;
+    	
+    	 var size = document.getElementsByClassName("checkPerson").length;
+
+         
+         
+         
+
+     	for(var i=0; i<size; i++){
+             if(document.getElementsByClassName("checkPerson")[i].checked == true){
+             	console.log(document.getElementsByClassName("checkPerson")[i].value);
+             	createItem2();
+             }
+             
+         }
+
+        
+      });
+    });
+  
+  
+  
+  /** 결재선 순서 조정 */
+  function reorder() {
+      $(".table1").each(function(i, box) {
+          $(box).find(".th_numbering").html(i + 1);
+      });
+  }
+ 
+  /** 결재선 추가 */
+  function createItem() {
+      
+	  
+	  $(createBox())
+      .appendTo("#appendLineTable")
+      .hover(
+          function() {
+              $(this).css('backgroundColor', '#e7e1e1');
+              $(this).find('#xBox').show();
+          },
+          function() {
+              $(this).css('background', 'none');
+              $(this).find('#xBox').hide();
+          }
+      )
+  		
+  		.find("#xBox").click(function() {
+          var valueCheck = false;
+          $(this).parent().find('tr').each(function() {
+              if($(this).attr("number") != "type" && $(this).val() != '') {
+                  valueCheck = true;
+              }
+          });
+
+          if(valueCheck) {
+              var delCheck = confirm('입력하신 내용이 있습니다.\n삭제하시겠습니까?');
+          }
+          if(!valueCheck || delCheck == true) {
+              $(this).closest('tr').remove();
+               reorder();
+          }
+      });
+      // 숫자를 다시 붙인다.
+      reorder();
+  }
+  
+  
+
+  /** 결재선 컬럼 작성 */
+  function createBox() {
+      var createLine = 	"<tr>"
+                   + "<th class='th_numbering'></th>"
+                   + "<th class='th_category'>결재</th>"
+                   + "<td class='td_nameSpace' style='border-right-style:hidden;'>"
+                   + $('input:radio[class="checkPerson"]:checked').val()
+                   + "</td>"
+                   + "<td colspan='2' class='td_nameSpace2'>"
+                   + "<i class='fas fa-times' id='xBox' style='float:right; margin-right:10px;'></i>"
+                   + "</td>"
+                   + "</tr>";
+      return createLine;
+  }
+  
+  /** 참조 추가 */
+  function createItem2() {
+      $(createBox2())
+      .appendTo("#referenceLineTable")
+      .hover(
+          function() {
+              
+              $(this).find('#xBox2').css("visibility","visible");
+          },
+          function() {
+             
+              $(this).find('#xBox2').css("visibility","hidden");
+          }
+      )
+  		
+  		.find("#xBox2").click(function() {
+          var valueCheck = false;
+          $(this).parent().find('td').each(function() {
+              if($(this).attr("number") != "type" && $(this).val() != '') {
+                  valueCheck = true;
+              }
+          });
+
+          if(valueCheck) {
+              var delCheck = confirm('입력하신 내용이 있습니다.\n삭제하시겠습니까?');
+          }
+          if(!valueCheck || delCheck == true) {
+              $(this).parent().remove();
+              // reorder();
+          }
+      });
+      // 숫자를 다시 붙인다.
+      //reorder();
+  }
+
+  /** 참조 박스 작성 */
+  function createBox2() {
+      
+	  var createLine = "<td class='td_reference'  style='text-align: center;'>"
+                     + " &nbsp;  &nbsp;참조<i class='fas fa-times' id='xBox2' style='float:right; margin-right:10px; margin-top:5px;'></i><br>"
+                     + $('input:radio[class="checkPerson"]:checked').val()
+                     + "</td>";
+                   
+      return createLine;
+  }
+  
+  
+  
+ 
+  
+
+ 
+
+  </script>
 
 
   
