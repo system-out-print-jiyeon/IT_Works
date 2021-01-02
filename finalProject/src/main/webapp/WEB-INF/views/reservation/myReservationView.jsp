@@ -15,18 +15,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
-    div{border: 0px solid rgb(89, 89, 89); box-sizing: border-box;}
+    div{border: px solid red; box-sizing: border-box;}
     .wrap{
         padding-top: 50px;
         margin:auto; 
         width: 800px;
-        height: 800px;
+        height: 900px;
     }
-    .divwrap{width: 80%; height: 20%; text-align: left; margin-bottom: 40px; margin-top: 40px;}
+    .divwrap{width: 80%; height: 20%; text-align: left; margin-top: 40px;}
     .divwrap>div{padding-left: 20px;}
     .divwrap:hover{cursor: pointer;}
-    .title{height: 25%; line-height: 35px; background: rgb(240, 240, 240); font-size: 13px; font-weight: 500;}
-    .content{height: 75%; border:1px solid rgb(220, 220, 220); margin-top: 3px; font-size: 14px; line-height: 25px;}
+    .title{height: 20%; line-height: 35px; background: rgb(240, 240, 240); font-size: 13px; font-weight: 500;}
+    .content{height: 80%; border:1px solid rgb(220, 220, 220); margin-top: 3px; font-size: 14px; line-height: 25px;}
     .content>#meetingRoom{padding-top: 20px; font-weight: 600; color: rgb(57, 146, 230);}
     #meetingDate>div{float: right; margin-right: 20px;}
 
@@ -34,6 +34,9 @@
     #pagingArea{width: fit-content;}
 </style>
 <body>
+
+	<jsp:include page="../common/approvalNavbar.jsp"/>
+    <jsp:include page="sidebar.jsp" />
 	<div class="wrap" align="center">
         <h4 align="left">나의 예약조회</h4>
         <div class="divwrap">
@@ -54,31 +57,7 @@
                     <span>2020-12-14(월) 14:00</span>
                     <div>
                         <button type="button" class="btn btn-primary btn-sm" onclick="">변경</button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="">취소</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="divwrap">
-            <div class="title">
-                <span>예약일 : </span>
-                <span>2020-12-14 (월)</span>
-            </div>
-            <div class="content">
-                <div id="meetingRoom">
-                    <span>5층</span>
-                    <span>중회의실</span>
-                </div>
-                <div id="meetingObject">
-                    <span>신입사원 OJT</span>
-                </div>
-                <div id="meetingDate">
-                    <span>2020-12-14(월) 13:00</span>
-                    <span>2020-12-14(월) 14:00</span>
-                    <div>
-                        <button type="button" class="btn btn-primary btn-sm" onclick="">변경</button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="">취소</button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="goDelete();">취소</button>
                     </div>
                 </div>
             </div>

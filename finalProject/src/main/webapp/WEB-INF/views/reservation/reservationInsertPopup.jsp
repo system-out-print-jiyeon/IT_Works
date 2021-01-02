@@ -82,21 +82,20 @@
   	<div class="form-popup" id="reservation">
       	<div class="form-container">
           	<h1>회의실 예약</h1>
-          	<form action="insert.re" method="post" >
+          	<form name="myForm" method="post" >
               	<div>
                   	<table>
                       	<tr>
                           	<th>신청자</th>
                           	<td>
                           		<input type="text" value="${loginUser.memName}" readonly>
-                     			<input type="hidden" name="mem" value="${loginUser}">
+                     			
                           	</td>
 	                      </tr>
 	                      <tr>
 	                          <th>부서</th>
 	                          <td>
 	                          	<input type="text" value="${loginUser.deptName}팀" readonly>
-	                          	<input type="hidden" name="deptCode" value="${loginUser.deptCode}">
 	                          </td>
 	                      </tr>
 	                      <tr>
@@ -119,7 +118,7 @@
 	                      <tr>
 	                          <th>회의실 *</th>
 	                          <td>
-	                              <select name="room" id="" required>
+	                              <select name="room" id="room" required>
 	                                  <option value="소회의실 1">소회의실 1</option>
 	                                  <option value="소회의실 2">소회의실 2</option>
 	                                  <option value="중회의실">중회의실</option>
@@ -131,17 +130,17 @@
 	                      <tr>
 	                          <th>사용목적 * </th>
 	                          <td>
-	                              <textarea name="object" cols="20" rows="3" style="resize: none;" required></textarea>
+	                              <textarea id="object" cols="20" rows="3" style="resize: none;" required></textarea>
 	                          </td>
 	                      </tr>
 	                      <tr>
 	                          <th>외부인참석여부</th>
 	                          <td>
 	                              <label class="form-check-label" style="margin-right: 30px;">
-	                                  <input type="radio" name="visiterYn" value="Y"> 예
+	                                  <input type="radio" id="visiterYn" value="Y"> 예
 	                              </label>
 	                              <label class="form-check-label">
-	                                  <input type="radio" name="visiterYn" value="N"> 아니오
+	                                  <input type="radio" id="visiterYn" value="N"> 아니오
 	                              </label>
 	                          </td>
 	                      </tr>
@@ -149,7 +148,7 @@
               	</div>
               <!-- Modal footer -->
               <div class="modal-footer" align="right">
-                  <button type="submit" class="btn btn-info">신청</button>
+                  <button type="button" class="btn btn-info" onclick="goSubmit();">신청</button>
                   <button type="button" class="btn cancel" onclick="window.close();">닫기</button>
               </div>
           </form>
@@ -157,6 +156,32 @@
       </div>
 
       <script>
+      	function goSubmit(){
+      		$.ajax({
+      			url:"insert.re",
+      			type:"post",
+      			data:{
+      				floor:"${floor}",
+      				memNo:"${loginUser.memNo}",
+      				deptCode:"${loginUser.deptCode}",
+      				startPeriod: $("#startPeriod").val(),
+      				endPeriod: $("#endPeriod").val(),
+      				room: $("#room").val(),
+      				object:$("#object").val().trim(),
+      				visiterYn:$("#visiterYn").val()
+      			},
+      			success:function(result){      				
+      				if(result>0){
+	      				alert("회의실 예약 성공");
+      				}else{
+      					alert("회의실 예약 실패");
+      				}
+      				window.close();
+      			},error:function(){
+      				alert("통신 실패");
+      			}
+      		})
+      	}
         $(function(){
             // initialize input widgets first
             $('.form-container .time').timepicker({
@@ -175,7 +200,6 @@
             	format: 'yyyy/mm/dd(D)',
                 autoclose: true,
                 todayHighlight:true,
-                todayBtn:'linked',
                 language:'kr',
                 daysOfWeekDisabled: "0,6",
                 autoclose: true,
@@ -198,13 +222,11 @@
       			var startTime = document.getElementById("time1").value;
       			var endTime = document.getElementById("time2").value;
       			
-      			var period1 = document.getElementById("startPeriod").value;
-      				period1 = startDate + startTime; 
-      			var period2 = document.getElementById("endPeriod").value;
-      				period2 = startDate + endTime;
-      			
+      			var period1 = document.getElementById("startPeriod");
+      				period1.value = startDate + startTime; 
+      			var period2 = document.getElementById("endPeriod");
+      				period2.value = startDate + endTime;
       		})
-            
         })
       	
       </script>

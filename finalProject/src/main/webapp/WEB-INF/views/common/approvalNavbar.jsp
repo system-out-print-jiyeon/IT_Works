@@ -180,13 +180,7 @@
 </head>
 <body>
 
-	<%-- 알림메시지출력 --%>
-	<c:if test="${ !empty alertMsg }">
-		<script type="text/javascript">
-			alert("${ alertMsg }");
-		</script>
-		<c:remove var="alertMsg" scope="session"/>
-	</c:if>
+	
 
 <!-- 탑 네비바-->
     <nav class="navBar">

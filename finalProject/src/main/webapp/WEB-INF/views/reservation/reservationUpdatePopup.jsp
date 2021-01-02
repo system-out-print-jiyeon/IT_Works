@@ -82,38 +82,44 @@
   	<div class="form-popup" id="reservation">
       	<div class="form-container">
           	<h1>회의실 예약</h1>
-          	<form action="★" method="post" >
+          	<form name="myForm" method="post" >
               	<div>
                   	<table>
                       	<tr>
                           	<th>신청자</th>
-                          	<td><input type="text" name="" value="홍길동" readonly></td>
+                          	<td>
+                          		<input type="text" value="${loginUser.memName}" readonly>
+                          	</td>
 	                      </tr>
 	                      <tr>
 	                          <th>부서</th>
-	                          <td><input type="text" name="" value="개발팀" readonly></td>
+	                          <td>
+	                          	<input type="text" value="${loginUser.deptName}팀" readonly>
+	                          </td>
 	                      </tr>
 	                      <tr>
 	                          <th>시작일자 *</th>
 	                          <td>
-	                              <input type="text" class="date start" id="date1" />
-	                              <input type="text" class="time start" id="time1" />
+	                              <input type="text" class="date start" id="date1" value="${re.startPeriod.substring(0,13)}" required/>
+	                              <input type="text" class="time start" id="time1" value="${re.startPeriod.substring(13)}" required/>
+	                              <input type="hidden" name="startPeriod" id="startPeriod" value="${re.startPeriod}">
 	                          </td>
 	                      </tr>
 	
 	                      <tr>
 	                          <th>종료일자 *</th>
 	                          <td>
-	                              <input type="text" class="date end" id="date2"/>
-	                              <input type="text" class="time end" id="time2"/>
+	                              <input type="text" id="date2" value="${re.endPeriod.substring(0,13)}" readonly/>
+	                              <input type="text" class="time end" id="time2" value="${re.endPeriod.substring(13)}" required/>
+	                              <input type="hidden" name="endPeriod" id="endPeriod" value="${re.endPeriod}">
 	                          </td>
 	                      </tr>
 	                      <tr>
 	                          <th>회의실 *</th>
 	                          <td>
-	                              <select name="" id="" required>
-	                                  <option value="소회의실 Ⅰ">소회의실 Ⅰ</option>
-	                                  <option value="소회의실 Ⅱ">소회의실 Ⅱ</option>
+	                              <select name="room" id="room" value="${re.room}" required>
+	                                  <option value="소회의실 1">소회의실 1</option>
+	                                  <option value="소회의실 2">소회의실 2</option>
 	                                  <option value="중회의실">중회의실</option>
 	                                  <option value="대회의실">대회의실</option>
 	                                  <option value="중역회의실">중역회의실</option>
@@ -123,17 +129,19 @@
 	                      <tr>
 	                          <th>사용목적 * </th>
 	                          <td>
-	                              <textarea name="" id="" cols="20" rows="3" style="resize: none;"></textarea>
+	                              <textarea id="object" cols="20" rows="3" style="resize: none;">
+	                              	${re.object.trim()}
+	                              </textarea>
 	                          </td>
 	                      </tr>
 	                      <tr>
 	                          <th>외부인참석여부</th>
 	                          <td>
 	                              <label class="form-check-label" style="margin-right: 30px;">
-	                                  <input type="radio" name="visiterYn" id="yes"> 예
+	                                  <input type="radio" id="visiterYn" value="Y"> 예
 	                              </label>
 	                              <label class="form-check-label">
-	                                  <input type="radio" name="visiterYn" id="no"> 아니오
+	                                  <input type="radio" id="visiterYn" value="N"> 아니오
 	                              </label>
 	                          </td>
 	                      </tr>
@@ -141,7 +149,7 @@
               	</div>
               <!-- Modal footer -->
               <div class="modal-footer" align="right">
-                  <button type="submit" class="btn btn-info">변경</button>
+                  <button type="button" class="btn btn-info" onclick="goSubmit();">변경</button>
                   <button type="button" class="btn cancel" onclick="window.close();">닫기</button>
               </div>
           </form>
@@ -149,30 +157,80 @@
       </div>
 
       <script>
+      	function goSubmit(){
+    		$.ajax({
+    			url:"update.re",
+    			type:"post",
+    			data:{
+    				reserveNo:"${re.reserveNo}",
+    				floor:"${re.floor}",
+    				memNo:"${loginUser.memNo}",
+    				deptCode:"${loginUser.deptCode}",
+    				startPeriod: $("#startPeriod").val(),
+    				endPeriod: $("#endPeriod").val(),
+    				room: $("#room").val(),
+    				object:$("#object").val().trim(),
+    				visiterYn:$("#visiterYn").val()
+    			},
+    			success:function(result){      				
+    				if(result>0){
+	      				alert("예약 변경 성공");
+	    				window.close();
+    				}else{
+    					alert("예약 변경 실패");
+    				}
+    			},error:function(){
+    				alert("통신 실패");
+    			}
+    		})
+    	}
       	// 요청시작일자, 종료일자 선택
         $(function(){
             // initialize input widgets first
             $('.form-container .time').timepicker({
                 'showDuration': false,
-                'timeFormat': 'h:mm p',
-                interval: 60,
+                'timeFormat': 'H:i A',
+                step: 60,
                 minTime: '9',
                 maxTime: '6:00pm',
-                defaultTime: '9',
-                startTime: '9:00',
-                dynamic: true,
+                startTime: 'currentTime',
+                dynamic: false,
                 dropdown: true,
                 scrollbar: true
             });
             $('.form-container .date').datepicker({
-            	// 속성 : https://uxsolutions.github.io/bootstrap-datepicker/?#sandbox
-                format: 'yyyy/mm/dd(D)',
+                // datepicker 속성 : https://uxsolutions.github.io/bootstrap-datepicker/?#sandbox
+            	format: 'yyyy/mm/dd(D)',
                 autoclose: true,
                 todayHighlight:true,
-                todayBtn:'linked',
                 language:'kr',
-                daysOfWeekDisabled: "0,6"
+                daysOfWeekDisabled: "0,6",
+                autoclose: true,
+                startDate: "today"
             });
+            $('.form-container .date').change(function(){
+	            $("#date2").val($("#date1").val());
+			});
+            
+      		$("#time2").change(function(){
+	      		if($(this).val() <= $("#time1").val()){
+      			// 종료시각이 시작시각보다 이른경우
+	      			alert("종료시간이 더 빠를 수 없습니다.");
+	      			$(this).val("");
+	      		}
+      		});
+      		$('.form-container input').change(function(){
+      			// hidden 인풋에 시작일자, 종료일자 넣기
+      			var startDate = document.getElementById("date1").value;
+      			var startTime = document.getElementById("time1").value;
+      			var endTime = document.getElementById("time2").value;
+      			
+      			var period1 = document.getElementById("startPeriod");
+      				period1.value = startDate + startTime; 
+      			var period2 = document.getElementById("endPeriod");
+      				period2.value = startDate + endTime;
+      				
+      		})
         })
       </script>
 </body>

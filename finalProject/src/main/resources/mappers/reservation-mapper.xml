@@ -62,9 +62,9 @@
 		  join employee e using (mem_no)
 		  join department d on (d.dept_code = r.dept_code)
 		 where r.room = #{room}
-		   and #{date} = substr(r.start_period,0,10) or
-		   	   #{date} = substr(r.end_period,0,10)
-		   and to_number(#{time}) between (substr(r.start_period,14,2)) and to_number(substr(r.end_period,14,2))
+		   and #{date} = substr(r.start_period,0,10)
+		   and to_number(#{time}) between to_number(substr(r.start_period,14,2)) 
+		   		and (to_number(substr(r.end_period,14,2))-1)
 		   and r.floor = #{floor}
 		   and r.status = 'Y'
 	</select>
@@ -87,6 +87,81 @@
 		join department d on (d.dept_code = r.dept_code)
 		where status = 'Y'
 		and reserve_no = #{rno}  
+	</select>
+	
+	<insert id="insertReservation" parameterType="Reservation">
+		insert 
+		  into reservation
+		     (
+		        reserve_no,
+				room,
+				dept_code,
+				start_period,
+				end_period,
+				object,
+				visiter_yn,
+				floor,
+				mem_no,
+				status
+		     ) 
+	    values
+	         (
+				seq_rno.nextval,
+				#{room},
+				#{deptCode},
+				#{startPeriod},
+				#{endPeriod},
+				#{object},
+				<choose>
+					<when test="visiterYn != null">
+						#{visiterYn},
+					</when>
+					<otherwise>
+						default,
+					</otherwise>
+				</choose>				
+				#{floor},
+				#{memNo},
+				default
+			)
+	</insert>
+	
+	<select id="checkReservation" parameterType="Reservation" resultType="Reservation">
+		select 
+		       *
+	      from reservation
+	     where room = #{room}
+		   and substr(#{startPeriod},0,10) = substr(start_period,0,10)
+		   and to_number(substr(#{startPeriod},14,2)) between to_number(substr(start_period,14,2)) 
+		   	   and (to_number(substr(end_period,14,2))-1)
+		   and to_number(substr(#{startPeriod},14,2)) = to_number(substr(start_period,14,2))   
+		   and floor = #{floor}
+		   and status = 'Y'
+	   		<if test="reserveNo != null">
+	   			and reserve_no != #{reserveNo}
+	   		</if>  
+	</select>
+	
+	<update id="updateReservation" parameterType="Reservation">
+		update
+			   reservation
+		   set start_period = #{startPeriod},
+		       end_period = #{endPeriod},
+		       room = #{room},
+		       object = #{object},
+		       <if test="visiterYn != null">
+			       visiter_yn = #{visiterYn},
+		       </if>
+		       floor = #{floor}
+		 where reserve_no = #{reserveNo} 	
+	</update>
+	
+	
+	<select id="selectListReservation" parameterType="_int" resultMap="Reservation">
+		select
+			   *
+		  from reservation
+		 where mem_no = #{mno}
 	</select>
 	
 </mapper>

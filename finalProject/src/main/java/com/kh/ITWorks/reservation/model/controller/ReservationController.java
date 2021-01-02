@@ -3,8 +3,6 @@ package com.kh.ITWorks.reservation.model.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.kh.ITWorks.common.model.vo.PageInfo;
+import com.kh.ITWorks.common.template.Pagination;
 import com.kh.ITWorks.reservation.model.service.ReservationService;
 import com.kh.ITWorks.reservation.model.vo.Reservation;
 
@@ -47,12 +47,12 @@ public class ReservationController {
 		
 		// 일치하는 예약정보 조회
 		if(((String)hs.get("time")).equals("9:")) {
-			hs.put("time", "9");
+			hs.put("time", "09");
 		}
+		String date = (String)hs.get("date");
+		hs.put("date", date.replace("-", "/"));
 		
 		Reservation re = rs.ajaxCheckReservation(hs);
-		
-		System.out.println(new Gson().toJson(re));
 		
 		return new Gson().toJson(re);
 	}
@@ -75,14 +75,55 @@ public class ReservationController {
 		
 	}
 	
-	@RequestMapping("insert.re")
-	public String insertReservation(Reservation r, HttpSession ss) {
+	@ResponseBody
+	@RequestMapping(value="insert.re")
+	public int insertReservation(Reservation r) {
 		
-		System.out.println(r);
-		// 서버 재시작한담에 출력문 실행해보기 (이거 안하고잣음)
-		//ss.setAttribute("alertMsg", "회의실 예약 완료");
+		// 중복방지
+		int result = 0;
+		if(rs.checkReservation(r).isEmpty()) {
+			result = rs.insertReservation(r);
+		}
+		return result;
 		
-		return "";
+	}
+	
+	@RequestMapping("updateReservation.re")
+	public String updateReservationForm(int rno, Model m) {
+		
+		Reservation re = rs.selectReservation(rno);
+		m.addAttribute("re", re);
+		return "reservation/reservationUpdatePopup";
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("update.re")
+	public int updateReservation(Reservation r) {
+//		System.out.println(r);
+		
+		int result = 0;
+		if(rs.checkReservation(r).isEmpty()) {
+			result = rs.updateReservation(r);
+			
+		}
+		return result;
+	}
+	
+	@RequestMapping("myreservation.re")
+	public String myReservationView(int mno, 
+									@RequestParam(value="currentPage", defaultValue="1")
+									int currentPage, Model m) {
+		
+		int listcount = rs.selectListCount();
+		PageInfo pi = Pagination.getPageInfo(listcount, currentPage, 10, 5);
+		
+		ArrayList<Reservation> list = rs.selectListReservation(pi, mno);
+		
+		m.addAttribute("list", list);
+		m.addAttribute("pi", pi);
+		
+		return "reservation/myReservationView";
 		
 	}
 	

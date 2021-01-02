@@ -15,15 +15,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
-
 <style>
     div{border: px solid rgb(89, 89, 89); box-sizing: border-box;}
     .wrap{
         padding-top: 50px;
-        margin:auto; 
+        margin: auto; 
         width: 800px;
         height: 800px;
+        position: relative;
     }
     #datepick{height:5%; margin-top: 40px;}
     #floor{height: 10%; margin-top: 20px;}
@@ -45,7 +44,16 @@
 </style>
 <body>
 
-	<jsp:include page="../common/approvalNavbar.jsp"/>
+	
+	
+	
+	<%-- 알림메시지출력 --%>
+	<c:if test="${ !empty alertMsg }">
+		<script type="text/javascript">
+			alert("${ alertMsg }");
+		</script>
+		<c:remove var="alertMsg" scope="request"/>
+	</c:if>
 	
 	<script>
         function getToday(){
@@ -53,6 +61,7 @@
             const offset = new Date().getTimezoneOffset() * 60000;
             const today = new Date(Date.now() - offset);
             document.getElementById("datePicker").value = today.toISOString().substring(0,10);
+            document.getElementById("days").innerText = getdays(new Date(document.getElementById("datePicker").value).getDay());
         }
         $(function(){
             getToday();
@@ -83,12 +92,12 @@
             		success: function(re){
             			if(re != null){
 		            	// 1. 이미 예약된 회의실인 경우 (조회창)
-            				open("viewReservation.re?rno="+re.reserveNo,"childForm",
-                            "width=500, height=500, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");            				
+            				var pop = open("viewReservation.re?rno="+re.reserveNo,"childForm",
+                            "width=500, height=500, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
             			}else{
 		            	// 2. 예약되지 않은 회의실인 경우 (등록창)            				
-            				open("insertReservation.re?floor=${floor}","childForm",
-                            "width=500, height=500, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no"); 
+            				var pop = open("insertReservation.re?floor=${floor}","childForm",
+                            "width=500, height=500, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
             			}
             			
             		},error: function(){
@@ -145,7 +154,8 @@
     </script>
     
 
-    
+    <jsp:include page="../common/approvalNavbar.jsp"/>
+    <jsp:include page="sidebar.jsp" />
     <div class="wrap">
         <h4>회의실 예약</h4>
         <div id="datepick" align="center">
@@ -180,7 +190,8 @@
 	                <c:forEach var="t" begin="9" end="18">
 	                    <tr>
 	                        <th>${t}:00</th>
-		                    <td></td>			<!-- 소회의실 1 -->
+		                    <td>
+		                    </td>			<!-- 소회의실 1 -->
 	                        <td></td>			<!-- 소회의실 2 -->
 	                        <td></td>			<!-- 중회의실 -->
 	                        <td></td>			<!-- 대회의실 -->
@@ -193,7 +204,7 @@
     </div>
     
     <script type="text/javascript">
-    
+    	
     </script>
 </body>
 </html>

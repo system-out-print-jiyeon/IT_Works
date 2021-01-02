@@ -22,20 +22,17 @@ public class ReservationServiceImpl implements ReservationService{
 
 	@Override
 	public int insertReservation(Reservation r) {
-		// TODO Auto-generated method stub
-		return 0;
+		return rd.insertReservation(r, sqlss);
 	}
 
 	@Override
 	public Reservation selectReservation(int rno) {
-		// TODO Auto-generated method stub
 		return rd.selectReservation(rno, sqlss);
 	}
 
 	@Override
 	public int updateReservation(Reservation r) {
-		// TODO Auto-generated method stub
-		return 0;
+		return rd.updateReservation(r, sqlss);
 	}
 
 	@Override
@@ -45,9 +42,8 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 
 	@Override
-	public ArrayList<Reservation> selectListReservation(PageInfo pi) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Reservation> selectListReservation(PageInfo pi, int mno) {
+		return rd.selectListReservation(pi, mno, sqlss);
 	}
 
 	@Override
@@ -65,6 +61,11 @@ public class ReservationServiceImpl implements ReservationService{
 	@Override
 	public Reservation ajaxCheckReservation(HashMap<String, Object> hs) {
 		return rd.ajaxCheckReservation(hs, sqlss);
+	}
+
+	@Override
+	public ArrayList<Reservation> checkReservation(Reservation r) {
+		return rd.checkReservation(r, sqlss);
 	}
 
 }

@@ -16,7 +16,7 @@ public interface ReservationService {
 	int updateReservation(Reservation r);
 //	4. 나의 예약현황 조회 (여러건)
 	int selectListCount();
-	ArrayList<Reservation> selectListReservation(PageInfo pi);
+	ArrayList<Reservation> selectListReservation(PageInfo pi, int mno);
 //	5. 예약삭제
 	int deleteReservation(int reserveNo);
 //	6. 층별 예약조회
@@ -24,5 +24,8 @@ public interface ReservationService {
 	
 //	7. 예약여부확인 (에이작스)
 	Reservation ajaxCheckReservation(HashMap<String, Object> hs);
+	
+//	8. 예약중복방지
+	ArrayList<Reservation> checkReservation(Reservation r);
 
 }
