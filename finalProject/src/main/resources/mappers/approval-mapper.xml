@@ -27,7 +27,7 @@
 	
  	<resultMap type="AppDoc" id="approvalDocumentResultSet">
 		<result column="doc_no" property="docNo"/>
-		<result column="mem_name" property="memNo"/>
+		<result column="mem_no" property="memNo"/>
 		<result column="doc_title" property="docTitle"/>
 		<result column="doc_contents" property="docContents"/>
 		<result column="doc_enroll_date" property="docEnrollDate"/>
@@ -183,24 +183,73 @@
 	</select>
 
 	<!-- 결재문서select -->
-	<select id="selectApprovalDocument" resultMap="approvalDocumentResultSet">
+	<select id="selectListApprovalDocument" resultMap="approvalDocumentResultSet">
+		select
+		       doc_no
+		     , doc_title
+		     , mem_name
+		     , to_char(doc_enroll_date, 'yyyy-mm-dd') "doc_enroll_date"
+		     , doc_form
+		     , doc_approval_status
+		  from
+		       approval_document ad
+		  join
+		       employee e
+		    on e.mem_no = ad.mem_no
+		 where 
+		       doc_status = 'Y'		  
+	</select>
+	
+	<select id="selectApprovalDocument" parameterType="_int" resultMap="approvalDocumentResultSet">
 		select 
 		       doc_no
-		     , mem_name
+		     , mem_name "mem_no"
 		     , doc_title
 		     , doc_contents
-		     , doc_enroll_date
+		     , to_char(doc_enroll_date, 'yyyy-mm-dd') "doc_enroll_date"
 		     , doc_retention
 		     , doc_grade
 		     , doc_status
 		     , doc_form
-		     , doc_approval_status
 		  from 
 		       approval_document ad
 		  join 
 		       employee e
 		    on e.mem_no = ad.mem_no
+		 where doc_no = #{docNo}
+		 
+	</select>
+	<select id="selectApprovalLine">
+		select
+		       doc_no
+		     , mem_name
+		     , job_name
+		     , approval_status
+		     , approval_order
+		  from 
+		       approval_line al
+		  join 
+		       employee e
+		    on 
+		       e.mem_no = al.mem_no
+		  join 
+		       jobgrade j
+		    on 
+		       j.job_code = e.job_code
 		 where 
+		       doc_no = #{ docNo }
+	</select>
+	<select id="selectApprovalReferer">
+		select
+		       doc_no
+		     , mem_name
+		  from
+		       referer r
+		  join 
+		       employee e
+		    on 
+		       e.mem_no = r.mem_no
+		 where
 		       doc_no = #{ docNo }
 	</select>
 
@@ -267,12 +316,14 @@
 		   , approval_order
 		  )
 		  values
-		  (
-		     seq_apno.currval
-		   , #{memNo}
-		   , 'Y'
-		   , #{approvalOrder}
-		  )
+		  <foreach collection="list" item="apLineList" separator=",">
+			  (
+			     seq_apno.currval
+			   , #{apLineList.memNo}
+			   , null
+			   , #{apLineList.approvalOrder}
+			  )
+		  </foreach>
 	</insert>
 	
 	<insert id="insertApprovalReferer" parameterType="Referer">
@@ -283,10 +334,12 @@
 		   , mem_no
 		  )
 		  values
-		  (
-		     seq.currval
-		   , #{memNo}
-		  )
+		  <foreach collection="list" item="refererList" separator=",">
+			  (
+			     seq.currval
+			   , #{refererList.memNo}
+			  )
+		  </foreach>
 	</insert>
 
 </mapper>

@@ -106,5 +106,9 @@ public class ApprovalServiceImpl implements ApprovalService {
 	public int insertDocumentsRequest(ArrayList<DocumentsRequest> drList) {
 		return aDao.insertDocumentsRequest(drList, sqlSession);
 	}
+	@Override
+	public ApprovalDocument selectApprovalDocument(int docNo) {
+		return aDao.selectApprovalDocument(sqlSession, docNo);
+	}
 
 }

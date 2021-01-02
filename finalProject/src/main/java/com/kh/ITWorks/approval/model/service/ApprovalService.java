@@ -46,6 +46,7 @@ public interface ApprovalService {
 	// 4. 품의서 입력
 	
 	// 5. 결재문서 상세보기
+	ApprovalDocument selectApprovalDocument(int docNo);
 	
 	// 6. 결재 승인
 

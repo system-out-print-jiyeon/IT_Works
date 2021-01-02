@@ -25,12 +25,19 @@ public class ExApprovalController {
 	private ApprovalService aService;
 	
 	@RequestMapping("detail.ap")
-	public String ApprovalDetail() {
+	public String ApprovalDetail(int docNo, Model model) {		
+		ApprovalDocument ad = aService.selectApprovalDocument(docNo);
 		
-		return "approval/approvalDetailView";
+		if (!"".equals(ad)) {
+			model.addAttribute("ad", ad);
+			return "approval/approvalDetailView";		
+		} else {
+			return "common/errorPage";
+		}
 		
 	}
 	
+	@RequestMapping("insert.ap")
 	public void insertApprovalDocument(ApprovalDocument ad, Attachment a, ApprovalLine al, Referer r, Outgoings o, DocumentsRequest dr,HttpSession session, Model model) {
 		
 		int docmentResult = aService.insertApprovalDocument(ad);

@@ -110,15 +110,15 @@
 				<table class="table table-bordered infoTable">
 					<tr>
 						<th>문서 종류</th>
-						<td></td>
+						<td>${ ad.docForm }</td>
 						<th>작성자</th>
-						<td></td>
+						<td>${ ad.memNo }</td>
 					</tr>
 					<tr>
 						<th>보존 연한</th>
-						<td></td>
+						<td>${ ad.docRetention }</td>
 						<th>보안 등급</th>
-						<td></td>
+						<td>${ ad.docGrade }</td>
 					</tr>
 				</table>
 			</div>
@@ -165,6 +165,14 @@
 
 			<br>
 			<br>
+			
+			<div class="titleBox">
+               <h5>제목</h5> 
+            </div>
+                
+            <div class="inputTitle">
+                <h3>${ ad.docTitle }</h3>
+            </div>
 
 			<div class="titleBox" style="display: flex; margin-left: 30px;">
 				<h5>문서내용</h5>
@@ -172,10 +180,7 @@
 
 			<!-- 문서 내용 -->
 			<div>
-
-				<!-- 문서종류에 맞는 문서내용상세양식 불러올거 -->
-				<!-- <link rel="stylesheet" href="문서상세내용.jsp"> -->
-
+				${ ad.docContents }
 			</div>
 
 			<br>

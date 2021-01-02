@@ -80,8 +80,8 @@ public class ApprovalDao {
 		return sqlSession.insert("approvalMapper.insertDocumentsRequest", drList);
 	}
 	
-	public ArrayList<ApprovalDocument> selectApprovalDocument(SqlSessionTemplate sqlSession, ApprovalDocument ad) {
-		return (ArrayList) sqlSession.selectList("approvalMapper.selectApprovalDocument");
+	public ApprovalDocument selectApprovalDocument(SqlSessionTemplate sqlSession, int docNo) {
+		return sqlSession.selectOne("approvalMapper.selectApprovalDocument", docNo);
 	}
 
 }
