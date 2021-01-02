@@ -237,11 +237,11 @@ public class AttendanceController {
 		
 		if(result > 0) {
 			
-			session.setAttribute("alertMsg", "휴가신청이 반려되었습니다.");
+			session.setAttribute("alertMsg", "출장신청이 반려되었습니다.");
 			return "redirect:approval.bt";
 			
 		}else {
-			model.addAttribute("errorMsg", "휴가신청 반려 처리 실패");
+			model.addAttribute("errorMsg", "출장신청 반려 처리 실패");
 			return "common/errorPage";
 		}
 		
@@ -388,8 +388,6 @@ public class AttendanceController {
 		
 		int result = aService.returnAnnualLeave(approval);
 		
-		System.out.println("반려" + result);
-		
 		if(result > 0) {
 			
 			session.setAttribute("alertMsg", "연차신청이 반려되었습니다.");
@@ -416,8 +414,6 @@ public class AttendanceController {
 		int result1 = aService.approvalAnnualLeave(approval);
 		int result2 = aService.subtractAnnualLeave(prno);
 		
-		System.out.println("approval" + result1);
-		System.out.println("prno" + result2);
 		if(result1 * result2 > 0) {
 			
 			session.setAttribute("alertMsg", "연차신청이 승인되었습니다.");

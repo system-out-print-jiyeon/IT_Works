@@ -28,6 +28,14 @@
 			<mapping path="/mainPage.me"/>
 			<beans:bean id="LoginInterceptor" class="com.kh.ITWorks.common.interceptor.LoginInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/approval.bt"/>
+			<beans:bean id="BusinessTripInterceptor" class="com.kh.ITWorks.common.interceptor.BusinessTripInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/approval.an"/>
+			<beans:bean id="AnnualLeaveInterceptor" class="com.kh.ITWorks.common.interceptor.AnnualLeaveInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
 </beans:beans>
