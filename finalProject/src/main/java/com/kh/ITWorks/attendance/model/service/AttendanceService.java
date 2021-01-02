@@ -60,4 +60,5 @@ public interface AttendanceService {
 	
 	// 연차 승인용 서비스
 	int approvalAnnualLeave(Map<String, Object> approval);
+	int subtractAnnualLeave(int prno);
 }

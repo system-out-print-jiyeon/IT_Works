@@ -131,15 +131,19 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 	@Override
 	public int returnAnnualLeave(Map<String, Object> approval) {
-		// TODO Auto-generated method stub
-		return 0;
+		return aDao.returnAnnualLeave(sqlSession, approval);
 	}
 
 
 	@Override
 	public int approvalAnnualLeave(Map<String, Object> approval) {
-		// TODO Auto-generated method stub
-		return 0;
+		return aDao.approvalAnnualLeave(sqlSession, approval);
+	}
+
+
+	@Override
+	public int subtractAnnualLeave(int prno) {
+		return aDao.subtractAnnualLeave(sqlSession, prno);
 	}
 
 

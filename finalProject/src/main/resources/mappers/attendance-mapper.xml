@@ -316,6 +316,30 @@ UPDATE
      WHERE ANNUAL_NO = #{anno}
 </select>
 
+<update id="returnAnnualLeave">
+UPDATE
+       ANNUAL_LEAVE
+   SET AN_STATUS = 'R'
+     , AN_APPROVER = #{apno}
+ WHERE ANNUAL_NO = #{anno}
+</update>
+ 
+<update id="approvalAnnualLeave">
+UPDATE
+       ANNUAL_LEAVE
+   SET AN_STATUS = 'Y'
+     , AN_APPROVER = #{apno}
+ WHERE ANNUAL_NO = #{anno}
+</update>
+
+<update id="subtractAnnualLeave">
+UPDATE
+       EMPLOYEE
+   SET ANNUAL_LEAVE = ANNUAL_LEAVE -1
+ WHERE MEM_NO = #{prno}
+</update>
+
+
 
 
 

@@ -191,10 +191,10 @@
                     <table id="annualTable">
                         <tr>
                             <td>
-                                <div class="anuualBar"><i class='far fa-check-circle' style='font-size:20px'></i> 사용한 휴가 개수 ${15-an.leftAnnual }개</div>
+                                <div class="anuualBar"><i class='far fa-check-circle' style='font-size:20px'></i> 사용한 휴가 개수 ${15-loginUser.annualLeave }개</div>
                             </td>
                             <td>
-                                <div class="anuualBar"><i class='far fa-circle' style='font-size:20px'></i> 미사용 휴가${an.leftAnnual }개</div>
+                                <div class="anuualBar"><i class='far fa-circle' style='font-size:20px'></i> 미사용 휴가개수 ${loginUser.annualLeave }개</div>
                             </td>
                         </tr>
                     </table>

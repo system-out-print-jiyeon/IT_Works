@@ -377,6 +377,61 @@ public class AttendanceController {
 		
 	}
 
+	
+	@RequestMapping("clickReturn.an")
+	public String returnAnnualLeave(int apno, int anno, HttpSession session, Model model) {
+		
+		Map<String, Object> approval = new HashMap<String, Object>();
+		approval.put("apno", apno);
+		approval.put("anno", anno);
+
+		
+		int result = aService.returnAnnualLeave(approval);
+		
+		System.out.println("반려" + result);
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "연차신청이 반려되었습니다.");
+			return "redirect:approval.an";
+			
+		}else {
+			model.addAttribute("errorMsg", "연차신청 반려 처리 실패");
+			return "common/errorPage";
+		}
+		
+		
+	}
+	
+	
+	
+	@RequestMapping("clickApproval.an")
+	public String approvalAnnualLeave(int apno, int anno, HttpSession session, Model model, int prno) {
+		
+		Map<String, Object> approval = new HashMap<String, Object>();
+		approval.put("apno", apno);
+		approval.put("anno", anno);
+
+		
+		int result1 = aService.approvalAnnualLeave(approval);
+		int result2 = aService.subtractAnnualLeave(prno);
+		
+		System.out.println("approval" + result1);
+		System.out.println("prno" + result2);
+		if(result1 * result2 > 0) {
+			
+			session.setAttribute("alertMsg", "연차신청이 승인되었습니다.");
+			return "redirect:approval.an";
+			
+		}else {
+			model.addAttribute("errorMsg", "연차신청 승인 처리 실패");
+			return "common/errorPage";
+		}
+		
+		
+	}
+	
+
 
 	
 

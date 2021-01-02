@@ -100,4 +100,16 @@ public class AttendanceDao {
 		return sqlSession.selectOne("attendanceMapper.selectAnnualLeave", anno);
 	}
 	
+	public int returnAnnualLeave(SqlSessionTemplate sqlSession, Map<String, Object> approval) {
+		return sqlSession.update("attendanceMapper.returnAnnualLeave", approval);
+	}
+	
+	public int approvalAnnualLeave(SqlSessionTemplate sqlSession, Map<String, Object> approval) {
+		return sqlSession.update("attendanceMapper.approvalAnnualLeave", approval);
+	}
+
+	public int subtractAnnualLeave(SqlSessionTemplate sqlSession, int prno) {
+		return sqlSession.update("attendanceMapper.subtractAnnualLeave", prno);
+	}
+	
 }
