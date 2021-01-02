@@ -33,49 +33,49 @@ public class ExApprovalController {
 	
 	public void insertApprovalDocument(ApprovalDocument ad, Attachment a, ApprovalLine al, Referer r, Outgoings o, DocumentsRequest dr,HttpSession session, Model model) {
 		
-		int result1 = aService.insertApprovalDocument(ad);
+		int docmentResult = aService.insertApprovalDocument(ad);
 		
-		int result2 = aService.insertApprovalAttachment(a);
+		int attachmentResult= aService.insertApprovalAttachment(a);
 		
 		ArrayList<ApprovalLine> apLineList = al.getApLineList();
-		int result3 = aService.insertApprovalLine(apLineList);
+		int apLineResult = aService.insertApprovalLine(apLineList);
 		
 		ArrayList<Referer> refererList = r.getRefererList();
-		int result4 = aService.insertApprovalReferer(refererList);
+		int refererResult = aService.insertApprovalReferer(refererList);
 		
-		int insertResult = result1 * result2 * result3 * result4;
+		int insertResult = docmentResult * apLineResult * refererResult;
 		
 		if (insertResult > 0) {	// 입력성공
 			
-			if (ad.getDocForm() == 1) {			// 지출결의서
-				int outgoingsResult1 = aService.insertOutgoings(o);
-				ArrayList<OutgoingsList> oList = o.getOutgoingsList();
-				
-				int outgoingsResult2 = aService.insertOutgoingsList(oList);
-				
-				if (outgoingsResult1 * outgoingsResult2 > 0) {
-					
-				} else {
-					
-				}
-			} else if (ad.getDocForm() == 2) {	// 문서발급요청서
-				ArrayList<DocumentsRequest> drList = dr.getDocreqList();
-				
-				int docreqResult = aService.insertDocumentsRequest(drList);
-				
-				if (docreqResult > 0) {
-					
-				} else {
-					
-				}
-			} else if (ad.getDocForm() == 3) {	// 프로젝트업무보고서
-				
-			} else if (ad.getDocForm() == 4) {	// 품의서
-				
-			}
+			/*
+			 * if (ad.getDocForm() == 1) { // 지출결의서 int outgoingsResult1 =
+			 * aService.insertOutgoings(o); ArrayList<OutgoingsList> oList =
+			 * o.getOutgoingsList();
+			 * 
+			 * int outgoingsResult2 = aService.insertOutgoingsList(oList);
+			 * 
+			 * if (outgoingsResult1 * outgoingsResult2 > 0) {
+			 * 
+			 * } else {
+			 * 
+			 * } } else if (ad.getDocForm() == 2) { // 문서발급요청서 ArrayList<DocumentsRequest>
+			 * drList = dr.getDocreqList();
+			 * 
+			 * int docreqResult = aService.insertDocumentsRequest(drList);
+			 * 
+			 * if (docreqResult > 0) {
+			 * 
+			 * } else {
+			 * 
+			 * } } else if (ad.getDocForm() == 3) { // 프로젝트업무보고서
+			 * 
+			 * } else if (ad.getDocForm() == 4) { // 품의서
+			 * 
+			 * }
+			 */
 			
 		} else {	// 입력실패
-			
+						
 		}
 		
 	}

@@ -161,7 +161,7 @@
 				</table>
 			</div>
 
-			<%-- <jsp:include page="./approvalDecisionModal.jsp"/> --%>
+			<jsp:include page="./approvalDecisionModal.jsp"/>
 
 			<br>
 			<br>

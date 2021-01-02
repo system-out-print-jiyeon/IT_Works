@@ -25,9 +25,9 @@
 		<result column="dept_name" property="deptName"/>			
 	</resultMap>
 	
-<!-- 	<resultMap type="ApprovalDocument" id="approvalDocumentResultSet">
+ 	<resultMap type="AppDoc" id="approvalDocumentResultSet">
 		<result column="doc_no" property="docNo"/>
-		<result column="mem_no" property="memNo"/>
+		<result column="mem_name" property="memNo"/>
 		<result column="doc_title" property="docTitle"/>
 		<result column="doc_contents" property="docContents"/>
 		<result column="doc_enroll_date" property="docEnrollDate"/>
@@ -37,7 +37,7 @@
 		<result column="doc_form" property="docForm"/>
 	</resultMap>
 	
-	<resultMap type="ApprovalAttachment" id="approvalAttachmentResultSet">
+	<resultMap type="Attachment" id="approvalAttachmentResultSet">
 		<result column="att_no" property="attNo"/>
 		<result column="doc_no" property="docNo"/>
 		<result column="att_origin_name" property="attOriginName"/>
@@ -56,7 +56,7 @@
 	<resultMap type="Referer" id="refererResultSet">
 		<result column="doc_no" property="docNo"/>
 		<result column="mem_no" property="memNo"/>
-	</resultMap> -->
+	</resultMap>
 
 
 	<!-- 부서별 사원 수 조회 -->
@@ -164,8 +164,8 @@
          order 
             by job_code desc
 		
-	</select>
-	
+	</select>	
+
 	<select id="planningList" resultMap="memberResultSet">
 		
 		select
@@ -182,9 +182,111 @@
 		
 	</select>
 
+	<!-- 결재문서select -->
+	<select id="selectApprovalDocument" resultMap="approvalDocumentResultSet">
+		select 
+		       doc_no
+		     , mem_name
+		     , doc_title
+		     , doc_contents
+		     , doc_enroll_date
+		     , doc_retention
+		     , doc_grade
+		     , doc_status
+		     , doc_form
+		     , doc_approval_status
+		  from 
+		       approval_document ad
+		  join 
+		       employee e
+		    on e.mem_no = ad.mem_no
+		 where 
+		       doc_no = #{ docNo }
+	</select>
 
+	<!-- 결재문서insert -->	
+	<insert id="insertApprovalDocument" parameterType="AppDoc">
+		insert
+		  into approval_document
+		  (
+		     doc_no
+		   , mem_no
+		   , doc_title
+		   , doc_contents
+		   , doc_enroll_date
+		   , doc_retention
+		   , doc_grade
+		   , doc_status
+		   , doc_form
+		   , doc_approval_status
+		  )
+		  values
+		  (
+		     seq_apno.nextval
+		   , #{memNo}
+		   , #{docTitle}
+		   , #{docContents}
+		   , #{docEnrollDate}
+		   , #{docRetention}
+		   , #{docGrade}
+		   , #{docStatus}
+		   , #{docForm}
+		   , #{docApprovalStatus}
+		  )
+	</insert>
 
-
-
+	<insert id="insertApprovalAttachment" parameterType="Attachment">
+		insert
+		  into approval_attachment
+		  (
+		     att_no
+		   , doc_no
+		   , att_origin_name
+		   , att_change_name
+		   , att_path
+		   , att_loadpath
+		  )
+		  values
+		  (
+		     seq_aano.nextval
+		   , seq_apno.currval
+		   , #{attOriginName}
+		   , #{attChangeName}
+		   , #{attPath}
+		   , #{attLoadpath}
+		  )
+	</insert>
+	
+	<insert id="insertApprovalLine" parameterType="ApprovalLine">
+		insert
+		  into approval_line
+		  (
+		     doc_no
+		   , mem_no
+		   , approval_status
+		   , approval_order
+		  )
+		  values
+		  (
+		     seq_apno.currval
+		   , #{memNo}
+		   , 'Y'
+		   , #{approvalOrder}
+		  )
+	</insert>
+	
+	<insert id="insertApprovalReferer" parameterType="Referer">
+		insert
+		  into referer
+		  (
+		     doc_no
+		   , mem_no
+		  )
+		  values
+		  (
+		     seq.currval
+		   , #{memNo}
+		  )
+	</insert>
 
 </mapper>

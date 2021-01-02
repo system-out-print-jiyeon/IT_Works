@@ -53,31 +53,35 @@ public class ApprovalDao {
 
 
 	public int insertApprovalDocument(ApprovalDocument ad, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("approval-mapper.insertApprovalDocumet", ad);
+		return sqlSession.insert("approvalMapper.insertApprovalDocument", ad);
 	}
 
 	public int insertApprovalAttachment(Attachment a, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("approval-mapper.insertApprovalAttachment", a);
+		return sqlSession.insert("approvalMapper.insertApprovalAttachment", a);
 	}
 
 	public int insertApprovalLine(ArrayList<ApprovalLine> apLineList, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("approval-mapper.insertApprovalLine", apLineList);
+		return sqlSession.insert("approvalMapper.insertApprovalLine", apLineList);
 	}
 
 	public int insertApprovalRefere(ArrayList<Referer> refererList, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("approval-mapper.insertApprovalreferer", refererList);
+		return sqlSession.insert("approvalMapper.insertApprovalReferer", refererList);
 	}
 
 	public int insertOutgoings(Outgoings o, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("approval-mapper.insertOutgoings", o);
+		return sqlSession.insert("approvalMapper.insertOutgoings", o);
 	}
 
 	public int insertOutgoingsList(ArrayList<OutgoingsList> oList, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("approval-mapper.insertoutgoingsList", oList);
+		return sqlSession.insert("approvalMapper.insertoutgoingsList", oList);
 	}
 
 	public int insertDocumentsRequest(ArrayList<DocumentsRequest> drList, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("approval-mapper.insertDocumentsRequest", drList);
+		return sqlSession.insert("approvalMapper.insertDocumentsRequest", drList);
+	}
+	
+	public ArrayList<ApprovalDocument> selectApprovalDocument(SqlSessionTemplate sqlSession, ApprovalDocument ad) {
+		return (ArrayList) sqlSession.selectList("approvalMapper.selectApprovalDocument");
 	}
 
 }

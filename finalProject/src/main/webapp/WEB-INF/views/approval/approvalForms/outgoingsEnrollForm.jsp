@@ -78,7 +78,8 @@
 					</tr>
 				</tbody>
 			</table>
-		</span></div>
+		</span>
+	</div>
 	<div style="font-family: 돋움; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"><br></div>
 	<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 800px; height: 142px;">
 		<tbody>
@@ -105,8 +106,8 @@
 			<thead>
 				<tr>
 					<td colspan="5" class="viewModeHiddenPart td_button dext_table_border_t dext_table_border_r dext_table_border_b dext_table_border_l">
-						<button id="plus" onclick="addRow()">추가</button>
-						<button id="minus" onclick="deleteRow(-1)">삭제</button>
+						<button type="button" id="plus" onclick="addRow()">추가</button>
+						<button type="button" id="minus" onclick="deleteRow(-1)">삭제</button>
 					</td>
 				</tr>
 				<tr>
