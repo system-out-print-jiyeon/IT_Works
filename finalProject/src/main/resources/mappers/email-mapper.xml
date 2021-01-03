@@ -11,6 +11,9 @@
 		<result column="em_inp" property="emInp"/>
 		<result column="em_status" property="emStatus"/>
 		<result column="em_to" property="emTo"/>
+		
+		<result column="em_rec_no" property="emRecNo"/>
+		<result column="em_read" property="emRead"/>
 	</resultMap>
 	
 	<resultMap id="EmailAttachSelectResultSet" type="com.kh.ITWorks.email.model.dto.EmailAttachSelect">
@@ -22,15 +25,15 @@
 
 	<select id="selectEmailFromListCount" parameterType="string" resultType="_int">
 		select count(*)
-		from email e
-		where e.em_from = #{email}
-		  and e.em_status = 'Y'
+		  from email e
+		 where e.em_from = #{email}
+		   and e.em_status = 'Y'
 	</select>
 	
 	<select id="selectEmailFromList" parameterType="string" resultMap="EmailSelectResultSet">
 		select e.em_no
              , e.em_title
-             , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mm""') em_enroll_date
+             , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
              , e.em_inp
              , e.em_status
           from email e
@@ -42,43 +45,157 @@
 	
 	<select id="selectEmailFromListRec" parameterType="_int" resultType="string">
 		select er.em_to
-		from email_recipient er
-		where er.em_no = #{emNo}
+		  from email_recipient er
+		 where er.em_no = #{emNo}
 	</select>
 	
-	<select id="selectEmailFromDetail" parameterType="_int" resultMap="EmailSelectResultSet">
+	<select id="selectEmailFromDetail" parameterType="EmailSelect" resultMap="EmailSelectResultSet">
 		select e.em_no
 		     , e.em_from
 		     , e.em_title
 		     , e.em_content
-             , to_char(e.em_enroll_date, '""YYYY"년"MM"월"DD"일 ("DAY") "HH24":"mm":"SS"""') em_enroll_date
+             , to_char(e.em_enroll_date, '""YYYY"년"MM"월"DD"일 ("DAY") "HH24":"mi":"SS"""') em_enroll_date
 		     , e.em_inp
 		     , e.em_status
-		from email e
-		where e.em_no = #{emNo}
-		  and e.em_status = 'Y'
+		  from email e
+		 where e.em_From = #{emFrom}
+		   and e.em_no = #{emNo}
+		   and e.em_status = 'Y'
 	</select>
 	
 	<select id="selectEmailFromListAtt" parameterType="_int" resultMap="EmailAttachSelectResultSet">
 		select ea.em_att_no
 		     , ea.em_origin_name
 		     , ea.em_change_name
-		from email_attach ea
-		where ea.em_no = #{emNo}
+		  from email_attach ea
+		 where ea.em_no = #{emNo}
 		 order by ea.em_att_no
 	</select>
 	
-	<select id="selectEmailFromListAttCount" parameterType="_int" resultType="_int">
+	<select id="emailAttCount" parameterType="_int" resultType="_int">
 		select count(*)
-		from email_attach ea
-		where ea.em_no = #{emNo}
+		  from email_attach ea
+		 where ea.em_no = #{emNo}
 	</select>
 	
 	<select id="selectEmailToListCount" parameterType="string" resultType="_int">
 		select count(*)
-		from email_recipient er
-		where er.em_to = #{email}
-		and er.em_status='Y'
+		  from email_recipient er
+		 where er.em_to = #{email}
+		   and er.em_status='Y'
 	</select>
+	
+	<select id="selectEmailToList" parameterType="string" resultMap="EmailSelectResultSet">
+		select em_no
+		     , er.em_rec_no
+		     , er.em_read
+		     , er.em_inp
+		     , er.em_status
+		     , e.em_from
+		     , e.em_title
+		     , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
+		  from email_recipient er
+		  join email e using(em_no)
+		 where er.em_to = #{email}
+		   and er.em_status='Y'
+		 order 
+            by er.em_rec_no desc
+	</select>
+	
+	<update id="updateEmailRead" parameterType="EmailSelect">
+		update email_recipient
+		   set em_read = 'Y'
+		 where em_to = #{emTo}
+		   and em_rec_no = #{emRecNo}
+		   and em_status = 'Y'
+	</update>
+	
+	<select id="selectEmailToDetail" parameterType="EmailSelect" resultMap="EmailSelectResultSet">
+		select em_no
+		     , er.em_rec_no
+		     , er.em_to
+		     , er.em_inp
+		     , er.em_status
+		     , e.em_from
+		     , e.em_title
+		     , e.em_content
+		     , to_char(e.em_enroll_date, '""YYYY"년"MM"월"DD"일 ("DAY") "HH24":"mi":"SS"""') em_enroll_date
+		  from email_recipient er
+		  join email e using(em_no)
+		 where er.em_to = #{emTo}
+		   and er.em_rec_no = #{emRecNo}
+		   and er.em_status='Y'
+	</select>
+	
+	<select id="selectEmailToListAtt" parameterType="EmailSelect" resultMap="EmailAttachSelectResultSet">
+		select ea.em_att_no
+		     , ea.em_origin_name
+		     , ea.em_change_name
+		  from email_recipient er
+		  join email e using (em_no)
+		  join email_attach ea using(em_no)
+		 where er.em_to = #{emTo}
+		   and er.em_rec_no = #{emRecNo}
+	       and er.em_status='Y'
+	   	 order by ea.em_att_no
+	</select>
+	
+	<insert id="insertEmail" parameterType="com.kh.ITWorks.email.model.vo.Email">
+		
+		<!-- 메일 보낼 때 시퀀스를 따로 지정해준 후 사용후 Email 객체의 emNo에 받아옴 -->
+		<selectKey resultType="int" keyProperty="emNo" order="BEFORE">
+			select seq_emno.nextval from dual
+		</selectKey>
+		
+		insert 
+		  into email
+		  (
+		    em_no
+		  , em_from
+		  , em_title
+		  , em_content
+		  )
+		values 
+		  (
+		    #{emNo}
+		  , #{emFrom}
+		  , #{emTitle}
+		  , #{emContent}
+		  )
+	</insert>
+	
+	<insert id="intertEmailAttach" parameterType="com.kh.ITWorks.email.model.vo.EmailAttach">
+		insert 
+		  into email_attach
+		  (
+		    em_att_no
+		  , em_origin_name
+		  , em_change_name
+		  , em_no
+		  )
+		 values
+		  (
+		    seq_emfno.nextval
+		  , #{emOriginName}
+		  , #{emChangeName}
+		  , #{emNo}
+		  )
+	</insert>
+	
+	<insert id="insertEmailRecpient" parameterType="com.kh.ITWorks.email.model.vo.EmailRecipient">
+		insert 
+		  into email_recipient
+		  ( 
+		    em_rec_no
+		  , em_to
+		  , em_no
+		  ) 
+		values
+		  (
+		    seq_emrno.nextval
+		  , #{emTo}
+		  , #{emNo}
+		  )
+	</insert>
 	
 </mapper>

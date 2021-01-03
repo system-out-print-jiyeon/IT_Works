@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<!-- 부트스트랩 -->
+
+    <!-- 부트스트랩 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -18,14 +19,8 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.js"></script>
     <script src="https://github.com/summernote/summernote/tree/master/lang/summernote-ko-KR.js"></script>
 
-    <!-- 아이콘 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-*{ 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 .em_wrap{
     width: 100%; 
     height: 100%;
@@ -51,6 +46,10 @@
     font-size:17px;
     color:gray;
 }
+#emFrom{
+	margin-left:5px; 
+	background:lightGray;
+}
 input[type="text"], input[type="email"]{
 	border:1px solid gray;
 }
@@ -64,14 +63,14 @@ input[type="text"], input[type="email"]{
 .add:hover{
     cursor:pointer;
     animation-name:key4;
-    animation-duration:0.5s;
+    animation-duration:0.3s;
     animation-fill-mode:both;
     animation-direction:alternate;
 }
 @keyframes key4{
     to{
         background:rgb(80, 150, 255); 
-        padding:2px 5px;
+        padding:0px 5px;
     }
 }
 .remove{
@@ -84,14 +83,17 @@ input[type="text"], input[type="email"]{
 .remove:hover{
     cursor:pointer;
     animation-name:key5;
-    animation-duration:0.5s;
+    animation-duration:0.3s;
     animation-fill-mode:both;
     animation-direction:alternate;
+}
+.text{
+	font-size:10px;
 }
 @keyframes key5{
     to{
         background:rgb(255, 86, 80); 
-        padding:2px 5px;
+        padding:0px 5px;
     }
 }
 input[type="submit"]{
@@ -115,6 +117,7 @@ input[type="submit"]:hover{
         background:rgb(80, 150, 255); 
     }
 }
+
 </style>
 </head>
 <body>
@@ -129,11 +132,11 @@ input[type="submit"]:hover{
         <div class="em_content">
 
             <div class="em_content_center">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="insert.em" method="post" enctype="multipart/form-data">
                     <table class="table">
                         <tr>
                             <th width="150">보내는 사람</th>
-                            <td><input type="email" value="user01@naver.com" readonly style="margin-left:5px;"></td>
+                            <td><input type="email" name="emFrom" id="emFrom" value="${ loginUser.email }" readonly></td>
                         </tr>
                         <tr>
                             <th>받는 사람</th>
@@ -141,7 +144,7 @@ input[type="submit"]:hover{
                                 <table id="addTable" class="table-sm table-borderless">
                                     <tr height="0">
                                         <td>
-                                            <input type="email" name="recipient[0]" required>
+                                            <input type="email" name="emToList[0].emTo" required>
                                             <input class="add" type="button" onClick="add()" value="추가">
                                         </td>
                                     </tr>
@@ -150,15 +153,15 @@ input[type="submit"]:hover{
                         </tr>
                         <tr>
                             <th>제목</th>
-                            <td><input type="text" name="" style="width:100%; margin-left:5px;" required></td>
+                            <td><input type="text" name="emTitle" style="width:100%; margin-left:5px;" required></td>
                         </tr>
                         <tr>
-                            <th>파일첨부</th>
-                            <td><input type="file" name="" class="btn btn-outline-primary" multiple style="margin-left:5px;"></td>
+                            <th>파일첨부<br><span class="text">(Shift/Ctrl 다중 선택)</span></th>
+                            <td><input multiple="multiple" type="file" name="upfile" style="margin-left:5px;"></td>
                         </tr>
                         <tr>
                             <th>내용</th>
-                            <td><textarea id="summernote" name="editordata" style="margin-left:5px;"></textarea></td>
+                            <td><textarea id="summernote" name="emContent" style="margin-left:5px;"></textarea></td>
                         </tr>
                     </table>
                     <div align="center">
@@ -186,7 +189,7 @@ input[type="submit"]:hover{
             oRow.onmouseover=function(){oTbl.clickedRowIndex=this.rowIndex};
                 
             var oCell = oRow.insertCell();
-            var frmTag = "<input type='email' name='recipient["+i+"]' required>";
+            var frmTag = "<input type='email' name='emToList["+i+"].emTo' required>";
 
             frmTag += " <input type=button value='삭제' class='remove' onClick='removeRow()'>";
             oCell.innerHTML = frmTag;
@@ -199,7 +202,7 @@ input[type="submit"]:hover{
 
     <!-- 썸머노트 -->
     <script>
-      //$('#summernote').summernote('disable'); 썸머노트 비활성화
+      jQuery.noConflict(); // jquery 충돌 오류 해결
       $('#summernote').summernote({
         tabsize: 2,
         height: 400,

@@ -6,7 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style>
+.em_wrap{
+    width: 100%; 
+    height: 100%;
+    display: flex;
+}
+
 /* 메뉴바 */
 .em_menubar{
 	margin-top:80px;
@@ -80,13 +87,13 @@
 </head>
 <body>
 	<div class="em_menubar" align="center">
-	    <button>메일쓰기&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></button>
+	    <button onclick="location.href='enrollForm.em'">메일쓰기&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></button>
 	    <div class="em_menubar_list">
 	        <span>메일함</span>
 	        <ul>
 	            <li><a href="#"><i class="fa fa-envelope"></i> 전체메일함</a></li>
 	            <li><a href="listFrom.em?email=${loginUser.email}"><i class="fa fa-paper-plane"></i> 보낸메일함</a></li>
-	            <li><a href="listTo.em?email=${loginUser.email}"><i class="fa fa-reply"></i> 받은메일함</a></li>
+	            <li><a href="listTo.em?email=${loginUser.email}"><i class="fa fa-box-open"></i> 받은메일함</a></li>
 	            <li><a href="listImp.em?email=${loginUser.email}"><i class="fa fa-star"></i> 중요메일함</a></li>
 	        </ul>
 	    </div>

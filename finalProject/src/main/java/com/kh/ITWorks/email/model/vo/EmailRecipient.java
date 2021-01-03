@@ -1,5 +1,7 @@
 package com.kh.ITWorks.email.model.vo;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +21,6 @@ public class EmailRecipient {
 	private String emInp;		// 밭은메일 중요
 	private String emStatus;	// 받은메일 상태
 	private int emNo;			// 이메일 생성 번호
+	
+	private ArrayList<EmailRecipient> emToList;
 }
