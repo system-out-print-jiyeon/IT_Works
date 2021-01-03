@@ -11,6 +11,7 @@ import com.kh.ITWorks.approval.model.vo.ApprovalDocument;
 import com.kh.ITWorks.approval.model.vo.ApprovalLine;
 import com.kh.ITWorks.approval.model.vo.Attachment;
 import com.kh.ITWorks.approval.model.vo.DocumentsRequest;
+import com.kh.ITWorks.approval.model.vo.Opinion;
 import com.kh.ITWorks.approval.model.vo.Outgoings;
 import com.kh.ITWorks.approval.model.vo.OutgoingsList;
 import com.kh.ITWorks.approval.model.vo.Referer;
@@ -106,9 +107,27 @@ public class ApprovalServiceImpl implements ApprovalService {
 	public int insertDocumentsRequest(ArrayList<DocumentsRequest> drList) {
 		return aDao.insertDocumentsRequest(drList, sqlSession);
 	}
+	
+	/* 결재문서 상세보기 select */
 	@Override
 	public ApprovalDocument selectApprovalDocument(int docNo) {
 		return aDao.selectApprovalDocument(sqlSession, docNo);
+	}
+	@Override
+	public ArrayList<ApprovalLine> selectApprovalLine(int docNo) {
+		return aDao.selectApprovalLine(sqlSession, docNo);
+	}
+	@Override
+	public ArrayList<Referer> selectReferer(int docNo) {
+		return aDao.selectReferer(sqlSession, docNo);
+	}
+	@Override
+	public ArrayList<Attachment> selectAttachment(int docNo) {
+		return aDao.selectAttachment(sqlSession, docNo);
+	}
+	@Override
+	public ArrayList<Opinion> selectOpinion(int docNo) {
+		return aDao.selectOpinion(sqlSession, docNo);
 	}
 
 }

@@ -6,6 +6,7 @@ import com.kh.ITWorks.approval.model.vo.ApprovalDocument;
 import com.kh.ITWorks.approval.model.vo.ApprovalLine;
 import com.kh.ITWorks.approval.model.vo.Attachment;
 import com.kh.ITWorks.approval.model.vo.DocumentsRequest;
+import com.kh.ITWorks.approval.model.vo.Opinion;
 import com.kh.ITWorks.approval.model.vo.Outgoings;
 import com.kh.ITWorks.approval.model.vo.OutgoingsList;
 import com.kh.ITWorks.approval.model.vo.Referer;
@@ -46,7 +47,11 @@ public interface ApprovalService {
 	// 4. 품의서 입력
 	
 	// 5. 결재문서 상세보기
+	ArrayList<ApprovalLine> selectApprovalLine(int docNo);
+	ArrayList<Referer> selectReferer(int docNo);
 	ApprovalDocument selectApprovalDocument(int docNo);
+	ArrayList<Attachment> selectAttachment(int docNo);
+	ArrayList<Opinion> selectOpinion(int docNo);
 	
 	// 6. 결재 승인
 

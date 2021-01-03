@@ -20,6 +20,7 @@
 		<typeAlias type="com.kh.ITWorks.approval.model.vo.Outgoings" alias="Outgoings"/>
 		<typeAlias type="com.kh.ITWorks.approval.model.vo.OutgoingsList" alias="OutgoingsList"/>
 		<typeAlias type="com.kh.ITWorks.approval.model.vo.Referer" alias="Referer"/>
+		<typeAlias type="com.kh.ITworks.approval.model.vo.Opinion" alias="Opinion"/>
 	</typeAliases>
 	
 	

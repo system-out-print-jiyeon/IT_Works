@@ -37,7 +37,7 @@
 		<result column="doc_form" property="docForm"/>
 	</resultMap>
 	
-	<resultMap type="Attachment" id="approvalAttachmentResultSet">
+	<resultMap type="Attachment" id="attachmentResultSet">
 		<result column="att_no" property="attNo"/>
 		<result column="doc_no" property="docNo"/>
 		<result column="att_origin_name" property="attOriginName"/>
@@ -49,6 +49,7 @@
 	<resultMap type="ApprovalLine" id="approvalLineResultSet">
 		<result column="doc_no" property="docNo"/>
 		<result column="mem_no" property="memNo"/>
+		<result column="job_name" property="jobName"/>
 		<result column="approval_status" property="approvalStatus"/>
 		<result column="approval_order" property="approvalOrder"/>
 	</resultMap>
@@ -56,6 +57,15 @@
 	<resultMap type="Referer" id="refererResultSet">
 		<result column="doc_no" property="docNo"/>
 		<result column="mem_no" property="memNo"/>
+	</resultMap>
+	
+	<resultMap type="Opinion" id="opinionResultSet">
+		<result column="opi_no" property="opiNo"/>
+		<result column="doc_no" property="docNo"/>
+		<result column="mem_no" property="memNo"/>
+		<result column="opi_content" property="opiContent"/>
+		<result column="opi_enroll_date" property="opiEnrollDate"/>
+		<result column="opi_status" property="opiStatus"/>
 	</resultMap>
 
 
@@ -200,6 +210,18 @@
 		       doc_status = 'Y'		  
 	</select>
 	
+	<select id="selectReferer" parameterType="_int" resultMap="refererResultSet">
+		select
+		       doc_no
+		     , mem_name
+		  from
+		       referer r
+		  join 
+		       employee e
+		    on e.mem_no = r.mem_no
+		 where doc_no = #{docNo}
+	</select>
+	
 	<select id="selectApprovalDocument" parameterType="_int" resultMap="approvalDocumentResultSet">
 		select 
 		       doc_no
@@ -219,7 +241,7 @@
 		 where doc_no = #{docNo}
 		 
 	</select>
-	<select id="selectApprovalLine">
+	<select id="selectApprovalLine" parameterType="_int" resultMap="approvalLineResultSet">
 		select
 		       doc_no
 		     , mem_name
@@ -239,18 +261,30 @@
 		 where 
 		       doc_no = #{ docNo }
 	</select>
-	<select id="selectApprovalReferer">
+	<select id="selectAttachment" parameterType="_int" resultMap="attachmentResultSet">
 		select
-		       doc_no
-		     , mem_name
+		       att_origin_name
+		     , att_change_name
+		     , att_path
+		     , att_loadpath
 		  from
-		       referer r
+		       approval_attachment aa
+		  join 
+		       approval_document ad
+		    on ad.doc_no = aa.doc_no
+		 where doc_no = #{docNo}
+	</select>
+	<select id="selectOpinion" parameterType="_int" resultMap="">
+		select
+		       mem_name
+		     , opi_content
+		     , opi_enrolle_date
+		  from
+		       opinion o
 		  join 
 		       employee e
-		    on 
-		       e.mem_no = r.mem_no
-		 where
-		       doc_no = #{ docNo }
+		    on e.mem_no = o.mem_no
+		 where doc_no = #{docNo}
 	</select>
 
 	<!-- 결재문서insert -->	

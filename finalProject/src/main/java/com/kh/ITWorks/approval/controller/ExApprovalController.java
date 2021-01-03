@@ -14,6 +14,7 @@ import com.kh.ITWorks.approval.model.vo.ApprovalDocument;
 import com.kh.ITWorks.approval.model.vo.ApprovalLine;
 import com.kh.ITWorks.approval.model.vo.Attachment;
 import com.kh.ITWorks.approval.model.vo.DocumentsRequest;
+import com.kh.ITWorks.approval.model.vo.Opinion;
 import com.kh.ITWorks.approval.model.vo.Outgoings;
 import com.kh.ITWorks.approval.model.vo.OutgoingsList;
 import com.kh.ITWorks.approval.model.vo.Referer;
@@ -25,12 +26,21 @@ public class ExApprovalController {
 	private ApprovalService aService;
 	
 	@RequestMapping("detail.ap")
-	public String ApprovalDetail(int docNo, Model model) {		
-		ApprovalDocument ad = aService.selectApprovalDocument(docNo);
+	public String ApprovalDetail(int docNo, Model model) {
+		
+		ArrayList<ApprovalLine> aList = aService.selectApprovalLine(docNo);		// 결재문서 결재선
+		ArrayList<Referer> rList = aService.selectReferer(docNo);				// 결재문서 참조자
+		ApprovalDocument ad = aService.selectApprovalDocument(docNo);			// 결재문서 문서정보
+		ArrayList<Attachment> attList = aService.selectAttachment(docNo);		// 결재문서 첨부파일
+		ArrayList<Opinion> opList = aService.selectOpinion(docNo);				// 결재문서 의견
 		
 		if (!"".equals(ad)) {
+			model.addAttribute("aList", aList);
+			model.addAttribute("rList", rList);
 			model.addAttribute("ad", ad);
-			return "approval/approvalDetailView";		
+			model.addAttribute("attList", attList);
+			model.addAttribute("opList", opList);
+			return "approval/approvalDetailView";
 		} else {
 			return "common/errorPage";
 		}

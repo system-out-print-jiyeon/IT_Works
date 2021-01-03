@@ -9,6 +9,7 @@ import com.kh.ITWorks.approval.model.vo.ApprovalDocument;
 import com.kh.ITWorks.approval.model.vo.ApprovalLine;
 import com.kh.ITWorks.approval.model.vo.Attachment;
 import com.kh.ITWorks.approval.model.vo.DocumentsRequest;
+import com.kh.ITWorks.approval.model.vo.Opinion;
 import com.kh.ITWorks.approval.model.vo.Outgoings;
 import com.kh.ITWorks.approval.model.vo.OutgoingsList;
 import com.kh.ITWorks.approval.model.vo.Referer;
@@ -51,7 +52,7 @@ public class ApprovalDao {
 			return (ArrayList)sqlSession.selectList("approvalMapper.planningList");
 		}
 
-
+	/* 결재문서 insert */
 	public int insertApprovalDocument(ApprovalDocument ad, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("approvalMapper.insertApprovalDocument", ad);
 	}
@@ -80,8 +81,21 @@ public class ApprovalDao {
 		return sqlSession.insert("approvalMapper.insertDocumentsRequest", drList);
 	}
 	
+	/* 결재문서 상세 select */
 	public ApprovalDocument selectApprovalDocument(SqlSessionTemplate sqlSession, int docNo) {
 		return sqlSession.selectOne("approvalMapper.selectApprovalDocument", docNo);
+	}
+	public ArrayList<ApprovalLine> selectApprovalLine(SqlSessionTemplate sqlSession, int docNo) {
+		return (ArrayList) sqlSession.selectList("approvalMapper.selectApprovalLine", docNo);
+	}
+	public ArrayList<Referer> selectReferer(SqlSessionTemplate sqlSession, int docNo) {
+		return (ArrayList) sqlSession.selectList("approvalMapper.selectReferer", docNo);
+	}
+	public ArrayList<Attachment> selectAttachment(SqlSessionTemplate sqlSession, int docNo) {
+		return (ArrayList) sqlSession.selectList("approvalMapper.selectAttachment", docNo);
+	}
+	public ArrayList<Opinion> selectOpinion(SqlSessionTemplate sqlSession, int docNo) {
+		return (ArrayList) sqlSession.selectList("approvalMapper.selectOpinion", docNo);
 	}
 
 }

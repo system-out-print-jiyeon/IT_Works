@@ -20,6 +20,8 @@ public class ApprovalLine {
 	private String approvalStatus;
 	private int approvalOrder;
 	
+	private String jobName;
+	
 	private ArrayList<ApprovalLine> apLineList;
 
 }
