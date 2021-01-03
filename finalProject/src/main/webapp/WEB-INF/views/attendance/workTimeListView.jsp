@@ -194,7 +194,7 @@
                     <table class="sysdateTable">
                         <tr>
                             <td>사용한 휴가개수 ${15-loginUser.annualLeave } 개 | 미사용 ${loginUser.annualLeave }개</td>
-                            <td><div class="btn btn-primary" class="sysdateBar"><%= sf.format(nowTime) %></div></td>
+                            <td><div class="btn btn-primary" class="sysdateBar"><%= sf.format(nowTime) %></div><br></td>
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -207,9 +207,9 @@
                         <tr>
                             <td>
                                 <form action="">
-                                    <button class="work-btn" type="button">출근</button>
+                                    <button id="button1" class="work-btn" type="button">출근</button>
                                     &nbsp;&nbsp; &nbsp;&nbsp;
-                                    <button class="work-btn" type="button">퇴근</button>
+                                    <button id="button2" class="work-btn" type="button">퇴근</button>
                             </td>
                             <td>
                                     <select name="" id="">
@@ -222,6 +222,19 @@
                             </td>
                         </tr>
                     </table>
+
+					<script>
+                        var btn1 = document.getElementById("button1");
+                        var btn2 = document.getElementById("button2");
+                        btn1.onclick = function(){     
+                            this.style.backgroundColor = "dodgerblue";
+                            btn2.style.backgroundColor = "darkgray";
+                        };
+                        btn2.onclick = function(){     
+                            this.style.backgroundColor = "dodgerblue";
+                            btn1.style.backgroundColor = "darkgray";
+                        };
+                    </script>
 
                 </div>
 
