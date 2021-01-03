@@ -11,21 +11,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <!-- 아이콘 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-*{ 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.em_wrap{
-    width: 100%; 
-    height: 100%;
-    display: flex;
-}
-
 /*내용*/
 .em_title{
 	color:gray;
@@ -135,7 +123,7 @@
 
         <div class="em_content">
             <div class="em_content_center">
-			<span class="em_title">${ title }</span>
+			<span class="em_title">받은메일함</span>
 				<br><br>
 				
 				<c:choose>
@@ -149,7 +137,7 @@
 		
 		                    <div class="submit_btn">
 		                        <input type="checkbox" id="checkall" value=""> 
-		                        <label class="update" for="checkall" style="box-">전체선택</label>
+		                        <label class="update" for="checkall">전체선택</label>
 		                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("important");'><i class="fa fa-star"></i> 중요</button></label>
 		                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("delete");'><i class="fa fa-trash"></i> 삭제</button></label>             
 		                    </div>
@@ -157,39 +145,42 @@
 		                        <tbody>
 									<c:forEach var="em" items="${ list }">
 			                            <tr>
-			                                <th width="2%" class="icon"><input type="checkbox" name="chk" value="15"></th>
-			                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>
+
+			                                <input type="hidden" id="email-address" value="${ loginUser.email }">
+			                                <input type="hidden" id="email-rec-no" value="${ em.emRecNo }">
+			                                <input type="hidden" id="email-read" value="${ em.emRead }">
+			                                
+			                                <th width="4%" class="icon"><input type="checkbox" name="chk" value="15"></th> <!-- th로 해야 체크 할때 메일 상세화면으로 이동안됨 -->
+			                                <td width="4%" class="icon"><i class="fa fa-box-open"></i></td>
 			                                <c:choose>
 			                                	<c:when test='${ em.emInp == "Y" }'>
-			                                		<td width="2%" class="icon"><i class="fa fa-star"></i></td>
+			                                		<td width="4%" class="icon"><i class="fa fa-star"></i></td>
 			                                	</c:when>
 			                                	<c:otherwise>
-			                                		<td width="2%" class="icon-none"><i class="fa fa-star"></i></td>
+			                                		<td width="4%" class="icon-none"><i class="fa fa-star"></i></td>
 			                                	</c:otherwise>
+			                                </c:choose>            
+			                                <c:choose>
+			                                	<c:when test='${ em.emRead == "Y" }'>
+			                                		<td width="4%" class="icon-none"><i class="fa fa-envelope-open"></i></td>
+			                                	</c:when>
+			                                	<c:otherwise>
+			                                		<td width="4%" class="icon"><i class="fa fa-envelope"></i></td>
+			                                	</c:otherwise>                      
 			                                </c:choose>
-			                                
-			                                
-			                                           
-			                                <input type="hidden" id="em_no" value="${ em.emNo }">
-			                                <td width="2%" class="icon-none"><i class="fa fa-envelope-open"></i></td>
-			                                <td width="15%">${ em.emTo }</td>
-			                                
-			                                
+			                                <td width="15%">${ em.emFrom }</td>
 			                                <c:choose>
 			                                	<c:when test="${ em.att gt 0 }">
-			                               			<td width="2%" class="icon"><i class="fa fa-download"></i></td>
+			                               			<td width="4%" class="icon"><i class="fa fa-download"></i></td>
 			                                	</c:when>
 			                                	<c:otherwise>
-			                                		<td width="2%" class="icon-none"><i class="fa fa-download"></i></td>
+			                                		<td width="4%" class="icon-none"><i class="fa fa-download"></i></td>
 			                                	</c:otherwise>
 			                                </c:choose>
-			                                
 			                                <td>${ em.emTitle }</td>
 			                                <td width="15%">${ em.emEnrollDate }</td>
 			                            </tr>
 
-			                            
-									
 									<!--<tr>
 			                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="20"></td>
 			                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
@@ -212,15 +203,15 @@
 				                <div class="paging">
 				                <div class="em_title" style="text-align:center;">${ pi.currentPage }page</div>
 				                	<c:if test="${ pi.currentPage ne 1 }">
-				                    	<a href="listFrom.em?currentPage=${ pi.currentPage - 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-left"></i></a>
+				                    	<a href="listTo.em?currentPage=${ pi.currentPage - 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-left"></i></a>
 				                    </c:if>
 				                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 				
-				                    	<a href="listFrom.em?currentPage=${ p }&email=${ loginUser.email }">${ p }</a>
+				                    	<a href="listTo.em?currentPage=${ p }&email=${ loginUser.email }">${ p }</a>
 				
 				                    </c:forEach>
 				                    <c:if test="${ pi.currentPage ne pi.maxPage }">
-				                    	<a href="listFrom.em?currentPage=${ pi.currentPage + 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-right"></i></a>
+				                    	<a href="listTo.em?currentPage=${ pi.currentPage + 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-right"></i></a>
 				                    </c:if>
 				                </div>
 		                	</c:when>
@@ -290,11 +281,10 @@
 	<script>
 		$(function(){
 			$("#emailListTable tbody tr td").click(function(){
-				location.href = "detailFrom.em?emNo=" + $(this).siblings("#em_no").val();
+				location.href = "detailTo.em?emTo=" + $(this).siblings("#email-address").val() + "&emRecNo=" + $(this).siblings("#email-rec-no").val() + "&emRead=" + $(this).siblings("#email-read").val();
 			})
 		})
 	</script>
-                      
 
 </body>
 </html>
