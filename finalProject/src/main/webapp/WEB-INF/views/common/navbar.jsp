@@ -20,67 +20,175 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 <!-- Semantic UI theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    box-sizing: border-box;
-}
 
-.navbar_Wrapper {
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lexend+Peta&family=Nanum+Pen+Script&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    
+    
+  <style>
+      
+ 
+      *
+        {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            
+        }
 
-}
+     /* IT Works 로고 */
+      .navBar{
+          width: 100%;
+          height: 80px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 2%;
+          border-bottom: 1px solid gray;
+          
+          background-color: white;
+          position:fixed;
+          z-index:300;
+          
+      }
+      
+      
+      .logoText{
+          color: rgb(54, 117, 177);
+          text-decoration: none;
+          font-family: 'Amiri', serif;
+          font-weight: 500;
+          font-size: 50px;
+        }
 
-.navbar_1200px {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 1200px;
-    height: 100%;
+        /* 카테고리 */
+        
+        .category{
+          font-size: 30px;
+          margin-right: auto;
+          margin-left: 30px;
+          position: relative;
+          
+          
+        }
+        
+        .category:hover{
+            cursor: pointer;
+        }
 
-}
+        /* 검색바 */
+      .searchBox{
+        height: 40px;
+        border-radius: 40px;
+        padding: 10px;
+        margin-right: 100px;
+        border: 2px solid darkgray;
+        
+      }
 
-.navbar_1200px div {
-    display: flex;
-    justify-content: center;
+      .searchBtn{
+        float: right;
+        
+        text-decoration: none;
+        color: rgb(58, 53, 53);
+      }
 
-}
+      .searchTxt{
+          border: none;
+          background: none;
+          outline: none;
+          float: left;
+          padding-left: 10px;
+          color: rgb(146, 143, 143);
+          font-size: 16px;
+          width: 250px;
+      }
 
-.emptyWrapper {
-    margin-left: 50px;
-}
+      /* 로그인 정보 */
 
-.emptyWrapper div {
-    display: flex;
-    align-items: center;
-}
+      .personalInfo{
+          margin-left: 20px;
+          text-decoration: none;
+          font-size: 25px;
+          display: inline;
+          
+          
 
-.MainLogo {
-    display: flex;
-    align-items: center;
-}
+          
+      }
+      .infoText {
+          text-decoration: none;
+          color: rgb(109, 100, 100);
+          
+      }
 
-.MainLogo>div a {
-    font-size: 3rem;
-    font-family: 'Amiri', serif;
-    text-decoration: none;
-    color: rgb(57, 146, 230);
+      #bell{
+          border: 2px solid rgb(109, 100, 100);
+          padding: 10px 7px;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          color: rgb(109, 100, 100);
+          text-align: center;
+        }
 
-}
+        .username{
+         vertical-align: middle;
+            
+        }
+        .icon{ display: table-cell;}
 
 
-.userInfoTable tr td {
-    padding-left: 10px;
-}
-</style>
+        /* 서브메뉴리스트 */
+
+        .submenuList{
+        width: 500px;
+        height: 260px;
+        border: 1px solid rgb(143, 138, 138);
+        background-color: white;
+        display:flex;
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: center;
+        position: fixed;
+        z-index: 1000;
+        margin-left: 280px;
+        margin-top:80px;
+        
+        
+        
+        
+        
+        
+        
+    }
+    .submenuList div{
+        width: 100px;
+        height: 100px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        border-radius: 50%;
+        background-color: rgb(68, 120, 199);
+        color: white;
+        border: none;
+        display: table;
+
+    }
+    
+    .submenuList div:hover{
+        
+        background-color: rgb(37, 90, 189);
+    }
+
+    .listCategory{display: table-cell;  vertical-align: middle; }
+
+    a{text-decoration: none;}
+
+  </style>
 </head>
 <body>
 
@@ -96,34 +204,79 @@
 
 
 
-	<nav class="navbar_Wrapper">
-        <div class="navbar_1200px">
-            <div class="emptyWrapper">
-            </div>
-            <div class=MainLogo>
-                <div><a href="">IT Works</a></div>
-            </div>
-            <!-- 드롭버튼 바꾸기 -->
-            <div class="infoBar">
-                <table class="userInfoTable">
-                    <tr>
-                    	<c:choose>
-	                    	<c:when test="${ !empty loginUser }">
-		                        <td><i class="material-icons" style="font-size:25px">person_outline</i></td>
-		                        <td>${ loginUser.memName } 님</td>
-		                        <td><i class="fa fa-angle-down" style="font-size:24px"></i></td>
-	                    	</c:when>
-	                    	<c:otherwise>
-	                    		<td></td>
-	                    		<td></td>
-	                    		<td></td>
-	                    	</c:otherwise>
-                    	</c:choose>
-                    </tr>
-                </table>
-            </div>
+<!-- 탑 네비바-->
+    <nav class="navBar">
+        <div class="navLogo">
+            <a href="main.me" class="logoText">IT Works</a>
+        </div>
+        <div class="category" >
+        
+      	 <% String url = request.getRequestURI(); %>
+        
+           <% if(url.contains("approval")){ %> 전자결재 <% } 
+           else if(url.contains("manage")) {%> 인사관리 <% } 
+           else if(url.contains("reservation")) {%> 회의실 예약 <% } 
+           else {%> 오피스 홈 <% } %>
+            
+            &nbsp;<i class="fas fa-sort-down">&nbsp;</i>
+        </div>
+        
+      	<% if(url.contains("approval")) { %>
+        <div class="searchBox">
+            <input class="searchTxt" type="text" name="" id="" placeholder="문서 검색" width="500px" height="50px">
+            <a class="searchBtn" href="#"><i class="fas fa-search "></i></a>
+        </div>
+        <%} else { %>  <% } %>
+        
+        <a href=""><span class="icon" id="bell"><i class="fas fa-bell"></i></span></a>
+        <div class="personalInfo">
+           <a href="" class="infoText"><span class="icon"><i class="fas fa-user-circle fa-2x"></i></span>&nbsp;<span class="icon" class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
         </div>
     </nav>
-    <hr style="border:1px solid#878787; height: 3px !important; display: block !important; width: 100% !important;"/>
+
+    <!-- 서브메뉴바 -->
+    <div class="submenuList" style="display: none;">
+        
+        <a href=""><div><p class="listCategory"><i class="far fa-envelope"></i><br> 메일</p></div></a>
+        <a href=""><div><p class="listCategory"><i class="far fa-calendar-alt"></i><br> 캘린더</p></div></a>
+        <a href=""><div><p class="listCategory"><i class="far fa-address-card"></i><br> 주소록</p></div></a>
+        <a href=""><div><p class="listCategory"><i class="far fa-list-alt"></i><br>게시판</p></div></a>
+    
+
+   
+
+        <a href="reservation.re?floor=3"><div><p class="listCategory"><i class="fas fa-business-time"></i><br>회의실 예약</p></div></a>
+        <a href="manageList.ma"><div><p class="listCategory"><i class="fas fa-users"></i><br>인사관리</p></div></a>
+        <a href=""><div><p class="listCategory"><i class="far fa-id-badge"></i><br>근태관리</p></div></a>
+        <a href="approval.me"><div><p class="listCategory"><i class="fas fa-file-signature"></i><br>전자결재</p></div></a>
+    
+    </div>
+
+
+
+
+    <script>
+
+        $(document).ready(function(){
+            $(".category").click(function(){
+                var submenu = $(".submenuList");
+                if(submenu.css("display") == 'none'){
+                    submenu.show();
+                }else{
+                    submenu.hide();
+                }
+                
+            });
+        });
+        
+      
+        
+        
+    
+      </script>
+      
+      
+      
+      
 </body>
 </html>

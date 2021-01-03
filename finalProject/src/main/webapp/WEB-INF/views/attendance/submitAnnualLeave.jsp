@@ -58,6 +58,7 @@
     width: 300px;
     height: 1000px;
     background-color: #e7e1e1;
+    margin-top: 80px;
 }
 
 .sidebar_menu{
@@ -96,7 +97,7 @@
 .profile .menu1{display: none;}
 
 /* 컨텐트 */
-.contentArea{width: 100%; height: 1000px;}
+.contentArea{width: 100%; height: 1000px;margin-top: 80px;}
 .contentArea h4{
     padding: 20px;
     font-weight: 700;

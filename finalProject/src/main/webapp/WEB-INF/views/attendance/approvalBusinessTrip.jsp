@@ -47,6 +47,7 @@
           width: 300px;
           height: 1200px;
           background-color: #e7e1e1;
+          margin-top: 80px;
       }
       
       .sidebar_menu{
@@ -82,7 +83,7 @@
 	  }  
         
       /* 컨텐트 */
-      .contentArea{width: 100%; height: 1200px;}
+      .contentArea{width: 100%; height: 1200px;margin-top: 80px;}
       .content1{
           width: 100%;
           height: 100%; 

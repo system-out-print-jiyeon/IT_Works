@@ -25,6 +25,7 @@
             width: 1200px;
             height: 600px;
             margin:auto;
+            margin-top: 80px;
         }   
         .content{
             padding: 50px;
@@ -52,7 +53,6 @@
 </head>
 <body>
 
-    <jsp:include page="../common/navbar.jsp"/>
     
     <div class="outer">
         <div class="content">

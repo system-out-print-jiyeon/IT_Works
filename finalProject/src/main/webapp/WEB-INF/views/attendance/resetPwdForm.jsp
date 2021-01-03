@@ -25,6 +25,7 @@
             width: 1200px;
             height: 600px;
             margin:auto;
+            margin-top: 80px;
         }   
         .content{
             padding: 50px;
@@ -67,7 +68,6 @@
 </head>
 <body>
 
-    <jsp:include page="../common/navbar.jsp"/>
     
     <div class="outer">
         <div class="content">
@@ -85,7 +85,7 @@
 	               <br>
 	               <input type="password" id="memPwdCheck" required minlength="8" maxlength="16" onfocusout="checkPwdCheck();">
                    <p id="checkPwdCheck">비밀번호를 다시 입력하세요</p>
-                   <br><br><br><br><br>
+                   <br><br><br>
                    <button class="btn btn-primary" id="submitbtn" type="submit" disabled>비밀번호 변경</button>
                 </form>
                     

@@ -64,7 +64,6 @@
 </head>
 <body>
 
-    <jsp:include page="../common/navbar.jsp"/>
     
     <div class="outer">
         <div class="content">

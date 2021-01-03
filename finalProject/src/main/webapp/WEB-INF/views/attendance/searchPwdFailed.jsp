@@ -30,6 +30,7 @@
             padding: 50px;
             width:80%;
             margin:auto;
+            margin-top: 80px;
         }
         .content p{
             font-size: 2rem;
@@ -52,7 +53,6 @@
 </head>
 <body>
 
-    <jsp:include page="../common/navbar.jsp"/>
     
     <div class="outer">
         <div class="content">

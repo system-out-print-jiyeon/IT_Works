@@ -50,6 +50,7 @@
     width: 300px;
     height: 1300px;
     background-color: #e7e1e1;
+    margin-top: 80px;
 }
 
 .sidebar_menu{
@@ -80,11 +81,11 @@
 
 
 /* 컨텐트 */
-.contentArea{width: 100%; height: 1200px;}
+.contentArea{width: 100%; height: 1200px;margin-top: 50px; padding: 40px;}
 .content1{
     width: 100%;
     float: left;
-    padding: 20px;
+    padding: 40px;
     }
 .content2{width: 100%; height: 850px; float: left;}
 .content1 div{float: left;}
@@ -184,7 +185,7 @@
             </script>
 
             <div class="contentArea">
-                <br><br><br>
+                <br>
                 <div class="nameBar"><h5>연차 승인</h5></div>
 
 				<br><br>
