@@ -274,7 +274,7 @@
 		    on ad.doc_no = aa.doc_no
 		 where doc_no = #{docNo}
 	</select>
-	<select id="selectOpinion" parameterType="_int" resultMap="">
+	<select id="selectOpinion" parameterType="_int" resultMap="opinionResultSet">
 		select
 		       mem_name
 		     , opi_content
