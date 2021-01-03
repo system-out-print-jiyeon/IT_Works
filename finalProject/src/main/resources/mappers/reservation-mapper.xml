@@ -157,7 +157,7 @@
 	</update>
 	
 	
-	<select id="selectListReservation" parameterType="_int" resultMap="Reservation">
+	<select id="selectListReservation" parameterType="_int" resultMap="reserveRset">
 		select
 			   *
 		  from reservation
