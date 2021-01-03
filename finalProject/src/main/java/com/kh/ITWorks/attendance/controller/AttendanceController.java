@@ -430,6 +430,12 @@ public class AttendanceController {
 
 
 	
+	@RequestMapping("workTime.at")
+	public ModelAndView workTimeView(ModelAndView mv) {
+		mv.setViewName("attendance/workTimeListView");
+		return mv;
+	}
+	
 
 
 	
