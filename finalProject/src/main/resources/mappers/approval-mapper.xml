@@ -48,7 +48,7 @@
 	
 	<resultMap type="ApprovalLine" id="approvalLineResultSet">
 		<result column="doc_no" property="docNo"/>
-		<result column="mem_no" property="memNo"/>
+		<result column="mem_name" property="memNo"/>
 		<result column="job_name" property="jobName"/>
 		<result column="approval_status" property="approvalStatus"/>
 		<result column="approval_order" property="approvalOrder"/>
@@ -56,7 +56,8 @@
 	
 	<resultMap type="Referer" id="refererResultSet">
 		<result column="doc_no" property="docNo"/>
-		<result column="mem_no" property="memNo"/>
+		<result column="mem_name" property="memNo"/>
+		<result column="dept_name" property="deptName"/>
 	</resultMap>
 	
 	<resultMap type="Opinion" id="opinionResultSet">
@@ -214,11 +215,14 @@
 		select
 		       doc_no
 		     , mem_name
+		     , dept_name
 		  from
 		       referer r
 		  join 
 		       employee e
 		    on e.mem_no = r.mem_no
+		  join department d
+		    on d.dept_code = e.dept_code
 		 where doc_no = #{docNo}
 	</select>
 	
@@ -260,6 +264,8 @@
 		       j.job_code = e.job_code
 		 where 
 		       doc_no = #{ docNo }
+		 order
+		    by approval_order
 	</select>
 	<select id="selectAttachment" parameterType="_int" resultMap="attachmentResultSet">
 		select
@@ -272,7 +278,7 @@
 		  join 
 		       approval_document ad
 		    on ad.doc_no = aa.doc_no
-		 where doc_no = #{docNo}
+		 where aa.doc_no = #{docNo}
 	</select>
 	<select id="selectOpinion" parameterType="_int" resultMap="opinionResultSet">
 		select

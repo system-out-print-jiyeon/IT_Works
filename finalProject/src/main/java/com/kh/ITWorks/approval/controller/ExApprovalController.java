@@ -31,6 +31,7 @@ public class ExApprovalController {
 		ArrayList<ApprovalLine> aList = aService.selectApprovalLine(docNo);		// 결재문서 결재선
 		ArrayList<Referer> rList = aService.selectReferer(docNo);				// 결재문서 참조자
 		ApprovalDocument ad = aService.selectApprovalDocument(docNo);			// 결재문서 문서정보
+		
 		ArrayList<Attachment> attList = aService.selectAttachment(docNo);		// 결재문서 첨부파일
 		ArrayList<Opinion> opList = aService.selectOpinion(docNo);				// 결재문서 의견
 		
@@ -38,6 +39,7 @@ public class ExApprovalController {
 			model.addAttribute("aList", aList);
 			model.addAttribute("rList", rList);
 			model.addAttribute("ad", ad);
+			
 			model.addAttribute("attList", attList);
 			model.addAttribute("opList", opList);
 			return "approval/approvalDetailView";

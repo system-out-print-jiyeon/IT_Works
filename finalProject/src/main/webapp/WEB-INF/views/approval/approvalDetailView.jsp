@@ -109,16 +109,16 @@
 				<h5>결재문서 정보</h5>
 				<table class="table table-bordered infoTable">
 					<tr>
-						<th>문서 종류</th>
+						<th width="175">문서 종류</th>
 						<td>${ ad.docForm }</td>
-						<th>작성자</th>
+						<th width="175">작성자</th>
 						<td>${ ad.memNo }</td>
 					</tr>
 					<tr>
-						<th>보존 연한</th>
-						<td>${ ad.docRetention }</td>
-						<th>보안 등급</th>
-						<td>${ ad.docGrade }</td>
+						<th width="175">보존 연한</th>
+						<td>${ ad.docRetention }년</td>
+						<th width="175">보안 등급</th>
+						<td>${ ad.docGrade }등급</td>
 					</tr>
 				</table>
 			</div>
@@ -133,30 +133,28 @@
 			<div class="approvalLine">
 				<table class="table table-bordered approvalTable">
 					<tr>
-						<th rowspan="3" colspan="" align="center">결재</th>
-						<th class="firstCell">대리</th>
-						<th class="firstCell"></th>
-						<th class="firstCell"></th>
-						<th class="firstCell"></th>
+						<th rowspan="3" align="center">결재</th>
+						<c:forEach var="aList" items="${ aList }">
+							<th class="firstCell">${ aList.jobName }</th>
+						</c:forEach>
 					</tr>
 					<tr>
-						<td class="secondCell" colspan="">
-							<button class="btn btn-secondary" data-toggle="modal"
-								data-target="#approvalModal" style="margin-top: 10px;">결재</button>
-						</td>
-						<td class="secondCell"></td>
-						<td class="secondCell"></td>
-						<td class="secondCell"></td>
+						<c:forEach var="aList" items="${ aList }">
+							<td class="secondCell">
+								<button class="btn btn-secondary" data-toggle="modal" data-target="#approvalModal" style="margin-top: 10px;">결재</button>
+							</td>
+						</c:forEach>
 					</tr>
 					<tr>
-						<td class="thirdCell" align="center">사원명</td>
-						<td class="thirdCell"></td>
-						<td class="thirdCell"></td>
-						<td class="thirdCell"></td>
+						<c:forEach var="aList" items="${ aList }">
+							<td class="thirdCell" align="center">${ aList.memNo }</td>
+						</c:forEach>
 					</tr>
 					<tr>
 						<th class="secondTitle">참조</th>
-						<td colspan="7"></td>
+						<c:forEach var="rList" items="${ rList }">
+							<td>${rList.deptName } &nbsp; ${ rList.memNo }</td>
+						</c:forEach>
 					</tr>
 				</table>
 			</div>
@@ -168,18 +166,21 @@
 			
 			<div class="titleBox">
                <h5>제목</h5> 
-            </div>
+	           <hr>
+            </div>            
                 
             <div class="inputTitle">
-                <h3>${ ad.docTitle }</h3>
+                <label style="margin-left: 35px">${ ad.docTitle }</label>
             </div>
+            
+            <br>
 
-			<div class="titleBox" style="display: flex; margin-left: 30px;">
+			<div class="titleBox">
 				<h5>문서내용</h5>
+				<hr>
 			</div>
 
-			<!-- 문서 내용 -->
-			<div>
+			<div style="margin-left: 35px">
 				${ ad.docContents }
 			</div>
 
@@ -191,30 +192,51 @@
 
 			<!-- 첨부파일 내용 -->
 			<div class="approvalAttachment" style="margin-left: 35px;">
-
 				<table class="table">
 					<thead scope="col">
 						<th width="100" style="text-align: center;">첨부파일</th>
-						<th><a href="">파일.pdf</a><br> <a href="">asdf</a></th>
+						<th>
+							<c:choose>
+								<c:when test="${ not empty attList }">
+									<c:forEach var="attList" items="${ attList }">
+										<a href="${ attList.attChangeName }" download="${ attList.attPath }">
+											${attList.attOriginName }
+										</a>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									첨부파일이 없습니다.
+								</c:otherwise>
+							</c:choose>
+						</th>
 					</thead>
 				</table>
 			</div>
 
 			<br>
 
-			<div class="titleBox" style="display: flex; margin-left: 30px;">
+			<div class="titleBox">
 				<h5>의견</h5>
+				<hr>
 			</div>
 
 			<!-- 의견 -->
 			<div class="opinion" style="margin-left: 30px; width: 800px;">
 				<div class="opinionList" style="margin-left: 10px;" align="center">
-					<table class="table table-sm table-borderless">
-						<th width="100">이름</th>
-						<th>입력날짜</th>
-						<tr>
-							<td colspan="2">댓글내용</td>
-						</tr>
+					<table class="table table-sm">
+						<c:choose>
+							<c:when test="${ not empty opList }">
+								<c:forEach var="opList" items="${ opList }"></c:forEach>
+								<th rowspan="2" width="100" align="center">${ opList.memNo }</th>
+								<th>${ opList.opiEnrollDate }</th>
+								<tr>
+									<td>${ opList.opiContent }</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								입력된 의견이 없습니다.
+							</c:otherwise>
+						</c:choose>
 					</table>
 					<hr>
 
@@ -223,14 +245,15 @@
 				<br>
 
 				<!-- 의견입력 -->
-				<div class="mb-3 opinionEnroll" style="margin-left: 10px;">
-					<label for="exampleFormControlTextarea1" class="form-label">의견
-						입력</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1"
-						rows="2"></textarea>
-					<br>
-					<button type="submit" class="btn btn-secondary">등록</button>
-				</div>
+				<form action="opinion.ap">
+					<div class="mb-3 opinionEnroll" style="margin-left: 10px;">
+						<label for="exampleFormControlTextarea1" class="form-label">의견입력</label>
+						<input type="hidden" value="" name="memNo">
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="opiContent"></textarea>
+						<br>
+						<button type="submit" class="btn btn-secondary">등록</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

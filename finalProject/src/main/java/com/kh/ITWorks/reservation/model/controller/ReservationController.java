@@ -3,6 +3,8 @@ package com.kh.ITWorks.reservation.model.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.common.template.Pagination;
+import com.kh.ITWorks.member.model.vo.Member;
 import com.kh.ITWorks.reservation.model.service.ReservationService;
 import com.kh.ITWorks.reservation.model.vo.Reservation;
 
@@ -33,12 +36,20 @@ public class ReservationController {
 	@RequestMapping("reservation.re")
 	public String selectReservationView(int floor, Model m) {
 		
-		ArrayList<Reservation> list = rs.selectFloorReservation(floor);
+		
 		
 		m.addAttribute("floor", String.valueOf(floor));
-		m.addAttribute("list", list);
+		
 		
 		return "reservation/reservationViewPage";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "ajaxselect.re", produces = "application/json; charset=utf-8")
+	public String selectReservationList(int floor, String date) {
+		
+		return new Gson().toJson(rs.selectFloorReservation(floor, date));
+		
 	}
 	
 	@ResponseBody
@@ -111,19 +122,26 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("myreservation.re")
-	public String myReservationView(int mno, 
-									@RequestParam(value="currentPage", defaultValue="1")
-									int currentPage, Model m) {
+	public String myReservationView(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model m, HttpSession ss) {
 		
-		int listcount = rs.selectListCount();
-		PageInfo pi = Pagination.getPageInfo(listcount, currentPage, 10, 5);
-		
+		int mno = ((Member)ss.getAttribute("loginUser")).getMemNo();
+
+		int listcount = rs.selectListCount(mno);
+		PageInfo pi = Pagination.getPageInfo(listcount, currentPage, 5, 2);
 		ArrayList<Reservation> list = rs.selectListReservation(pi, mno);
 		
 		m.addAttribute("list", list);
 		m.addAttribute("pi", pi);
 		
 		return "reservation/myReservationView";
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("delete.re")
+	public int deleteReservation(int rno) {
+		
+		return rs.deleteReservation(rno);
 		
 	}
 	

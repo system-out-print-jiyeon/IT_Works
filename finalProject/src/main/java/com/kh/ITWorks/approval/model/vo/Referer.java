@@ -19,4 +19,6 @@ public class Referer {
 	
 	private ArrayList<Referer> refererList;
 
+	private String deptName;
+	
 }

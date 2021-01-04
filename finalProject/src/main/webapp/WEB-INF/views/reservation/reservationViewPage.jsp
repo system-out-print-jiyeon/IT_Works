@@ -62,6 +62,7 @@
             const today = new Date(Date.now() - offset);
             document.getElementById("datePicker").value = today.toISOString().substring(0,10);
             document.getElementById("days").innerText = getdays(new Date(document.getElementById("datePicker").value).getDay());
+            ajaxMethod(today.toISOString().substring(0,10));
         }
         $(function(){
             getToday();
@@ -99,7 +100,6 @@
             				var pop = open("insertReservation.re?floor=${floor}","childForm",
                             "width=500, height=500, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
             			}
-            			
             		},error: function(){
             			console.log("ㅅㅍ");
             		}
@@ -141,6 +141,7 @@
             var str = value.getFullYear()+"-"+date.month+"-"+date.day;
             document.getElementById("datePicker").value = str;
             document.getElementById("days").innerText = getdays(new Date(document.getElementById("datePicker").value).getDay());
+            ajaxMethod(str);
         }
         function plusDate(){
             // 날짜 플러스
@@ -150,6 +151,7 @@
             var str = value.getFullYear()+"-"+date.month+"-"+date.day;
             document.getElementById("datePicker").value = str;
             document.getElementById("days").innerText = getdays(new Date(document.getElementById("datePicker").value).getDay());
+            ajaxMethod(str);
         }
     </script>
     
@@ -189,9 +191,15 @@
                 <tbody align="center">
 	                <c:forEach var="t" begin="9" end="18">
 	                    <tr>
-	                        <th>${t}:00</th>
-		                    <td>
-		                    </td>			<!-- 소회의실 1 -->
+	                    <c:choose>
+		                	<c:when test="${t == 9 }">
+								<th>09:00</th>
+		                	</c:when>
+		                	<c:otherwise>
+		                        <th>${t}:00</th>
+		                	</c:otherwise>
+	                    </c:choose>
+		                    <td></td>			<!-- 소회의실 1 -->
 	                        <td></td>			<!-- 소회의실 2 -->
 	                        <td></td>			<!-- 중회의실 -->
 	                        <td></td>			<!-- 대회의실 -->
@@ -205,6 +213,48 @@
     
     <script type="text/javascript">
     	
+    	function ajaxMethod(date){
+			// 행
+			var col = $("#tablewrap>table tbody>tr");
+			// 열
+			var row = $("#tablewrap>table tbody>tr>td");
+    		$.ajax({
+    			url:"ajaxselect.re",
+    			data:{floor: ${floor}, date: date},
+    			success:function(list){
+    				row.removeAttr("style");
+    				if(list != null){
+    					// 행개수
+						var index = $("#tablewrap>table tbody>tr").length;
+							for(var i in list){
+								for(var j=0; j<index; j++){
+									var timetable = $("#tablewrap>table tbody").children().eq(j).children().eq(0).text().substring(0,2);
+		    						//시간
+		    						var stime = list[i].startPeriod.substring(13,15);
+		    						var etime = list[i].endPeriod.substring(13,15);
+		    						// 날짜
+		    						var day = list[i].startPeriod.replaceAll('/', '-').substring(0,10);
+		    						// 방
+		    						var room = list[i].room;
+		    						for(var k=stime; k<etime; k++){
+			    						if(day == date && k == timetable){
+				    						switch(room){
+				    						case "소회의실 1": col.eq(j).children().eq(1).css("background","lightpink"); break;
+				    						case "소회의실 2": col.eq(j).children().eq(2).css("background","lightyellow"); break;
+				    						case "중회의실": col.eq(j).children().eq(3).css("background","lightblue"); break;
+				    						case "대회의실": col.eq(j).children().eq(4).css("background","lightgreen"); break;
+				    						case "중역회의실": col.eq(j).children().eq(5).css("background","lightgray"); break;
+				    						}
+			    						}
+		    						}
+								}
+	    					}
+    				}
+    			},error:function(){
+    					console.log("통신실패");
+    			}
+    		})
+    	}
     </script>
 </body>
 </html>
