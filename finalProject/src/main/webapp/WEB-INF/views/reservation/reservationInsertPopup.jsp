@@ -172,11 +172,11 @@
       			},
       			success:function(result){      				
       				if(result>0){
-	      				alert("회의실 예약 성공");
+	      				alert("회의실 예약이 완료되었습니다.");
+	      				window.close();
       				}else{
-      					alert("회의실 예약 실패");
+      					alert("회의실 예약 실패했습니다. 날짜와 시간을 확인해주세요.");
       				}
-      				window.close();
       			},error:function(){
       				alert("통신 실패");
       			}

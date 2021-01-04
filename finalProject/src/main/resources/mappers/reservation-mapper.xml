@@ -21,7 +21,7 @@
 		
 	</resultMap>
 	
-	<select id="selectFloorReservation" parameterType="_int"
+	<select id="selectFloorReservation" parameterType="Reservation"
 			resultMap="reserveRset">
 		select r.reserve_no,
 			   r.room,
@@ -41,7 +41,8 @@
 	     where r.mem_no = e.mem_no
 	       and d.dept_code = r.dept_code
 	       and r.status = 'Y'	
-	       and r.floor = #{floor}	   
+	       and r.floor = #{floor}
+	       and substr(r.start_period,0,10) = #{startPeriod}	   
 	</select>
 	
 	<select id="ajaxCheckReservation" parameterType="hashmap"
@@ -129,12 +130,17 @@
 	<select id="checkReservation" parameterType="Reservation" resultType="Reservation">
 		select 
 		       *
-	      from reservation
-	     where room = #{room}
-		   and substr(#{startPeriod},0,10) = substr(start_period,0,10)
-		   and to_number(substr(#{startPeriod},14,2)) between to_number(substr(start_period,14,2)) 
+	      from (
+	      		select 
+	      				* 
+	      		  from reservation 
+	      		 where substr(#{startPeriod},0,10) = substr(start_period,0,10)
+	      		   and room = #{room}
+	      	   )
+	     where to_number(substr(#{startPeriod},14,2)) between to_number(substr(start_period,14,2)) 
 		   	   and (to_number(substr(end_period,14,2))-1)
-		   and to_number(substr(#{startPeriod},14,2)) = to_number(substr(start_period,14,2))   
+		   	or to_number(substr(#{endPeriod},14,2)) = to_number(substr(end_period,14,2))
+		    or to_number(substr(#{startPeriod},14,2)) = to_number(substr(start_period,14,2))   
 		   and floor = #{floor}
 		   and status = 'Y'
 	   		<if test="reserveNo != null">
@@ -162,6 +168,24 @@
 			   *
 		  from reservation
 		 where mem_no = #{mno}
+		   and status = 'Y'
+		 order 
+		    by 1  
+	</select>
+	
+	<update id="deleteReservation" parameterType="_int">
+		update
+			   reservation
+		   set status = 'N'
+		 where reserve_no = #{rno}		   
+	</update>
+	
+	<select id="selectListCount" parameterType="_int" resultType="_int">
+		select
+		       count(reserve_no)
+		  from reservation
+		 where status = 'Y'
+		   and mem_no = #{mno}
 	</select>
 	
 </mapper>

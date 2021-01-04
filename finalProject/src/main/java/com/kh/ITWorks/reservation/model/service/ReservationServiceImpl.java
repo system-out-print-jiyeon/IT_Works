@@ -36,9 +36,8 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 
 	@Override
-	public int selectListCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int selectListCount(int mno) {
+		return rd.selectListCount(mno, sqlss);
 	}
 
 	@Override
@@ -48,13 +47,12 @@ public class ReservationServiceImpl implements ReservationService{
 
 	@Override
 	public int deleteReservation(int reserveNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return rd.deleteReservation(reserveNo, sqlss);
 	}
 
 	@Override
-	public ArrayList<Reservation> selectFloorReservation(int floor) {
-		return rd.selectFloorReservation(floor, sqlss);
+	public ArrayList<Reservation> selectFloorReservation(int floor, String date) {
+		return rd.selectFloorReservation(floor, date, sqlss);
 	}
 
 

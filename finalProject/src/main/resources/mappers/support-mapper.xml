@@ -13,6 +13,12 @@
 		<result column="mem_no" property="memNo"/>
 		<result column="create_date" property="createDate"/>
 		<result column="status" property="status"/>
+		
+		<association property="mem" javaType="Member">
+			<result property="deptName" column="deptName"/>
+			<result property="memName" column="mem_name"/>
+		</association>
+		
 	</resultMap>
 	
 	

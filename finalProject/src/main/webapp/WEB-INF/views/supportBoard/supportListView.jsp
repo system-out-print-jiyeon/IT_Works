@@ -40,6 +40,8 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../board/board_sidebar.jsp" />
+	
 	<div class="wrap">
         <h4>업무협업</h4>
         <div id="listwrap">

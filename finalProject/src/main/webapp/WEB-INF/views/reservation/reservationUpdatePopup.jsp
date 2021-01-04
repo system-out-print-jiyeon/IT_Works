@@ -174,13 +174,13 @@
     			},
     			success:function(result){      				
     				if(result>0){
-	      				alert("예약 변경 성공");
+	      				alert("예약 변경이 완료되었습니다.");
 	    				window.close();
     				}else{
-    					alert("예약 변경 실패");
+    					alert("예약 변경을 실패했습니다. 날짜와 시간을 확인해주세요. ");
     				}
     			},error:function(){
-    				alert("통신 실패");
+    				console.log("통신 실패");
     			}
     		})
     	}
