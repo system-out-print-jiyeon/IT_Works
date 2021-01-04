@@ -47,7 +47,7 @@
 .em_content_center{
     padding:20px;
 }
-.em_content_center tbody>tr{
+.em_content_center tbody>tr, .em_content_center th{
     font-size:17px;
     color:gray;
 }
@@ -109,9 +109,21 @@ input[type="submit"]:hover{
             <div class="em_content_center">
                 <form name="form_mail" method="post">
                     <div class="submit_btn">
-                        <span class="update"><button type="submit"  onclick='btn_click("reply");'>답장</button></span>
-                        <span class="update"><button type="submit"  onclick='btn_click("forward");'>전달</button></span>                            
-                        <span class="update"><button type="submit"  onclick='btn_click("important");'><i class="fa fa-star"></i>중요</button></span>
+                   	    <span class="update">
+                   	    	<button type="submit"  onclick='btn_click("important");'>
+	                            <c:choose>
+		                           	<c:when test='${ em.emInp == "Y" }'>
+		                            	<span class="icon"><i class="fa fa-star"></i></span>
+		                            </c:when>
+		                            <c:otherwise>
+		                            	<span class="icon-none"><i class="fa fa-star"></i></span>
+		                            </c:otherwise>
+	                            </c:choose>  
+                       		</button>
+                       	</span>
+                    	<br>
+                        <span class="update"><button type="submit"  onclick='btn_click("reply");'><i class="fa fa-reply"></i>답장</button></span>
+                        <span class="update"><button type="submit"  onclick='btn_click("forward");'><i class="fa fa-share-square"></i>전달</button></span>
                         <span class="update"><button type="submit"  onclick='btn_click("delete");'><i class="fa fa-trash"></i>삭제</button></span>  
                     </div>
                     <div class="enrolldate">
@@ -119,18 +131,19 @@ input[type="submit"]:hover{
                     </div>
                 </form>
                 <table class="table">
-                    <tr>
-                        <th width="150">보낸사람</th>
-                        <td><p>${ em.emFrom }</p></td>
-                    </tr>
-                    <tr>
-                    	<th>받은사람</th>
-                    	<td><p>${ em.emTo }</p></td>
-                    </tr>
-                    <tr>
-                        <th>제목</th>
-                        <td><p>${ em.emTitle }</p></td>
-                    </tr>
+                	<tbody>
+	                    <tr>
+	                        <th width="150">보낸사람</th>
+	                        <td><p>${ em.emFrom }</p></td>
+	                    </tr>
+	                    <tr>
+	                    	<th>받은사람</th>
+	                    	<td><p>${ em.emTo }</p></td>
+	                    </tr>
+	                    <tr>
+	                        <th>제목</th>
+	                        <td><p>${ em.emTitle }</p></td>
+	                    </tr>
                     	<c:if test="${!empty listAtt}">
 		                    <tr>
 		                        <th>첨부파일</th>
@@ -141,10 +154,13 @@ input[type="submit"]:hover{
 			                    </td>
 		                    </tr>
 		            	</c:if>
+                	</tbody>
+                	<tfoot>
                     <tr>
                         <th>내용</th>
                         <td><p style="width:100%;">${ em.emContent }</p></td>
                     </tr>
+                	</tfoot>
                 </table>
             </div>
         </div>
@@ -156,23 +172,23 @@ input[type="submit"]:hover{
         function btn_click(str){
             if(str=="reply"){   // 답장
 
-                form_mail.action="reply.ma"
+                form_mail.action="ToReply.em"
 
             } else if(str=="forward"){  // 전달
 
-                form_mail.action="forward.ma"
+                form_mail.action="ToForward.em"
 
             } else if(str=="important"){  // 중요메일 등록
 
                 alert("중요메일 등록이 완료되었습니다.");
 
-                form_mail.action="important.em";
+                form_mail.action="ToImportant.em";
 
             } else if(str=="delete"){   // 메일 삭제
 
                 alert("메일을 삭제하였습니다.");
                 
-                form_mail.action="delete.em";  
+                form_mail.action="ToDelete.em";
             }
         }  
 

@@ -19,6 +19,11 @@
 	color:gray;
 	font-size:30px;
 }
+.em_count{
+	font-size:15px;
+	color:rgb(93, 158, 255);
+	font-weight:700;
+}
 .em_content{
     width:100%;
     margin-left:300px;
@@ -110,6 +115,7 @@
         color:white;
     }
 }
+
 </style>
 </head>
 <body>
@@ -123,7 +129,7 @@
 
         <div class="em_content">
             <div class="em_content_center">
-			<span class="em_title">받은메일함</span>
+			<span class="em_title">받은메일함</span><span class="em_count">&nbsp;&nbsp;${ listCount }</span>
 				<br><br>
 				
 				<c:choose>

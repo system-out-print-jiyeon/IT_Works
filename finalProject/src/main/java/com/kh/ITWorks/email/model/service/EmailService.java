@@ -49,5 +49,11 @@ public interface EmailService {
 	// 3.받는사람
 	int insertEmailRecpient(EmailRecipient er);
 	
-	
+	// 보낸메일 상세 메뉴들 ***********************************************
+	// 중요메일 등록
+	int updateEmailFromInp(Email em);
+	// 중요메일 취소
+	int cancelEmailFromInp(Email em);
+	// 메일 전달하기
+	int emailInsertFromForward(Email em);
 }
