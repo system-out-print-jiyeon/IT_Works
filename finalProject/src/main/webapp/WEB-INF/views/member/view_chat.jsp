@@ -47,7 +47,9 @@
 	</script>
 </head>
 <body>
-	<div style="width: 800px; height: 700px; padding: 10px; border: solid 1px #e1e3e9;">
+	<jsp:include page="../common/approvalNavbar.jsp"/>
+	<br><br><br><br><br>
+	<div style="width: 800px; height: 500px; padding: 10px; border: solid 1px #e1e3e9;">
 		<div id="divChatData"></div>
 	</div>
 	<div style="width: 100%; height: 10%; padding: 10px;">

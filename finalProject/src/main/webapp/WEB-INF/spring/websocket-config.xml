@@ -7,6 +7,9 @@
 
 	<websocket:handlers allowed-origins="*" >
         <websocket:mapping handler="handlerChat" path="/chat" />
+        <websocket:handshake-interceptors>
+        	<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
         <websocket:sockjs websocket-enabled="true" />
     </websocket:handlers>
     
