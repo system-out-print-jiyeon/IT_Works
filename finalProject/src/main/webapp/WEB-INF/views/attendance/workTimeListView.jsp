@@ -110,6 +110,7 @@
 }
 .nameBar{
     padding: 20px;
+    padding-left:30px;
 }
 .nameBar h5{
     font-weight: 900;
@@ -131,6 +132,12 @@
 .paginationBar{
     align-items: center;
 }
+/*선택된메뉴*/
+.selectedTitle{
+    background-color: rgba(76, 135, 212, 0.616);
+    border-radius: 10px;
+}  
+
 </style>
 </head>
 <body>
@@ -149,7 +156,7 @@
                 <div class="sidebar_menu">
                     <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>근태 현황</a>
                         <ul class="menu1">
-                            <li><a href="#">출/퇴근 등록</a></li>
+                            <li class="selectedTitle"><a href="workTime.at">출/퇴근 등록</a></li>
                             <li><a href="#">나의 근무시간 조회</a></li>
                         </ul>
                     </li>
@@ -240,7 +247,7 @@
                 </div>
 
                 <div class="content2">
-                    <div class="nameBar"><h5>ooo 님의 출퇴근 기록</h5></div>
+                    <div class="nameBar"><h5> ${loginUser.memName } 님의 출퇴근 기록</h5></div>
 
                     <div class="workList">
                         <table id="workListTable" class="table">
