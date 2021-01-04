@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -67,6 +68,7 @@ public class EmailController {
 				li.setAtt(attCount);
 			}	
 		}
+		model.addAttribute("listCount", listCount);
 		model.addAttribute("pi", pi);
 		model.addAttribute("list", list);
 		return "email/emailFromListView";
@@ -120,9 +122,9 @@ public class EmailController {
 			}
 		}
 		
+		model.addAttribute("listCount", listCount);
 		model.addAttribute("pi", pi);
 		model.addAttribute("list", list);
-		
 		return "email/emailToListView";
 	}
 	
@@ -198,7 +200,7 @@ public class EmailController {
 				int resultRec = emService.insertEmailRecpient(emTo);	
 			}
 			
-			return null;
+			return "email/emailSuccessPage";
 			
 			
 		}else {
@@ -228,6 +230,115 @@ public class EmailController {
 		return changeName;
 	}
 	
+	// 보낸메일 상세 페이지 중요메일 등록
+	@ResponseBody
+	@RequestMapping(value="updateFromInp.em")
+	public String updateEmailFromInp(String emFrom, int emNo) {
+		Email em = new Email();
+		em.setEmFrom(emFrom);
+		em.setEmNo(emNo);
+
+		int result = emService.updateEmailFromInp(em);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
 	
+	// 보낸메일 상세 페이지 중요메일 취소
+	@ResponseBody
+	@RequestMapping(value="cancelFromInp.em")
+	public String cancelEmailFromInp(String emFrom, int emNo) {
+		Email em = new Email();
+		em.setEmFrom(emFrom);
+		em.setEmNo(emNo);
+		
+		int result = emService.cancelEmailFromInp(em);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	// 보낸메일 상세 페이지 전달
+	@RequestMapping("fromForward.em")
+	public String emailFromForward(String emFrom, int emNo, Model model) {
+
+		
+		EmailSelect em = new EmailSelect();
+		em.setEmFrom(emFrom);
+		em.setEmNo(emNo);
+		em = emService.selectEmailFromDetail(em);
+		if(em == null) {
+			model.addAttribute("errorMsg", "존재하지 않거나 삭제된 이메일입니다.");
+			return "common/errorPage";
+		}else {
+			
+			// 받은사람 이메일 조회
+			ArrayList<String> listRec = emService.selectEmailFromListRec(emNo);
+			String res = "";
+			for(String re : listRec) {
+				res += " &lt;&nbsp;" + re + "&nbsp;&gt ";
+			}
+			em.setEmTo(res);
+			
+			// 첨부파일 리스트 조회
+			ArrayList<EmailAttachSelect> listAtt = emService.selectEmailFromListAtt(emNo);
+			
+			model.addAttribute("em",em);
+			model.addAttribute("listAtt",listAtt);
+			return "email/emailFromForwardForm";
+		}
+		
+		
+	}
+	
+	@RequestMapping("insertFromForward.em")
+	public String emailInsertFromForward(Email em, EmailRecipient er, EmailAttach ea, Model model) {
+		
+		em.setEmTitle("FW:" + em.getEmTitle()); //FW 이메일 전달한다는 뜻 --> 제목앞에 붙여줌
+		// 메일 전달
+		int result = emService.emailInsertFromForward(em);
+		
+		// 메일 전달 성공시
+		if(result > 0) {
+			
+			// 받는사람 추가
+			ArrayList<EmailRecipient> erList = er.getEmToList();
+			for(EmailRecipient eml : erList) {
+				
+				eml.setEmNo(em.getEmNo());				
+				int resultRec = emService.insertEmailRecpient(eml);	
+			}
+			
+			System.out.println(ea);
+			
+			if(ea.getEmAttachList() != null) {
+				// 첨부파일 추가
+				ArrayList<EmailAttach> eaList = ea.getEmAttachList();
+				
+				for(EmailAttach eal : eaList) {
+					
+					if(!eal.getEmOriginName().equals("")) {
+						eal.setEmNo(em.getEmNo());
+						int resultAtt = emService.intertEmailAttach(eal);					
+					}else {
+						return "email/emailSuccessPage";
+					}
+				}		
+			}
+			
+			return "email/emailSuccessPage";
+			
+		}else { // 메일 전달 실패시
+			model.addAttribute("errorMsg", "이메일을 전달하지 못하였습니다. 다시 시도해 주세요.");
+			return "common/errorPage";
+		}
+
+	}
 	
 }

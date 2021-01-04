@@ -98,4 +98,20 @@ public class EmailServiceImpl implements EmailService {
 		return emDao.insertEmailRecpient(sqlSession, er);
 	}
 	
+	// 보낸 메일 상세 메뉴들 ***************************************************
+	// 중요메일 등록
+	@Override
+	public int updateEmailFromInp(Email em) {
+		return emDao.updateEmailFromInp(sqlSession, em);
+	}
+	// 중요메일 취소
+	@Override
+	public int cancelEmailFromInp(Email em) {
+		return emDao.cancelEmailFromInp(sqlSession, em);
+	}
+	// 메일 전달하기
+	@Override
+	public int emailInsertFromForward(Email em) {
+		return emDao.emailInsertFromForward(sqlSession, em);
+	}
 }

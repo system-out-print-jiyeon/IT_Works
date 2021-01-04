@@ -53,6 +53,11 @@ public interface ApprovalService {
 	ArrayList<Attachment> selectAttachment(int docNo);
 	ArrayList<Opinion> selectOpinion(int docNo);
 	
+	int approvalDecision(ApprovalLine al);
+	
+	int insertOpinion(Opinion o);
+	
 	// 6. 결재 승인
+	
 
 }

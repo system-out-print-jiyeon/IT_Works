@@ -63,6 +63,7 @@
 		   and e.em_status = 'Y'
 	</select>
 	
+	
 	<select id="selectEmailFromListAtt" parameterType="_int" resultMap="EmailAttachSelectResultSet">
 		select ea.em_att_no
 		     , ea.em_origin_name
@@ -141,12 +142,10 @@
 	</select>
 	
 	<insert id="insertEmail" parameterType="com.kh.ITWorks.email.model.vo.Email">
-		
 		<!-- 메일 보낼 때 시퀀스를 따로 지정해준 후 사용후 Email 객체의 emNo에 받아옴 -->
 		<selectKey resultType="int" keyProperty="emNo" order="BEFORE">
 			select seq_emno.nextval from dual
 		</selectKey>
-		
 		insert 
 		  into email
 		  (
@@ -195,6 +194,42 @@
 		    seq_emrno.nextval
 		  , #{emTo}
 		  , #{emNo}
+		  )
+	</insert>
+	
+	<update id="updateEmailFromInp" parameterType="com.kh.ITWorks.email.model.vo.Email">
+		update email
+		   set em_inp = 'Y'
+		 where em_no = #{emNo}
+		   and em_from = #{emFrom}
+	</update>
+	
+	<update id="cancelEmailFromInp" parameterType="com.kh.ITWorks.email.model.vo.Email">
+		update email
+		   set em_inp = 'N'
+		 where em_no = #{emNo}
+		   and em_from = #{emFrom}
+	</update>
+	
+	<insert id="emailInsertFromForward" parameterType="com.kh.ITWorks.email.model.vo.Email">
+		<!-- 메일 보낼 때 시퀀스를 따로 지정해준 후 사용후 Email 객체의 emNo에 받아옴 -->
+		<selectKey resultType="int" keyProperty="emNo" order="BEFORE">
+			select seq_emno.nextval from dual
+		</selectKey>
+		insert 
+		  into email
+		  (
+		    em_no
+		  , em_from
+		  , em_title
+		  , em_content
+		  )
+		values 
+		  (
+		    #{emNo}
+		  , #{emFrom}
+		  , #{emTitle}
+		  , #{emContent}
 		  )
 	</insert>
 	

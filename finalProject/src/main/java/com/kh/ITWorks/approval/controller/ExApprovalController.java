@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.kh.ITWorks.approval.model.service.ApprovalService;
 import com.kh.ITWorks.approval.model.vo.ApprovalDocument;
 import com.kh.ITWorks.approval.model.vo.ApprovalLine;
@@ -42,11 +44,38 @@ public class ExApprovalController {
 			
 			model.addAttribute("attList", attList);
 			model.addAttribute("opList", opList);
+			
+			return "approval/approvalDetailView";
+		} else {
+			model.addAttribute("errorMsg", "잘못된 접근 입니다.");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("decision.ap")
+	public String approvalDecision(ApprovalLine al, HttpSession session, Model model) {
+		
+		int result = aService.approvalDecision(al);
+		
+		if (result > 0) {
 			return "approval/approvalDetailView";
 		} else {
 			return "common/errorPage";
 		}
+	}
+	
+	@RequestMapping("opinion.ap")
+	public String insertOpinion(Opinion o, Model model) {
+		System.out.println(o.getDocNo());
+		System.out.println(o.getOpiContent());
+		int result = aService.insertOpinion(o);
 		
+		if (result > 0) {
+			return "redirect:detail.ap";
+		} else {
+			return "common/errorPage";
+		}
 	}
 	
 	@RequestMapping("insert.ap")
@@ -65,44 +94,10 @@ public class ExApprovalController {
 		int insertResult = docmentResult * apLineResult * refererResult;
 		
 		if (insertResult > 0) {	// 입력성공
-			
-			/*
-			 * if (ad.getDocForm() == 1) { // 지출결의서 int outgoingsResult1 =
-			 * aService.insertOutgoings(o); ArrayList<OutgoingsList> oList =
-			 * o.getOutgoingsList();
-			 * 
-			 * int outgoingsResult2 = aService.insertOutgoingsList(oList);
-			 * 
-			 * if (outgoingsResult1 * outgoingsResult2 > 0) {
-			 * 
-			 * } else {
-			 * 
-			 * } } else if (ad.getDocForm() == 2) { // 문서발급요청서 ArrayList<DocumentsRequest>
-			 * drList = dr.getDocreqList();
-			 * 
-			 * int docreqResult = aService.insertDocumentsRequest(drList);
-			 * 
-			 * if (docreqResult > 0) {
-			 * 
-			 * } else {
-			 * 
-			 * } } else if (ad.getDocForm() == 3) { // 프로젝트업무보고서
-			 * 
-			 * } else if (ad.getDocForm() == 4) { // 품의서
-			 * 
-			 * }
-			 */
-			
+						
 		} else {	// 입력실패
 						
 		}
-		
-	}
-	
-	// 결재문서상세
-	public void ApprovalDocumentDetail(ApprovalDocument ad, Attachment a, ApprovalLine al, Referer r, HttpSession session, Model model) {
-		
-		
 		
 	}
 

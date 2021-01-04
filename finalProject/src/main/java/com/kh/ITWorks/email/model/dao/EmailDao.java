@@ -38,6 +38,7 @@ public class EmailDao {
 		return sqlSession.selectOne("emailMapper.selectEmailFromDetail", em);
 	}
 	
+	
 	public ArrayList<EmailAttachSelect> selectEmailFromListAtt(SqlSessionTemplate sqlSession, int emNo){
 		return (ArrayList)sqlSession.selectList("emailMapper.selectEmailFromListAtt", emNo);
 	}
@@ -74,5 +75,17 @@ public class EmailDao {
 	
 	public int insertEmailRecpient(SqlSessionTemplate sqlSession, EmailRecipient er) {
 		return sqlSession.insert("emailMapper.insertEmailRecpient", er);
+	}
+	
+	public int updateEmailFromInp(SqlSessionTemplate sqlSession, Email em) {
+		return sqlSession.update("emailMapper.updateEmailFromInp", em);
+	}
+	
+	public int cancelEmailFromInp(SqlSessionTemplate sqlSession, Email em) {
+		return sqlSession.update("emailMapper.cancelEmailFromInp", em);
+	}
+	
+	public int emailInsertFromForward(SqlSessionTemplate sqlSession, Email em) {
+		return sqlSession.insert("emailMapper.emailInsertFromForward", em);
 	}
 }
