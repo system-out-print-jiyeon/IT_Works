@@ -129,5 +129,13 @@ public class ApprovalServiceImpl implements ApprovalService {
 	public ArrayList<Opinion> selectOpinion(int docNo) {
 		return aDao.selectOpinion(sqlSession, docNo);
 	}
+	@Override
+	public int insertOpinion(Opinion o) {
+		return aDao.insertOpinion(sqlSession, o);
+	}
+	@Override
+	public int approvalDecision(ApprovalLine al) {
+		return aDao.approvalDecision(sqlSession, al);
+	}
 
 }

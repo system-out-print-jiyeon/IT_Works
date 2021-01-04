@@ -110,7 +110,14 @@
 				<table class="table table-bordered infoTable">
 					<tr>
 						<th width="175">문서 종류</th>
-						<td>${ ad.docForm }</td>
+						<td>
+							<c:choose>
+								<c:when test="${ ad.docForm eq 1 }">지출결의서</c:when>
+								<c:when test="${ ad.docForm eq 2 }">문서발급요청서</c:when>
+								<c:when test="${ ad.docForm eq 3 }">프로젝트업무보고서</c:when>
+								<c:when test="${ ad.docForm eq 4 }">품의서</c:when>
+							</c:choose>
+						</td>
 						<th width="175">작성자</th>
 						<td>${ ad.memNo }</td>
 					</tr>
@@ -141,7 +148,24 @@
 					<tr>
 						<c:forEach var="aList" items="${ aList }">
 							<td class="secondCell">
-								<button class="btn btn-secondary" data-toggle="modal" data-target="#approvalModal" style="margin-top: 10px;">결재</button>
+								<c:choose>
+									<c:when test="${ empty aList.approvalStatus }">
+										<c:choose>
+											<c:when test="${ aList.memNo } ep ${ loginUser.memNo }">
+												<button class="btn btn-primary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal" style="margin-top: 10px;">결재</button>										
+											</c:when>
+											<c:otherwise>
+												<button class="btn btn-primary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal" style="margin-top: 10px;" disabled>결재</button>													
+											</c:otherwise>
+										</c:choose>
+									</c:when>
+									<c:when test="${ aList.approvalStatus eq 'Y' }">
+										<button class="btn btn-secondary" style="margin-top: 10px;" disabled>승인</button>
+									</c:when>
+									<c:otherwise>
+										<button class="btn btn-secondary" style="margin-top: 10px;" disabled>반려</button>
+									</c:otherwise>
+								</c:choose>
 							</td>
 						</c:forEach>
 					</tr>
@@ -223,15 +247,16 @@
 			<!-- 의견 -->
 			<div class="opinion" style="margin-left: 30px; width: 800px;">
 				<div class="opinionList" style="margin-left: 10px;" align="center">
-					<table class="table table-sm">
+					<table class="table table-sm" id="opinionArea">
 						<c:choose>
 							<c:when test="${ not empty opList }">
-								<c:forEach var="opList" items="${ opList }"></c:forEach>
-								<th rowspan="2" width="100" align="center">${ opList.memNo }</th>
-								<th>${ opList.opiEnrollDate }</th>
-								<tr>
-									<td>${ opList.opiContent }</td>
-								</tr>
+								<c:forEach var="opList" items="${ opList }">
+									<th rowspan="2" width="100" align="center">${ opList.memNo }</th>
+									<th>${ opList.opiEnrollDate }</th>
+									<tr>
+										<td>${ opList.opiContent }</td>
+									</tr>
+								</c:forEach>
 							</c:when>
 							<c:otherwise>
 								입력된 의견이 없습니다.
@@ -248,8 +273,8 @@
 				<form action="opinion.ap">
 					<div class="mb-3 opinionEnroll" style="margin-left: 10px;">
 						<label for="exampleFormControlTextarea1" class="form-label">의견입력</label>
-						<input type="hidden" value="" name="memNo">
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="opiContent"></textarea>
+						<input type="hidden" value="${ loginUser.memNo }" name="memNo">
+						<textarea class="form-control" id="opiContent" rows="2" name="opiContent"></textarea>
 						<br>
 						<button type="submit" class="btn btn-secondary">등록</button>
 					</div>
@@ -257,6 +282,7 @@
 			</div>
 		</div>
 	</div>
+	
 
 </body>
 </html>

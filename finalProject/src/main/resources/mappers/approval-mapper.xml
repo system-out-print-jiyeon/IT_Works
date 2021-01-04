@@ -65,7 +65,7 @@
 		<result column="doc_no" property="docNo"/>
 		<result column="mem_no" property="memNo"/>
 		<result column="opi_content" property="opiContent"/>
-		<result column="opi_enroll_date" property="opiEnrollDate"/>
+		<result column="opi_enrolle_date" property="opiEnrollDate"/>
 		<result column="opi_status" property="opiStatus"/>
 	</resultMap>
 
@@ -242,9 +242,9 @@
 		  join 
 		       employee e
 		    on e.mem_no = ad.mem_no
-		 where doc_no = #{docNo}
-		 
+		 where doc_no = #{docNo}	 
 	</select>
+	
 	<select id="selectApprovalLine" parameterType="_int" resultMap="approvalLineResultSet">
 		select
 		       doc_no
@@ -267,6 +267,7 @@
 		 order
 		    by approval_order
 	</select>
+	
 	<select id="selectAttachment" parameterType="_int" resultMap="attachmentResultSet">
 		select
 		       att_origin_name
@@ -280,11 +281,12 @@
 		    on ad.doc_no = aa.doc_no
 		 where aa.doc_no = #{docNo}
 	</select>
+	
 	<select id="selectOpinion" parameterType="_int" resultMap="opinionResultSet">
 		select
-		       mem_name
+		       mem_name "mem_no"
 		     , opi_content
-		     , opi_enrolle_date
+		     , to_char(opi_enrolle_date, 'yyyy-mm-dd') "opi_enrolle_date"
 		  from
 		       opinion o
 		  join 
@@ -292,7 +294,37 @@
 		    on e.mem_no = o.mem_no
 		 where doc_no = #{docNo}
 	</select>
+	
+	<insert id="insertOpinion" parameterType="Opinion">
+		insert
+		  into opinion
+		  (
+		       opi_no
+		     , doc_no
+		     , mem_no
+		     , opi_content
+		     , opi_status
+		  )
+		  values
+		  (
+		       seq_opno.nextval
+		     , #{docNo}
+		     , #{memNo}
+		     , #{opiContent}
+		     , 'Y'
+		  )
+	</insert>
+	
+	<update id="approvalDecision" parameterType="ApprovalLine">
+		update 
+		       approval_line
+		   set approval_status = #{approvalStatus}
+		 where doc_no = #{docNo}
+		   and mem_no = #{memNo}
+	</update>
 
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////// -->
 	<!-- 결재문서insert -->	
 	<insert id="insertApprovalDocument" parameterType="AppDoc">
 		insert

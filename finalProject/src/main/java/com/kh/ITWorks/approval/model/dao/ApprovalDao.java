@@ -97,5 +97,11 @@ public class ApprovalDao {
 	public ArrayList<Opinion> selectOpinion(SqlSessionTemplate sqlSession, int docNo) {
 		return (ArrayList) sqlSession.selectList("approvalMapper.selectOpinion", docNo);
 	}
+	public int insertOpinion(SqlSessionTemplate sqlSession, Opinion o) {
+		return sqlSession.insert("approvalMapper.insertOpinion", o);
+	}
+	public int approvalDecision(SqlSessionTemplate sqlSession, ApprovalLine al) {
+		return sqlSession.update("approvalMapper.approvalDecision", al);
+	}
 
 }
