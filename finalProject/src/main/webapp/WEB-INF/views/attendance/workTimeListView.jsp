@@ -6,6 +6,7 @@
 <%
 	Date nowTime = new Date();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 (E)");
+	SimpleDateFormat wt = new SimpleDateFormat("HH:mm:ss");
 %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +27,110 @@
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 
 <style>
+
+/*출퇴근버튼 css*/
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,900);
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  background: #444;
+}
+
+body {
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.container {
+  height: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+}
+
+.button-wrap {
+  position: relative;
+  text-align: center;
+  top: 50%;
+  margin-top: -2.5em;
+}
+@media (max-width: 40em) {
+  .button-wrap {
+    margin-top: -1.5em;
+  }
+}
+
+.button-label {
+  display: inline-block;
+  padding: 1em 2em;
+  margin: 0.5em;
+  cursor: pointer;
+  color: #292929;
+  border-radius: 0.25em;
+  background: #efefef;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.22);
+  transition: 0.3s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.button-label h1 {
+  font-size: 1em;
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+}
+.button-label:hover {
+  background: #d6d6d6;
+  color: #101010;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
+}
+.button-label:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0px -1px 0 rgba(0, 0, 0, 0.22);
+}
+@media (max-width: 40em) {
+  .button-label {
+    padding: 0em 1em 3px;
+    margin: 0.25em;
+  }
+}
+
+#yes-button, #no-button, .button-label{
+    width: 100px;
+    height: 40px;
+    padding: 0px;
+    text-align: center;
+}
+
+#yes-button:checked + .button-label {
+  background: #2ecc71;
+  color: #efefef;
+}
+#yes-button:checked + .button-label:hover {
+  background: #29b765;
+  color: #e2e2e2;
+}
+
+#no-button:checked + .button-label {
+  background: #d91e18;
+  color: #efefef;
+}
+#no-button:checked + .button-label:hover {
+  background: #c21b15;
+  color: #e2e2e2;
+}
+
+.hidden {
+  display: none;
+}
+
 /* *{
     border: 1px solid red;
 }  */
@@ -202,7 +307,7 @@
                     <table class="sysdateTable">
                         <tr>
                             <td>사용한 휴가개수 ${15-loginUser.annualLeave } 개 | 미사용 ${loginUser.annualLeave }개</td>
-                            <td><div class="btn btn-primary" class="sysdateBar"><%= sf.format(nowTime) %></div><br></td>
+                            <td><div class="btn btn-outline-primary" class="sysdateBar"><%= sf.format(nowTime) %></div><br></td>
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -213,36 +318,29 @@
 							</td>
                         </tr>
                         <tr>
-                            <td>
-                                <form action="">
-                                    <button id="button1" class="work-btn" type="button">출근</button>
-                                    &nbsp;&nbsp; &nbsp;&nbsp;
-                                    <button id="button2" class="work-btn" type="button">퇴근</button>
-                            </td>
-                            <td>
-                                    <select name="" id="">
+                        	<form action="">
+	                            <td>
+	                                <input class="hidden radio-label" id="yes-button" type="radio" name="onTime" value="<%= wt.format(nowTime) %>"/>
+	                                <label class="button-label" for="yes-button">
+	                                  <h1>출근</h1>
+	                                </label>
+	                                <input class="hidden radio-label" id="no-button" type="radio" name="onTime" value="<%= wt.format(nowTime) %>"/>
+	                                <label class="button-label" for="no-button">
+	                                  <h1>퇴근</h1>
+	                                </label>
+	                            </td>
+	                            <td>
+                                    <select name="onLocation" id="onLocation">
                                         <option value="서울지사">서울지사</option>
                                         <option value="경기지사">경기지사</option>
                                     </select>
                                     &nbsp;&nbsp;
                                     <button  class="btn btn-primary" class="submit-btn" type="submit">&nbsp; 입력 &nbsp;</button>
-                                </form>
-                            </td>
+                            	</td>
+                             </form>
                         </tr>
                     </table>
 
-					<script>
-                        var btn1 = document.getElementById("button1");
-                        var btn2 = document.getElementById("button2");
-                        btn1.onclick = function(){     
-                            this.style.backgroundColor = "dodgerblue";
-                            btn2.style.backgroundColor = "darkgray";
-                        };
-                        btn2.onclick = function(){     
-                            this.style.backgroundColor = "dodgerblue";
-                            btn1.style.backgroundColor = "darkgray";
-                        };
-                    </script>
 
                 </div>
 
