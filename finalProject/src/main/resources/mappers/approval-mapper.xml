@@ -35,6 +35,8 @@
 		<result column="doc_grade" property="docGrade"/>
 		<result column="doc_status" property="docStatus"/>
 		<result column="doc_form" property="docForm"/>
+		
+		<result column="approvalmem_no" property="approvalMemNo"/>
 	</resultMap>
 	
 	<resultMap type="Attachment" id="attachmentResultSet">
@@ -194,21 +196,49 @@
 	</select>
 
 	<!-- 결재문서select -->
-	<select id="selectListApprovalDocument" resultMap="approvalDocumentResultSet">
+	<select id="selectListCount" resultType="_int">
 		select
-		       doc_no
+		       count(*)
+		  from approval_document
+		 where doc_status = 'Y'
+	</select>
+	
+	<select id="selectApprovalList" resultMap="approvalDocumentResultSet" parameterType="_int">
+		WITH people 
+		  AS(
+		      SELECT
+		             doc_no
+		           , mem_no
+		           , null approval_status
+		           , null approval_order
+		           , 'referer' gubun
+		        FROM
+		             referer
+		       UNION
+		      SELECT
+		             doc_no
+		           , mem_no
+		           , approval_status
+		           , approval_order
+		           , 'approval' gubun
+		        FROM
+		             approval_line
+		)
+		SELECT
+		       ad.doc_no "doc_no"
+		     , ad.mem_no "mem_no"
+		     , p.mem_no  "approvalmem_no"
 		     , doc_title
-		     , mem_name
-		     , to_char(doc_enroll_date, 'yyyy-mm-dd') "doc_enroll_date"
+		     , doc_enroll_date
+		     , doc_status
 		     , doc_form
 		     , doc_approval_status
-		  from
-		       approval_document ad
-		  join
-		       employee e
-		    on e.mem_no = ad.mem_no
-		 where 
-		       doc_status = 'Y'		  
+		  FROM 
+		       people p
+		 INNER
+		  JOIN approval_document ad
+		    ON p.doc_no = ad.doc_no
+		 WHERE p.mem_no = #{memNo}
 	</select>
 	
 	<select id="selectReferer" parameterType="_int" resultMap="refererResultSet">

@@ -270,7 +270,7 @@
 				<br>
 
 				<!-- 의견입력 -->
-				<form action="opinion.ap">
+				<form action="opinion.ap" method="POST">
 					<div class="mb-3 opinionEnroll" style="margin-left: 10px;">
 						<label for="exampleFormControlTextarea1" class="form-label">의견입력</label>
 						<input type="hidden" value="${ loginUser.memNo }" name="memNo">

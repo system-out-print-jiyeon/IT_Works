@@ -10,7 +10,7 @@
 				<h5 class="modal-title" id="exampleModalLabel">결재</h5>
 			</div>
 			<div class="modal-body">
-				<form action="decision.ap">
+				<form action="decision.ap" method="POST">
 					<input type="hidden" value="${ loginUser.memNo }">
 					<div class="form-group">
 						<h6>결재여부</h6>

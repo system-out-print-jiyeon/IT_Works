@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
  <!DOCTYPE html>
 <html lang="en">
@@ -266,15 +267,30 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
             </div>
 
             <div class="content_3">
-                <p>문서 수 : 143</p>
+                <p>문서 수 : ${fn:length(alist)}</p>
             </div>
             <div class="w3-bar">
-                <a href="#" class="w3-button">&laquo;</a>
-                <a href="#" class="w3-button">1</a>
-                <a href="#" class="w3-button">2</a>
-                <a href="#" class="w3-button">3</a>
-                <a href="#" class="w3-button">4</a>
-                <a href="#" class="w3-button">&raquo;</a>
+            	<c:choose>
+            		<c:when test="${ pi.currentPage eq 1 }">
+		                <a href="#" class="w3-button disabled">&laquo;</a>
+            		</c:when>
+            		<c:otherwise>
+		                <a href="list.ap?currentPage=${ pi.currentPage - 1 }" class="w3-button">&laquo;</a>
+            		</c:otherwise>
+            	</c:choose>
+            	
+            	<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+	                <a href="list.ap?currentPage=${ p }" class="w3-button">${ p }</a>
+            	</c:forEach>
+            	
+            	<c:choose>
+            		<c:when test="${ pi.currentPage eq pi.maxPage }">
+		                <a href="#" class="w3-button" disabled>&raquo;</a>
+            		</c:when>
+            		<c:otherwise>
+		                <a href="list.ap?currentPage=${ pi.currentPage + 1 }" class="w3-button">&raquo;</a>
+            		</c:otherwise>
+            	</c:choose>
             </div>
 
         </div>
