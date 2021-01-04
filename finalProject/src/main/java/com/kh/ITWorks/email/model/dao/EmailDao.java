@@ -69,8 +69,8 @@ public class EmailDao {
 		return sqlSession.insert("emailMapper.insertEmail", em);
 	}
 	
-	public int intertEmailAttach(SqlSessionTemplate sqlSession, EmailAttach ea) {
-		return sqlSession.insert("emailMapper.intertEmailAttach", ea);
+	public int insertEmailAttach(SqlSessionTemplate sqlSession, EmailAttach ea) {
+		return sqlSession.insert("emailMapper.insertEmailAttach", ea);
 	}
 	
 	public int insertEmailRecpient(SqlSessionTemplate sqlSession, EmailRecipient er) {
@@ -85,7 +85,23 @@ public class EmailDao {
 		return sqlSession.update("emailMapper.cancelEmailFromInp", em);
 	}
 	
-	public int emailInsertFromForward(SqlSessionTemplate sqlSession, Email em) {
-		return sqlSession.insert("emailMapper.emailInsertFromForward", em);
+	public int insertEmailForward(SqlSessionTemplate sqlSession, Email em) {
+		return sqlSession.insert("emailMapper.insertEmailForward", em);
+	}
+	
+	public int deleteEmailFrom(SqlSessionTemplate sqlSession, Email em) {
+		return sqlSession.update("emailMapper.deleteEmailFrom", em);
+	}
+	
+	public int updateEmailToInp(SqlSessionTemplate sqlSession, EmailRecipient er) {
+		return sqlSession.update("emailMapper.updateEmailToInp", er);
+	}
+	
+	public int cancelEmailToInp(SqlSessionTemplate sqlSession, EmailRecipient er) {
+		return sqlSession.update("emailMapper.cancelEmailToInp", er);
+	}
+	
+	public int deleteEmailTo(SqlSessionTemplate sqlSession, EmailRecipient er) {
+		return sqlSession.update("emailMapper.deleteEmailTo", er);
 	}
 }

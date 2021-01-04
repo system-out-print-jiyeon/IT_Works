@@ -132,7 +132,7 @@ input[type="submit"]:hover{
         <div class="em_content">
 
             <div class="em_content_center">
-                <form action="insertFromForward.em" method="post">
+                <form action="insertForward.em" method="post">
                     <table class="table">
                         <tr>
                             <th width="150">보내는 사람</th>
@@ -142,7 +142,7 @@ input[type="submit"]:hover{
                             <th>받는 사람</th>
                             <td>
                                 <table id="addTable" class="table-sm table-borderless">
-                                    <tr height="0">
+                                    <tr>
                                         <td>
                                             <input type="email" name="emToList[0].emTo" required>
                                             <input class="add" type="button" onClick="add()" value="추가">
@@ -175,8 +175,8 @@ input[type="submit"]:hover{
                             		<b>From:</b> ${ em.emFrom }<br>
                             		<b>To:</b> ${ em.emTo }<br>
                             		<b>Sent:</b> ${ em.emEnrollDate }<br>
-                            		<b>Title:</b> ${ em.emTitle }<br>
-                            		<b>Subject:</b>
+                            		<b>Subject:</b> ${ em.emTitle }<br>
+                            		<b>Attachment:</b>
                             		<c:forEach var="att" items="${ listAtt }">
                             			&lt;
                             			${att.emOriginName}
@@ -192,7 +192,7 @@ input[type="submit"]:hover{
                         </tr>
                     </table>
                     <div align="center">
-                        <input type="submit" value="메일 보내기">
+                        <input type="submit" value="메일 전달하기">
                     </div>
                 </form>
             </div>
@@ -223,7 +223,8 @@ input[type="submit"]:hover{
         }
 
         function removeRow() {
-        oTbl.deleteRow(oTbl.clickedRowIndex);
+        	i--;
+        	oTbl.deleteRow(oTbl.clickedRowIndex);
         }
     </script>
 

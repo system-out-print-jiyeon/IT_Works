@@ -88,7 +88,16 @@ input[type="submit"]:hover{
         background:rgb(80, 150, 255); 
     }
 }
-
+.icon{
+    color:rgb(105, 164, 253); 
+    font-size:25px; 
+    font-weight:900;
+}
+.icon-none{
+    color:rgb(212, 211, 211);
+    font-size:25px; 
+    font-weight:900;
+}
 
 
 
@@ -107,25 +116,33 @@ input[type="submit"]:hover{
         <div class="em_content">
 
             <div class="em_content_center">
+            	<div id="emInp">
+		        	<c:choose>
+		            	<c:when test='${ em.emInp == "Y" }'>
+			  	    			<button type="submit"  onclick="cancelInp();">
+			            			<span class="icon"><i class="fa fa-star"></i></span>
+			      				</button>
+		            	</c:when>
+		            	<c:otherwise>
+			           			<button type="submit"  onclick="updateInp();">
+			            			<span class="icon-none"><i class="fa fa-star"></i></span>
+			            		</button>
+	             		</c:otherwise>
+		            </c:choose> 
+            	</div>
+            
+            	<br>
+            	<br>
                 <form name="form_mail" method="post">
+                   	<input type="hidden" name="emTo" value="${ em.emTo }">
+                   	<input type="hidden" name="emRecNo" value="${ em.emRecNo }">
                     <div class="submit_btn">
-                   	    <span class="update">
-                   	    	<button type="submit"  onclick='btn_click("important");'>
-	                            <c:choose>
-		                           	<c:when test='${ em.emInp == "Y" }'>
-		                            	<span class="icon"><i class="fa fa-star"></i></span>
-		                            </c:when>
-		                            <c:otherwise>
-		                            	<span class="icon-none"><i class="fa fa-star"></i></span>
-		                            </c:otherwise>
-	                            </c:choose>  
-                       		</button>
-                       	</span>
-                    	<br>
                         <span class="update"><button type="submit"  onclick='btn_click("reply");'><i class="fa fa-reply"></i>답장</button></span>
                         <span class="update"><button type="submit"  onclick='btn_click("forward");'><i class="fa fa-share-square"></i>전달</button></span>
                         <span class="update"><button type="submit"  onclick='btn_click("delete");'><i class="fa fa-trash"></i>삭제</button></span>  
                     </div>
+                    
+                    
                     <div class="enrolldate">
                     	<span>${ em.emEnrollDate }</span>
                     </div>
@@ -168,27 +185,79 @@ input[type="submit"]:hover{
 
     <!--스크립트-->
     <script>
+		function updateInp(){
+			$.ajax({
+				url:"updateToInp.em",
+				data:{
+					emTo:"${em.emTo}",
+					emRecNo:${em.emRecNo}
+				},success:function(result){
+					if(result == "success"){
+						var value = "<button type='submit'  onclick='cancelInp();'>" +
+	            						 "<span class='icon'>" +
+		            						 "<i class='fa fa-star'>" +
+		            						 "</i>" +
+	            						 "</span>" +
+	      							 "</button>";
+	      				$("#emInp").html(value);			 
+					}
+				},error:function(){
+					console.log("중요메일 ajax 통신 실패");
+				}
+			})
+		}
+	
+		function cancelInp(){
+			$.ajax({
+				url:"cancelToInp.em",
+				data:{
+					emTo:"${em.emTo}",
+					emRecNo:${em.emRecNo}
+				},success:function(result){
+					if(result == "success"){
+						var value = "<button type='submit'  onclick='updateInp();'>" +
+										"<span class='icon-none'>" +
+											"<i class='fa fa-star'>" +
+											"</i>" +
+									 	"</span>" +
+									 "</button>";
+						$("#emInp").html(value);
+					}
+				},error:function(){
+					console.log("중요메일 ajax 통신 실패")
+				}
+			})
+		}
+	
+	
+	
+	
+	
 
+	    function btn_click(str){
+			if(str=="forward"){  // 전달
+	
+	            form_mail.action="fromForward.em";
+	
+	        }  else if(str=="delete"){   // 메일 삭제
+	
+	            form_mail.action="fromDelete.em";  
+	        }
+	    }  
+	    
+    
         function btn_click(str){
             if(str=="reply"){   // 답장
 
-                form_mail.action="ToReply.em"
+                form_mail.action="reply.em"
 
             } else if(str=="forward"){  // 전달
 
-                form_mail.action="ToForward.em"
-
-            } else if(str=="important"){  // 중요메일 등록
-
-                alert("중요메일 등록이 완료되었습니다.");
-
-                form_mail.action="ToImportant.em";
+                form_mail.action="toForward.em"
 
             } else if(str=="delete"){   // 메일 삭제
-
-                alert("메일을 삭제하였습니다.");
                 
-                form_mail.action="ToDelete.em";
+                form_mail.action="deleteTo.em";
             }
         }  
 
