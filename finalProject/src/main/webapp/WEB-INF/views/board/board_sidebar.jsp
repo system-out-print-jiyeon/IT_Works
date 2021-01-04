@@ -42,6 +42,7 @@
 .profile .menu1{display: none;}
 </style>
 <body>
+	<jsp:include page="../common/approvalNavbar.jsp" />
       <div class="sidebar"><br>
             <div class="sidebar_menu">
                 <li class="profile" ><a class="btn" href="">자유게시판</a>

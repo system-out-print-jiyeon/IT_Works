@@ -21,8 +21,7 @@ public class SupportServiceImpl implements SupportService{
 
 	@Override
 	public int insertWorkSupport(WorkSupport ws) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sd.insertWorkSupport(ws, sqlss);
 	}
 
 	@Override
@@ -53,6 +52,11 @@ public class SupportServiceImpl implements SupportService{
 	public WorkSupport selectWorkSupport(int supportNo) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int insertSupportAttach(WorkSupport ws) {
+		return sd.insertSupportAttach(ws, sqlss);
 	}
 
 }

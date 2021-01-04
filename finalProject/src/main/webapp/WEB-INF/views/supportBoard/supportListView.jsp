@@ -30,8 +30,8 @@
     .search{width: 10%;}
     #box2{height:60%;}
     .tablewrap>table {margin-top: 15px; width: 100%;}
-    .tablewrap>table tbody>tr{text-align: center; font-size: 10px; height: 28px;}
-    .tablewrap>table th{height: 35px; font-size: 12px; font-weight: 700; background-color: rgb(240, 240, 240); text-align: center;}
+    .tablewrap>table tbody>tr{text-align: center; font-size: 11px; height: 28px;}
+    .tablewrap>table th{height: 35px; font-size: 13px; font-weight: 700; background-color: rgb(240, 240, 240); text-align: center;}
     .tablewrap>table tbody>tr:hover{cursor: pointer; background-color: rgb(240, 240, 240);}
     #box3{height:20%;}
     #box4{width: 50%; height: 12%; margin:auto;}
@@ -47,7 +47,7 @@
         <div id="listwrap">
             <div class="box">
                 <div class="insert">
-                    <button type="button" class="btn btn-info" onclick="">업무헙업 요청</button>
+                    <button type="button" class="btn btn-info" onclick="location.href='insertForm.sp'">업무헙업 요청</button>
                 </div>
                 <div class="select">
                     <select class="custom-select" name="category">

@@ -9,6 +9,7 @@ public interface SupportService {
 	
 //	1. 업무협업 작성
 	int insertWorkSupport(WorkSupport ws);
+	int insertSupportAttach(WorkSupport ws);
 //	2. 업무협업 수정
 	int updateWorkSupport(WorkSupport ws);
 //	3. 업무협업 삭제

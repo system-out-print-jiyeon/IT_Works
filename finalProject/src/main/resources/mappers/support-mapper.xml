@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="supportMapper">
+
 	<resultMap type="Support" id="supportRset">
 		<result column="support_no" property="supportNo"/>
 		<result column="category" property="category"/>
@@ -19,8 +20,70 @@
 			<result property="memName" column="mem_name"/>
 		</association>
 		
+		<association property="attach" javaType="BoardAttachment">
+			<result column="bo_att_no" property="attNo"/>
+			<result column="bo_origin_name" property="originName"/>
+			<result column="bo_change_name" property="changeName"/>
+			<result column="file_path" property="filePath"/>
+			<result column="bo_division" property="boDivision"/>
+			<result column="ref_bno" property="refBno"/>
+		</association>
+		
 	</resultMap>
 	
 	
+	<insert id="insertWorkSupport" parameterType="Support">
+		insert 
+		  into work_support
+		  	(
+		  		support_no,
+				category,
+				r_dept_code,
+				s_dept_code,
+				support_title,
+				support_content,
+				start_date,
+				end_date,
+				mem_no,
+				status,
+				create_date
+		  	)
+		values
+			(
+				seq_wsno.nextval,
+				#{category},
+				#{rdCode},
+				#{mem.deptCode},
+				#{supportTitle},
+				#{supportContent},
+				#{startDate},
+				#{endDate},
+				#{mem.memNo},
+				default,
+				default
+			) 	
+	</insert>
+	
+	<insert id="insertSupportAttach" parameterType="Support">
+		insert
+		  into board_attachment
+		    (
+		    	bo_att_no,
+				bo_origin_name,
+				bo_change_name,
+				file_path,
+				bo_division,
+				ref_bno
+		    )
+		values
+			(
+				seq_bano.nextval,
+				#{attach.originName},
+				#{attach.changeName},
+				#{attach.filePath},
+				'1',
+				seq_wsno.currval
+			)   
+	</insert>
 
 </mapper>
