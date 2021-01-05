@@ -199,18 +199,9 @@ img{ max-width:100%;}
           <div class="msg_history">
           
             <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p id="receivedMsg"></p>
-                  <span class="time_date"> 11:01 AM    |    June 9</span></div>
-              </div>
-            </div>
             
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p id="sentMsg"></p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
+        	<!-- 채팅 보여지는 칸 -->
+              
             </div>
             
           <div class="type_msg">
@@ -222,17 +213,63 @@ img{ max-width:100%;}
         </div>
       </div>
       
+      <input type="hidden" id="loginN" value="${ loginUser.memName }">
+      <input type="hidden" id="loginI" value="${ loginUser.memId }">
+      
 <script>
+	var name = $("input#loginN").val();
+	var id = $("input#loginI").val();
+	
+	var value = "";
+
    var socket = new SockJS("http://localhost:8888/ITWorks/chat");
   
    socket.onopen = function () {
        console.log('Info: connection opened.');
+       console.log('로그인한 사원명 : ' + name);
+       console.log('로그인한 사원 아이디명 : ' + id);
    };
  
    socket.onmessage = function (event) {
-      console.log(event.data+'\n');
-      $("#sentMsg").html(event.data+'\n');
-      $("input#message").html("");
+      console.log(event.data+'\n'); 
+      
+      var arr = event.data.split(" (");
+      
+      // 아이디/이름 나누기 테스트
+      console.log(arr[0]);
+      
+      // 로그인한 사원과 채팅이용자 일치하는지 테스트
+      if(id == arr[0]){
+    	  console.log('일치함');
+    	  // 일치 == (내가 메시지 보냄) 1번 div로 출력
+    	  value = "<div class='outgoing_msg'>" + 
+          				"<div class='sent_msg'>" +
+          					"<p>" + event.data + "</p>" + 
+          					"<span class='time_date'>" + "채팅한시간 넣기" + "</span>" + 
+          				"</div>" +
+      				"</div>";
+      				
+    	  $("div.incoming_msg").append(value);
+      				
+      }else{
+    	  console.log('불일치함');
+    	  // 불일치 == (다른사람 메시지 받아옴) 2번 div로 출력
+    	  value = 
+    		  "<div class='incoming_msg_img'>" +
+    		  	"<img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'>" + 
+    		  "</div>" +
+          	"<div class='received_msg'>" +
+          		"<div class='received_withd_msg'>" + 
+            		"<p>" + event.data + "</p>" +
+            		"<span class='time_date'>" + "채팅온 시간" + "</span>" + "</div>" +
+        	"</div>";
+        	
+    	  $("div.incoming_msg").append(value);
+      }
+      //$("div.messaging").append(value);
+      
+      //$(".sent_msg").html('<p>' + event.data + '</p>\n');
+      
    };
 
 
@@ -247,8 +284,9 @@ img{ max-width:100%;}
 
   $(function(){
    $('#btnSend').on('click', function(evt) {
-           evt.preventDefault();
+           //evt.preventDefault();
                 socket.send($('input#message').val());
+                $('.write_msg').html("");
        });
   });
    

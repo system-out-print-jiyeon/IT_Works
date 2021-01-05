@@ -31,14 +31,15 @@ public class HandlerChat extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception{
 		System.out.println("handleTextMessage : " + session + " : " + message);
+		String senderName = getName(session);
 		String senderId = getId(session);
 		for(WebSocketSession sess:sessions) {
-			sess.sendMessage(new TextMessage(senderId + " : " + message.getPayload()));
+			sess.sendMessage(new TextMessage(senderId + " (" + senderName + ") : " + message.getPayload()));
 		}
 		
 	}
 
-	private String getId(WebSocketSession session) {
+	private String getName(WebSocketSession session) {
 		Map<String, Object> httpSession = session.getAttributes();
 		Member loginUserr = (Member)httpSession.get("loginUser");
 		if(null == loginUserr) {
@@ -47,6 +48,17 @@ public class HandlerChat extends TextWebSocketHandler {
 			return loginUserr.getMemName();
 		}
 	}
+	
+	private String getId(WebSocketSession session) {
+		Map<String, Object> httpSession = session.getAttributes();
+		Member loginUserr = (Member)httpSession.get("loginUser");
+		if(null == loginUserr) {
+			return session.getId();
+		}else {
+			return loginUserr.getMemId();
+		}
+	}
+	
 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception{
