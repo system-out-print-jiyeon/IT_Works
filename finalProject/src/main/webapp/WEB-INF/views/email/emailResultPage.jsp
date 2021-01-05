@@ -12,11 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- 서머노트 (부트스트랩 필요) -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.js"></script>
-    <script src="https://github.com/summernote/summernote/tree/master/lang/summernote-ko-KR.js"></script>
-
     <!-- 아이콘 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -43,51 +38,10 @@
 }
 .em_content_center{
     margin-top:100px;
-}
-.em_content_center{
     padding:20px;
+    text-align:center;
 }
-.em_content_center tbody>tr, .em_content_center th{
-    font-size:17px;
-    color:gray;
-}
-.em_content_center .submit_btn{
-	float:left;
-}
-.em_content_center .enrolldate{
-    font-size:17px;
-    color:gray;
-	float:right;
-}
-.em_content_center button{
-    color:rgb(80, 150, 255);
-    font-size:20px;
-    text-decoration:none;
-    border:none;
-    background:none;
-    margin-right:20px;
-}
-input[type="submit"]{
-    font-size:20px;
-    width:150px;
-    height:50px;
-    border-radius:10px;
-    border:none;
-    background:rgb(133, 182, 255); 
-    color:white;
-}
-input[type="submit"]:hover{
-    cursor:pointer;
-    animation-name:key6;
-    animation-duration:0.5s;
-    animation-fill-mode:both;
-    animation-direction: alternate;
-}
-@keyframes key6{
-    to{
-        background:rgb(80, 150, 255); 
-    }
-}
+
 
 
 </style>
@@ -104,8 +58,29 @@ input[type="submit"]:hover{
         <div class="em_content">
 
             <div class="em_content_center">
-                
-                .....이메일 보내기 성공화면.....
+            	<br>
+               	<br>
+               	<br>
+                <c:choose>
+                	<c:when test="${ !empty send }">
+		                <img src="resources/emailImages/send.png" width="300" height="300">
+		                <hr>
+          				<b>${ send }</b>      		
+                	</c:when>
+                	<c:when test="${ !empty delete }">
+                		<img src="resources/emailImages/delete.png" width="300" height="300">
+		                <hr>
+          				<b>${ delete }</b>      		
+                	</c:when>
+                	<c:when test="${ !empty fail}">
+                		<img src="resources/emailImages/fail.png" width="300" height="300">
+		                <hr>
+          				<b>${ fail }</b>  
+                	</c:when>
+                	
+                	
+
+                </c:choose>
                
             </div>
         </div>

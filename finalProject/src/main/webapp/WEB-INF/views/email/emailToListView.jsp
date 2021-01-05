@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <!-- 아이콘 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -115,7 +116,9 @@
         color:white;
     }
 }
-
+.email-to-list{
+ 	background:linear-gradient( to right, rgb(241, 251, 253),rgb(255, 255, 255),rgb(255, 255, 255));
+}
 </style>
 </head>
 <body>
@@ -135,7 +138,7 @@
 				<c:choose>
 				
 					<c:when test="${empty list}">
-						<p style="text-align:center; font-size:20px; color:gray; font-weight:900; margin-top:50px;" >받은 메일이 존재하지 않습니다.</p>
+						<p style="text-align:center; font-size:20px; color:gray; font-weight:900; margin-top:50px;" >받은 이메일이 존재하지 않습니다.</p>
 					</c:when>
 					<c:otherwise>
 				
@@ -150,7 +153,7 @@
 		                    <table id="emailListTable" class="table">
 		                        <tbody>
 									<c:forEach var="em" items="${ list }">
-			                            <tr>
+			                            <tr class="email-to-list">
 
 			                                <input type="hidden" id="email-address" value="${ loginUser.email }">
 			                                <input type="hidden" id="email-rec-no" value="${ em.emRecNo }">
@@ -186,19 +189,6 @@
 			                                <td>${ em.emTitle }</td>
 			                                <td width="15%">${ em.emEnrollDate }</td>
 			                            </tr>
-
-									<!--<tr>
-			                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="20"></td>
-			                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-			                                <td width="2%" class="icon-none"><i class="fa fa-star"></i></td>
-			                                <td width="2%" class="icon-none"><i class="fa fa-envelope"></i></td>
-			                                <td width="15%">user01@naver.com</td>
-			                                <td width="2%" class="icon-none"><i class="fa fa-download"></i></td>
-			                                <td>안녕하세요 김길순입니다</td>
-			                                <td width="15%">2020-12-13</td>
-			                            </tr> -->
-			                            
-			                        	
 		                           </c:forEach>
 		
 		                        </tbody>

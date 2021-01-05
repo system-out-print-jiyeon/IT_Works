@@ -16,6 +16,16 @@ import com.kh.ITWorks.email.model.vo.EmailRecipient;
 @Repository
 public class EmailDao {
 	
+	public int selectEmailListCount(SqlSessionTemplate sqlSession, String email) {
+		return sqlSession.selectOne("emailMapper.selectEmailListCount", email );
+	}
+	
+	public ArrayList<EmailSelect> selectEmailList(SqlSessionTemplate sqlSession, PageInfo pi, String email){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("emailMapper.selectEmailList", email, rowBounds);
+	}
+	
 	public int selectEmailFromListCount(SqlSessionTemplate sqlSession, String email) {
 		return sqlSession.selectOne("emailMapper.selectEmailFromListCount", email);
 	}

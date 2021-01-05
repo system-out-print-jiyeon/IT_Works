@@ -27,6 +27,10 @@
     display: flex;
 }
 /*내용*/
+.em_title{
+	color:gray;
+	font-size:30px;
+}
 .em_content{
     width:100%;
     margin-left:300px;
@@ -109,6 +113,9 @@ input[type="submit"]:hover{
         <div class="em_content">
 
             <div class="em_content_center">
+            	<span class="em_title">보낸메일</span>
+				<br>
+				<br>
             	<div id="emInp">
 		        	<c:choose>
 		            	<c:when test='${ em.emInp == "Y" }'>

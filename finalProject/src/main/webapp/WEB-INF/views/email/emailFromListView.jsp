@@ -116,7 +116,9 @@
         color:white;
     }
 }
-
+.email-from-list{
+	background:linear-gradient( to right, rgb(253, 253, 241),rgb(255, 255, 255),rgb(255, 255, 255));
+}
 </style>
 </head>
 <body>
@@ -136,7 +138,7 @@
 				<c:choose>
 				
 					<c:when test="${empty list}">
-						<p style="text-align:center; font-size:20px; color:gray; font-weight:900; margin-top:50px;" >보낸 메일이 존재하지 않습니다.</p>
+						<p style="text-align:center; font-size:20px; color:gray; font-weight:900; margin-top:50px;" >보낸 이메일이 존재하지 않습니다.</p>
 					</c:when>
 					<c:otherwise>
 				
@@ -151,7 +153,7 @@
 		                    <table id="emailListTable" class="table">
 		                        <tbody>
 									<c:forEach var="em" items="${ list }">
-			                            <tr>
+			                            <tr class="email-from-list">
 			                            	<input type="hidden" id="email-address" value="${ loginUser.email }">
 			                                <input type="hidden" id="email-no" value="${ em.emNo }">
 			                                
@@ -178,19 +180,6 @@
 			                                <td>${ em.emTitle }</td>
 			                                <td width="15%">${ em.emEnrollDate }</td>
 			                            </tr>
-
-									<!--<tr>
-			                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="20"></td>
-			                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-			                                <td width="2%" class="icon-none"><i class="fa fa-star"></i></td>
-			                                <td width="2%" class="icon-none"><i class="fa fa-envelope"></i></td>
-			                                <td width="15%">user01@naver.com</td>
-			                                <td width="2%" class="icon-none"><i class="fa fa-download"></i></td>
-			                                <td>안녕하세요 김길순입니다</td>
-			                                <td width="15%">2020-12-13</td>
-			                            </tr> -->
-			                            
-			                        	
 		                           </c:forEach>
 		
 		                        </tbody>
@@ -268,7 +257,7 @@
 
                 alert("메일을 삭제하였습니다.");
                 
-                form_mail.action="delete.em";  
+                form_mail.action="deleteFromList.em";  
 
             }
         }  

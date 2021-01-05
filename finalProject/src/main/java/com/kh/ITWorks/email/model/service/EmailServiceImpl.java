@@ -23,6 +23,18 @@ public class EmailServiceImpl implements EmailService {
 	@Autowired
 	private EmailDao emDao;
 	
+	// 전체메일 리스트***************************************************
+	// 카운트 조회
+	@Override
+	public int selectEmailListCount(String email) {
+		return emDao.selectEmailListCount(sqlSession, email);
+	}
+	// 리스트 조회
+	@Override
+	public ArrayList<EmailSelect> selectEmailList(PageInfo pi, String email) {
+		return emDao.selectEmailList(sqlSession, pi, email);
+	}
+	
 	// 보낸메일 리스트***************************************************
 	// 카운트 조회
 	@Override

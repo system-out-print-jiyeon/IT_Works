@@ -35,7 +35,44 @@ public class EmailController {
 	private EmailService emService;
 	
 	@RequestMapping("list.em")
-	public String selectEmailList() {
+	public String selectEmailList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String email, Model model) {
+		
+		
+		int listCount = emService.selectEmailListCount(email);
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 20);
+		ArrayList<EmailSelect> list = emService.selectEmailList(pi, email);
+		
+		// 조회된 이메일이 있다면
+		if(!list.isEmpty()) {
+			
+			// for문을 통해 하나씩 조회
+			for(EmailSelect li : list) {
+				
+				// 만약에 보낸메일이라면 --> 따로 받은사람 메일 조회해야됨
+				if(li.getEmCheck().equals("emailFrom")) {
+					
+					// 조회
+					ArrayList<String> listRec = emService.selectEmailFromListRec(li.getEmNo());
+					
+					// 조회한 받은메일들을 담을 변수
+					String recs = "";
+					for(String rec : listRec) {
+						recs += rec+"<br>";
+					}
+					
+					// 받은메일을 set해줌
+					li.setEmTo(recs);
+				}
+				
+				int attCount = emService.emailAttCount(li.getEmNo());
+				li.setAtt(attCount);
+			}
+		}
+		
+		model.addAttribute("listCount", listCount);
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
 		return "email/emailListView";
 	}
 	
@@ -83,8 +120,8 @@ public class EmailController {
 		em.setEmNo(emNo);
 		em = emService.selectEmailFromDetail(em);
 		if(em == null) {
-			model.addAttribute("errorMsg", "존재하지 않거나 삭제된 이메일입니다.");
-			return "common/errorPage";
+			model.addAttribute("fail", "존재하지 않거나 삭제된 이메일입니다.");
+			return "email/emailResultPage";
 		}else {
 			
 			// 받은사람 이메일 조회
@@ -139,15 +176,15 @@ public class EmailController {
 		if(emRead.equals("N")) {
 			int result = emService.updateEmailRead(em);
 			if(!(result > 0)) {
-				model.addAttribute("errorMsg","존재하지 않거나 삭제된 이메일입니다.");
-				return "common.errorPage";
+				model.addAttribute("fail","존재하지 않거나 삭제된 이메일입니다.");
+				return "email/emailResultPage";
 			}
 		}
 		
 		em = emService.selectEmailToDetail(em);
 		if(em == null) {
-			model.addAttribute("errorMsg","존재하지 않거나 삭제된 이메일입니다.");
-			return "common.errorPage";
+			model.addAttribute("fail","존재하지 않거나 삭제된 이메일입니다.");
+			return "email/emailResultPage";
 		}else {
 			
 			ArrayList<EmailAttachSelect> listAtt = emService.selectEmailToListAtt(em);
@@ -168,11 +205,9 @@ public class EmailController {
 	@RequestMapping("insert.em")
 	public String insertEmail(Email em, EmailAttach ea, EmailRecipient er ,MultipartHttpServletRequest mtfRequest, HttpSession session, Model model) {
 		
-		
 		int result = emService.insertEmail(em);
 		
 		if(result > 0) {
-			
 			// 첨부파일 추가
 			List<MultipartFile> fileList = mtfRequest.getFiles("upfile");
 			
@@ -185,12 +220,8 @@ public class EmailController {
 					ea.setEmNo(em.getEmNo()); // insertEmail후 em객체에 담겨있는 emNo
 					
 					int resultAtt = emService.insertEmailAttach(ea);
-					
-					
-					
 				}
 			}
-
 			// 받은사람 추가
 			ArrayList<EmailRecipient> erList = er.getEmToList();
 			
@@ -199,13 +230,11 @@ public class EmailController {
 				
 				int resultRec = emService.insertEmailRecpient(emTo);	
 			}
-			
-			return "email/emailSuccessPage";
-			
-			
+			model.addAttribute("send","이메일을 성공적으로 전송하였습니다.");
+			return "email/emailResultPage";
 		}else {
-			model.addAttribute("errorMsg", "이메일을 보내지 못하였습니다. 다시 시도해 주세요.");
-			return "common/errorPage";
+			model.addAttribute("fail", "이메일을 전송하지 못하였습니다. 다시 시도해 주세요.");
+			return "email/emailResultPage";
 		}
 		
 	}
@@ -274,8 +303,8 @@ public class EmailController {
 		em.setEmNo(emNo);
 		em = emService.selectEmailFromDetail(em);
 		if(em == null) {
-			model.addAttribute("errorMsg", "존재하지 않거나 삭제된 이메일입니다.");
-			return "common/errorPage";
+			model.addAttribute("fail", "존재하지 않거나 삭제된 이메일입니다.");
+			return "email/emailResultPage";
 		}else {
 			
 			// 받은사람 이메일 조회
@@ -328,11 +357,12 @@ public class EmailController {
 				}		
 			}
 			
-			return "email/emailSuccessPage";
+			model.addAttribute("send","전달 이메일을 성공적으로 전송하였습니다.");
+			return "email/emailResultPage";
 			
 		}else { // 메일 전달 실패시
-			model.addAttribute("errorMsg", "이메일을 전달하지 못하였습니다. 다시 시도해 주세요.");
-			return "common/errorPage";
+			model.addAttribute("fail", "전달 이메일을 전송하지 못하였습니다. 다시 시도해 주세요.");
+			return "email/emailResultPage";
 		}
 
 	}
@@ -347,10 +377,11 @@ public class EmailController {
 		int result = emService.deleteEmailFrom(em);
 		
 		if(result > 0) {
-			return "email/emailSuccessPage";
+			model.addAttribute("delete", "보낸 이메일을 성공적으로 삭제하였습니다.");
+			return "email/emailResultPage";
 		}else {
-			model.addAttribute("errorMsg", "이메일을 삭제하는데 실패하였습니다. 다시 시도해 주세요.");
-			return "common/errorpage";
+			model.addAttribute("fail", "보낸 이메일을 삭제하지 못하였습니다. 다시 시도해 주세요.");
+			return "email/emailResultPage";
 		}
 	}
 	
@@ -402,8 +433,8 @@ public class EmailController {
 		em = emService.selectEmailToDetail(em);
 		
 		if(em == null) {
-			model.addAttribute("errorMsg","존재하지 않거나 삭제된 이메일입니다.");
-			return "common.errorPage";
+			model.addAttribute("fail","존재하지 않거나 삭제된 이메일입니다.");
+			return "email/emailResultPage";
 		}else {
 			
 			ArrayList<EmailAttachSelect> listAtt = emService.selectEmailToListAtt(em);
@@ -440,11 +471,12 @@ public class EmailController {
 			er.setEmNo(em.getEmNo());
 			int resultRec = emService.insertEmailRecpient(er);	
 			
-			return "email/emailSuccessPage";
+			model.addAttribute("send","답장 이메일을 성공적으로 전송하였습니다.");
+			return "email/emailResultPage";
 			
 		}else {
-			model.addAttribute("errorMsg", "이메일을 답장하지 못하였습니다. 다시 시도해 주세요.");
-			return "common/errorPage";
+			model.addAttribute("fail", "답장 이메일을 전송하지 못하였습니다. 다시 시도해 주세요.");
+			return "email/emailResultPage";
 		}
 	}
 	
@@ -459,8 +491,8 @@ public class EmailController {
 
 		em = emService.selectEmailToDetail(em);
 		if(em == null) {
-			model.addAttribute("errorMsg","존재하지 않거나 삭제된 이메일입니다.");
-			return "common.errorPage";
+			model.addAttribute("fail","존재하지 않거나 삭제된 이메일입니다.");
+			return "email/emailResultPage";
 		}else {
 			
 			ArrayList<EmailAttachSelect> listAtt = emService.selectEmailToListAtt(em);
@@ -483,10 +515,20 @@ public class EmailController {
 		int result = emService.deleteEmailTo(er);
 		
 		if(result > 0) {
-			return "email/emailSuccessPage";
+			model.addAttribute("delete", "받은 이메일을 성공적으로 삭제하였습니다.");
+			return "email/emailResultPage";
 		}else {
-			model.addAttribute("errorMsg", "이메일을 삭제하는데 실패하였습니다. 다시 시도해 주세요.");
-			return "common/errorpage";
+			model.addAttribute("fail", "받은 이메일을 삭제하지 못하였습니다. 다시 시도해 주세요.");
+			return "email/emailResultPage";
 		}
+	}
+	
+	@RequestMapping("deleteFromList.em")
+	public String DeleteEmailFromList(int emNo, String email) {
+		
+		System.out.println(emNo);
+		System.out.println(email);
+		
+		return null;
 	}
 }

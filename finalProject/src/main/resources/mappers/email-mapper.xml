@@ -14,6 +14,7 @@
 		
 		<result column="em_rec_no" property="emRecNo"/>
 		<result column="em_read" property="emRead"/>
+		<result column="em_check" property="emCheck"/>
 	</resultMap>
 	
 	<resultMap id="EmailAttachSelectResultSet" type="com.kh.ITWorks.email.model.dto.EmailAttachSelect">
@@ -22,6 +23,42 @@
 		<result column="em_change_name" property="emChangeName"/>
 	</resultMap>
 	
+	<!-- 카운트만 조회하기 때문에 두 select문  0으로 select 후 묶어서 count(*)로 조회 -->
+	<select id="selectEmailListCount" parameterType="string" resultType="_int">
+		select count(*) 
+		  from
+		  (
+		    select 0
+		      from email e
+		     where em_from = #{email}
+		       and e.em_status = 'Y'
+		    
+		    union all
+		    
+		    select 0
+		      from email e
+		      join email_recipient er using (em_no)
+		     where em_to = #{email}
+		       and er.em_status = 'Y'
+		   )
+	</select>
+	
+	<select id="selectEmailList" parameterType="string" resultMap="EmailSelectResultSet">
+		select 'emailTo' em_check, em_no, em_rec_no, e.em_from, er.em_to, e.em_title, e.em_content, e.em_enroll_date, er.em_read, er.em_inp, er.em_status
+		  from email e
+		  join email_recipient er using (em_no)
+		 where em_to = #{email}
+		   and er.em_status = 'Y'
+		
+		union all
+		
+		select 'emailFrom', em_no, null, e.em_from, null, e.em_title, e.em_content, e.em_enroll_date, null, e.em_inp, e.em_status
+		  from email e
+		 where em_from = #{email}
+		   and e.em_status = 'Y'
+		 order 
+		    by em_no desc
+	</select>
 
 	<select id="selectEmailFromListCount" parameterType="string" resultType="_int">
 		select count(*)

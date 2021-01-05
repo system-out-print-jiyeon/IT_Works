@@ -28,5 +28,9 @@ public class EmailSelect {
     
     // db에는 없는 속성
     private int att;				// 첨부파일이 존재하는지 알기 위한 변수 (count로 조회해서 1이상이면 첨부파일 존재)
+    
+    // 전체  메일 select시 보낸메일인지 받은메일인지 구분하기위한 변수
+    private String emCheck; 		// emailFrom은 보낸메일 / emailTo는 받은메일
+
 }
 

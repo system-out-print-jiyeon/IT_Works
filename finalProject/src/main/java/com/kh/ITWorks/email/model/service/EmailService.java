@@ -11,6 +11,12 @@ import com.kh.ITWorks.email.model.vo.EmailRecipient;
 
 public interface EmailService {
 	
+	// 전체메일 리스트***************************************************
+	// 카운트 조회
+	int selectEmailListCount(String email);
+	// 리스트 조회
+	ArrayList<EmailSelect> selectEmailList(PageInfo pi, String email);
+	
 	// 보낸메일 리스트***************************************************
 	// 메일카운트 조회
 	int selectEmailFromListCount(String email);

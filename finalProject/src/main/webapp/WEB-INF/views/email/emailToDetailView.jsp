@@ -12,11 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- 서머노트 (부트스트랩 필요) -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.js"></script>
-    <script src="https://github.com/summernote/summernote/tree/master/lang/summernote-ko-KR.js"></script>
-
     <!-- 아이콘 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -32,6 +27,10 @@
     display: flex;
 }
 /*내용*/
+.em_title{
+	color:gray;
+	font-size:30px;
+}
 .em_content{
     width:100%;
     margin-left:300px;
@@ -116,6 +115,9 @@ input[type="submit"]:hover{
         <div class="em_content">
 
             <div class="em_content_center">
+            	<span class="em_title">받은메일</span>
+				<br>
+				<br>
             	<div id="emInp">
 		        	<c:choose>
 		            	<c:when test='${ em.emInp == "Y" }'>
@@ -228,23 +230,6 @@ input[type="submit"]:hover{
 				}
 			})
 		}
-	
-	
-	
-	
-	
-
-	    function btn_click(str){
-			if(str=="forward"){  // 전달
-	
-	            form_mail.action="fromForward.em";
-	
-	        }  else if(str=="delete"){   // 메일 삭제
-	
-	            form_mail.action="fromDelete.em";  
-	        }
-	    }  
-	    
     
         function btn_click(str){
             if(str=="reply"){   // 답장
