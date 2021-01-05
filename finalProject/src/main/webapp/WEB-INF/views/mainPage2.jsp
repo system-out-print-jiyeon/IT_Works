@@ -84,8 +84,8 @@
 
         
         <div class="sidebar_menu">
-			<li class="profile" style="margin-left: -35px;"><a class="btn" href="list.em"><i class="fas fa-th"></i>&nbsp;&nbsp;메일</a>
-               
+			<li class="profile" style="margin-left: -35px;"><a class="btn" href="list.em?email=${loginUser.email}"><i class="fas fa-th"></i>&nbsp;&nbsp;메일</a>
+               	
             </li>
             <li class="profile" ><a class="btn">캘린더</a>
                 

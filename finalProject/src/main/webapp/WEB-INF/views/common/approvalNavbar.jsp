@@ -220,7 +220,7 @@
     <!-- 서브메뉴바 -->
     <div class="submenuList" style="display: none;">
         
-        <a href=""><div><p class="listCategory"><i class="far fa-envelope"></i><br> 메일</p></div></a>
+        <a href="list.em?email=${loginUser.email}"><div><p class="listCategory"><i class="far fa-envelope"></i><br> 메일</p></div></a>
         <a href=""><div><p class="listCategory"><i class="far fa-calendar-alt"></i><br> 캘린더</p></div></a>
         <a href=""><div><p class="listCategory"><i class="far fa-address-card"></i><br> 주소록</p></div></a>
         <a href="list.bo"><div><p class="listCategory"><i class="far fa-list-alt"></i><br>게시판</p></div></a>
