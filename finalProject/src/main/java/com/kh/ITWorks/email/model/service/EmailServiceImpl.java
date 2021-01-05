@@ -148,4 +148,29 @@ public class EmailServiceImpl implements EmailService {
 	public int deleteEmailTo(EmailRecipient er) {
 		return emDao.deleteEmailTo(sqlSession, er);
 	}
+	
+	// 중요메일 리스트 *******************************************************
+	// 카운트 조회
+	@Override
+	public int selectEmailInpListCount(String email) {
+		return emDao.selectEmailInpListCount(sqlSession, email);
+	}
+	// 리스트 조회
+	@Override
+	public ArrayList<EmailSelect> selectEmailInpList(PageInfo pi, String email){
+		return emDao.selectEmailInpList(sqlSession, pi, email);
+	}
+	
+	// 휴지통 리스트 ********************************************************
+	// 카운트 조회
+	@Override
+	public int selectEmailDeleteListCount(String email) {
+		return emDao.selectEmailDeleteListCount(sqlSession, email);
+	}
+	// 리스트 조회
+	@Override
+	public ArrayList<EmailSelect> selectEmailDeleteList(PageInfo pi, String email){
+		return emDao.selectEmailDeleteList(sqlSession, pi, email);
+	}
+	
 }

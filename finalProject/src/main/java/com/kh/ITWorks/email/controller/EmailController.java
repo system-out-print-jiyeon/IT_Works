@@ -40,7 +40,7 @@ public class EmailController {
 		
 		int listCount = emService.selectEmailListCount(email);
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 20);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 20); // pageLimit = 5 / boardLimit = 20
 		ArrayList<EmailSelect> list = emService.selectEmailList(pi, email);
 		
 		// 조회된 이메일이 있다면
@@ -403,7 +403,6 @@ public class EmailController {
 			return "fail";
 		}
 	}
-	
 	// 중요메일 취소
 	@ResponseBody
 	@RequestMapping(value="cancelToInp.em")
@@ -422,7 +421,6 @@ public class EmailController {
 		}
 
 	}
-	
 	// 답장 페이지
 	@RequestMapping("reply.em")
 	public String selectEmailReply(String emTo, int emRecNo, Model model) {
@@ -445,7 +443,6 @@ public class EmailController {
 		}
 		
 	}
-	
 	// 답장 하기
 	@RequestMapping("insertReply.em")
 	String insertEmailReply(Email em, EmailAttach ea, EmailRecipient er, MultipartHttpServletRequest mtfRequest, HttpSession session, Model model) {
@@ -479,7 +476,6 @@ public class EmailController {
 			return "email/emailResultPage";
 		}
 	}
-	
 	// 메일 전달 페이지(메일전달은 받은메일/보낸메일 통합 사용)
 	@RequestMapping("toForward.em")
 	public String emailToForward(String emTo, int emRecNo, Model model) {
@@ -502,9 +498,6 @@ public class EmailController {
 			return "email/emailForwardForm";
 		}
 	}
-	
-	
-	
 	// 메일 삭제
 	@RequestMapping("deleteTo.em")
 	public String deleteEmailTo(String emTo, int emRecNo, Model model) {
@@ -530,5 +523,66 @@ public class EmailController {
 		System.out.println(email);
 		
 		return null;
+	}
+	
+	@RequestMapping("listInp.em")
+	public String selectEmailInpList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String email, Model model ) {
+		
+		int listCount = emService.selectEmailInpListCount(email);
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 20);
+		ArrayList<EmailSelect> list = emService.selectEmailInpList(pi, email);
+		
+		if(!list.isEmpty()) {
+			
+			for(EmailSelect li : list) {
+				if(li.getEmCheck().equals("emailFrom")) {
+					ArrayList<String> listRec = emService.selectEmailFromListRec(li.getEmNo());
+					
+					String recs = "";
+					for(String rec : listRec) {
+						recs += rec+"<br>";
+					}
+					li.setEmTo(recs);
+				}	
+				int attCount = emService.emailAttCount(li.getEmNo());
+				li.setAtt(attCount);	
+			}
+		}
+		model.addAttribute("listCount", listCount);
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		return "email/emailInpListView";
+	}
+	
+	@RequestMapping("listDelete.em")
+	public String selectEmailDeleteList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String email, Model model) {
+		
+		int listCount = emService.selectEmailDeleteListCount(email);
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 20);
+		ArrayList<EmailSelect> list = emService.selectEmailDeleteList(pi, email);
+		
+		if(!list.isEmpty()) {
+			
+			for(EmailSelect li : list) {
+				
+				if(li.getEmCheck().equals("emailFrom")) {
+					ArrayList<String> listRec = emService.selectEmailFromListRec(li.getEmNo());
+					
+					String recs = "";
+					for(String rec : listRec) {
+						recs += rec+"<br>";
+					}
+					li.setEmTo(recs);
+				}
+				int attCount = emService.emailAttCount(li.getEmNo());
+				li.setAtt(attCount);	
+			}
+		}
+		model.addAttribute("listCount", listCount);
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		return "email/emailDeleteListView";
 	}
 }

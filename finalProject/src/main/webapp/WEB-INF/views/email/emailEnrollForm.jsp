@@ -26,6 +26,10 @@
     display: flex;
 }
 /*내용*/
+.em_title{
+	color:gray;
+	font-size:30px;
+}
 .em_content{
     width:100%;
     margin-left:300px;
@@ -131,42 +135,45 @@ input[type="submit"]:hover{
         <div class="em_content">
 
             <div class="em_content_center">
-                <form action="insert.em" method="post" enctype="multipart/form-data">
-                    <table class="table">
-                        <tr>
-                            <th width="150">보내는 사람</th>
-                            <td><input type="email" name="emFrom" id="emFrom" value="${ loginUser.email }" readonly></td>
-                        </tr>
-                        <tr>
-                            <th>받는 사람</th>
-                            <td>
-                                <table id="addTable" class="table-sm table-borderless">
-                                    <tr height="0">
-                                        <td>
-                                            <input type="email" name="emToList[0].emTo" required>
-                                            <input class="add" type="button" onClick="add()" value="추가">
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>제목</th>
-                            <td><input type="text" name="emTitle" style="width:100%; margin-left:5px;" required></td>
-                        </tr>
-                        <tr>
-                            <th>파일첨부<br><span class="text">(Shift/Ctrl 다중 선택)</span></th>
-                            <td><input multiple="multiple" type="file" name="upfile" style="margin-left:5px;"></td>
-                        </tr>
-                        <tr>
-                            <th>내용</th>
-                            <td><textarea id="summernote" name="emContent" style="margin-left:5px;"></textarea></td>
-                        </tr>
-                    </table>
-                    <div align="center">
-                        <input type="submit" value="메일 보내기">
-                    </div>
-                </form>
+            <span class="em_title">메일쓰기</span>
+            <br>
+            <br>
+            <form action="insert.em" method="post" enctype="multipart/form-data">
+                <table class="table">
+                    <tr>
+                        <th width="150">보내는 사람</th>
+                        <td><input type="email" name="emFrom" id="emFrom" value="${ loginUser.email }" readonly></td>
+                    </tr>
+                    <tr>
+                        <th>받는 사람</th>
+                        <td>
+                            <table id="addTable" class="table-sm table-borderless">
+                                <tr height="0">
+                                    <td>
+                                        <input type="email" name="emToList[0].emTo" required>
+                                        <input class="add" type="button" onClick="add()" value="추가">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>제목</th>
+                        <td><input type="text" name="emTitle" style="width:100%; margin-left:5px;" required></td>
+                    </tr>
+                    <tr>
+                        <th>파일첨부<br><span class="text">(Shift/Ctrl 다중 선택)</span></th>
+                        <td><input multiple="multiple" type="file" name="upfile" style="margin-left:5px;"></td>
+                    </tr>
+                    <tr>
+                        <th>내용</th>
+                        <td><textarea id="summernote" name="emContent" style="margin-left:5px;"></textarea></td>
+                    </tr>
+                </table>
+                <div align="center">
+                    <input type="submit" value="메일 보내기">
+                </div>
+            </form>
             </div>
         </div>
         

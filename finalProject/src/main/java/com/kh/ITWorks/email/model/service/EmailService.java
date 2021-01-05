@@ -72,4 +72,16 @@ public interface EmailService {
 	int cancelEmailToInp(EmailRecipient er);
 	// 메일 삭제
 	int deleteEmailTo(EmailRecipient er);
+	
+	// 중요메일 리스트 ***************************************************
+	// 카운트 조회
+	int selectEmailInpListCount(String email);
+	// 리스트 조회
+	ArrayList<EmailSelect> selectEmailInpList(PageInfo pi, String email);
+	
+	// 휴지통 리스트 ****************************************************
+	// 카운트 조회
+	int selectEmailDeleteListCount(String email);
+	// 리스트 조회
+	ArrayList<EmailSelect> selectEmailDeleteList(PageInfo pi, String email);
 }

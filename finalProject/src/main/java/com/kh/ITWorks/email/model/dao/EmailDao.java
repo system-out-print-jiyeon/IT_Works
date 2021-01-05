@@ -114,4 +114,25 @@ public class EmailDao {
 	public int deleteEmailTo(SqlSessionTemplate sqlSession, EmailRecipient er) {
 		return sqlSession.update("emailMapper.deleteEmailTo", er);
 	}
+	
+	public int selectEmailInpListCount(SqlSessionTemplate sqlSession, String email) {
+		return sqlSession.selectOne("emailMapper.selectEmailInpListCount", email);
+	}
+	
+	public ArrayList<EmailSelect> selectEmailInpList(SqlSessionTemplate sqlSession, PageInfo pi, String email){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("emailMapper.selectEmailInpList", email, rowBounds);
+	}
+	
+	public int selectEmailDeleteListCount(SqlSessionTemplate sqlSession, String email) {
+		return sqlSession.selectOne("emailMapper.selectEmailDeleteListCount", email);
+	}
+	
+	public ArrayList<EmailSelect> selectEmailDeleteList(SqlSessionTemplate sqlSession, PageInfo pi, String email){
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("emailMapper.selectEmailDeleteList", email, rowBounds);
+	}
 }

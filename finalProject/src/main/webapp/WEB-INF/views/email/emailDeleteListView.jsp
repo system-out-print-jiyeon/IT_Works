@@ -6,26 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 부트스트랩 -->
+	<!-- 부트스트랩 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <!-- 아이콘 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-*{ 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.em_wrap{
-    width: 100%; 
-    height: 100%;
-    display: flex;
-}
+
 /*내용*/
+.em_title{
+	color:gray;
+	font-size:30px;
+}
+.em_count{
+	font-size:15px;
+	color:rgb(93, 158, 255);
+	font-weight:700;
+}
 .em_content{
     width:100%;
     margin-left:300px;
@@ -117,145 +116,154 @@
         color:white;
     }
 }
-
+#current-page{
+        background:rgb(93, 158, 255); 
+        color:white;
+}
+.email-from-list{
+	background:linear-gradient( to right, rgb(253, 253, 241),rgb(255, 255, 255),rgb(255, 255, 255));
+}
+.email-to-list{
+ 	background:linear-gradient( to right, rgb(241, 251, 253),rgb(255, 255, 255),rgb(255, 255, 255));
+}
 </style>
 </head>
-<body>
 <body>
     <div class="em_navbar">
     	<!-- 상단바 include -->
 		<jsp:include page="../common/approvalNavbar.jsp"/>
     </div>
-    <div class="em_wrap">
+	<div class="em_wrap">
 
-	<jsp:include page="../common/sideBar_email.jsp"/>
+		<jsp:include page="../common/sideBar_email.jsp"/>
 
         <div class="em_content">
-
             <div class="em_content_center">
-
-                <form name="form_mail" method="post">
-
-                    <div class="submit_btn">
-                        <input type="checkbox" id="checkall"> 
-                        <label class="update" for="checkall">전체선택</label>
-                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("return");'><i class="fa fa-undo"></i>복구</button></span>
-                        <span class="update"><button type="submit" disabled="true" onclick='btn_click("delete");'><i class="fa fa-trash"></i>영구삭제</button></span>
-                    </div>
-                    <table class="table">
-                        <tbody>
-
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="15"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김개똥 입니다.</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="20"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon-none"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon-none"><i class="fa fa-envelope"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon-none"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길순입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="15"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김개똥 입니다.</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="20"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon-none"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon-none"><i class="fa fa-envelope"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon-none"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길순입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="15"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김개똥 입니다.</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="15"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김개똥 입니다.</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="20"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon-none"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon-none"><i class="fa fa-envelope"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon-none"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길순입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>
-                            <tr>
-                                <td width="2%" class="icon"><input type="checkbox" name="chk" value="30" class="enock"></td>
-                                <td width="2%" class="icon"><i class="fa fa-paper-plane"></i></td>              
-                                <td width="2%" class="icon"><i class="fa fa-star"></i></td>
-                                <td width="2%" class="icon"><i class="fa fa-envelope-open"></i></td>
-                                <td width="15%">user01@naver.com</td>
-                                <td width="2%" class="icon"><i class="fa fa-download"></i></td>
-                                <td>안녕하세요 김길동입니다</td>
-                                <td width="15%">2020-12-13</td>
-                            </tr>                            
-                    </table>
-                </form>
-                <div class="paging">
-                    <a href=""><i class="fa fa-angle-double-left"></i></a>
-                    <a href="">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <a href="">4</a>
-                    <a href="">5</a>
-                    <a href=""><i class="fa fa-angle-double-right"></i></a>
-                </div>
+			<span class="em_title">휴지통</span><span class="em_count">&nbsp;&nbsp;${ listCount }</span>
+				<br><br>
+				
+				<c:choose>
+				
+					<c:when test="${empty list}">
+						<p style="text-align:center; font-size:20px; color:gray; font-weight:900; margin-top:50px;" >휴지통에 보관중인 이메일이 존재하지 않습니다.</p>
+					</c:when>
+					<c:otherwise>
+				
+		                <form name="form_mail" method="post">
+		
+		                    <div class="submit_btn">
+		                        <input type="checkbox" id="checkall" value=""> 
+		                        <label class="update" for="checkall">전체선택</label>
+		                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("important");'><i class="fa fa-star"></i> 복구</button></label>
+		                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("delete");'><i class="fa fa-trash"></i> 영구삭제</button></label>             
+		                    </div>
+		                    <table id="emailListTable" class="table">
+		                        <tbody>
+									<c:forEach var="em" items="${ list }">
+										<c:choose>
+											<c:when test='${ em.emCheck eq "emailFrom" }'>
+											
+					                            <tr class="email-from-list">
+					                            	<input type="hidden" id="email-address" value="${ loginUser.email }">
+					                                <input type="hidden" id="email-no" value="${ em.emNo }">
+					                                
+					                                <th width="4%" class="icon"><input type="checkbox" name="chk" value="15"></th> <!-- th로 해야 체크 할때 메일 상세화면으로 이동안됨 -->
+					                                <td width="4%" class="icon"><i class="fa fa-paper-plane"></i></td>
+					                                <c:choose>
+					                                	<c:when test='${ em.emInp == "Y" }'>
+					                                		<td width="4%" class="icon"><i class="fa fa-star"></i></td>
+					                                	</c:when>
+					                                	<c:otherwise>
+					                                		<td width="4%" class="icon-none"><i class="fa fa-star"></i></td>
+					                                	</c:otherwise>
+					                                </c:choose>          
+					                                <td width="4%" class="icon-none"><i class="fa fa-envelope-open"></i></td>
+					                                <td width="15%">${ em.emTo }</td>
+					                                <c:choose>
+					                                	<c:when test="${ em.att gt 0 }">
+					                               			<td width="4%" class="icon"><i class="fa fa-download"></i></td>
+					                                	</c:when>
+					                                	<c:otherwise>
+					                                		<td width="4%" class="icon-none"><i class="fa fa-download"></i></td>
+					                                	</c:otherwise>
+					                                </c:choose>
+					                                <td>${ em.emTitle }</td>
+					                                <td width="15%">${ em.emEnrollDate }</td>
+					                            </tr>
+											
+											</c:when>
+											
+											<c:when test='${ em.emCheck eq "emailTo" }'>
+												 <tr class="email-to-list">
+					                                <input type="hidden" id="email-address" value="${ loginUser.email }">
+					                                <input type="hidden" id="email-rec-no" value="${ em.emRecNo }">
+					                                <input type="hidden" id="email-read" value="${ em.emRead }">
+					                                
+					                                <th width="4%" class="icon"><input type="checkbox" name="chk" value="15"></th> <!-- th로 해야 체크 할때 메일 상세화면으로 이동안됨 -->
+					                                <td width="4%" class="icon"><i class="fa fa-box-open"></i></td>
+					                                <c:choose>
+					                                	<c:when test='${ em.emInp == "Y" }'>
+					                                		<td width="4%" class="icon"><i class="fa fa-star"></i></td>
+					                                	</c:when>
+					                                	<c:otherwise>
+					                                		<td width="4%" class="icon-none"><i class="fa fa-star"></i></td>
+					                                	</c:otherwise>
+					                                </c:choose>            
+					                                <c:choose>
+					                                	<c:when test='${ em.emRead == "Y" }'>
+					                                		<td width="4%" class="icon-none"><i class="fa fa-envelope-open"></i></td>
+					                                	</c:when>
+					                                	<c:otherwise>
+					                                		<td width="4%" class="icon"><i class="fa fa-envelope"></i></td>
+					                                	</c:otherwise>                      
+					                                </c:choose>
+					                                <td width="15%">${ em.emFrom }</td>
+					                                <c:choose>
+					                                	<c:when test="${ em.att gt 0 }">
+					                               			<td width="4%" class="icon"><i class="fa fa-download"></i></td>
+					                                	</c:when>
+					                                	<c:otherwise>
+					                                		<td width="4%" class="icon-none"><i class="fa fa-download"></i></td>
+					                                	</c:otherwise>
+					                                </c:choose>
+					                                <td>${ em.emTitle }</td>
+					                                <td width="15%">${ em.emEnrollDate }</td>
+					                            </tr>
+											</c:when>
+										
+										</c:choose>
+									
+			                            
+		                           </c:forEach>
+		
+		                        </tbody>
+		                    </table>
+		                </form>
+	                	<c:choose>
+		                	<c:when test="${ empty condition }">
+				                <div class="paging">
+				                <hr>
+				                	<c:if test="${ pi.currentPage ne 1 }">
+				                    	<a href="listDelete.em?currentPage=${ pi.currentPage - 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-left"></i></a>
+				                    </c:if>
+				                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+										<c:choose>
+					                    	<c:when test='${ pi.currentPage == p }'>
+					                    		<a id="current-page">${ p }</a>
+					                    	</c:when>
+					                    	<c:otherwise>
+					                    		<a href="listDelete.em?currentPage=${ p }&email=${ loginUser.email }">${ p }</a>
+					                    	</c:otherwise>
+										</c:choose>
+				                    </c:forEach>
+				                    <c:if test="${ pi.currentPage ne pi.maxPage }">
+				                    	<a href="listDelete.em?currentPage=${ pi.currentPage + 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-right"></i></a>
+				                    </c:if>
+				                </div>
+		                	</c:when>
+	                	</c:choose>
+                	</c:otherwise>
+				</c:choose>
             </div>
         </div>
     </div>
@@ -295,27 +303,42 @@
     });
     </script>
 
-    <!-- 복구/영구삭제 클릭시 action -->
+    <!-- 중요/삭제 클릭시 action -->
     <script>
-
         function btn_click(str){                             
-            if(str=="return"){  // 복구
+            if(str=="important"){  // 중요메일 등록
 
-                alert("메일을 복구하였습니다.");
+                alert("중요메일 등록이 완료되었습니다.");
 
-                form_mail.action="return.em";   
+                form_mail.action="important.em";
 
-            } else if(str=="delete"){   // 영구삭제
+            } else if(str=="delete"){   // 메일 삭제
 
-                var result = confirm("정말로 삭제하시겠습니까? (영구삭제시 이메일을 복구할수 없습니다.)");
-                    
-                if(result == true){
-                        form_mail.action="delete.em";  
-                }else{
-                    // 영구삭제 취소
-                }
+                alert("메일을 삭제하였습니다.");
+                
+                form_mail.action="deleteFromList.em";  
+
             }
         }  
     </script>
+    
+    
+	<!-- 보낸메일 상세페이지 가기 -->
+	<script>
+		$(function(){
+			$("#emailListTable tbody .email-from-list td").click(function(){
+				location.href = "detailFrom.em?emFrom=" + $(this).siblings("#email-address").val() + "&emNo=" + $(this).siblings("#email-no").val();
+			})
+		})
+	</script>
+	
+	<!-- 받은메일 상세페이지 가기 -->
+	<script>
+		$(function(){
+			$("#emailListTable tbody .email-to-list td").click(function(){
+				location.href = "detailTo.em?emTo=" + $(this).siblings("#email-address").val() + "&emRecNo=" + $(this).siblings("#email-rec-no").val() + "&emRead=" + $(this).siblings("#email-read").val();
+			})
+		})
+	</script>
 </body>
 </html>

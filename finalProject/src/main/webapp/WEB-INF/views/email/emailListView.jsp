@@ -116,6 +116,10 @@
         color:white;
     }
 }
+#current-page{
+        background:rgb(93, 158, 255); 
+        color:white;
+}
 .email-from-list{
 	background:linear-gradient( to right, rgb(253, 253, 241),rgb(255, 255, 255),rgb(255, 255, 255));
 }
@@ -238,14 +242,19 @@
 	                	<c:choose>
 		                	<c:when test="${ empty condition }">
 				                <div class="paging">
-				                <div class="em_title" style="text-align:center;">${ pi.currentPage }page</div>
+				                <hr>
 				                	<c:if test="${ pi.currentPage ne 1 }">
 				                    	<a href="list.em?currentPage=${ pi.currentPage - 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-left"></i></a>
 				                    </c:if>
 				                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-				
-				                    	<a href="list.em?currentPage=${ p }&email=${ loginUser.email }">${ p }</a>
-				
+										<c:choose>
+					                    	<c:when test='${ pi.currentPage == p }'>
+					                    		<a id="current-page">${ p }</a>
+					                    	</c:when>
+					                    	<c:otherwise>
+				                    			<a href="list.em?currentPage=${ p }&email=${ loginUser.email }">${ p }</a>
+					                    	</c:otherwise>
+										</c:choose>
 				                    </c:forEach>
 				                    <c:if test="${ pi.currentPage ne pi.maxPage }">
 				                    	<a href="list.em?currentPage=${ pi.currentPage + 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-right"></i></a>

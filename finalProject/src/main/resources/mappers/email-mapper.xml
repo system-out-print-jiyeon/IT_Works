@@ -44,7 +44,17 @@
 	</select>
 	
 	<select id="selectEmailList" parameterType="string" resultMap="EmailSelectResultSet">
-		select 'emailTo' em_check, em_no, em_rec_no, e.em_from, er.em_to, e.em_title, e.em_content, e.em_enroll_date, er.em_read, er.em_inp, er.em_status
+		select 'emailTo' em_check
+		     , em_no
+		     , em_rec_no
+		     , e.em_from
+		     , er.em_to
+		     , e.em_title
+		     , e.em_content
+             , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
+		     , er.em_read
+		     , er.em_inp
+		     , er.em_status
 		  from email e
 		  join email_recipient er using (em_no)
 		 where em_to = #{email}
@@ -52,7 +62,17 @@
 		
 		union all
 		
-		select 'emailFrom', em_no, null, e.em_from, null, e.em_title, e.em_content, e.em_enroll_date, null, e.em_inp, e.em_status
+		select 'emailFrom'
+		     , em_no
+		     , null
+		     , e.em_from
+		     , null
+		     , e.em_title
+		     , e.em_content
+             , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
+		     , null
+		     , e.em_inp
+		     , e.em_status
 		  from email e
 		 where em_from = #{email}
 		   and e.em_status = 'Y'
@@ -297,4 +317,119 @@
 		 where em_rec_no = #{emRecNo}
 		   and em_to = #{emTo}
 	</update>
+	
+	<select id="selectEmailInpListCount" parameterType="string" resultType="_int">
+		select count(*) 
+		  from
+		  (
+		    select null
+		      from email e
+		     where em_from = #{email}
+		       and e.em_status = 'Y'
+		       and e.em_inp = 'Y'
+		       
+		    union all
+		    
+		    select null
+		      from email e
+		      join email_recipient er using (em_no)
+		     where em_to = #{email}
+		       and er.em_status = 'Y'
+		       and er.em_inp = 'Y'
+		   )
+	</select>
+	
+	<select id="selectEmailInpList" parameterType="string" resultMap="EmailSelectResultSet">
+		select 'emailTo' em_check
+		     , em_no
+		     , em_rec_no
+		     , e.em_from
+		     , er.em_to
+		     , e.em_title
+		     , e.em_content
+		     , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
+		     , er.em_read
+		     , er.em_inp
+		     , er.em_status
+		  from email e
+		  join email_recipient er using (em_no)
+		 where em_to = #{email}
+		   and er.em_status = 'Y'
+		   and er.em_inp = 'Y'
+		   
+		union all
+		
+		select 'emailFrom'
+		     , em_no
+		     , null
+		     , e.em_from
+		     , null
+		     , e.em_title
+		     , e.em_content
+		     , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
+		     , null
+		     , e.em_inp
+		     , e.em_status
+		  from email e
+		 where em_from = #{email}
+		   and e.em_status = 'Y'
+		   and e.em_inp = 'Y'
+		 order by em_no desc
+	</select>
+	
+	<select id="selectEmailDeleteListCount" parameterType="string" resultType="_int">
+		select count(*) 
+		  from
+		  (
+		    select null
+		      from email e
+		     where em_from = #{email}
+		       and e.em_status = 'N'
+		       
+		    union all
+		    
+		    select null
+		      from email e
+		      join email_recipient er using (em_no)
+		     where em_to = #{email}
+		       and er.em_status = 'N'
+		   )
+	</select>
+	
+	<select id="selectEmailDeleteList" parameterType="string" resultMap="EmailSelectResultSet">
+		select 'emailTo' em_check
+		     , em_no
+		     , em_rec_no
+		     , e.em_from
+		     , er.em_to
+		     , e.em_title
+		     , e.em_content
+		     , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
+		     , er.em_read
+		     , er.em_inp
+		     , er.em_status
+		  from email e
+		  join email_recipient er using (em_no)
+		 where em_to = #{email}
+		   and er.em_status = 'N'
+		   
+		union all
+		
+		select 'emailFrom'
+		     , em_no
+		     , null
+		     , e.em_from
+		     , null
+		     , e.em_title
+		     , e.em_content
+		     , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
+		     , null
+		     , e.em_inp
+		     , e.em_status
+		  from email e
+		 where em_from = #{email}
+		   and e.em_status = 'N'
+		 order by em_no desc
+	</select>
+	
 </mapper>

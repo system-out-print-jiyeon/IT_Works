@@ -11,10 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
     <!-- 아이콘 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+
 /*내용*/
 .em_title{
 	color:gray;
@@ -120,6 +120,9 @@
         background:rgb(93, 158, 255); 
         color:white;
 }
+.email-from-list{
+	background:linear-gradient( to right, rgb(253, 253, 241),rgb(255, 255, 255),rgb(255, 255, 255));
+}
 .email-to-list{
  	background:linear-gradient( to right, rgb(241, 251, 253),rgb(255, 255, 255),rgb(255, 255, 255));
 }
@@ -136,13 +139,13 @@
 
         <div class="em_content">
             <div class="em_content_center">
-			<span class="em_title">받은메일함</span><span class="em_count">&nbsp;&nbsp;${ listCount }</span>
+			<span class="em_title">중요메일함</span><span class="em_count">&nbsp;&nbsp;${ listCount }</span>
 				<br><br>
 				
 				<c:choose>
 				
 					<c:when test="${empty list}">
-						<p style="text-align:center; font-size:20px; color:gray; font-weight:900; margin-top:50px;" >받은 이메일이 존재하지 않습니다.</p>
+						<p style="text-align:center; font-size:20px; color:gray; font-weight:900; margin-top:50px;" >중요 이메일이 존재하지 않습니다.</p>
 					</c:when>
 					<c:otherwise>
 				
@@ -157,42 +160,80 @@
 		                    <table id="emailListTable" class="table">
 		                        <tbody>
 									<c:forEach var="em" items="${ list }">
-			                            <tr class="email-to-list">
-
-			                                <input type="hidden" id="email-address" value="${ loginUser.email }">
-			                                <input type="hidden" id="email-rec-no" value="${ em.emRecNo }">
-			                                <input type="hidden" id="email-read" value="${ em.emRead }">
-			                                
-			                                <th width="4%" class="icon"><input type="checkbox" name="chk" value="15"></th> <!-- th로 해야 체크 할때 메일 상세화면으로 이동안됨 -->
-			                                <td width="4%" class="icon"><i class="fa fa-box-open"></i></td>
-			                                <c:choose>
-			                                	<c:when test='${ em.emInp == "Y" }'>
-			                                		<td width="4%" class="icon"><i class="fa fa-star"></i></td>
-			                                	</c:when>
-			                                	<c:otherwise>
-			                                		<td width="4%" class="icon-none"><i class="fa fa-star"></i></td>
-			                                	</c:otherwise>
-			                                </c:choose>            
-			                                <c:choose>
-			                                	<c:when test='${ em.emRead == "Y" }'>
-			                                		<td width="4%" class="icon-none"><i class="fa fa-envelope-open"></i></td>
-			                                	</c:when>
-			                                	<c:otherwise>
-			                                		<td width="4%" class="icon"><i class="fa fa-envelope"></i></td>
-			                                	</c:otherwise>                      
-			                                </c:choose>
-			                                <td width="15%">${ em.emFrom }</td>
-			                                <c:choose>
-			                                	<c:when test="${ em.att gt 0 }">
-			                               			<td width="4%" class="icon"><i class="fa fa-download"></i></td>
-			                                	</c:when>
-			                                	<c:otherwise>
-			                                		<td width="4%" class="icon-none"><i class="fa fa-download"></i></td>
-			                                	</c:otherwise>
-			                                </c:choose>
-			                                <td>${ em.emTitle }</td>
-			                                <td width="15%">${ em.emEnrollDate }</td>
-			                            </tr>
+										<c:choose>
+											<c:when test='${ em.emCheck eq "emailFrom" }'>
+											
+					                            <tr class="email-from-list">
+					                            	<input type="hidden" id="email-address" value="${ loginUser.email }">
+					                                <input type="hidden" id="email-no" value="${ em.emNo }">
+					                                
+					                                <th width="4%" class="icon"><input type="checkbox" name="chk" value="15"></th> <!-- th로 해야 체크 할때 메일 상세화면으로 이동안됨 -->
+					                                <td width="4%" class="icon"><i class="fa fa-paper-plane"></i></td>
+					                                <c:choose>
+					                                	<c:when test='${ em.emInp == "Y" }'>
+					                                		<td width="4%" class="icon"><i class="fa fa-star"></i></td>
+					                                	</c:when>
+					                                	<c:otherwise>
+					                                		<td width="4%" class="icon-none"><i class="fa fa-star"></i></td>
+					                                	</c:otherwise>
+					                                </c:choose>          
+					                                <td width="4%" class="icon-none"><i class="fa fa-envelope-open"></i></td>
+					                                <td width="15%">${ em.emTo }</td>
+					                                <c:choose>
+					                                	<c:when test="${ em.att gt 0 }">
+					                               			<td width="4%" class="icon"><i class="fa fa-download"></i></td>
+					                                	</c:when>
+					                                	<c:otherwise>
+					                                		<td width="4%" class="icon-none"><i class="fa fa-download"></i></td>
+					                                	</c:otherwise>
+					                                </c:choose>
+					                                <td>${ em.emTitle }</td>
+					                                <td width="15%">${ em.emEnrollDate }</td>
+					                            </tr>
+											
+											</c:when>
+											
+											<c:when test='${ em.emCheck eq "emailTo" }'>
+												 <tr class="email-to-list">
+					                                <input type="hidden" id="email-address" value="${ loginUser.email }">
+					                                <input type="hidden" id="email-rec-no" value="${ em.emRecNo }">
+					                                <input type="hidden" id="email-read" value="${ em.emRead }">
+					                                
+					                                <th width="4%" class="icon"><input type="checkbox" name="chk" value="15"></th> <!-- th로 해야 체크 할때 메일 상세화면으로 이동안됨 -->
+					                                <td width="4%" class="icon"><i class="fa fa-box-open"></i></td>
+					                                <c:choose>
+					                                	<c:when test='${ em.emInp == "Y" }'>
+					                                		<td width="4%" class="icon"><i class="fa fa-star"></i></td>
+					                                	</c:when>
+					                                	<c:otherwise>
+					                                		<td width="4%" class="icon-none"><i class="fa fa-star"></i></td>
+					                                	</c:otherwise>
+					                                </c:choose>            
+					                                <c:choose>
+					                                	<c:when test='${ em.emRead == "Y" }'>
+					                                		<td width="4%" class="icon-none"><i class="fa fa-envelope-open"></i></td>
+					                                	</c:when>
+					                                	<c:otherwise>
+					                                		<td width="4%" class="icon"><i class="fa fa-envelope"></i></td>
+					                                	</c:otherwise>                      
+					                                </c:choose>
+					                                <td width="15%">${ em.emFrom }</td>
+					                                <c:choose>
+					                                	<c:when test="${ em.att gt 0 }">
+					                               			<td width="4%" class="icon"><i class="fa fa-download"></i></td>
+					                                	</c:when>
+					                                	<c:otherwise>
+					                                		<td width="4%" class="icon-none"><i class="fa fa-download"></i></td>
+					                                	</c:otherwise>
+					                                </c:choose>
+					                                <td>${ em.emTitle }</td>
+					                                <td width="15%">${ em.emEnrollDate }</td>
+					                            </tr>
+											</c:when>
+										
+										</c:choose>
+									
+			                            
 		                           </c:forEach>
 		
 		                        </tbody>
@@ -203,7 +244,7 @@
 				                <div class="paging">
 				                <hr>
 				                	<c:if test="${ pi.currentPage ne 1 }">
-				                    	<a href="listTo.em?currentPage=${ pi.currentPage - 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-left"></i></a>
+				                    	<a href="listInp.em?currentPage=${ pi.currentPage - 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-left"></i></a>
 				                    </c:if>
 				                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 										<c:choose>
@@ -211,12 +252,13 @@
 					                    		<a id="current-page">${ p }</a>
 					                    	</c:when>
 					                    	<c:otherwise>
-						                    	<a href="listTo.em?currentPage=${ p }&email=${ loginUser.email }">${ p }</a>
+						                    	<a href="listInp.em?currentPage=${ p }&email=${ loginUser.email }">${ p }</a>
 					                    	</c:otherwise>
 										</c:choose>
+				
 				                    </c:forEach>
 				                    <c:if test="${ pi.currentPage ne pi.maxPage }">
-				                    	<a href="listTo.em?currentPage=${ pi.currentPage + 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-right"></i></a>
+				                    	<a href="listInp.em?currentPage=${ pi.currentPage + 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-right"></i></a>
 				                    </c:if>
 				                </div>
 		                	</c:when>
@@ -275,21 +317,29 @@
 
                 alert("메일을 삭제하였습니다.");
                 
-                form_mail.action="delete.em";  
+                form_mail.action="deleteFromList.em";  
 
             }
         }  
     </script>
     
     
-	<!-- 메일 상세페이지 가기 -->
+	<!-- 보낸메일 상세페이지 가기 -->
 	<script>
 		$(function(){
-			$("#emailListTable tbody tr td").click(function(){
+			$("#emailListTable tbody .email-from-list td").click(function(){
+				location.href = "detailFrom.em?emFrom=" + $(this).siblings("#email-address").val() + "&emNo=" + $(this).siblings("#email-no").val();
+			})
+		})
+	</script>
+	
+	<!-- 받은메일 상세페이지 가기 -->
+	<script>
+		$(function(){
+			$("#emailListTable tbody .email-to-list td").click(function(){
 				location.href = "detailTo.em?emTo=" + $(this).siblings("#email-address").val() + "&emRecNo=" + $(this).siblings("#email-rec-no").val() + "&emRead=" + $(this).siblings("#email-read").val();
 			})
 		})
 	</script>
-
 </body>
 </html>

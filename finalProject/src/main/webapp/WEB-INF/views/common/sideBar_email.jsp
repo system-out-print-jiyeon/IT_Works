@@ -94,13 +94,13 @@
 	            <li><a href="list.em?email=${loginUser.email}"><i class="fa fa-envelope"></i> 전체메일함</a></li>
 	            <li><a href="listFrom.em?email=${loginUser.email}"><i class="fa fa-paper-plane"></i> 보낸메일함</a></li>
 	            <li><a href="listTo.em?email=${loginUser.email}"><i class="fa fa-box-open"></i> 받은메일함</a></li>
-	            <li><a href="listImp.em?email=${loginUser.email}"><i class="fa fa-star"></i> 중요메일함</a></li>
+	            <li><a href="listInp.em?email=${loginUser.email}"><i class="fa fa-star"></i> 중요메일함</a></li>
 	        </ul>
 	    </div>
 	    <div class="em_menubar_list">
 	        <span>휴지통</span>
 	        <ul>
-	            <li><a href="#"><i class="fa fa-trash"></i></i> 휴지통</a></li>
+	            <li><a href="listDelete.em?email=${loginUser.email}"><i class="fa fa-trash"></i></i> 휴지통</a></li>
 	        </ul>
 	    </div>
 	</div>

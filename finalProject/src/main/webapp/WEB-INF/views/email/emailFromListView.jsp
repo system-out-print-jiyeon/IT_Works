@@ -110,6 +110,10 @@
     animation-fill-mode:both;
     animation-direction: alternate;
 }
+#current-page{
+        background:rgb(93, 158, 255); 
+        color:white;
+}
 @keyframes key6{
     100%{
         background:rgb(93, 158, 255); 
@@ -188,14 +192,19 @@
 	                	<c:choose>
 		                	<c:when test="${ empty condition }">
 				                <div class="paging">
-				                <div class="em_title" style="text-align:center;">${ pi.currentPage }page</div>
+				                <hr>
 				                	<c:if test="${ pi.currentPage ne 1 }">
 				                    	<a href="listFrom.em?currentPage=${ pi.currentPage - 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-left"></i></a>
 				                    </c:if>
 				                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-				
-				                    	<a href="listFrom.em?currentPage=${ p }&email=${ loginUser.email }">${ p }</a>
-				
+										<c:choose>
+					                    	<c:when test='${ pi.currentPage == p }'>
+					                    		<a id="current-page">${ p }</a>
+					                    	</c:when>
+					                    	<c:otherwise>
+						                    	<a href="listFrom.em?currentPage=${ p }&email=${ loginUser.email }">${ p }</a>
+					                    	</c:otherwise>
+										</c:choose>
 				                    </c:forEach>
 				                    <c:if test="${ pi.currentPage ne pi.maxPage }">
 				                    	<a href="listFrom.em?currentPage=${ pi.currentPage + 1 }&email=${ loginUser.email }"><i class="fa fa-angle-double-right"></i></a>

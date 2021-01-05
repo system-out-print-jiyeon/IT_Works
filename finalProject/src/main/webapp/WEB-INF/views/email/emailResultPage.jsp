@@ -41,7 +41,22 @@
     padding:20px;
     text-align:center;
 }
-
+.em_content_center a{
+    color:gray;
+    font-size:20px;
+}
+.em_content_center a:hover{
+    text-decoration:none;
+    animation-name:key;
+    animation-duration:0.3s;
+    animation-fill-mode:both;
+    animation-direction: alternate;
+}
+@keyframes key{
+    100%{
+        color:rgb(80, 150, 255); 
+    }
+}
 
 
 </style>
@@ -77,11 +92,11 @@
 		                <hr>
           				<b>${ fail }</b>  
                 	</c:when>
-                	
-                	
-
                 </c:choose>
-               
+               <br>
+               <br>
+               <br>
+               <a href="list.em?email=${loginUser.email}"><i class="fa fa-envelope"></i> 전체메일함가기</a>
             </div>
         </div>
     </div>
