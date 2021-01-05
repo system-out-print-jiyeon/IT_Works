@@ -156,7 +156,7 @@ body {
     justify-content: space-between;
     padding: 8px 24px;
     width: 300px;
-    height: 1400px;
+    height: 1500px;
     background-color: #e7e1e1;
     margin-top: 80px;
 }
@@ -270,7 +270,7 @@ body {
                         <ul class="menu1">
                             <li><a href="insertForm.bt">출장 신청</a></li>
                             <li><a href="list.bt">출장 내역 조회</a></li>
-                            <li class="selectedTitle"><a href="approval.bt">출장 승인</a></li>
+                            <li><a href="approval.bt">출장 승인</a></li>
                         </ul>
                     </li>
                     <br>
