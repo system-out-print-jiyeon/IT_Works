@@ -129,7 +129,7 @@ img{ max-width:100%;}
   width: 100%;
 }
 
-.type_msg {border-top: 1px solid #c4c4c4;position: relative;}
+.type_msg {border-top: 1px solid #c4c4c4; position: relative;}
 .msg_send_btn {
   background: #05728f none repeat scroll 0 0;
   border: medium none;
@@ -204,13 +204,15 @@ img{ max-width:100%;}
               
             </div>
             
+          <!-- 1 -->
+        </div>
           <div class="type_msg">
             <div class="input_msg_write">
               <input type="text" id="message" class="write_msg" placeholder="Type a message" />
               <button class="msg_send_btn" type="button" id="btnSend"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
           </div>
-        </div>
+        <!-- 2 -->
       </div>
       
       <input type="hidden" id="loginN" value="${ loginUser.memName }">
