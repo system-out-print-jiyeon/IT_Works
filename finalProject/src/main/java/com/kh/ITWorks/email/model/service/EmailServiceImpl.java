@@ -89,8 +89,8 @@ public class EmailServiceImpl implements EmailService {
 	}
 	// 2.메일 보낸후 첨부파일
 	@Override
-	public int intertEmailAttach(EmailAttach ea) {
-		return emDao.intertEmailAttach(sqlSession, ea);
+	public int insertEmailAttach(EmailAttach ea) {
+		return emDao.insertEmailAttach(sqlSession, ea);
 	}
 	// 3.메일 보낸후 반는사람
 	@Override
@@ -111,7 +111,29 @@ public class EmailServiceImpl implements EmailService {
 	}
 	// 메일 전달하기
 	@Override
-	public int emailInsertFromForward(Email em) {
-		return emDao.emailInsertFromForward(sqlSession, em);
+	public int insertEmailForward(Email em) {
+		return emDao.insertEmailForward(sqlSession, em);
+	}
+	// 메일 삭제하기
+	@Override
+	public int deleteEmailFrom(Email em) {
+		return emDao.deleteEmailFrom(sqlSession, em);
+	}
+	
+	// 받은 메일 상세 메뉴들 ***************************************************
+	// 중요메일 등록
+	@Override
+	public int updateEmailToInp(EmailRecipient er) {
+		return emDao.updateEmailToInp(sqlSession, er);
+	}
+	// 중요메일 취소
+	@Override
+	public int cancelEmailToInp(EmailRecipient er) {
+		return emDao.cancelEmailToInp(sqlSession, er);
+	}
+	// 메일 삭제
+	@Override
+	public int deleteEmailTo(EmailRecipient er) {
+		return emDao.deleteEmailTo(sqlSession, er);
 	}
 }

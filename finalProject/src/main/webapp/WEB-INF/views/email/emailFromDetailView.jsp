@@ -232,7 +232,7 @@ input[type="submit"]:hover{
 
             }  else if(str=="delete"){   // 메일 삭제
 
-                form_mail.action="fromDelete.em";  
+                form_mail.action="deleteFrom.em";  
             }
         }  
 

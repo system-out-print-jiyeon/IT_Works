@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -20,12 +21,28 @@ import com.kh.ITWorks.approval.model.vo.Opinion;
 import com.kh.ITWorks.approval.model.vo.Outgoings;
 import com.kh.ITWorks.approval.model.vo.OutgoingsList;
 import com.kh.ITWorks.approval.model.vo.Referer;
+import com.kh.ITWorks.common.model.vo.PageInfo;
+import com.kh.ITWorks.common.template.Pagination;
 
 @Controller
 public class ExApprovalController {
 	
 	@Autowired
 	private ApprovalService aService;
+	
+	@RequestMapping("list.ap")
+	public String selectApprovalList(
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage/* , int memNo */, Model model) {
+		
+		int listCount = aService.selectListCount();
+		PageInfo pi = Pagination.getPageInfo(2, currentPage, 15, 5);
+		ArrayList<ApprovalDocument> alist = aService.selectApprovalList(pi, 25);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("alist", alist);
+		
+		return "approval/approvalListView";
+	}
 	
 	@RequestMapping("detail.ap")
 	public String ApprovalDetail(int docNo, Model model) {
@@ -55,7 +72,8 @@ public class ExApprovalController {
 	
 	@RequestMapping("decision.ap")
 	public String approvalDecision(ApprovalLine al, HttpSession session, Model model) {
-		
+		System.out.println(al.getApprovalStatus());
+		System.out.println(al.getMemNo());
 		int result = aService.approvalDecision(al);
 		
 		if (result > 0) {
@@ -66,14 +84,13 @@ public class ExApprovalController {
 	}
 	
 	@RequestMapping("opinion.ap")
-	public String insertOpinion(Opinion o, Model model) {
-		System.out.println(o.getDocNo());
-		System.out.println(o.getOpiContent());
+	public String insertOpinion(Opinion o, HttpSession session, Model model) {
 		int result = aService.insertOpinion(o);
 		
 		if (result > 0) {
 			return "redirect:detail.ap";
 		} else {
+			session.setAttribute("alertMsg", "다시 입력해주세요");
 			return "common/errorPage";
 		}
 	}

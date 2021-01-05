@@ -26,5 +26,6 @@ public class ApprovalDocument {		// 결재문서 테이블
 	private String docStatus;    				 // 문서 삭제여부(Y/N)
 	private int docForm;					     // 문서 양식번호
 	
+	private int approvalMemNo;
 	
 }

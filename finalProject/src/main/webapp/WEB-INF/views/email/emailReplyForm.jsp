@@ -50,6 +50,9 @@
 	margin-left:5px; 
 	background:lightGray;
 }
+.em-readonly{
+	background:lightGray;
+}
 input[type="text"], input[type="email"]{
 	border:1px solid gray;
 }
@@ -132,7 +135,7 @@ input[type="submit"]:hover{
         <div class="em_content">
 
             <div class="em_content_center">
-                <form action="insert.em" method="post" enctype="multipart/form-data">
+                <form action="insertReply.em" method="post" enctype="multipart/form-data">
                     <table class="table">
                         <tr>
                             <th width="150">보내는 사람</th>
@@ -144,8 +147,7 @@ input[type="submit"]:hover{
                                 <table id="addTable" class="table-sm table-borderless">
                                     <tr height="0">
                                         <td>
-                                            <input type="email" name="emToList[0].emTo" required>
-                                            <input class="add" type="button" onClick="add()" value="추가">
+                                            <input type="email" name="emTo" class="em-readonly" value="${ em.emFrom }" readonly required>
                                         </td>
                                     </tr>
                                 </table>
@@ -153,7 +155,7 @@ input[type="submit"]:hover{
                         </tr>
                         <tr>
                             <th>제목</th>
-                            <td><input type="text" name="emTitle" style="width:100%; margin-left:5px;" required></td>
+                            <td><input type="text" name="emTitle" class="em-readonly" style="width:100%; margin-left:5px;" value="${ em.emTitle }" readonly required></td>
                         </tr>
                         <tr>
                             <th>파일첨부<br><span class="text">(Shift/Ctrl 다중 선택)</span></th>
@@ -161,45 +163,36 @@ input[type="submit"]:hover{
                         </tr>
                         <tr>
                             <th>내용</th>
-                            <td><textarea id="summernote" name="emContent" style="margin-left:5px;"></textarea></td>
+                            <td>
+	                            <textarea id="summernote" name="emContent" style="margin-left:5px;">
+	                            	<b>------원본메일------</b><br>
+                            		<b>From:</b> ${ em.emFrom }<br>
+                            		<b>To:</b> ${ em.emTo }<br>
+                            		<b>Sent:</b> ${ em.emEnrollDate }<br>
+                            		<b>Subject:</b> ${ em.emTitle }<br>
+                            		<b>Attachment:</b>
+                            		<c:forEach var="att" items="${ listAtt }">
+                            			&lt;
+                            			${att.emOriginName}
+                            			&gt;
+                            		</c:forEach>
+                            		<br>
+                            		<br>
+                            		<br>
+                            		${ em.emContent }
+	                            	
+	                            </textarea>
+                            </td>
                         </tr>
                     </table>
                     <div align="center">
-                        <input type="submit" value="메일 보내기">
+                        <input type="submit" value="메일 답장하기">
                     </div>
                 </form>
             </div>
         </div>
         
     </div>
-
-    <!--스크립트-->
-    <!-- 받는사람 추가/삭제 -->
-    <script>
-        var oTbl;
-        var recipients;
-        var i = 0;
-
-        function add() {
-                
-            i++;
-                
-            oTbl = document.getElementById("addTable");
-            var oRow = oTbl.insertRow ();
-            oRow.onmouseover=function(){oTbl.clickedRowIndex=this.rowIndex};
-                
-            var oCell = oRow.insertCell();
-            var frmTag = "<input type='email' name='emToList["+i+"].emTo' required>";
-
-            frmTag += " <input type=button value='삭제' class='remove' onClick='removeRow()'>";
-            oCell.innerHTML = frmTag;
-        }
-
-        function removeRow() {
-        	i--;
-        	oTbl.deleteRow(oTbl.clickedRowIndex);
-        }
-    </script>
 
     <!-- 썸머노트 -->
     <script>

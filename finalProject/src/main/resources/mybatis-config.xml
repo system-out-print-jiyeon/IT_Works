@@ -14,6 +14,7 @@
 		<typeAlias type="com.kh.ITWorks.attendance.model.vo.AnnualLeave" alias="AnnualLeave"/>		
 		<typeAlias alias="Reservation" type="com.kh.ITWorks.reservation.model.vo.Reservation"/>
 		<typeAlias alias="Support" type="com.kh.ITWorks.support.model.vo.WorkSupport"/>
+		<typeAlias alias="BoardAttachment" type="com.kh.ITWorks.board.model.vo.BoardAttachment"/>
 		
 		<typeAlias type="com.kh.ITWorks.approval.model.vo.ApprovalLine" alias="ApprovalLine"/>
 		<typeAlias type="com.kh.ITWorks.approval.model.vo.Attachment" alias="Attachment"/>

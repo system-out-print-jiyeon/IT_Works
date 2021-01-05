@@ -163,7 +163,7 @@
 		  )
 	</insert>
 	
-	<insert id="intertEmailAttach" parameterType="com.kh.ITWorks.email.model.vo.EmailAttach">
+	<insert id="insertEmailAttach" parameterType="com.kh.ITWorks.email.model.vo.EmailAttach">
 		insert 
 		  into email_attach
 		  (
@@ -211,7 +211,7 @@
 		   and em_from = #{emFrom}
 	</update>
 	
-	<insert id="emailInsertFromForward" parameterType="com.kh.ITWorks.email.model.vo.Email">
+	<insert id="insertEmailForward" parameterType="com.kh.ITWorks.email.model.vo.Email">
 		<!-- 메일 보낼 때 시퀀스를 따로 지정해준 후 사용후 Email 객체의 emNo에 받아옴 -->
 		<selectKey resultType="int" keyProperty="emNo" order="BEFORE">
 			select seq_emno.nextval from dual
@@ -233,4 +233,31 @@
 		  )
 	</insert>
 	
+	<update id="deleteEmailFrom" parameterType="com.kh.ITWorks.email.model.vo.Email">
+		update email
+		   set em_status = 'N'
+		 where em_from = #{emFrom}
+		   and em_no = #{emNo}
+	</update>
+	
+	<update id="updateEmailToInp" parameterType="com.kh.ITWorks.email.model.vo.EmailRecipient">
+		update email_recipient
+		   set em_inp = 'Y'
+		 where em_rec_no = #{emRecNo}
+		   and em_to = #{emTo}
+	</update>
+	
+	<update id="cancelEmailToInp" parameterType="com.kh.ITWorks.email.model.vo.EmailRecipient">
+		update email_recipient
+		   set em_inp = 'N'
+		 where em_rec_no = #{emRecNo}
+		   and em_to = #{emTo}
+	</update>
+	
+	<update id="deleteEmailTo" parameterType="com.kh.ITWorks.email.model.vo.EmailRecipient">
+		update email_recipient
+		   set em_status = 'N'
+		 where em_rec_no = #{emRecNo}
+		   and em_to = #{emTo}
+	</update>
 </mapper>

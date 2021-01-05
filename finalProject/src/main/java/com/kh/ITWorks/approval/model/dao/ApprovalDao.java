@@ -2,6 +2,7 @@ package com.kh.ITWorks.approval.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ import com.kh.ITWorks.approval.model.vo.Opinion;
 import com.kh.ITWorks.approval.model.vo.Outgoings;
 import com.kh.ITWorks.approval.model.vo.OutgoingsList;
 import com.kh.ITWorks.approval.model.vo.Referer;
+import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.member.model.vo.Member;
 
 @Repository
@@ -102,6 +104,17 @@ public class ApprovalDao {
 	}
 	public int approvalDecision(SqlSessionTemplate sqlSession, ApprovalLine al) {
 		return sqlSession.update("approvalMapper.approvalDecision", al);
+	}
+	
+	public int selectListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("approvalMapper.selectListCount");
+	}
+	public ArrayList<ApprovalDocument> selectApprovalList(SqlSessionTemplate sqlSession, PageInfo pi, int memNo) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList) sqlSession.selectList("approvalMapper.selectApprovalList", memNo, rowBounds);
 	}
 
 }

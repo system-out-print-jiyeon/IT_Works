@@ -45,7 +45,7 @@ public interface EmailService {
 	// 1.메일 내용
 	int insertEmail(Email em);
 	// 2.첨부파일
-	int intertEmailAttach(EmailAttach ea);
+	int insertEmailAttach(EmailAttach ea);
 	// 3.받는사람
 	int insertEmailRecpient(EmailRecipient er);
 	
@@ -54,6 +54,16 @@ public interface EmailService {
 	int updateEmailFromInp(Email em);
 	// 중요메일 취소
 	int cancelEmailFromInp(Email em);
-	// 메일 전달하기
-	int emailInsertFromForward(Email em);
+	// 메일 전달하기(받은메일/보낸메일 통합)
+	int insertEmailForward(Email em);
+	// 메일 삭제하기
+	int deleteEmailFrom(Email em);
+	
+	// 받은메일 상세 메뉴들 ***********************************************
+	// 중요메일 등록
+	int updateEmailToInp(EmailRecipient er);
+	// 중요메일 취소
+	int cancelEmailToInp(EmailRecipient er);
+	// 메일 삭제
+	int deleteEmailTo(EmailRecipient er);
 }

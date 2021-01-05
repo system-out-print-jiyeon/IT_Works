@@ -2,6 +2,9 @@ package com.kh.ITWorks.support.model.vo;
 
 import java.sql.Date;
 
+import com.kh.ITWorks.board.model.vo.BoardAttachment;
+import com.kh.ITWorks.member.model.vo.Member;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +31,8 @@ public class WorkSupport {
 	private String status;					// 상태
 	private Date createDate;				// 등록일
 	
+	private Member mem;
+	private BoardAttachment attach;
 	
 
 }

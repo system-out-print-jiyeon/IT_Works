@@ -93,7 +93,7 @@
             <li class="profile" ><a class="btn">주소록</a>
                
             </li>
-            <li class="profile" ><a class="btn">게시판</a>
+            <li class="profile" ><a class="btn" href="list.bo">게시판</a>
                 
             </li>
             <li class="profile" ><a class="btn" href="reservation.re?floor=3">회의실 예약</a>
