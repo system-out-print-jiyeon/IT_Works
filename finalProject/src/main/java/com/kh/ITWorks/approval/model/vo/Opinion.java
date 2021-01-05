@@ -16,7 +16,7 @@ import lombok.ToString;
 public class Opinion {		// 의견 테이블
 
 	private int opiNo;   				 // 의견 고유번호
-	private int docNo;		 			 // 결재문서 고유번호
+	private String docNo;		 			 // 결재문서 고유번호
 	private String memNo;		 		 // 사원번호(SEQ_ENO)
 	private String opiContent;			 // 의견 내용
 	private Date opiEnrollDate;		 	 // 의견 등록일

@@ -106,8 +106,8 @@ public class ApprovalDao {
 		return sqlSession.update("approvalMapper.approvalDecision", al);
 	}
 	
-	public int selectListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("approvalMapper.selectListCount");
+	public int selectListCount(SqlSessionTemplate sqlSession, int memNo) {
+		return sqlSession.selectOne("approvalMapper.selectListCount", memNo);
 	}
 	public ArrayList<ApprovalDocument> selectApprovalList(SqlSessionTemplate sqlSession, PageInfo pi, int memNo) {
 		

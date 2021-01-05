@@ -138,8 +138,8 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return aDao.approvalDecision(sqlSession, al);
 	}
 	@Override
-	public int selectListCount() {
-		return aDao.selectListCount(sqlSession);
+	public int selectListCount(int memNo) {
+		return aDao.selectListCount(sqlSession, memNo);
 	}
 	@Override
 	public ArrayList<ApprovalDocument> selectApprovalList(PageInfo pi, int memNo) {

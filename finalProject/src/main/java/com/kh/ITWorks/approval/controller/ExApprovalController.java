@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.google.gson.Gson;
 import com.kh.ITWorks.approval.model.service.ApprovalService;
@@ -32,9 +33,8 @@ public class ExApprovalController {
 	
 	@RequestMapping("list.ap")
 	public String selectApprovalList(
-			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage/* , int memNo */, Model model) {
-		
-		int listCount = aService.selectListCount();
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, HttpSession session, Model model) {	
+		int listCount = aService.selectListCount(25);
 		PageInfo pi = Pagination.getPageInfo(2, currentPage, 15, 5);
 		ArrayList<ApprovalDocument> alist = aService.selectApprovalList(pi, 25);
 		
@@ -77,7 +77,7 @@ public class ExApprovalController {
 		int result = aService.approvalDecision(al);
 		
 		if (result > 0) {
-			return "approval/approvalDetailView";
+			return "redirect:detail.ap?docNo=" + al.getDocNo();
 		} else {
 			return "common/errorPage";
 		}
@@ -88,7 +88,7 @@ public class ExApprovalController {
 		int result = aService.insertOpinion(o);
 		
 		if (result > 0) {
-			return "redirect:detail.ap";
+			return "redirect:detail.ap?docNo=" + o.getDocNo();
 		} else {
 			session.setAttribute("alertMsg", "다시 입력해주세요");
 			return "common/errorPage";

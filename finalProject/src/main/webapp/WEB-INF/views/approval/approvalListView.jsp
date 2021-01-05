@@ -141,126 +141,23 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
                   </thead>
 
                   <tbody>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td> 2020-11-19	</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
-                    <tr>
-                        <td>SS-기획팀-20201119-083</td>
-                        <td>제목1</td>
-                        <td>홍길동</td>
-                        <td>2020-11-19</td>
-                        <td>품의서</td>
-                        <td>기안</td>
-                    </tr>
+                  	<c:forEach var="alist" items="${ alist }" >
+	                    <tr>
+	                        <td class="docNo">${ alist.docNo }</td>
+	                        <td>${ alist.docTitle }</td>
+	                        <td>${ alist.memNo }</td>
+	                        <td>${ alist.docEnrollDate }</td>
+	                        <td>
+		                        <c:choose>
+		                        	<c:when test="${ alist.docForm eq 1 }">지출결의서</c:when>
+		                        	<c:when test="${ alist.docForm eq 2 }">문서발급신청서</c:when>
+		                        	<c:when test="${ alist.docForm eq 3 }">프로젝트보고서</c:when>
+		                        	<c:when test="${ alist.docForm eq 4 }">품의서</c:when>
+		                        </c:choose>
+	                        </td>
+	                        <td>기안</td>
+	                    </tr>
+                  	</c:forEach>
                   </tbody>
                 </table>
 
@@ -272,7 +169,7 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
             <div class="w3-bar">
             	<c:choose>
             		<c:when test="${ pi.currentPage eq 1 }">
-		                <a href="#" class="w3-button disabled">&laquo;</a>
+		                <a href="#" class="w3-button" style="display: none;">&laquo;</a>
             		</c:when>
             		<c:otherwise>
 		                <a href="list.ap?currentPage=${ pi.currentPage - 1 }" class="w3-button">&laquo;</a>
@@ -285,7 +182,7 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
             	
             	<c:choose>
             		<c:when test="${ pi.currentPage eq pi.maxPage }">
-		                <a href="#" class="w3-button" disabled>&raquo;</a>
+		                <a href="#" class="w3-button" style="display: none;">&raquo;</a>
             		</c:when>
             		<c:otherwise>
 		                <a href="list.ap?currentPage=${ pi.currentPage + 1 }" class="w3-button">&raquo;</a>
@@ -313,6 +210,12 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
             }
             
         });
+    });
+    
+    $(function() {
+    	$(".content_2 tbody tr").click(function() {
+    		location.href = "detail.ap?docNo=" + $(this).children(".docNo").text();
+    	});
     });
 
   </script>

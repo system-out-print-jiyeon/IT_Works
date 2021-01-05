@@ -63,6 +63,10 @@
 	margin-left: 30px;
 }
 
+.approvalLine {
+	margin-top: 10px;
+}
+
 .approvalTable {
 	border-collapse: collapse;
 	text-align: center;
@@ -119,7 +123,7 @@
 							</c:choose>
 						</td>
 						<th width="175">작성자</th>
-						<td>${ ad.memNo }</td>
+						<td>${ ad.memName }</td>
 					</tr>
 					<tr>
 						<th width="175">보존 연한</th>
@@ -149,29 +153,30 @@
 						<c:forEach var="aList" items="${ aList }">
 							<td class="secondCell">
 								<c:choose>
-									<c:when test="${ empty aList.approvalStatus }">
-										<c:choose>
-											<c:when test="${ aList.memNo } ep ${ loginUser.memNo }">
-												<button class="btn btn-primary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal" style="margin-top: 10px;">결재</button>										
-											</c:when>
-											<c:otherwise>
-												<button class="btn btn-primary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal" style="margin-top: 10px;" disabled>결재</button>													
-											</c:otherwise>
-										</c:choose>
-									</c:when>
 									<c:when test="${ aList.approvalStatus eq 'Y' }">
-										<button class="btn btn-secondary" style="margin-top: 10px;" disabled>승인</button>
+										<button class="btn btn-secondary" disabled>승인</button>
+									</c:when>
+									<c:when test="${ aList.approvalStatus eq 'N' }">
+										<button class="btn btn-secondary" disabled>반려</button>
 									</c:when>
 									<c:otherwise>
-										<button class="btn btn-secondary" style="margin-top: 10px;" disabled>반려</button>
+										<c:choose>
+											<c:when test="${ aList.memNo eq loginUser.memNo }">
+												<button class="btn btn-primary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal">결재</button>										
+											</c:when>
+											<c:otherwise>
+												<button class="btn btn-primary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal" disabled>결재</button>													
+											</c:otherwise>
+										</c:choose>
 									</c:otherwise>
 								</c:choose>
 							</td>
 						</c:forEach>
+						<jsp:include page="./approvalDecisionModal.jsp"/>
 					</tr>
 					<tr>
 						<c:forEach var="aList" items="${ aList }">
-							<td class="thirdCell" align="center">${ aList.memNo }</td>
+							<td class="thirdCell" align="center">${ aList.memName }</td>
 						</c:forEach>
 					</tr>
 					<tr>
@@ -182,8 +187,6 @@
 					</tr>
 				</table>
 			</div>
-
-			<jsp:include page="./approvalDecisionModal.jsp"/>
 
 			<br>
 			<br>
@@ -274,6 +277,7 @@
 					<div class="mb-3 opinionEnroll" style="margin-left: 10px;">
 						<label for="exampleFormControlTextarea1" class="form-label">의견입력</label>
 						<input type="hidden" value="${ loginUser.memNo }" name="memNo">
+						<input type="hidden" value="${ ad.docNo }" name="docNo">
 						<textarea class="form-control" id="opiContent" rows="2" name="opiContent"></textarea>
 						<br>
 						<button type="submit" class="btn btn-secondary">등록</button>
