@@ -151,7 +151,6 @@
 		                    <div class="submit_btn">
 		                        <input type="checkbox" id="checkall" value=""> 
 		                        <label class="update" for="checkall">전체선택</label>
-		                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("important");'><i class="fa fa-star"></i> 중요</button></label>
 		                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("delete");'><i class="fa fa-trash"></i> 삭제</button></label>             
 		                    </div>
 		                    <table id="emailListTable" class="table">
@@ -161,7 +160,7 @@
 			                            	<input type="hidden" id="email-address" value="${ loginUser.email }">
 			                                <input type="hidden" id="email-no" value="${ em.emNo }">
 			                                
-			                                <th width="4%" class="icon"><input type="checkbox" name="chk" value="15"></th> <!-- th로 해야 체크 할때 메일 상세화면으로 이동안됨 -->
+			                                 <th width="4%" class="icon"><input type="checkbox" name="emNo" value="${ em.emNo }"></th> <!-- th로 해야 체크 할때 메일 상세화면으로 이동안됨 -->
 			                                <td width="4%" class="icon"><i class="fa fa-paper-plane"></i></td>
 			                                <c:choose>
 			                                	<c:when test='${ em.emInp == "Y" }'>
@@ -226,9 +225,9 @@
     $(document).ready(function(){
         $("#checkall").click(function(){
             if($("#checkall").prop("checked")){ 
-                $("input[name=chk]").prop("checked",true);
+                $("input[name=emNo]").prop("checked",true);
             }else{
-                $("input[name=chk]").prop("checked",false);
+                $("input[name=emNo]").prop("checked",false);
 
                 // 전체선택 체크박스 체크 해제시 버튼 비활성화
                 $(".submit_btn button").css({"color":"gray"}).prop("disabled",true);
@@ -239,7 +238,7 @@
     // 체크박스가 체크되면 버튼 활성화 되게 만들기 
     $('.em_content_center input[type="checkbox"]').click(function(){
         var tmpp = $(this).prop('checked'); 
-        var tt=$("[name='chk']:checked").length;
+        var tt=$("[name='emNo']:checked").length;
         // 하나라도 체크되어있을 때 버튼 활성화 시키기 위해 length로 체크된 값의 개수를 구함
         
         if(tmpp==true || tt>0){
@@ -256,17 +255,12 @@
     <!-- 중요/삭제 클릭시 action -->
     <script>
         function btn_click(str){                             
-            if(str=="important"){  // 중요메일 등록
-
-                alert("중요메일 등록이 완료되었습니다.");
-
-                form_mail.action="important.em";
-
-            } else if(str=="delete"){   // 메일 삭제
-
-                alert("메일을 삭제하였습니다.");
+            if(str=="delete"){   // 메일 삭제
+				
+            	if(confirm("선택한 이메일을 삭제하시겠습니까?") == true){
+	                form_mail.action="deleteFromList.em";
+            	}
                 
-                form_mail.action="deleteFromList.em";  
 
             }
         }  

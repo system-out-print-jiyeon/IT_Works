@@ -56,6 +56,11 @@ public class EmailServiceImpl implements EmailService {
 	public int emailAttCount(int emNo) {
 		return emDao.emailAttCount(sqlSession, emNo);
 	}
+	// 보낸메일 리스트 삭제버튼
+	@Override
+	public int deleteEmailFromList(int emNo) {
+		return emDao.deleteEmailFromList(sqlSession, emNo);
+	}
 	
 	// 보낸메일 상세*****************************************************
 	@Override
@@ -69,14 +74,20 @@ public class EmailServiceImpl implements EmailService {
 	}
 	
 	// 받은메일 리스트****************************************************
+	// 카운트 조회
 	@Override
 	public int selectEmailToListCount(String email) {
 		return emDao.selectEmailToListCount(sqlSession, email);
 	}
-	
+	// 리스트 조회
 	@Override
 	public ArrayList<EmailSelect> selectEmailToList(PageInfo pi, String email) {
 		return emDao.selectEmailToList(sqlSession, pi, email);
+	}
+	// 리스트 삭제버튼
+	@Override
+	public int deleteEmailToList(int emRecNo) {
+		return emDao.deleteEmailToList(sqlSession, emRecNo);
 	}
 	
 	// 받은메일 상세*******************************************************
@@ -171,6 +182,13 @@ public class EmailServiceImpl implements EmailService {
 	@Override
 	public ArrayList<EmailSelect> selectEmailDeleteList(PageInfo pi, String email){
 		return emDao.selectEmailDeleteList(sqlSession, pi, email);
+	}
+	// 복원 버튼
+	public int restoreEmailFromList(int emNo) {
+		return emDao.restoreEmailFromList(sqlSession, emNo);
+	}
+	public int restoreEmailToList(int emRecNo) {
+		return emDao.restoreEmailToList(sqlSession, emRecNo);
 	}
 	
 }

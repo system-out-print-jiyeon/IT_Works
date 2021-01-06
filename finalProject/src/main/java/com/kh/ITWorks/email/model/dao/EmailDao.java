@@ -44,6 +44,10 @@ public class EmailDao {
 		return sqlSession.selectOne("emailMapper.emailAttCount", emNo);
 	}
 	
+	public int deleteEmailFromList(SqlSessionTemplate sqlSession, int emNo) {
+		return sqlSession.update("emailMapper.deleteEmailFromList", emNo);
+	}
+	
 	public EmailSelect selectEmailFromDetail(SqlSessionTemplate sqlSession, EmailSelect em) {
 		return sqlSession.selectOne("emailMapper.selectEmailFromDetail", em);
 	}
@@ -61,6 +65,10 @@ public class EmailDao {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowbounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("emailMapper.selectEmailToList", email, rowbounds);
+	}
+	
+	public int deleteEmailToList(SqlSessionTemplate sqlSession, int emRecNo) {
+		return sqlSession.update("emailMapper.deleteEmailToList", emRecNo);
 	}
 	
 	public int updateEmailRead(SqlSessionTemplate sqlSession, EmailSelect em) {
@@ -134,5 +142,13 @@ public class EmailDao {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("emailMapper.selectEmailDeleteList", email, rowBounds);
+	}
+	
+	public int restoreEmailFromList(SqlSessionTemplate sqlSession, int emNo) {
+		return sqlSession.update("emailMapper.restoreEmailFromList", emNo);
+	}
+	
+	public int restoreEmailToList(SqlSessionTemplate sqlSession, int emRecNo) {
+		return sqlSession.update("emailMapper.restoreEmailToList", emRecNo);
 	}
 }

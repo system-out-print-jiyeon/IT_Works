@@ -26,6 +26,8 @@ public interface EmailService {
 	ArrayList<String> selectEmailFromListRec(int emNo);
 	// 첨부파일 여부
 	int emailAttCount(int emNo);
+	// 리스트 삭제 버튼
+	int deleteEmailFromList(int emNo);
 	
 	// 보낸메일 상세*****************************************************
 	// 메일상세 조회
@@ -38,6 +40,8 @@ public interface EmailService {
 	int selectEmailToListCount(String email);
 	// 메일리스트 조회
 	ArrayList<EmailSelect> selectEmailToList(PageInfo pi, String email);
+	// 리스트 삭제 버튼
+	int deleteEmailToList(int emRecNo);
 	
 	// 받은메일 상세*****************************************************
 	// 읽음 상태 Y로 변경
@@ -84,4 +88,8 @@ public interface EmailService {
 	int selectEmailDeleteListCount(String email);
 	// 리스트 조회
 	ArrayList<EmailSelect> selectEmailDeleteList(PageInfo pi, String email);
+	// 메일 복원
+	int restoreEmailFromList(int emNo);
+	int restoreEmailToList(int emRecNo);
+
 }

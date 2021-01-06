@@ -230,22 +230,15 @@ input[type="submit"]:hover{
 				}
 			})
 		}
-    
         function btn_click(str){
             if(str=="reply"){   // 답장
-
                 form_mail.action="reply.em"
-
             } else if(str=="forward"){  // 전달
-
                 form_mail.action="toForward.em"
-
             } else if(str=="delete"){   // 메일 삭제
-                
-                form_mail.action="deleteTo.em";
+	        	form_mail.action="deleteTo.em";            		
             }
         }  
-
     </script>
 </body>
 </html>

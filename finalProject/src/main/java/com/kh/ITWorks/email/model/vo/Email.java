@@ -1,5 +1,6 @@
 package com.kh.ITWorks.email.model.vo;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

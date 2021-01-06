@@ -92,11 +92,20 @@
 		                <hr>
           				<b>${ fail }</b>  
                 	</c:when>
+                	<c:when test="${ !empty restore}">
+                		<img src="resources/emailImages/restore.png" width="300" height="300">
+		                <hr>
+          				<b>${ restore }</b>  
+                	</c:when>
                 </c:choose>
                <br>
                <br>
                <br>
-               <a href="list.em?email=${loginUser.email}"><i class="fa fa-envelope"></i> 전체메일함가기</a>
+               <a href="list.em?email=${loginUser.email}"><i class="fa fa-envelope"></i> 전체메일함</a>&nbsp;&nbsp;&nbsp;
+               <a href="listFrom.em?email=${loginUser.email}"><i class="fa fa-paper-plane"></i> 보낸메일함</a>&nbsp;&nbsp;&nbsp;
+	           <a href="listTo.em?email=${loginUser.email}"><i class="fa fa-box-open"></i> 받은메일함</a>&nbsp;&nbsp;&nbsp;
+	           <a href="listInp.em?email=${loginUser.email}"><i class="fa fa-star"></i> 중요메일함</a>&nbsp;&nbsp;&nbsp;
+			   <a href="listDelete.em?email=${loginUser.email}"><i class="fa fa-trash"></i></i> 휴지통</a>
             </div>
         </div>
     </div>

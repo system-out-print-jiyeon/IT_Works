@@ -182,7 +182,6 @@ input[type="submit"]:hover{
 
     <!--스크립트-->
     <script>
-		
     	function updateInp(){
     		$.ajax({
     			url:"updateFromInp.em",
@@ -204,7 +203,6 @@ input[type="submit"]:hover{
     			}
     		})
     	}
-    
     	function cancelInp(){
     		$.ajax({
     			url:"cancelFromInp.em",
@@ -226,20 +224,11 @@ input[type="submit"]:hover{
     			}
     		})
     	}
-    	
-    	
-    	
-    	
-    	
-
         function btn_click(str){
 			if(str=="forward"){  // 전달
-
                 form_mail.action="fromForward.em";
-
-            }  else if(str=="delete"){   // 메일 삭제
-
-                form_mail.action="deleteFrom.em";  
+            } else if(str=="delete"){   // 메일 삭제
+            	form_mail.action="deleteFrom.em";
             }
         }  
 

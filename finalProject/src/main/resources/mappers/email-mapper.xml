@@ -136,6 +136,12 @@
 		 where ea.em_no = #{emNo}
 	</select>
 	
+	<update id="deleteEmailFromList" parameterType="int">
+		update email
+		   set em_status = 'N'
+		 where em_no = #{emNo}
+	</update>
+	
 	<select id="selectEmailToListCount" parameterType="string" resultType="_int">
 		select count(*)
 		  from email_recipient er
@@ -159,6 +165,12 @@
 		 order 
             by er.em_rec_no desc
 	</select>
+	
+	<update id="deleteEmailToList" parameterType="_int">
+		update email_recipient
+		   set em_status = 'N'
+		 where em_rec_no = #{emRecNo}
+	</update>
 	
 	<update id="updateEmailRead" parameterType="EmailSelect">
 		update email_recipient
@@ -431,5 +443,17 @@
 		   and e.em_status = 'N'
 		 order by em_no desc
 	</select>
+	
+	<update id="restoreEmailFromList" parameterType="_int">
+		update email
+		   set em_status = 'Y'
+		 where em_no = #{emNo}	
+	</update>
+	
+	<update id="restoreEmailToList" parameterType="_int">
+		update email_recipient
+		   set em_status = 'Y'
+		 where em_rec_no = #{emRecNo}
+	</update>
 	
 </mapper>
