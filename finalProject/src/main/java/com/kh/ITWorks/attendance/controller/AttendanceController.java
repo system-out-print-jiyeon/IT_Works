@@ -518,6 +518,8 @@ public class AttendanceController {
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 		ArrayList<WorkDay> wdList = aService.selectWorkDayList(pi);
 		
+		// System.out.println("몇개 : " + listCount);
+		
 		model.addAttribute("pi", pi);
 		model.addAttribute("wdList", wdList);
 		
@@ -526,7 +528,11 @@ public class AttendanceController {
 	
 	
 	
-	
+	@RequestMapping("workTimeGraph.wd")
+	public ModelAndView workTimeView(ModelAndView mv) {
+		mv.setViewName("attendance/workTimeGraph");
+		return mv;
+	}
 	
 	
 	
