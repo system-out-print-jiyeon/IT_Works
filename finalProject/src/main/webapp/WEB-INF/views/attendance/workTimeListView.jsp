@@ -400,7 +400,7 @@ body {
 						                	console.log("already");
 						                }
 						                
-						                window.location.href = "workTime.at";
+						                window.location.href = "workTime.at?memNo=" + ${loginUser.memNo};
 						            }, // success 
 						    
 						            error : function() {
@@ -430,7 +430,7 @@ body {
 						                	console.log("already");
 						                }
 						                
-						                window.location.href = "workTime.at";
+						                window.location.href = "workTime.at?memNo=" + ${loginUser.memNo};
 						            }, // success 
 						    
 						            error : function() {
@@ -447,7 +447,7 @@ body {
 
                 <div class="content2">
                     <div class="nameBar"><h5> ${loginUser.memName } 님의 출퇴근 기록</h5></div>
-					<input type="hidden" name="memNo" value="${loginUser.memNo }">
+					
                     <div class="workList">
                         <table id="workListTable" class="table">
                         	<thead>
