@@ -32,11 +32,12 @@ public class ExApprovalController {
 	private ApprovalService aService;
 	
 	@RequestMapping("list.ap")
-	public String selectApprovalList(
-			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, HttpSession session, Model model) {	
-		int listCount = aService.selectListCount(25);
+	public String selectApprovalList(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+									 @RequestParam(value = "memNo") int memNo, HttpSession session, Model model) {
+		System.out.println(memNo);
+		int listCount = aService.selectListCount(memNo);
 		PageInfo pi = Pagination.getPageInfo(2, currentPage, 15, 5);
-		ArrayList<ApprovalDocument> alist = aService.selectApprovalList(pi, 25);
+		ArrayList<ApprovalDocument> alist = aService.selectApprovalList(pi, memNo);
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("alist", alist);
@@ -72,8 +73,6 @@ public class ExApprovalController {
 	
 	@RequestMapping("decision.ap")
 	public String approvalDecision(ApprovalLine al, HttpSession session, Model model) {
-		System.out.println(al.getApprovalStatus());
-		System.out.println(al.getMemNo());
 		int result = aService.approvalDecision(al);
 		
 		if (result > 0) {

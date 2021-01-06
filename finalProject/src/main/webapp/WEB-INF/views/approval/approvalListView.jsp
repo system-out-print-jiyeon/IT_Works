@@ -121,10 +121,10 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
             </div>
             <div class="formtype">
                 <div><a href="">모든문서</a></div>
-                <div><a href="">품의서</a></div>
                 <div><a href="">지출결의서</a></div>
-                <div><a href="">프로젝트업무보고서</a> </div>
                 <div><a href="">문서발급요청서</a></div>
+                <div><a href="">프로젝트업무보고서</a></div>
+                <div><a href="">품의서</a></div>
             </div>
 
             <div class="content_2">
@@ -141,23 +141,32 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
                   </thead>
 
                   <tbody>
-                  	<c:forEach var="alist" items="${ alist }" >
-	                    <tr>
-	                        <td class="docNo">${ alist.docNo }</td>
-	                        <td>${ alist.docTitle }</td>
-	                        <td>${ alist.memNo }</td>
-	                        <td>${ alist.docEnrollDate }</td>
-	                        <td>
-		                        <c:choose>
-		                        	<c:when test="${ alist.docForm eq 1 }">지출결의서</c:when>
-		                        	<c:when test="${ alist.docForm eq 2 }">문서발급신청서</c:when>
-		                        	<c:when test="${ alist.docForm eq 3 }">프로젝트보고서</c:when>
-		                        	<c:when test="${ alist.docForm eq 4 }">품의서</c:when>
-		                        </c:choose>
-	                        </td>
-	                        <td>기안</td>
-	                    </tr>
-                  	</c:forEach>
+              		<c:choose>
+              			<c:when test="${ fn:length(alist) eq 0 }">
+              				<tr>
+              					<td colspan="6">결재문서가 없습니다.</td>
+              				</tr>
+              			</c:when>
+              			<c:otherwise>
+		                  	<c:forEach var="alist" items="${ alist }" >
+			                    <tr>
+			                        <td class="docNo">${ alist.docNo }</td>
+			                        <td>${ alist.docTitle }</td>
+			                        <td>${ alist.memNo }</td>
+			                        <td>${ alist.docEnrollDate }</td>
+			                        <td>
+				                        <c:choose>
+				                        	<c:when test="${ alist.docForm eq 1 }">지출결의서</c:when>
+				                        	<c:when test="${ alist.docForm eq 2 }">문서발급신청서</c:when>
+				                        	<c:when test="${ alist.docForm eq 3 }">프로젝트보고서</c:when>
+				                        	<c:when test="${ alist.docForm eq 4 }">품의서</c:when>
+				                        </c:choose>
+			                        </td>
+			                        <td>기안</td>
+			                    </tr>
+		                  	</c:forEach>
+              			</c:otherwise>
+              		</c:choose>
                   </tbody>
                 </table>
 

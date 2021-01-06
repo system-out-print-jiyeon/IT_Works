@@ -231,12 +231,14 @@
         <a href="reservation.re?floor=3"><div><p class="listCategory"><i class="fas fa-business-time"></i><br>회의실 예약</p></div></a>
         <a href="manageList.ma"><div><p class="listCategory"><i class="fas fa-users"></i><br>인사관리</p></div></a>
         <a href=""><div><p class="listCategory"><i class="far fa-id-badge"></i><br>근태관리</p></div></a>
-        <a href="approval.me"><div><p class="listCategory"><i class="fas fa-file-signature"></i><br>전자결재</p></div></a>
+        <a href="#" onclick="document.getElementById('approvalList').submit();"><div><p class="listCategory"><i class="fas fa-file-signature"></i><br>전자결재</p></div></a>
     
     </div>
 
-
-
+	<form action="list.ap" method="POST" id="approvalList">
+		<input type="hidden" value="${ loginUser.memNo }" name="memNo">
+	</form>
+	
 
     <script>
 
