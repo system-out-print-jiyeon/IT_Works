@@ -19,7 +19,6 @@
 </head>
 <body>
 
-    <jsp:include page="navbar.jsp"/>
 
     <br>
     <div align="center">	
