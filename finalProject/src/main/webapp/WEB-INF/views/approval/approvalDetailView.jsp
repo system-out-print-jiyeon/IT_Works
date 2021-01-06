@@ -162,7 +162,7 @@
 									<c:otherwise>
 										<c:choose>
 											<c:when test="${ aList.memNo eq loginUser.memNo }">
-												<button class="btn btn-primary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal">결재</button>										
+												<button class="btn btn-primary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal">결재</button>				
 											</c:when>
 											<c:otherwise>
 												<button class="btn btn-primary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal" disabled>결재</button>													

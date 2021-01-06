@@ -19,6 +19,7 @@
     border-collapse: collapse;
     table-layout: fixed;
     word-break: break-all;
+    text-align: center;
 }
 
 #divCustomWrapper td.subjectColumn {
@@ -57,6 +58,16 @@
 	text-align: right;
 	vertical-align: middle;
 }
+
+#insertRow {
+	align: center;
+}
+
+#insertRow input {
+	border: none;
+	width: 90%;
+}
+
 </style>
 </head>
 <body>
@@ -84,11 +95,11 @@
 	<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 800px; height: 142px;">
 		<tbody>
 			<tr>
-				<td height="150" style="padding-top: 1px; padding-right: 1px; padding-left: 1px; vertical-align: middle; text-align: center; border-right: 1px solid windowtext; border-bottom: 1px solid windowtext; border-left: 1px solid windowtext; border-image: initial; height: 51px; border-top: none; background-color: rgb(226, 226, 226); width: 83px;" class="dext_table_border_t">
+				<td style="padding-top: 1px; padding-right: 1px; padding-left: 1px; vertical-align: middle; text-align: center; border-right: 1px solid windowtext; border-bottom: 1px solid windowtext; border-left: 1px solid windowtext; border-image: initial; height: 51px; border-top: none; background-color: rgb(226, 226, 226); width: 83px;" class="dext_table_border_t">
 					<strong style="font-size: 9pt;">지출사유</strong>
 				</td>
 				<td colspan="12" style="padding-top: 1px; padding-right: 1px; padding-left: 1px; vertical-align: top; font-size: 10pt; text-align: center; border-top: 1px solid windowtext; border-right: 1px solid windowtext; border-bottom: 1px solid windowtext; border-image: initial; border-left: none; width: 683px; height: 51px; background-repeat: no-repeat;" class="dext_table_border_l">
-					<textarea class="txta_editor" style="margin: 1px; height: 95%; width: 98%;" name="outReason"></textarea>
+					<textarea class="txta_editor" style="margin: 1px; height: 95%; width: 98%; border: none; resize: none" name="outReason"></textarea>
 				</td>
 			</tr>
 		</tbody>
@@ -130,21 +141,11 @@
 			</thead>
 			<tbody id="insertRow">
 				<tr class="copyRow1">
-					<td class="detailColumn centerCol dext_table_border_t dext_table_border_r dext_table_border_b dext_table_border_l" style="height: 29px;">
-						<input class="ipt_editor ipt_editor_date" type="text" style="width: 90%;" name="outgoingsList[0].outDate">
-					</td>
-					<td class="detailColumn centerCol dext_table_border_t dext_table_border_r dext_table_border_b dext_table_border_l" style="height: 29px;">
-						<input class="ipt_editor ipt_editor_date" type="text" style="width: 90%;" name="outgoingsList[0].outCategory">
-					</td>
-					<td class="detailColumn centerCol dext_table_border_t dext_table_border_r dext_table_border_b dext_table_border_l" style="height: 29px;">
-						<input class="ipt_editor" type="text" style="width: 90%;" name="outgoingsList[0].outPrice">
-					</td>
-					<td class="detailColumn centerCol price dext_table_border_t dext_table_border_r dext_table_border_b dext_table_border_l" style="height: 29px;">
-						<input class="ipt_editor ipt_editor_currency" type="text" style="width: 90%;" name="outgoingsList[0].outHistory">
-					</td>
-					<td class="detailColumn dext_table_border_t dext_table_border_r dext_table_border_b dext_table_border_l" style="height: 29px;">
-						<input class="ipt_editor" type="text" style="width: 90%;" name="outgoingsList[0].outRemark">
-					</td>
+					<td> <input type="text"> </td>
+					<td> <input type="text"> </td>
+					<td> <input type="text"> </td>
+					<td> <input type="text"> </td>
+					<td> <input type="text"> </td>
 				</tr>
 			</tbody>
 			<tbody>
@@ -184,27 +185,11 @@
 			var newCell4 = newRow.insertCell(3);
 			var newCell5 = newRow.insertCell(4);
 	
-			newCell1.innerHTML = 
-								'<td class="detailColumn centerCol dext_table_border_t dext_table_border_r dext_table_border_b dext_table_border_l" style="height: 29px;">' +
-							 		'<input class="ipt_editor ipt_editor_date" type="text" style="width: 90%;">' +
-								'</td>';
-			newCell2.innerHTML = 
-								'<td class="detailColumn centerCol dext_table_border_t dext_table_border_r dext_table_border_b dext_table_border_l" style="height: 29px;">' +
-							 		'<input class="ipt_editor ipt_editor_date" type="text" style="width: 90%;">' +
-								'</td>';
-			newCell3.innerHTML = 
-								'<td class="detailColumn centerCol dext_table_border_t dext_table_border_r dext_table_border_b dext_table_border_l" style="height: 29px;">' +
-										'<input class="ipt_editor" type="text" style="width: 90%;">' +
-								'</td>';
-			newCell4.innerHTML = 
-								'<td class="detailColumn centerCol price dext_table_border_t dext_table_border_r dext_table_border_b dext_table_border_l" style="height: 29px;">' +
-									'<input class="ipt_editor ipt_editor_currency" type="text" style="width: 90%;">' +
-								'</td>';
-			newCell5.innerHTML = 
-								'<td class="detailColumn dext_table_border_t dext_table_border_r dext_table_border_b dext_table_border_l" style="height: 29px;">' +
-									'<input class="ipt_editor" type="text" style="width: 90%;">' +
-								'</td>';
-	
+			newCell1.innerHTML = '<td> <input type="text"> </td>';
+			newCell2.innerHTML = '<td> <input type="text"> </td>';
+			newCell3.innerHTML = '<td> <input type="text"> </td>';
+			newCell4.innerHTML = '<td> <input type="text"> </td>';
+			newCell5.innerHTML = '<td> <input type="text"> </td>';
 		}
 	
 		function deleteRow(rownum) {

@@ -38,6 +38,8 @@
 		<result column="doc_form" property="docForm"/>
 		
 		<result column="approvalmem_no" property="approvalMemNo"/>
+		<result column="approval_status" property="approvalStatus"/>
+		<result column="approval_order" property="approvalOrder"/>
 	</resultMap>
 	
 	<resultMap type="Attachment" id="attachmentResultSet">
@@ -229,12 +231,16 @@
 		      SELECT
 		             doc_no
 		           , mem_no
+		           , null as approval_status
+		           , null as approval_order
 		        FROM
 		             referer
 		       UNION
 		      SELECT
 		             doc_no
 		           , mem_no
+		           , approval_status
+		           , approval_order
 		        FROM
 		             approval_line
 		)
@@ -246,6 +252,8 @@
 		     , doc_enroll_date
 		     , doc_status
 		     , doc_form
+		     , approval_status
+		     , approval_order
 		  FROM 
 		       people p
 		 INNER

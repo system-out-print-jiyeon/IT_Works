@@ -120,11 +120,11 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
        <a  style="text-decoration: none;" >보기 : 모든 문서&nbsp;<i class="fas fa-sort-down"></i></a> 
             </div>
             <div class="formtype">
-                <div><a href="">모든문서</a></div>
-                <div><a href="">지출결의서</a></div>
-                <div><a href="">문서발급요청서</a></div>
-                <div><a href="">프로젝트업무보고서</a></div>
-                <div><a href="">품의서</a></div>
+                <div><a href="#" onclick="document.getElementById('approvalList').submit();">모든문서</a></div>
+                <div><a href="#">지출결의서</a></div>
+                <div><a href="#">문서발급요청서</a></div>
+                <div><a href="#">프로젝트업무보고서</a></div>
+                <div><a href="#">품의서</a></div>
             </div>
 
             <div class="content_2">
@@ -162,7 +162,19 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
 				                        	<c:when test="${ alist.docForm eq 4 }">품의서</c:when>
 				                        </c:choose>
 			                        </td>
-			                        <td>기안</td>
+			                        <td>
+			                        	<c:choose>
+			                        		<c:when test="${ alist.approvalOrder eq 1 }">기안</c:when>
+			                        		<c:when test="${ alist.approvalOrder ne 0 }">
+					                        	<c:choose>
+					                        		<c:when test="${ alist.approvalStatus eq 'Y' }">결재완료</c:when>
+					                        		<c:when test="${ alist.approvalStatus eq 'N' }">반려</c:when>	
+					                        		<c:otherwise>결재대기</c:otherwise>
+					                        	</c:choose>
+			                        		</c:when>
+			                        		<c:otherwise>참조</c:otherwise>
+			                        	</c:choose>
+			                        </td>
 			                    </tr>
 		                  	</c:forEach>
               			</c:otherwise>

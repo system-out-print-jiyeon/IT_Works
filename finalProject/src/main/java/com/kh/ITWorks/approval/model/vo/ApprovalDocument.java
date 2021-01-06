@@ -28,5 +28,7 @@ public class ApprovalDocument {		// 결재문서 테이블
 	
 	private String memName;
 	private int approvalMemNo;
+	private String approvalStatus;
+	private int approvalOrder;
 	
 }

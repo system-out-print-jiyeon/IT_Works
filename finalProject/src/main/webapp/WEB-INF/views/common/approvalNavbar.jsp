@@ -237,6 +237,7 @@
 
 	<form action="list.ap" method="POST" id="approvalList">
 		<input type="hidden" value="${ loginUser.memNo }" name="memNo">
+		<input type="hidden" value="" name="docForm">
 	</form>
 	
 
