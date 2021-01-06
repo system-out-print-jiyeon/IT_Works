@@ -51,6 +51,12 @@ public class EmailServiceImpl implements EmailService {
 	public ArrayList<String> selectEmailFromListRec(int emNo) {
 		return emDao.selectEmailFromListRec(sqlSession, emNo);
 	}
+	// 받은사람 이메일주소 + 읽음여부 조회
+	@Override
+	public ArrayList<EmailSelect> selectEmailFromListRecDetail(int emNo){
+		return emDao.selectEmailFromListRecDetail(sqlSession, emNo);
+	}
+	
 	// 첨부파일 여부
 	@Override
 	public int emailAttCount(int emNo) {

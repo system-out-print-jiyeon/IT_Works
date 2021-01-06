@@ -40,6 +40,10 @@ public class EmailDao {
 		return (ArrayList)sqlSession.selectList("emailMapper.selectEmailFromListRec", emNo);
 	}
 	
+	public ArrayList<EmailSelect> selectEmailFromListRecDetail(SqlSessionTemplate sqlSession, int emNo){
+		return (ArrayList)sqlSession.selectList("emailMapper.selectEmailFromListRecDetail", emNo);
+	}
+	
 	public int emailAttCount(SqlSessionTemplate sqlSession, int emNo) {
 		return sqlSession.selectOne("emailMapper.emailAttCount", emNo);
 	}

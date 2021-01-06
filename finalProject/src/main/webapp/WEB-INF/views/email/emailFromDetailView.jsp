@@ -98,7 +98,6 @@ input[type="submit"]:hover{
     font-weight:900;
 }
 
-
 </style>
 </head>
 <body>	

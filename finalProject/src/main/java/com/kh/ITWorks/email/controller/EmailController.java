@@ -177,10 +177,15 @@ public class EmailController {
 		}else {
 			
 			// 받은사람 이메일 조회
-			ArrayList<String> listRec = emService.selectEmailFromListRec(emNo);
+			ArrayList<EmailSelect> listRec = emService.selectEmailFromListRecDetail(emNo);
 			String res = "";
-			for(String re : listRec) {
-				res += re+"<br>";
+			for(EmailSelect re : listRec) {
+				
+				if(re.getEmRead().equals("Y")) { // 읽은 메일
+					res += re.getEmTo() + "&nbsp;&nbsp;<small style='font-size:8px; color:#3498db'>읽음</small><br>";
+				}else { // 안읽은 메일
+					res += re.getEmTo() + "&nbsp;&nbsp;<small style='font-size:8px; color:#e74c3c;'>읽지않음</small><br>";
+				}
 			}
 			em.setEmTo(res);
 			

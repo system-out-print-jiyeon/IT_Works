@@ -106,6 +106,13 @@
 		 where er.em_no = #{emNo}
 	</select>
 	
+	<select id="selectEmailFromListRecDetail" parameterType="_int" resultMap="EmailSelectResultSet">
+		select er.em_to
+		     , er.em_read
+		  from email_recipient er
+		 where er.em_no = #{emNo}
+	</select>
+
 	<select id="selectEmailFromDetail" parameterType="EmailSelect" resultMap="EmailSelectResultSet">
 		select e.em_no
 		     , e.em_from

@@ -24,6 +24,8 @@ public interface EmailService {
 	ArrayList<EmailSelect> selectEmailFromList(PageInfo pi, String email);
 	// 받은사람 이메일주소 조회
 	ArrayList<String> selectEmailFromListRec(int emNo);
+	// 받은사람 이메일주소 + 읽음 여부
+	ArrayList<EmailSelect> selectEmailFromListRecDetail(int emNo);
 	// 첨부파일 여부
 	int emailAttCount(int emNo);
 	// 리스트 삭제 버튼
