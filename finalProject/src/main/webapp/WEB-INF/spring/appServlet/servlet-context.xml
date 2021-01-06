@@ -36,6 +36,11 @@
 			<mapping path="/approval.an"/>
 			<beans:bean id="AnnualLeaveInterceptor" class="com.kh.ITWorks.common.interceptor.AnnualLeaveInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/enrollForm.ma"/>
+			<mapping path="/listManage.ma"/>
+			<beans:bean id="ManageInterceptor" class="com.kh.ITWorks.common.interceptor.ManageInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
 </beans:beans>
