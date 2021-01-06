@@ -1,6 +1,7 @@
 package com.kh.ITWorks.support.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,37 +27,57 @@ public class SupportServiceImpl implements SupportService{
 
 	@Override
 	public int updateWorkSupport(WorkSupport ws) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sd.updateWorkSupport(ws, sqlss);
 	}
 
 	@Override
 	public int deleteWorkSupport(int supportNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sd.deleteWorkSupport(supportNo, sqlss);
 	}
 
 	@Override
-	public int selectListCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int selectListCount(String deptCode) {
+		return sd.selectListCount(deptCode, sqlss);
 	}
 
 	@Override
-	public ArrayList<WorkSupport> selectListWorkSupport(PageInfo pi) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<WorkSupport> selectListWorkSupport(PageInfo pi, String deptCode) {
+		return sd.selectListWorkSupport(pi, deptCode, sqlss);
 	}
 
 	@Override
 	public WorkSupport selectWorkSupport(int supportNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sd.selectWorkSupport(supportNo, sqlss);
 	}
 
 	@Override
 	public int insertSupportAttach(WorkSupport ws) {
 		return sd.insertSupportAttach(ws, sqlss);
+	}
+
+	@Override
+	public ArrayList<WorkSupport> searchSupportList(PageInfo pi, HashMap<String, String> hs) {
+		return sd.searchSupportList(pi, hs, sqlss);
+	}
+	
+	@Override
+	public int selectListCountforSearch(HashMap<String, String> hs) {
+		return sd.selectListCountforSearch(hs, sqlss);
+	}
+
+	@Override
+	public int updateSupportAttach(WorkSupport ws) {
+		return sd.updateSupportAttach(ws, sqlss);
+	}
+
+	@Override
+	public WorkSupport selectAttach(WorkSupport ws) {
+		return sd.selectAttach(ws, sqlss);
+	}
+
+	@Override
+	public int deleteAttach(int supportNo) {
+		return sd.deleteAttach(supportNo, sqlss);
 	}
 
 }

@@ -42,7 +42,7 @@
                             <th width="100">카테고리</th>
                             <td>
                                 <label for="claim">
-                                    <input type="radio" name="category" id="claim" value="클레임"> 클레임(조치사항)
+                                    <input type="radio" name="category" id="claim" value="클레임" required="required"> 클레임(조치사항)
                                 </label>
                                 <label for="workHelp">
                                     <input type="radio" name="category" id="workHelp" value="업무요청"> 업무요청
@@ -62,7 +62,7 @@
                                     <input type="checkbox" id="all"> 모든부서
                                 </label>
                                 <label for="manager">
-                                    <input type="checkbox" name="rdCode" id="manager" value="D5"> 총무팀
+                                    <input type="checkbox" name="rdCode" id="manager" value="D5" required="required"> 총무팀
                                 </label>
                                 <label for="human">
                                     <input type="checkbox"  name="rdCode" id="human" value="D2"> 인사팀

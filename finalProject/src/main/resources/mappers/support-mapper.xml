@@ -5,8 +5,8 @@
 	<resultMap type="Support" id="supportRset">
 		<result column="support_no" property="supportNo"/>
 		<result column="category" property="category"/>
-		<result column="r_deft_code" property="rdCode"/>
-		<result column="s_deft_code" property="sdCode"/>
+		<result column="r_dept_code" property="rdCode"/>
+		<result column="s_dept_code" property="sdCode"/>
 		<result column="start_date" property="startDate"/>
 		<result column="end_date" property="endDate"/>
 		<result column="support_content" property="supportContent"/>
@@ -16,7 +16,7 @@
 		<result column="status" property="status"/>
 		
 		<association property="mem" javaType="Member">
-			<result property="deptName" column="deptName"/>
+			<result property="deptName" column="dept_name"/>
 			<result property="memName" column="mem_name"/>
 		</association>
 		
@@ -82,8 +82,178 @@
 				#{attach.changeName},
 				#{attach.filePath},
 				'1',
-				seq_wsno.currval
+				<choose>
+					<when test="supportNo != null">
+						#{supportNo}
+					</when>
+					<otherwise>
+						seq_wsno.currval
+					</otherwise>
+				</choose>
 			)   
 	</insert>
+	
+	<select id="selectListCount" resultType="_int" parameterType="string">
+		<bind name="deptCode" value="'%'+ deptCode + '%' "/>
+		select
+			   count(support_no)
+		  from work_support
+		 where status = 'Y'
+		   and r_dept_code like #{deptCode}
+	</select>
+	
+	
+	<select id="selectListWorkSupport" resultMap="supportRset" parameterType="string">
+		<bind name="deptCode" value="'%'+ deptCode + '%' "/>
+		select
+			   	support_no,
+				category,
+				r_dept_code,
+				s_dept_code,
+				support_title,
+				support_content,
+				start_date,
+				end_date,
+				mem_no,
+				d.dept_name,
+				create_date
+		  from work_support w, department d
+		 where s_dept_code = d.dept_code
+		   and w.status = 'Y'
+           and r_dept_code like #{deptCode}
+		 order
+		    by 1 desc
+	</select>
+	
+	
+	<select id="selectWorkSupport" parameterType="_int" resultMap="supportRset">
+		select
+				support_no,
+				category,
+				r_dept_code,
+				s_dept_code,
+				support_title,
+				support_content,
+				start_date,
+				end_date,
+				mem_no,
+				status,
+				create_date,
+				bo_att_no,
+                bo_origin_name,
+                bo_change_name,
+                file_path,
+                bo_division,
+                ref_bno,
+                dept_name
+		   from work_support
+      left join board_attachment on (ref_bno = support_no)
+      	   join department on (dept_code = s_dept_code)
+		  where support_no = #{sno}
+		    and status = 'Y'
+	</select>
+	
+	<select id="selectListCountforSearch" parameterType="hashmap" resultType="_int">
+		<bind name="deptCode" value="'%'+ deptCode + '%'"/>
+		select
+			   count(support_no)
+		  from work_support
+		  		<if test="keyword != null">
+			  	   , department
+		  		</if> 
+		 where status = 'Y'
+		   and r_dept_code like #{deptCode}
+		   <choose>
+				<when test="keyword != null">
+				   <bind name="keyword" value="'%'+ keyword + '%'"/>
+				   and ${condition} like #{keyword}
+				</when>
+				<otherwise>
+					and category = #{category}
+				</otherwise>
+		   </choose>
+	</select>
+	
+	<select id="searchSupportList" parameterType="hashmap" resultMap="supportRset">
+		<bind name="deptCode" value="'%'+ deptCode + '%'"/>
+		select
+			   	support_no,
+				category,
+				r_dept_code,
+				s_dept_code,
+				support_title,
+				support_content,
+				start_date,
+				end_date,
+				mem_no,
+				d.dept_name,
+				create_date
+		  from work_support w, department d
+		 where s_dept_code = d.dept_code
+		   and w.status = 'Y'
+           and r_dept_code like #{deptCode}
+           <choose>
+				<when test="keyword != null">	
+				   <bind name="keyword" value="'%'+ keyword + '%'"/>
+				   and ${condition} like #{keyword}
+				</when>
+				<otherwise>
+					and category = #{category}
+				</otherwise>
+		   </choose>
+		 order
+		    by 1 desc
+	</select>
+	
+	<update id="updateWorkSupport" parameterType="Support">
+		update  
+				work_support
+		   set  category = #{category},
+				r_dept_code = #{rdCode},
+				support_title = #{supportTitle},
+				support_content = #{supportContent},
+				start_date = #{startDate},
+				end_date = #{endDate}
+		 where  support_no = #{supportNo}		
+	</update>
+	
+	
+	<update id="updateSupportAttach" parameterType="Support">
+		update 
+			   board_attachment
+		   set bo_origin_name = #{attach.originName},
+		   	   bo_change_name = #{attach.changeName},
+		   	   file_path = #{attach.filePath}
+		 where ref_bno = #{supportNo}  	   
+	</update>
+	
+	
+	<select id="selectAttach" parameterType="Support" resultMap="supportRset">
+		select 
+			    bo_att_no,
+				bo_origin_name,
+				bo_change_name,
+				file_path,
+				bo_division,
+				ref_bno,
+				support_no
+		  from board_attachment, work_support
+		 where ref_bno = #{supportNo}
+		   and support_no = ref_bno
+	</select>
+	
+	
+	<delete id="deleteAttach" parameterType="_int">
+		 delete 
+		   from board_attachment
+		  where ref_bno = #{sno}
+	</delete>
+	
+	<update id="deleteWorkSupport" parameterType="_int">
+		update
+			   work_support
+		   set status = 'N'
+		 where support_no = #{sno}  	   
+	</update>
 
 </mapper>

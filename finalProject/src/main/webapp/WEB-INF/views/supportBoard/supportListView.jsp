@@ -42,6 +42,14 @@
 <body>
 	<jsp:include page="../board/board_sidebar.jsp" />
 	
+	<%-- 알림메시지출력 --%>
+	<c:if test="${ !empty alertMsg }">
+		<script type="text/javascript">
+			alert("${ alertMsg }");
+		</script>
+		<c:remove var="alertMsg" scope="request"/>
+	</c:if>
+	
 	<div class="wrap">
         <h4>업무협업</h4>
         <div id="listwrap">
@@ -50,15 +58,42 @@
                     <button type="button" class="btn btn-info" onclick="location.href='insertForm.sp'">업무헙업 요청</button>
                 </div>
                 <div class="select">
-                    <select class="custom-select" name="category">
+                    <select class="custom-select" id="category" name="category">
                         <option selected hidden>분류</option>
-                        <option value="claim">클레임</option>
-                        <option value="requestion">업무요청</option>
-                        <option value="notice">회사내지침</option>
-                        <option value="meetingPaper">회의록</option>
+                        <option value="클레임">클레임</option>
+                        <option value="업무요청">업무요청</option>
+                        <option value="회사내지침">회사내지침</option>
+                        <option value="회의록">회의록</option>
                     </select>
                 </div>
             </div>
+            <script type="text/javascript">
+            	$(function(){
+            		$("#category").change(function(){
+	            		$.ajax({
+	            			url:"ajaxCategorySort.go",
+	            			type:"post",
+	            			data:{category: $(this).val(), deptCode: "${loginUser.deptCode}"},
+	            			success:function(list){
+	            				var data = "";
+	            				for(var i in list){
+	            					data += "<tr>" + 
+					                            "<td>"+ list[i].supportNo+"</td>" +
+					                            "<td>"+ list[i].category+"</td>" +
+					                            "<td>${loginUser.deptName}팀</td>" +
+					                            "<td>"+ list[i].supportTitle+"</td>" +
+					                            "<td>"+ list[i].createDate+"</td>" +
+					                            "<td>"+list[i].mem.deptName+"팀</td>" +
+		                        			"</tr>"
+	            				}
+	            				$(".tablewrap>table tbody").html(data);
+	            			},error: function(){
+	            				console.log("실패");
+	            			}
+	            		}) 
+            		})
+            	})
+            </script>
             <div id="box2" class="tablewrap" align="center">
                 <table border="1" bordercolor="lightgray">
                     <thead>
@@ -72,37 +107,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>2</td>
-                            <td>회사내지침</td>
-                            <td>개발팀</td>
-                            <td>사무실 환경 점검 예정의 件</td>
-                            <td>2020. 12. 14 (월)</td>
-                            <td>지원팀</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>업무요청</td>
-                            <td>모든부서</td>
-                            <td>제5회 정기주주총회 개최 일정 안내의 件</td>
-                            <td>2020. 12. 01 (화)</td>
-                            <td>총무팀</td>
-                        </tr>
+                    	<c:if test="${!empty list}">
+	                    	<c:forEach var="li" items="${list}">
+		                        <tr>
+		                            <td>${li.supportNo}</td>
+		                            <td>${li.category}</td>
+			                        <td>${loginUser.deptName}팀</td>
+		                            <td>${li.supportTitle }</td>
+		                            <td>${li.createDate}</td>
+		                            <td>${li.mem.deptName}팀</td>
+		                        </tr>
+	                    	</c:forEach>
+                    	</c:if>
                     </tbody>
                 </table>
             </div>
+            <script type="text/javascript">
+            	$(function(){
+            		$(document).on('click', '.tablewrap>table tbody>tr', function(){
+            			location.href = 'detail.sp?sno='+ $(this).children().eq(0).text();
+            		})
+            	})
+            
+            </script>
             <div id="box3">
-                <form action="★" method="GET">
+                <form action="search.sp" method="post">
                     <div id="box1">
                         <div class="select">
                             <select class="custom-select" name="condition">
-                                <option value="title" selected>제목</option>
-                                <option value="titleContent">제목/내용</option>
-                                <option value="sendDeft">발신부서</option>
+                                <option value="support_title" selected>제목</option>
+                                <option value="support_content">내용</option>
+                                <option value="dept_name">발신부서</option>
                             </select>
                         </div>
                         <div class="insert" style="width: 68%;">
                             <input type="text" class="form-control" name="keyword">
+                            <input type="hidden" name="deptCode" value="${loginUser.deptCode}">
                         </div>
                         <button type="submit" class="search btn btn-secondary">검색</button>
                     </div>
@@ -111,13 +151,25 @@
             <div id="box4">
                 <div id="pagingArea">
                     <ul class="pagination">
-                        <li class="page-item disabled"><a class="page-link" href="#"><</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item"><a class="page-link" href="#">></a></li>
+                    <c:choose>
+                    	<c:when test="${pi.currentPage eq 1}">
+                    	    <li class="page-item disabled"><a class="page-link" href="#"><</a></li>
+                    	</c:when>
+                    	<c:otherwise>
+                    	    <li class="page-item"><a class="page-link" href="list.sp?currentPage=${pi.currentPage-1}"><</a></li>
+                    	</c:otherwise>
+                    </c:choose>
+                    <c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage}">
+                        <li class="page-item"><a class="page-link" href="list.sp?currentPage=${p}">${p}</a></li>
+                    </c:forEach>
+                    <c:choose>
+                    	<c:when test="${pi.currentPage eq pi.maxPage}">
+	                        <li class="page-item disabled"><a class="page-link" href="#">></a></li>
+                    	</c:when>
+                    	<c:otherwise>
+	                        <li class="page-item"><a class="page-link" href="list.sp?currentPage=${pi.currentPage+1}">></a></li>
+                    	</c:otherwise>
+                    </c:choose>
                     </ul>
                 </div>
             </div>

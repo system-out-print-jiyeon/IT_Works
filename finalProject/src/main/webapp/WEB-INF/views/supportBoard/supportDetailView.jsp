@@ -21,32 +21,35 @@
         margin:auto; 
         width: 800px;
         height: 800px;
+        background: rgb(253, 253, 253)
     }
     .datawrap{
         height: 80%;
         width: 80%;
         margin: auto;
         margin-top: 50px;
-        border: 1px solid lightgray;
+        border: 3px solid rgb(220, 220, 220);
+        background:white;
     }
     .tablewrap{
         height:10%;
         margin: auto;
         width: 100%;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 0px;
+        margin-bottom: 30px;
         
     }
-    #table1>thead>tr>th{font-size: 12px; color: gray; padding-left: 10px; font-weight: 100;}
-    #table1>tbody>tr>td{font-size: 12px; padding-left: 10px; font-weight: 600; background-color: rgb(240, 240, 240); }
-    #title{height:5%; font-size: 15px; font-weight: 600; border-bottom: 2px solid rgb(89, 89, 89); padding-left: 10px;}
+    #table1>thead>tr>th{font-size: 12px; padding-left: 10px; font-weight: 100; border-bottom: 2px solid rgb(220, 220, 220);}
+    #table1>tbody>tr>td{font-size: 12px; padding-left: 10px; font-weight: 600; }
+    #title{height:5%; font-size: 20px; font-weight: 600; border-bottom: 2px solid rgb(220, 220, 220); padding-left: 10px;}
     
-    #content{height:65%; font-size: 13px; padding-left: 10px;}
-    #attach, #date{height: 5%; font-size: 14px; padding-right: 30px;}
+    #content{height:67%; font-size: 15px; padding-left: 10px; border-bottom: 2px solid rgb(220, 220, 220); }
+    #attach{height: 5%; font-size: 14px; padding-right: 30px;}
     #attach>a{line-height: 30px;}
     div>span{padding-left: 20px;}
 </style>
 <body>
+	<jsp:include page="../board/board_sidebar.jsp" />
     <div class="wrap">
         <h4>업무협업</h4>
         <div class="datawrap">
@@ -54,41 +57,63 @@
                 <table id="table1" border="0" bordercolor="lightgray">
                     <thead>
                         <tr>
-                            <th width="200">카테고리</th>
+                            <th width="150">카테고리</th>
                             <th width="120">발신부서</th>
                             <th width="160">요청시작일</th>
                             <th width="160">요청종료일</th>
+                            <th width="100">등록일</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>회사내지침</td>
-                            <td>지원팀</td>
-                            <td>2020.12.01 (화)</td>
-                            <td>2020.12.01 (화)</td>
+                            <td>${ws.category}</td>
+                            <td>${ws.mem.deptName}팀</td>
+                            <td>${ws.startDate}</td>
+                            <td>${ws.endDate}</td>
+                            <td>${ws.createDate}</td>
                         </tr>
                     </tbody>
                 </table>    
             </div>
             <div id="title">
-                사무실 환경 점검 예정의 件
+                	${ws.supportTitle}
             </div>
-            <div id="date" align="right">
-                2020.12.01(화)
-            </div>
+            
             <div id="attach" align="right">
-                <a href="" download="">테스트.pdf</a>
+            	<c:if test="${ws.attach.originName ne null}">
+	                <a href="${ws.attach.filePath}${ws.attach.changeName} " 
+	                	download="${ws.attach.originName}">${ws.attach.originName}</a>
+            	</c:if>
             </div>
             <div id="content">
                 <p style="height: 100%">
-                    내용내용내용
+                    	${ws.supportContent}
                 </p>
             </div>
-            <div align="right" style="width: 98%;">
-                <button type="button" class="btn btn-info btn-sm" onclick="location.href='';">수정</button>
-                <button type="button" class="btn btn-danger btn-sm" onclick="location.href='';">삭제</button>
-                <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='';">목록</button>
+            <div align="right" style="width: 98%; margin-top:10px">
+            	<c:if test="${loginUser.memNo eq ws.memNo}">
+	                <button type="button" class="btn btn-info btn-sm" onclick="postForm(1);">수정</button>
+	                <button type="button" class="btn btn-danger btn-sm" onclick="postForm(2);">삭제</button>
+            	</c:if>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='list.sp';">목록</button>
             </div>
+            
+            <form action="" method="post" id="postForm">
+            	<input type="hidden" name="sno" value="${ws.supportNo}">
+            </form>
+            
+            <script type="text/javascript">
+            	function postForm(num){
+            		if(num == 1){
+            			document.getElementById('postForm').action = "updateForm.sp";
+            		}else{
+            			if(confirm("정말 삭제하시겠습니까?")){
+	            			document.getElementById('postForm').action = "delete.sp";
+            			}
+            		}
+            		document.getElementById('postForm').submit();
+            	}
+            </script>
         </div>
     </div>
 </body>
