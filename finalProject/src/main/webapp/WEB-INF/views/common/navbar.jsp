@@ -188,6 +188,17 @@
 
     a{text-decoration: none;}
 
+	.logoutDiv{
+		padding-top:20px;
+		padding-left:20px;
+	}
+
+	.logoutDiv a{
+		text-decoration:none;
+		font-size: 12px; 
+		font-weight: 700;
+	}
+	
   </style>
 </head>
 <body>
@@ -232,6 +243,14 @@
         <div class="personalInfo">
            <a href="" class="infoText"><span class="icon"><i class="fas fa-user-circle fa-2x"></i></span>&nbsp;<span class="icon" class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
         </div>
+        
+        <c:choose>
+        	<c:when test="${ !empty loginUser}">
+		        <div class="logoutDiv">
+		        	<a href="logout.at" class="btn btn-outline-primary">로그아웃</a>
+		        </div>
+		    </c:when>
+        </c:choose>
     </nav>
 
     <!-- 서브메뉴바 -->
