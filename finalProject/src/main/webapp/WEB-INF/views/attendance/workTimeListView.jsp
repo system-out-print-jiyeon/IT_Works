@@ -189,7 +189,7 @@ body {
 
 
 /* 컨텐트 */
-.contentArea{width: 100%; height: 1200px;margin-top: 80px;}
+.contentArea{width: 100%; height: 1500px;margin-top: 80px;}
 .content1{
     width: 100%;
     height: 350px; 
@@ -324,7 +324,7 @@ body {
 	                                <label class="button-label" for="yes-button">
 	                                  <h1>출근</h1>
 	                                </label>
-	                                <input class="hidden radio-label" id="no-button" type="radio" name="onTime" value="<%= wt.format(nowTime) %>"/>
+	                                <input class="hidden radio-label" id="no-button" type="radio" name="onTime"/>
 	                                <label class="button-label" for="no-button">
 	                                  <h1>퇴근</h1>
 	                                </label>
@@ -340,6 +340,19 @@ body {
                              </form>
                         </tr>
                     </table>
+
+
+					<script>
+						$('#no-button').click(function() {
+						        // hidden타입으로 input생성하고 name변경
+	                            var a = document.createElement("input");
+	                            a.setAttribute("type", "hidden");
+	                            a.setAttribute("value", "<%= wt.format(nowTime) %>");
+	                            a.setAttribute("name", "leaveTime");
+						       $('#onLocation').attr('name', 'leaveLocation');
+						});
+					</script>
+
 
 
                 </div>
