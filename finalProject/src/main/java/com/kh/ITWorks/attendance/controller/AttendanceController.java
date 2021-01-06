@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.ITWorks.attendance.model.service.AttendanceService;
 import com.kh.ITWorks.attendance.model.vo.AnnualLeave;
 import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
+import com.kh.ITWorks.attendance.model.vo.WorkDay;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.common.template.Pagination;
 import com.kh.ITWorks.member.model.vo.Member;
@@ -428,16 +429,102 @@ public class AttendanceController {
 	}
 	
 
-
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	/*
 	@RequestMapping("workTime.at")
 	public ModelAndView workTimeView(ModelAndView mv) {
 		mv.setViewName("attendance/workTimeListView");
 		return mv;
-	}
+	} */
 	
 
 
+	@ResponseBody
+	@RequestMapping("updateOnWork.wd")
+	public String updateOnWork(WorkDay wd, String onLocation, String onTime, int memNo) {
+		
+		int checkWorkDay = aService.checkOnWork(wd);
+		
+		Map<String, Object> updatewd = new HashMap<String, Object>();
+		updatewd.put("onLocation", onLocation);
+		updatewd.put("onTime", onTime);
+		updatewd.put("memNo", memNo);
+		
+		if(checkWorkDay == 0) {
+			int result = aService.updateOnWork(updatewd);
+			
+			if(result > 0) {
+				return "success";
+				
+			}else {
+				return "fail";
+			}
+		}else {
+			
+			return "already";
+		}
+		
+	}
+
+
+	@ResponseBody
+	@RequestMapping("updateLeaveWork.wd")
+	public String updateLeaveWork(WorkDay wd, String leaveLocation, String leaveTime, int memNo) {
+		
+		int checkWorkDay = aService.checkLeaveWork(wd);
+		
+		System.out.println("checkWorkDay : " + checkWorkDay);
+		
+		Map<String, Object> updatewd = new HashMap<String, Object>();
+		updatewd.put("leaveLocation", leaveLocation);
+		updatewd.put("leaveTime", leaveTime);
+		updatewd.put("memNo", memNo);
+		
+		if(checkWorkDay == 0) {
+			int result = aService.updateLeaveWork(updatewd);
+			
+			System.out.println("result : " + result);
+			
+			if(result > 0) {
+				return "success";
+			}else {
+				return "fail";
+			}
+		}else {
+			
+			return "already";
+		}
+		
+	}
+
+	
+
+	@RequestMapping("workTime.at")
+	public String workDayList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, @RequestParam("memNo") int memNo,
+								Model model) {
+		
+		int listCount = aService.selectListCountWD(memNo);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+		ArrayList<WorkDay> wdList = aService.selectWorkDayList(pi);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("wdList", wdList);
+		
+		return "attendance/workTimeListView";
+	}
+	
+	
 	
 	
 	

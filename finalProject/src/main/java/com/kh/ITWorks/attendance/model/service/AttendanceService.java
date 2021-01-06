@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.ITWorks.attendance.model.vo.AnnualLeave;
 import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
+import com.kh.ITWorks.attendance.model.vo.WorkDay;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.member.model.vo.Member;
 
@@ -61,4 +62,20 @@ public interface AttendanceService {
 	// 연차 승인용 서비스
 	int approvalAnnualLeave(Map<String, Object> approval);
 	int subtractAnnualLeave(int prno);
+	
+	
+	
+	
+	
+	// 출퇴근 등록
+	int checkOnWork(WorkDay wd);
+	int updateOnWork(Map<String, Object> updatewd);
+	
+	int checkLeaveWork(WorkDay wd);
+	int updateLeaveWork(Map<String, Object> updatewd);
+	
+	// 연차신청 리스트 조회
+	int selectListCountWD(int memNo);  
+	ArrayList<WorkDay> selectWorkDayList(PageInfo pi);
+	
 }

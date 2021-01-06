@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.ITWorks.attendance.model.dao.AttendanceDao;
 import com.kh.ITWorks.attendance.model.vo.AnnualLeave;
 import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
+import com.kh.ITWorks.attendance.model.vo.WorkDay;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.member.model.vo.Member;
 
@@ -144,6 +145,42 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Override
 	public int subtractAnnualLeave(int prno) {
 		return aDao.subtractAnnualLeave(sqlSession, prno);
+	}
+
+
+	@Override
+	public int checkOnWork(WorkDay wd) {
+		return aDao.checkOnWork(sqlSession, wd);
+	}
+
+
+	@Override
+	public int updateOnWork(Map<String, Object> updatewd) {
+		return aDao.updateOnWork(sqlSession, updatewd);
+	}
+
+
+	@Override
+	public int checkLeaveWork(WorkDay wd) {
+		return aDao.checkLeaveWork(sqlSession, wd);
+	}
+
+
+	@Override
+	public int updateLeaveWork(Map<String, Object> updatewd) {
+		return aDao.updateLeaveWork(sqlSession, updatewd);
+	}
+
+
+	@Override
+	public int selectListCountWD(int memNo) {
+		return  aDao.selectListCountWD(sqlSession, memNo);
+	}
+
+
+	@Override
+	public ArrayList<WorkDay> selectWorkDayList(PageInfo pi) {
+		return  aDao.selectWorkDayList(sqlSession, pi);
 	}
 
 

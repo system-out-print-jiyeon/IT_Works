@@ -60,6 +60,18 @@
 
 
 
+	<resultMap type="WorkDay" id="workDayResultSet">
+		<result column="work_no" property="workNo"/>
+		<result column="on_location" property="onLocation"/>
+		<result column="leave_location" property="leaveLocation"/>
+		<result column="on_time" property="onTime"/>
+		<result column="leave_time" property="leaveTime"/>
+		<result column="work_date" property="workDate"/>
+		<result column="work_status" property="workStatus"/>
+		<result column="mem_no" property="memNo"/>
+	</resultMap>
+
+
 
 
 
@@ -338,6 +350,72 @@ UPDATE
    SET ANNUAL_LEAVE = ANNUAL_LEAVE -1
  WHERE MEM_NO = #{prno}
 </update>
+
+
+
+<select id="checkOnWork" parameterType="WorkDay"  resultType="_int">
+SELECT
+       COUNT(*)
+  FROM WORKDAY
+ WHERE (WORK_STATUS = 'Y' or  WORK_STATUS =  'O')
+   AND MEM_NO = #{memNo}
+   AND work_date = TO_CHAR(SYSDATE, 'YY/MM/DD')
+</select>
+
+<update id="updateOnWork">
+UPDATE
+       WORKDAY
+   SET
+       ON_LOCATION = #{onLocation}
+     , ON_TIME = #{onTime}
+     , WORK_STATUS = 'O'
+ WHERE MEM_NO = #{memNo}
+   AND work_date = TO_CHAR(SYSDATE, 'YY/MM/DD')
+</update>
+
+
+<select id="checkLeaveWork" parameterType="WorkDay"  resultType="_int">
+SELECT
+       COUNT(*)
+  FROM WORKDAY
+ WHERE WORK_STATUS = 'N'
+   AND MEM_NO = #{memNo}
+   AND work_date = TO_CHAR(SYSDATE, 'YY/MM/DD')
+</select>
+
+<update id="updateLeaveWork">
+UPDATE
+       WORKDAY
+   SET
+       LEAVE_LOCATION = #{leaveLocation}
+     , LEAVE_TIME = #{leaveTime}
+     , WORK_STATUS = 'Y'
+ WHERE MEM_NO = #{memNo}
+   AND work_date = TO_CHAR(SYSDATE, 'YY/MM/DD')
+</update>
+
+<select id="selectListCountWD" parameterType="_int" resultType="_int">
+	SELECT
+	       COUNT(*)
+	  FROM WORKDAY
+	 WHERE MEM_NO = #{memNo}
+</select>
+
+<select id="selectWorkDayList" resultMap="workDayResultSet">
+	SELECT
+	       WORK_DATE
+         , ON_TIME
+	     , ON_LOCATION
+	     , LEAVE_TIME
+	     , LEAVE_LOCATION
+	     , WORK_STATUS
+	  FROM WORKDAY
+	 ORDER
+	    BY WORK_DATE DESC
+</select>
+
+
+
 
 
 
