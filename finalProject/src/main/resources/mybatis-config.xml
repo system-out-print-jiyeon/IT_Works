@@ -11,7 +11,8 @@
 		<typeAlias type="com.kh.ITWorks.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.ITWorks.email.model.dto.EmailSelect" alias="EmailSelect"/>
 		<typeAlias type="com.kh.ITWorks.attendance.model.vo.BusinessTrip" alias="BusinessTrip"/>	
-		<typeAlias type="com.kh.ITWorks.attendance.model.vo.AnnualLeave" alias="AnnualLeave"/>		
+		<typeAlias type="com.kh.ITWorks.attendance.model.vo.AnnualLeave" alias="AnnualLeave"/>
+		<typeAlias type="com.kh.ITWorks.attendance.model.vo.WorkDay" alias="WorkDay"/>		
 		<typeAlias alias="Reservation" type="com.kh.ITWorks.reservation.model.vo.Reservation"/>
 		<typeAlias alias="Support" type="com.kh.ITWorks.support.model.vo.WorkSupport"/>
 		<typeAlias alias="BoardAttachment" type="com.kh.ITWorks.board.model.vo.BoardAttachment"/>

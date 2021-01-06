@@ -66,7 +66,7 @@ body {
   }
 }
 
-.button-label {
+.onButton-label, .leaveButton-label {
   display: inline-block;
   padding: 1em 2em;
   margin: 0.5em;
@@ -81,48 +81,42 @@ body {
       -ms-user-select: none;
           user-select: none;
 }
-.button-label h1 {
+.onButton-label h1 , .leaveButton-label h1{
   font-size: 1em;
   font-family: "Lato", sans-serif;
   font-weight: 600;
 }
-.button-label:hover {
+.onButton-label:hover , .leaveButton-label:hover{
   background: #d6d6d6;
   color: #101010;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
 }
-.button-label:active {
+.onButton-label:active , .leaveButton-label:active{
   transform: translateY(2px);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0px -1px 0 rgba(0, 0, 0, 0.22);
 }
 @media (max-width: 40em) {
-  .button-label {
+  .onButton-label, .leaveButton-label {
     padding: 0em 1em 3px;
     margin: 0.25em;
   }
 }
 
-#yes-button, #no-button, .button-label{
+#yes-button, #no-button, .onButton-label, .leaveButton-label{
     width: 100px;
     height: 40px;
     padding: 0px;
     text-align: center;
 }
 
-#yes-button:checked + .button-label {
-  background: #2ecc71;
-  color: #efefef;
-}
-#yes-button:checked + .button-label:hover {
+
+.onButton-label:hover {
   background: #29b765;
   color: #e2e2e2;
 }
 
-#no-button:checked + .button-label {
-  background: #d91e18;
-  color: #efefef;
-}
-#no-button:checked + .button-label:hover {
+
+.leaveButton-label:hover {
   background: #c21b15;
   color: #e2e2e2;
 }
@@ -133,7 +127,7 @@ body {
 
 /* *{
     border: 1px solid red;
-}  */
+} */
 .wrap{width: 100%; 
       height: 100%;
       display: flex;
@@ -201,6 +195,9 @@ body {
 .sysdateTable tr td{
     padding: 15px;
 }
+#updateTable tr td{
+	padding: 10px;
+}
 .work-btn{
     background: rgb(155, 155, 155);
     color: rgb(255, 255, 255);
@@ -262,7 +259,7 @@ body {
                     <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>근태 현황</a>
                         <ul class="menu1">
                             <li class="selectedTitle"><a href="workTime.at">출/퇴근 등록</a></li>
-                            <li><a href="#">나의 근무시간 조회</a></li>
+                            <li><a href="workTimeGraph.wd">나의 근무시간 조회</a></li>
                         </ul>
                     </li>
                     <br>
@@ -317,40 +314,131 @@ body {
                                 </body>
 							</td>
                         </tr>
+                     </table>
+                     <table id="updateTable">
                         <tr>
-                        	<form action="">
-	                            <td>
-	                                <input class="hidden radio-label" id="yes-button" type="radio" name="onTime" value="<%= wt.format(nowTime) %>"/>
-	                                <label class="button-label" for="yes-button">
-	                                  <h1>출근</h1>
-	                                </label>
-	                                <input class="hidden radio-label" id="no-button" type="radio" name="onTime"/>
-	                                <label class="button-label" for="no-button">
-	                                  <h1>퇴근</h1>
-	                                </label>
-	                            </td>
-	                            <td>
+                        	<form id="updateOnWork">
+                        	 	<td>
                                     <select name="onLocation" id="onLocation">
+                                    	<option selected value="">출근지를 선택하세요</option>
                                         <option value="서울지사">서울지사</option>
                                         <option value="경기지사">경기지사</option>
                                     </select>
-                                    &nbsp;&nbsp;
-                                    <button  class="btn btn-primary" class="submit-btn" type="submit">&nbsp; 입력 &nbsp;</button>
                             	</td>
+	                            <td>
+	                            	<input type="hidden" name="memNo" value="${loginUser.memNo }">
+	                                <input class="hidden radio-label" id="yes-button" type="button" name="onTime" value="<%= wt.format(nowTime) %>"  onclick="test1(); return false;"/>
+	                                <input type="hidden" name="onTime" value="<%= wt.format(nowTime) %>">
+	                                <label class="onButton-label" for="yes-button">
+	                                  <h1>출근</h1>
+	                                </label>
+	                            </td>
+	                            
+	                         </form>
+	                         <form id="updateLeaveWork">
+                            	<td>
+                                    <select name="leaveLocation" id="leaveLocation">
+                                   		<option selected value="">퇴근지를 선택하세요</option>
+                                        <option value="서울지사">서울지사</option>
+                                        <option value="경기지사">경기지사</option>
+                                    </select>
+                            	</td>
+	                            <td>
+	                          	    <input type="hidden" name="memNo" value="${loginUser.memNo }">
+	                                <input class="hidden radio-label" id="no-button" type="button" onclick="test2(); return false;"/>
+	                                <input type="hidden" id="leaveTime" name="leaveTime">
+	                                <label class="leaveButton-label" for="no-button">
+	                                  <h1>퇴근</h1>
+	                                </label>
+	                            </td>
+	                           
                              </form>
                         </tr>
                     </table>
 
 
 					<script>
-						$('#no-button').click(function() {
-						        // hidden타입으로 input생성하고 name변경
-	                            var a = document.createElement("input");
-	                            a.setAttribute("type", "hidden");
-	                            a.setAttribute("value", "<%= wt.format(nowTime) %>");
-	                            a.setAttribute("name", "leaveTime");
-						       $('#onLocation').attr('name', 'leaveLocation');
-						});
+					    setInterval("leaveTime()",1000);
+					    function leaveTime(){
+					       var now = new Date();
+					        hours = now.getHours();
+					        minutes = now.getMinutes();
+					        seconds = now.getSeconds();
+					 
+					       
+					        if (hours < 10){
+					            hours = "0" + hours;
+					        }
+					        if (minutes < 10){
+					            minutes = "0" + minutes;
+					        }
+					        if (seconds < 10){
+					            seconds = "0" + seconds;
+					        }
+						var leaveTime = document.getElementById("leaveTime");
+						leaveTime.setAttribute("value", hours + ":" + minutes + ":" + seconds);
+					    }
+						
+						 function test1(){
+						        var formData = $("#updateOnWork").serialize();
+
+						        $.ajax({
+						            cache : false,
+						            url : "updateOnWork.wd",
+						            type : 'POST', 
+						            data : formData, 
+						            success : function(result) {
+						                if(result == "success"){
+						                	alert("출근 등록 완료!");
+						                	console.log("success");
+						                	
+						                }else if(result == "fail"){
+						                	alert("등록실패하였습니다");
+						                	console.log("fail");
+						                }else{
+						                	alert("출근등록은 두 번 할 수 없습니다.");
+						                	console.log("already");
+						                }
+						                
+						                window.location.href = "workTime.at?memNo=" + ${loginUser.memNo};
+						            }, // success 
+						    
+						            error : function() {
+						            }
+						        }); 
+						    }
+						
+						 
+						 function test2(){
+						        var formData = $("#updateLeaveWork").serialize();
+
+						        $.ajax({
+						            cache : false,
+						            url : "updateLeaveWork.wd",
+						            type : 'POST', 
+						            data : formData, 
+						            success : function(result) {
+						                if(result == "success"){
+						                	alert("퇴근 등록 완료!");
+						                	console.log("success");
+						                	
+						                }else if(result == "fail"){
+						                	alert("등록실패하였습니다");
+						                	console.log("fail");
+						                }else{
+						                	alert("출근등록을 먼저 해주세요!");
+						                	console.log("already");
+						                }
+						                
+						                window.location.href = "workTime.at?memNo=" + ${loginUser.memNo};
+						            }, // success 
+						    
+						            error : function() {
+						            }
+						        }); 
+						    }
+						
+						
 					</script>
 
 
@@ -359,37 +447,44 @@ body {
 
                 <div class="content2">
                     <div class="nameBar"><h5> ${loginUser.memName } 님의 출퇴근 기록</h5></div>
-
+					
                     <div class="workList">
                         <table id="workListTable" class="table">
-                            <tr class="tdTitle">
-                                <td>일자</td>
-                                <td>출근시각</td>
-                                <td>출근위치</td>
-                                <td>퇴근시각</td>
-                                <td>퇴근위치</td>
-                                <td>총 근무시간</td>
-                                <td>상태</td>
-                            </tr>
-                            <tr>
-                                <td>2020-11-23</td>
-                                <td>09:00</td>
-                                <td>서울지사</td>
-                                <td>18:00</td>
-                                <td>경기지사</td>
-                                <td>09:00</td>
-                                <td>
-                                     <c:choose>
-	                                	<c:when test="${wd.workStatus eq 'Y'}">
-	                                    	<p class="btn btn-primary">처리완료</p>
-										</c:when>
-										<c:otherwise>
-											<p class="btn btn-secondary">미처리</p>
-										</c:otherwise>
-									 </c:choose>	         
-                                </td>
-                            </tr>
-                            
+                        	<thead>
+	                            <tr class="tdTitle">
+	                                <td>일자</td>
+	                                <td>출근시각</td>
+	                                <td>출근위치</td>
+	                                <td>퇴근시각</td>
+	                                <td>퇴근위치</td>
+	                                <td>총 근무시간</td>
+	                                <td>상태</td>
+	                            </tr>
+                        	</thead>
+                        	<tbody>
+	                        	<c:forEach var="wd" items="${ wdList }">
+			                        <c:if test="${loginUser.memNo eq wd.memNo }"> 
+			                            <tr>
+			                                <td>${wd.workDate }</td>
+			                                <td>${wd.onTime }</td>
+			                                <td>${wd.onLocation }</td>
+			                                <td>${wd.leaveTime }</td>
+			                                <td>${wd.leaveLocation }</td>
+			                                <td>${wd.leaveTime - wd.onTime}</td>
+			                                <td>
+			                                     <c:choose>
+				                                	<c:when test="${wd.workStatus eq 'Y'}">
+				                                    	<p class="btn btn-primary">처리완료</p>
+													</c:when>
+													<c:otherwise>
+														<p class="btn btn-secondary">미처리</p>
+													</c:otherwise>
+												 </c:choose>	         
+			                                </td>
+			                            </tr>
+				                     </c:if>
+				                  </c:forEach>
+                            </tbody>
                         </table>
                     </div>
                                	
