@@ -34,6 +34,7 @@
 		<mapper resource="/mappers/email-mapper.xml"/>	
 		<mapper resource="/mappers/support-mapper.xml"/>
 		<mapper resource="/mappers/reservation-mapper.xml"/>
+		<mapper resource="/mappers/calendar-mapper.xml"/>
 	</mappers>
 	
 </configuration>

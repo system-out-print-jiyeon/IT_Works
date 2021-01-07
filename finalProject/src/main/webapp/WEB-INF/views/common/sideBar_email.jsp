@@ -60,6 +60,7 @@
 }
 .em_menubar_list li{
     list-style:none;
+    margin:10px 0;
 }
 .em_menubar_list>span{
     font-size:25px;

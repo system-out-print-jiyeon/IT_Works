@@ -87,7 +87,15 @@
 			<li class="profile" style="margin-left: -35px;"><a class="btn" href="list.em?email=${loginUser.email}"><i class="fas fa-th"></i>&nbsp;&nbsp;메일</a>
                	
             </li>
-            <li class="profile" ><a class="btn">캘린더</a>
+            <li class="profile" ><a class="btn" onclick="calendar_submit();">캘린더</a>
+			<form action="calendar.ca" method="post" id="calendar_btn">
+				<input type="hidden" name="memNo" value="${ loginUser.memNo }">
+			</form>
+			<script>
+				function calendar_submit(){
+					$("#calendar_btn").submit();
+				}
+			</script>
                 
             </li>
             <li class="profile" ><a class="btn">주소록</a>

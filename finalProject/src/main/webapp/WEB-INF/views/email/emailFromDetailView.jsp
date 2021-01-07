@@ -39,6 +39,7 @@
 	width:100%;
     position: fixed;
     background:white;
+    z-index:10;
 }
 .em_content_center{
     margin-top:100px;

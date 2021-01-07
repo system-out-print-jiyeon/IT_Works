@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="calendarMapper">
+	
+	<resultMap id="CalendarResultSet" type="com.kh.ITWorks.calendar.model.vo.Calendar">
+		<result column="cal_no" property="calNo" />
+		<result column="cal_title" property="calTitle" />
+		<result column="cal_place" property="calPlace" />
+		<result column="cal_content" property="calContent" />
+		<result column="cal_start_date" property="calStartDate" />
+		<result column="cal_end_date" property="calEndDate" />
+		<result column="cal_time" property="calTime" />
+		<result column="cal_color" property="calColor" />
+		<result column="cal_range" property="calRange" />
+		<result column="cal_status" property="calStatus" />
+		<result column="mem_no" property="memNo" />
+		
+		<result column="mem_name" property="memName" />
+		<result column="dept_name" property="deptName" />
+		<result column="job_name" property="jobName" />	
+		
+	</resultMap>
+	
+	<!-- 개인일정 조회 -->
+	<select id="selectCalendarList" parameterType="_int" resultMap="CalendarResultSet">
+		select c.cal_no
+		     , c.cal_title
+		     , c.cal_place
+		     , c.cal_content
+     		 , c.cal_start_date
+		     , c.cal_end_date
+		     , c.cal_time
+		     , c.cal_color
+		     , c.cal_range
+		     , c.cal_status
+		     , mem_no
+		     , e.mem_name
+		     , d.dept_name
+		     , j.job_name
+		  from calendar c
+		  join employee e using(mem_no)
+		  join department d using(dept_code)
+		  join jobgrade j using(job_code)
+		 where c.cal_status = 'Y'
+		   and c.cal_range = '개인'
+		   and mem_no = #{memNo}
+	</select>
+	
+	<!-- 부서일정 조회 -->
+	<select id="selectCalendarDeptList" parameterType="string" resultMap="CalendarResultSet">
+		select c.cal_no
+		     , c.cal_title
+		     , c.cal_place
+		     , c.cal_content
+		     , c.cal_start_date
+		     , c.cal_end_date
+		     , c.cal_time
+		     , c.cal_color
+		     , c.cal_range
+		     , c.cal_status
+		     , mem_no
+		     , e.mem_name
+		     , d.dept_name
+		     , j.job_name
+		  from calendar c
+		  join employee e using(mem_no)
+		  join department d using(dept_code)
+		  join jobgrade j using(job_code)
+		 where c.cal_status = 'Y'
+		   and c.cal_range = '부서'
+		   and d.dept_name = #{deptName}
+	</select>
+	
+	<!-- 사내일정 조회 -->
+	<select id="selectCalendarCompList" resultMap="CalendarResultSet">
+		select c.cal_no
+		     , c.cal_title
+		     , c.cal_place
+		     , c.cal_content
+		     , c.cal_start_date
+		     , c.cal_end_date
+		     , c.cal_time
+		     , c.cal_color
+		     , c.cal_range
+		     , c.cal_status
+		     , mem_no
+		     , e.mem_name
+		     , d.dept_name
+		     , j.job_name
+		  from calendar c
+		  join employee e using(mem_no)
+		  join department d using(dept_code)
+		  join jobgrade j using(job_code)
+		 where c.cal_status = 'Y'
+		   and c.cal_range = '사내'
+	</select>
+	
+	<!-- 일정 등록 -->
+	<insert id="insertCalendar" parameterType="com.kh.ITWorks.calendar.model.vo.Calendar">
+		insert 
+		  into calendar
+		     (
+		       cal_no
+		     , cal_title
+		     , cal_place
+		     , cal_content
+		     , cal_start_date
+		     , cal_end_date
+		     , cal_time
+		     , cal_color
+		     , cal_range
+		     , mem_no
+		     )
+		values
+		     (
+		       seq_calno.nextval
+		     , #{calTitle}
+		     , #{calPlace}
+		     , #{calContent}
+		     , #{calStartDate}
+		     , #{calEndDate}
+		     , #{calTime}
+		     , #{calColor}
+		     , #{calRange}
+		     , #{memNo}
+		     )
+	</insert>
+	
+</mapper>
