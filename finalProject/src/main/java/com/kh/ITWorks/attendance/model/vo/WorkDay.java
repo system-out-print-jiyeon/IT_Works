@@ -21,5 +21,8 @@ public class WorkDay {						// 출퇴근관리  테이블
 	 private String workDate;				// 일자
 	 private String workStatus;				// 출퇴근 처리/미처리
 	 private int memNo;						// 사원번호
+	 
+	 
+	 private int leftDays;
 	
 }

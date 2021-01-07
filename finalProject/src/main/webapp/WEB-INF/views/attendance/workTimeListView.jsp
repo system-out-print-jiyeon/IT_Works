@@ -179,6 +179,13 @@
     padding: 40px;
     }
 .content2{width: 100%; height: 850px; float: left;}
+.content1 div{
+	height:100%;
+	float:left;
+	
+}
+.content1_1{width:68%}
+.content1_2{width:32%; padding:40px;}
 
 .sysdateTable tr td{
     padding: 15px;
@@ -289,7 +296,8 @@
             <div class="contentArea">
 
                 <div class="content1">
-                    <table class="sysdateTable">
+                	<div class="content1_1">
+                		 <table class="sysdateTable">
                         <tr>
                             <td>사용한 휴가개수 ${15-loginUser.annualLeave } 개 | 미사용 ${loginUser.annualLeave }개</td>
                             <td><div class="btn btn-outline-primary" class="sysdateBar"><%= sf.format(nowTime) %></div><br></td>
@@ -303,6 +311,7 @@
 							</td>
                         </tr>
                      </table>
+                     
                      <table id="updateTable">
                         <tr>
                         	<form id="updateOnWork">
@@ -343,6 +352,12 @@
                              </form>
                         </tr>
                     </table>
+                	</div>
+                	
+                	<div class="content1_2">
+                     	<img src="https://cdn0.iconfinder.com/data/icons/work-from-home-19/512/WorkAlone-working-businessman-work-office-workfromhome-512.png" width="250" height="250">
+                	</div>
+                   
 
 
 					<script>

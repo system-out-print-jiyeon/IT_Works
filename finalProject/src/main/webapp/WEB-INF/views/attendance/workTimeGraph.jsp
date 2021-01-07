@@ -201,7 +201,7 @@
 
 /* *{
     border: 1px solid red;
-}  */
+} */ 
 .wrap{width: 100%; 
       height: 100%;
       display: flex;
@@ -286,10 +286,13 @@
 }
 .content1 div{
     width: 100%;
-    height: 33.3%;
+    height: 50%;
     padding: 30px;
 }
-
+.content1_1 h5{padding-top:60px;}
+.content1_1 h5, .content1_2 h5{
+	padding-left:50px;
+}
 /*선택된메뉴*/
 .selectedTitle{
     background-color: rgba(76, 135, 212, 0.616);
@@ -360,17 +363,14 @@
 
                     <div class="content1">
                         <div class="content1_1">
-                            <h5>이 달의 목표 근무시간 : &nbsp; &nbsp; 200 시간</h5>   
+                            <h5>이 달의 목표 근무일 : &nbsp; &nbsp; 20 일</h5>   
                         </div>
                         <div class="content1_2">
-                            <h5>이 달의 누적 근무시간 : &nbsp; &nbsp; 200 시간</h5>   
-                        </div>
-                        <div class="content1_3">
                             <h5>이 달의 남은 근무일 수 : &nbsp; &nbsp; 00 일</h5>   
                         </div>
                     </div>
                     <div class="content2">
-                        <div class="progress-circle p20"> <!--여기 바꾸면 됨-->
+                        <div id="circle" class="progress-circle p20"> <!--여기 바꾸면 됨-->
                             <span>20%</span>
                             <div class="left-half-clipper">
                               <div class="first50-bar"></div>
@@ -387,6 +387,14 @@
                          </div>
                          -->
                     </div>
+                    
+                    
+
+                    
+                    
+                    
+                    
+                    
 
                 </div>
 
