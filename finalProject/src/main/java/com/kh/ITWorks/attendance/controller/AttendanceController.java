@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.ITWorks.attendance.model.service.AttendanceService;
 import com.kh.ITWorks.attendance.model.vo.AnnualLeave;
 import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
@@ -441,12 +442,12 @@ public class AttendanceController {
 	
 	
 
-	/*
+	
 	@RequestMapping("workTime.at")
 	public ModelAndView workTimeView(ModelAndView mv) {
 		mv.setViewName("attendance/workTimeListView");
 		return mv;
-	} */
+	}
 	
 
 
@@ -509,27 +510,30 @@ public class AttendanceController {
 	}
 
 	
-
-	@RequestMapping("workTime.at")
-	public String workDayList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, @RequestParam("memNo") int memNo,
+	
+	@ResponseBody
+	@RequestMapping(value="workTime.wd", produces="application/json; charset=utf-8")
+	public String workDayList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, int memNo,
 								Model model) {
 		
 		int listCount = aService.selectListCountWD(memNo);
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
-		ArrayList<WorkDay> wdList = aService.selectWorkDayList(pi);
+		ArrayList<WorkDay> wdList = aService.selectWorkDayList(pi, memNo);
 		
-		// System.out.println("몇개 : " + listCount);
+		System.out.println("몇개 : " + wdList);
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("wdList", wdList);
 		
-		return "attendance/workTimeListView";
+		return new Gson().toJson(wdList);
 	}
+
+	
 	
 	
 	
 	@RequestMapping("workTimeGraph.wd")
-	public ModelAndView workTimeView(ModelAndView mv) {
+	public ModelAndView workTimeGraph(ModelAndView mv) {
 		mv.setViewName("attendance/workTimeGraph");
 		return mv;
 	}

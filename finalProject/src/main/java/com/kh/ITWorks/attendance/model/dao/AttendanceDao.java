@@ -138,13 +138,13 @@ public class AttendanceDao {
 	}
 	
 	
-	public ArrayList<WorkDay> selectWorkDayList(SqlSessionTemplate sqlSession, PageInfo pi){
+	public ArrayList<WorkDay> selectWorkDayList(SqlSessionTemplate sqlSession, PageInfo pi, int memNo){
 		
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("attendanceMapper.selectWorkDayList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("attendanceMapper.selectWorkDayList", memNo, rowBounds);
 	}
 
 	

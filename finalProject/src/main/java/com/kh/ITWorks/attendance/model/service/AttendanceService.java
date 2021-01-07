@@ -76,6 +76,6 @@ public interface AttendanceService {
 	
 	// 연차신청 리스트 조회
 	int selectListCountWD(int memNo);  
-	ArrayList<WorkDay> selectWorkDayList(PageInfo pi);
+	ArrayList<WorkDay> selectWorkDayList(PageInfo pi, int memNo);
 	
 }

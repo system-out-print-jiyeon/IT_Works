@@ -179,8 +179,8 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 
 	@Override
-	public ArrayList<WorkDay> selectWorkDayList(PageInfo pi) {
-		return  aDao.selectWorkDayList(sqlSession, pi);
+	public ArrayList<WorkDay> selectWorkDayList(PageInfo pi, int memNo) {
+		return  aDao.selectWorkDayList(sqlSession, pi, memNo);
 	}
 
 

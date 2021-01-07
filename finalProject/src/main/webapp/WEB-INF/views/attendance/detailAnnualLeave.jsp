@@ -213,7 +213,7 @@ textarea {
                             </tr>
                             <tr>
                                 <td class="tdTitle">성명</td>
-                                <td>${an.anProposer}</td>
+                                <td>${an.memName}</td>
                                 <td class="tdTitle">기안 일시</td>
                                 <td>${an.createDate }</td>
                             </tr>

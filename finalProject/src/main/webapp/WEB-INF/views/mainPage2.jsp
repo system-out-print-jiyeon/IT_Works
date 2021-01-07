@@ -102,7 +102,7 @@
             <li class="profile" ><a class="btn" href="manageList.ma">인사관리</a>
                 
             </li>
-            <li class="profile" ><a class="btn" href="workTime.at?memNo=${loginUser.memNo }">근태관리</a>
+            <li class="profile" ><a class="btn" href="workTime.at">근태관리</a>
                 
             </li>
             <li class="profile" ><a class="btn" href="approval.me">전자결재</a>

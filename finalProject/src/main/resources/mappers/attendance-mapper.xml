@@ -40,6 +40,10 @@
 		<result column="bu_proposer" property="buProposer"/>
 		<result column="bu_approver" property="buApprover"/>
 		<result column="count" property="count"/>	
+		<result column="job_name" property="jobName"/>
+		<result column="dept_name" property="deptName"/>
+		<result column="mem_no" property="memNo"/>	
+		<result column="mem_name" property="memName"/>
 	</resultMap>
 
 
@@ -56,6 +60,10 @@
 		<result column="an_proposer" property="anProposer"/>
 		<result column="an_approver" property="anApprover"/>	
 		<result column="count" property="count"/>
+		<result column="job_name" property="jobName"/>
+		<result column="dept_name" property="deptName"/>
+		<result column="mem_no" property="memNo"/>	
+		<result column="mem_name" property="memName"/>
 	</resultMap>
 
 
@@ -401,7 +409,7 @@ UPDATE
 	 WHERE MEM_NO = #{memNo}
 </select>
 
-<select id="selectWorkDayList" resultMap="workDayResultSet">
+<select id="selectWorkDayList" parameterType="_int" resultMap="workDayResultSet">
 	SELECT
 	       WORK_DATE
          , ON_TIME
@@ -410,6 +418,7 @@ UPDATE
 	     , LEAVE_LOCATION
 	     , WORK_STATUS
 	  FROM WORKDAY
+	 WHERE MEM_NO = #{memNo}
 	 ORDER
 	    BY WORK_DATE DESC
 </select>

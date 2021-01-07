@@ -34,19 +34,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
-
-html {
-  background: #444;
-}
-
-body {
-  min-height: 100%;
-  overflow: hidden;
-}
 
 .container {
   height: 100%;
@@ -183,7 +170,7 @@ body {
 
 
 /* 컨텐트 */
-.contentArea{width: 100%; height: 1500px;margin-top: 80px;}
+.contentArea{width: 100%; height: 100%;margin-top: 80px;}
 .content1{
     width: 100%;
     height: 350px; 
@@ -379,6 +366,8 @@ body {
 						leaveTime.setAttribute("value", hours + ":" + minutes + ":" + seconds);
 					    }
 						
+					    
+					    
 						 function test1(){
 						        var formData = $("#updateOnWork").serialize();
 
@@ -400,7 +389,7 @@ body {
 						                	console.log("already");
 						                }
 						                
-						                window.location.href = "workTime.at?memNo=" + ${loginUser.memNo};
+						                window.location.href = "workTime.at";
 						            }, // success 
 						    
 						            error : function() {
@@ -430,7 +419,7 @@ body {
 						                	console.log("already");
 						                }
 						                
-						                window.location.href = "workTime.at?memNo=" + ${loginUser.memNo};
+						                window.location.href = "workTime.at";
 						            }, // success 
 						    
 						            error : function() {
@@ -462,28 +451,7 @@ body {
 	                            </tr>
                         	</thead>
                         	<tbody>
-	                        	<c:forEach var="wd" items="${ wdList }">
-			                        <c:if test="${loginUser.memNo eq wd.memNo }"> 
-			                            <tr>
-			                                <td>${wd.workDate }</td>
-			                                <td>${wd.onTime }</td>
-			                                <td>${wd.onLocation }</td>
-			                                <td>${wd.leaveTime }</td>
-			                                <td>${wd.leaveLocation }</td>
-			                                <td>${wd.leaveTime - wd.onTime}</td>
-			                                <td>
-			                                     <c:choose>
-				                                	<c:when test="${wd.workStatus eq 'Y'}">
-				                                    	<p class="btn btn-primary">처리완료</p>
-													</c:when>
-													<c:otherwise>
-														<p class="btn btn-secondary">미처리</p>
-													</c:otherwise>
-												 </c:choose>	         
-			                                </td>
-			                            </tr>
-				                     </c:if>
-				                  </c:forEach>
+	                        	
                             </tbody>
                         </table>
                     </div>
@@ -491,6 +459,44 @@ body {
                                	
                     
                     <script>
+                    
+                    
+                    
+	                    $(function(){
+	            			selectWorkDayList();
+	            		})
+	            		
+                    	function selectWorkDayList(){
+						$.ajax({
+							url:"workTime.wd",
+							data:{memNo:${loginUser.memNo}},
+							success:function(wdList){
+								var value ="";
+								
+								for(var i in wdList){
+									value += "<tr>" + 
+												 "<td>" + wdList[i].workDate + "</td>" + 
+												 "<td>" + wdList[i].onTime + "</td>" + 
+												 "<td>" + wdList[i].onLocation + "</td>" + 
+												 "<td>" + wdList[i].leaveTime + "</td>" + 
+												 "<td>" + wdList[i].leaveLocation + "</td>" + 
+												 "<td>" + (wdList[i].leaveTime - wdList[i].onTime) + "</td>" ;
+								   			    if(wdList[i].workStatus == "Y"){ 
+								   			value += "<td>" + '<p class="btn btn-primary">' + "처리완료" + '</p>' + "</td>"
+												 }else{ 
+											value += "<td>" + '<p class="btn btn-secondary">' + "미처리" + '</p>' + "</td>"
+												 };
+								   value +=	 "</tr>";
+								}
+								
+								$("#workListTable tbody").html(value);
+								
+							}, error:function(){
+								console.log("ajax 통신 실패");
+							}
+						})
+					}
+			                    
 
                         function printClock() {
                             
@@ -538,21 +544,21 @@ body {
 			                    	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
 			                    </c:when>
 			                    <c:otherwise>
-			                    	<li class="page-item"><a class="page-link" href="list.an?currentPage=${ pi.currentPage - 1 }">Previous</a></li>
+			                    	<li class="page-item"><a class="page-link" href="workTime.at?currentPage=${ pi.currentPage - 1 }">Previous</a></li>
 			                    </c:otherwise>
 		                    </c:choose>
 		                    
 		                    
 		                    
 		                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-		                    <li class="page-item"><a class="page-link" href="list.an?currentPage=${ p }">${ p }</a></li>
+		                    <li class="page-item"><a class="page-link" href="workTime.at?currentPage=${ p }">${ p }</a></li>
 		                    </c:forEach>
 		                    <c:choose>
 		                    	<c:when test="${ pi.currentPage eq pi.maxPage }">
 		                    		<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
 		                    	</c:when>
 		                    	<c:otherwise>
-		                        	<li class="page-item"><a class="page-link" href="list.an?currentPage=${ pi.currentPage + 1 }">Next</a></li>
+		                        	<li class="page-item"><a class="page-link" href="workTime.at?currentPage=${ pi.currentPage + 1 }">Next</a></li>
 		                   		</c:otherwise>
 		                    </c:choose>
 		                    
