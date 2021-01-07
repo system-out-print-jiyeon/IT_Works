@@ -485,7 +485,6 @@ public class AttendanceController {
 		
 		int checkWorkDay = aService.checkLeaveWork(wd);
 		
-		System.out.println("checkWorkDay : " + checkWorkDay);
 		
 		Map<String, Object> updatewd = new HashMap<String, Object>();
 		updatewd.put("leaveLocation", leaveLocation);
@@ -495,7 +494,6 @@ public class AttendanceController {
 		if(checkWorkDay == 0) {
 			int result = aService.updateLeaveWork(updatewd);
 			
-			System.out.println("result : " + result);
 			
 			if(result > 0) {
 				return "success";

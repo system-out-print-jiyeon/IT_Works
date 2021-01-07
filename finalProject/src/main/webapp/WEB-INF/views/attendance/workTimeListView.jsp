@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 
+
 <style>
 
 /*출퇴근버튼 css*/
@@ -475,12 +476,30 @@
 								
 								for(var i in wdList){
 									value += "<tr>" + 
-												 "<td>" + wdList[i].workDate + "</td>" + 
-												 "<td>" + wdList[i].onTime + "</td>" + 
-												 "<td>" + wdList[i].onLocation + "</td>" + 
-												 "<td>" + wdList[i].leaveTime + "</td>" + 
-												 "<td>" + wdList[i].leaveLocation + "</td>" + 
-												 "<td>" + (wdList[i].leaveTime - wdList[i].onTime) + "</td>" ;
+												 "<td>" + wdList[i].workDate + "</td>" ;
+												 if(wdList[i].onTime == null){
+													value += "<td>" + " " + "</td>"
+												 }else{
+												 	value += "<td>" + wdList[i].onTime + "</td>" 
+												 }; 
+												 
+												 if(wdList[i].onLocation == null){
+													value += "<td>" + " " + "</td>"
+												 }else{
+												 	value += "<td>" + wdList[i].onLocation + "</td>" 
+												 }; 
+												 
+												 if(wdList[i].leaveTime == null){
+													value += "<td>" + " " + "</td>"
+												 }else{
+												 	value += "<td>" + wdList[i].leaveTime + "</td>" 
+												 }; 
+												 if(wdList[i].leaveLocation == null){
+													value += "<td>" + " " + "</td>"
+												 }else{
+												 	value += "<td>" + wdList[i].leaveLocation + "</td>" 
+												 }; 
+												 value += "<td>" + (wdList[i].leaveTime - wdList[i].onTime) + "</td>" ;
 								   			    if(wdList[i].workStatus == "Y"){ 
 								   			value += "<td>" + '<p class="btn btn-primary">' + "처리완료" + '</p>' + "</td>"
 												 }else{ 
@@ -496,6 +515,11 @@
 							}
 						})
 					}
+	                    
+	                    
+	                    
+	                    
+	                    
 			                    
 
                         function printClock() {
