@@ -520,7 +520,6 @@ public class AttendanceController {
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
 		ArrayList<WorkDay> wdList = aService.selectWorkDayList(pi, memNo);
 		
-		System.out.println("몇개 : " + wdList);
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("wdList", wdList);

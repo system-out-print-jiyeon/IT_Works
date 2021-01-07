@@ -216,7 +216,7 @@ textarea {
                             </tr>
                             <tr>
                                 <td class="tdTitle">성명</td>
-                                <td>${ bt.buProposer }</td>
+                                <td>${ bt.memName }</td>
                                 <td class="tdTitle">기안 일시</td>
                                 <td>${ bt.createDate }</td>
                             </tr>
