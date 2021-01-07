@@ -69,7 +69,7 @@
     </div>
     
 	<div class="em_wrap">
-		<jsp:include page="../common/sideBar_email.jsp"/>
+		<jsp:include page="../common/sideBar_calendar.jsp"/>
 		
         <div class="em_content">
 
@@ -78,35 +78,65 @@
                	<br>
                	<br>
                 <c:choose>
-                	<c:when test="${ !empty send }">
-		                <img src="resources/emailImages/send.png" width="300" height="300">
+                	<c:when test="${ !empty cal }">
+		                <img src="resources/calendar/images/calendar.png" width="300" height="300">
 		                <hr>
-          				<b>${ send }</b>      		
+          				<b>${ cal }</b>
+          				<br>
+          				<br>
+                		<a class="ca_submit" onclick="calendar_submit();"><i class="fa fa-user"></i> 확인</a>
                 	</c:when>
-                	<c:when test="${ !empty delete }">
-                		<img src="resources/emailImages/delete.png" width="300" height="300">
+                	<c:when test="${ !empty calDept }">
+                		<img src="resources/calendar/images/calendar.png" width="300" height="300">
 		                <hr>
-          				<b>${ delete }</b>      		
+          				<b>${ calDept }</b>  
+          				<br>
+          				<br>    		
+	            		<a class="ca_submit" onclick="calendar_dept_submit();"><i class="fa fa-user-friends"></i> 확인</a>
+                	</c:when>
+                	<c:when test="${ !empty calComp}">
+                		<img src="resources/calendar/images/calendar.png" width="300" height="300">
+		                <hr>
+          				<b>${ calComp }</b>  
+          				<br>
+          				<br>
+	           		 	<a class="ca_submit" href="calendarComp.ca"><i class="fa fa-users"></i> 확인</a>
                 	</c:when>
                 	<c:when test="${ !empty fail}">
-                		<img src="resources/emailImages/fail.png" width="300" height="300">
+                		<img src="resources/calendar/images/fail.png" width="300" height="300">
 		                <hr>
           				<b>${ fail }</b>  
-                	</c:when>
-                	<c:when test="${ !empty restore}">
-                		<img src="resources/emailImages/restore.png" width="300" height="300">
-		                <hr>
-          				<b>${ restore }</b>  
                 	</c:when>
                 </c:choose>
                <br>
                <br>
                <br>
-               <a href="list.em?email=${loginUser.email}"><i class="fa fa-envelope"></i> 전체메일함</a>&nbsp;&nbsp;&nbsp;
-               <a href="listFrom.em?email=${loginUser.email}"><i class="fa fa-paper-plane"></i> 보낸메일함</a>&nbsp;&nbsp;&nbsp;
-	           <a href="listTo.em?email=${loginUser.email}"><i class="fa fa-box-open"></i> 받은메일함</a>&nbsp;&nbsp;&nbsp;
-	           <a href="listInp.em?email=${loginUser.email}"><i class="fa fa-star"></i> 중요메일함</a>&nbsp;&nbsp;&nbsp;
-			   <a href="listDelete.em?email=${loginUser.email}"><i class="fa fa-trash"></i></i> 휴지통</a>
+	            
+	            
+				<form action="calendar.ca" method="post" id="calendar_btn">
+					<input type="hidden" name="memNo" value="${ loginUser.memNo }">
+				</form>
+				<form action="calendarDept.ca" method="post" id="calendar_dept_btn">
+					<input type="hidden" name="memNo" value="${ loginUser.memNo }">
+					<input type="hidden" name="deptName" value="${ loginUser.deptName }">
+				</form>
+
+				<script>
+					function calendar_submit(){
+						$("#calendar_btn").submit();
+					}
+					
+					function calendar_dept_submit(){
+						$("#calendar_dept_btn").submit();
+					}
+				</script>
+                
+                
+                
+                
+                
+                
+                
             </div>
         </div>
     </div>
