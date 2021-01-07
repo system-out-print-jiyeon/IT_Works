@@ -200,7 +200,7 @@
 	</select>
 
 	<!-- 결재문서select -->
-	<select id="selectListCount" resultType="_int" parameterType="_int">
+	<select id="selectListCount" resultType="_int" parameterType="AppDoc">
 		WITH people 
 		  AS(
 		      SELECT
@@ -222,10 +222,14 @@
 		 INNER
 		  JOIN approval_document ad
 		    ON p.doc_no = ad.doc_no
-		 WHERE p.mem_no = #{mem_no}
+		 WHERE p.mem_no = #{memNo}
+		   and doc_title like '%' || #{docTitle} || '%'
+		 <if test="docForm != 0">
+		 	and doc_form = #{docForm}
+		 </if>
 	</select>
 	
-	<select id="selectApprovalList" resultMap="approvalDocumentResultSet" parameterType="_int">
+	<select id="selectApprovalList" resultMap="approvalDocumentResultSet" parameterType="AppDoc">
 		WITH people 
 		  AS(
 		      SELECT
@@ -246,7 +250,8 @@
 		)
 		SELECT
 		       ad.doc_no "doc_no"
-		     , mem_name "mem_no"
+		     , ad.mem_no "mem_no"
+		     , mem_name
 		     , p.mem_no  "approvalmem_no"
 		     , doc_title
 		     , doc_enroll_date
@@ -262,6 +267,10 @@
 		  JOIN employee e
 		    on e.mem_no = ad.mem_no
 		 WHERE p.mem_no = #{memNo}
+		   and doc_title like '%' || #{docTitle} || '%'
+		 <if test="docForm != 0">
+		 	and doc_form = #{docForm}
+		 </if>
 		 ORDER
 		    BY ad.doc_no desc
 	</select>

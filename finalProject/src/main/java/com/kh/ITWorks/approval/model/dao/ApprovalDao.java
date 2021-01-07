@@ -106,15 +106,15 @@ public class ApprovalDao {
 		return sqlSession.update("approvalMapper.approvalDecision", al);
 	}
 	
-	public int selectListCount(SqlSessionTemplate sqlSession, int memNo) {
-		return sqlSession.selectOne("approvalMapper.selectListCount", memNo);
+	public int selectListCount(SqlSessionTemplate sqlSession, ApprovalDocument ad) {
+		return sqlSession.selectOne("approvalMapper.selectListCount", ad);
 	}
-	public ArrayList<ApprovalDocument> selectApprovalList(SqlSessionTemplate sqlSession, PageInfo pi, int memNo) {
+	public ArrayList<ApprovalDocument> selectApprovalList(SqlSessionTemplate sqlSession, PageInfo pi, ApprovalDocument ad) {
 		
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList) sqlSession.selectList("approvalMapper.selectApprovalList", memNo, rowBounds);
+		return (ArrayList) sqlSession.selectList("approvalMapper.selectApprovalList", ad, rowBounds);
 	}
 
 }

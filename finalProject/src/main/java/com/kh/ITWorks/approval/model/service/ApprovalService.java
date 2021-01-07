@@ -48,8 +48,8 @@ public interface ApprovalService {
 	// 4. 품의서 입력
 	
 	// 5. 결재문서 상세보기
-	int selectListCount(int memNo);
-	ArrayList<ApprovalDocument> selectApprovalList(PageInfo pi, int memNo);
+	int selectListCount(ApprovalDocument ad);
+	ArrayList<ApprovalDocument> selectApprovalList(PageInfo pi, ApprovalDocument ad);
 	
 	ArrayList<ApprovalLine> selectApprovalLine(int docNo);
 	ArrayList<Referer> selectReferer(int docNo);

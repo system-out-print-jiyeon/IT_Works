@@ -121,11 +121,26 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
             </div>
             <div class="formtype">
                 <div><a href="#" onclick="document.getElementById('approvalList').submit();">모든문서</a></div>
-                <div><a href="#">지출결의서</a></div>
-                <div><a href="#">문서발급요청서</a></div>
-                <div><a href="#">프로젝트업무보고서</a></div>
-                <div><a href="#">품의서</a></div>
+                <div><a href="#" onclick="form1(); document.getElementById('approvalList').submit();">지출결의서</a></div>
+                <div><a href="#" onclick="form2(); document.getElementById('approvalList').submit();">문서발급요청서</a></div>
+                <div><a href="#" onclick="form3(); document.getElementById('approvalList').submit();">프로젝트업무보고서</a></div>
+                <div><a href="#" onclick="form4(); document.getElementById('approvalList').submit();">품의서</a></div>
             </div>
+            
+            <script>
+            	function form1() {
+            		document.getElementById("docform").value = "1";
+            	}
+            	function form2() {
+            		document.getElementById("docform").value = "2";
+            	}
+            	function form3() {
+            		document.getElementById("docform").value = "3";
+            	}
+            	function form4() {
+            		document.getElementById("docform").value = "4";
+            	}
+            </script>
 
             <div class="content_2">
                 <table style="margin: auto; text-align: center;">
@@ -187,28 +202,33 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
             <div class="content_3">
                 <p>문서 수 : ${fn:length(alist)}</p>
             </div>
+            
             <div class="w3-bar">
-            	<c:choose>
-            		<c:when test="${ pi.currentPage eq 1 }">
-		                <a href="#" class="w3-button" style="display: none;">&laquo;</a>
-            		</c:when>
-            		<c:otherwise>
-		                <a href="list.ap?currentPage=${ pi.currentPage - 1 }" class="w3-button">&laquo;</a>
-            		</c:otherwise>
-            	</c:choose>
-            	
-            	<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-	                <a href="list.ap?currentPage=${ p }" class="w3-button">${ p }</a>
-            	</c:forEach>
-            	
-            	<c:choose>
-            		<c:when test="${ pi.currentPage eq pi.maxPage }">
-		                <a href="#" class="w3-button" style="display: none;">&raquo;</a>
-            		</c:when>
-            		<c:otherwise>
-		                <a href="list.ap?currentPage=${ pi.currentPage + 1 }" class="w3-button">&raquo;</a>
-            		</c:otherwise>
-            	</c:choose>
+            <c:choose>
+            	<c:when test="${ fn:length(alist) ne 0 }">
+	            	<c:choose>
+	            		<c:when test="${ pi.currentPage eq 1 }">
+			                <a href="#" class="w3-button" style="display: none;">&laquo;</a>
+	            		</c:when>
+	            		<c:otherwise>
+			                <a href="list.ap?currentPage=${ pi.currentPage - 1 }" class="w3-button">&laquo;</a>
+	            		</c:otherwise>
+	            	</c:choose>
+	            	
+	            	<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+		                <a href="list.ap?currentPage=${ p }" class="w3-button">${ p }</a>
+	            	</c:forEach>
+	            	
+	            	<c:choose>
+	            		<c:when test="${ pi.currentPage eq pi.maxPage }">
+			                <a href="#" class="w3-button" style="display: none;">&raquo;</a>
+	            		</c:when>
+	            		<c:otherwise>
+			                <a href="list.ap?currentPage=${ pi.currentPage + 1 }" class="w3-button">&raquo;</a>
+	            		</c:otherwise>
+	            	</c:choose>
+            	</c:when>
+            </c:choose>
             </div>
 
         </div>

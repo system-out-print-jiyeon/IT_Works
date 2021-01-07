@@ -206,8 +206,11 @@
         
       	<% if(url.contains("approval")) { %>
         <div class="searchBox">
-            <input class="searchTxt" type="text" name="" id="" placeholder="문서 검색" width="500px" height="50px">
-            <a class="searchBtn" href="#"><i class="fas fa-search "></i></a>
+        	<form action="list.ap" method="POST">
+	            <input class="searchTxt" type="text" name="docTitle" id="searchDoc" value="" placeholder="문서 검색" width="500px" height="50px">
+	            <input type="hidden" value="${ loginUser.memNo }" name="memNo">
+	            <button class="searchBtn" style="border: none; background-color: white; cursor: pointer;"><i class="fas fa-search "></i></button>
+        	</form>
         </div>
         <%} else { %>  <% } %>
         
@@ -237,7 +240,7 @@
 
 	<form action="list.ap" method="POST" id="approvalList">
 		<input type="hidden" value="${ loginUser.memNo }" name="memNo">
-		<input type="hidden" value="" name="docForm">
+		<input type="hidden" value="0" id="docform" name="docForm">
 	</form>
 	
 

@@ -33,11 +33,11 @@ public class ExApprovalController {
 	
 	@RequestMapping("list.ap")
 	public String selectApprovalList(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
-									 @RequestParam(value = "memNo") int memNo,
+									 ApprovalDocument ad,
 									 HttpSession session, Model model) {
-		int listCount = aService.selectListCount(memNo);
+		int listCount = aService.selectListCount(ad);
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 15, 5);
-		ArrayList<ApprovalDocument> alist = aService.selectApprovalList(pi, memNo);
+		ArrayList<ApprovalDocument> alist = aService.selectApprovalList(pi, ad);
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("alist", alist);
