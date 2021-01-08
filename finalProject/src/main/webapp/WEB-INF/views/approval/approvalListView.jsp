@@ -154,7 +154,6 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
                         <th>구분</th>
                     </tr>
                   </thead>
-
                   <tbody>
               		<c:choose>
               			<c:when test="${ fn:length(alist) eq 0 }">

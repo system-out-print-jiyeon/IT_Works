@@ -386,7 +386,12 @@
 		       approval_line
 		   set approval_status = #{approvalStatus}
 		 where doc_no = #{docNo}
-		   and mem_no = #{memNo}
+		 <if test="approvalStatus.equals('N')">
+		   and approval_grade >= #{approvalOrder}
+		 </if>
+		 <if test="approvalStatus.equals('Y')">
+		   and approval_grade <![CDATA[<=]]> #{approvalOrder}
+		 </if>
 	</update>
 
 
