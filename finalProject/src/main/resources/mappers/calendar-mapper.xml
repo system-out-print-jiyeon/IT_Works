@@ -126,4 +126,26 @@
 		     )
 	</insert>
 	
+	<!-- 일정 삭제 -->
+	<update id="deleteCalendar" parameterType="com.kh.ITWorks.calendar.model.vo.Calendar">
+		update calendar
+		   set cal_status = 'N'
+		 where cal_no = #{calNo}
+		   and mem_no = #{memNo}
+	</update>
+	
+	<!-- 일정 수정 -->
+	<update id="updateCalendar" parameterType="com.kh.ITWorks.calendar.model.vo.Calendar">
+		update calendar
+		   set cal_title = #{calTitle}
+		     , cal_place = #{calPlace}
+		     , cal_content = #{calContent}
+		     , cal_start_date = #{calStartDate}
+		     , cal_end_date = #{calEndDate}
+		     , cal_time = #{calTime}
+		     , cal_color = #{calColor}
+		 where cal_no = #{calNo}
+		   and mem_no = #{memNo}
+	</update>
+	
 </mapper>

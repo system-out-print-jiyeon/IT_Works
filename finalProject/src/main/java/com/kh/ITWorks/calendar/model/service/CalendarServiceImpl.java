@@ -40,4 +40,16 @@ public class CalendarServiceImpl implements CalendarService {
 	public int insertCalendar(Calendar ca) {
 		return caDao.insertCalendar(sqlSession, ca);
 	}
+	
+	// 일정 삭제
+	@Override
+	public int deleteCalendar(Calendar ca) {
+		return caDao.deleteCalendar(sqlSession, ca);
+	}
+	
+	// 일정 수정
+	@Override
+	public int updateCalendar(Calendar ca) {
+		return caDao.updateCalendar(sqlSession, ca);
+	}
 }

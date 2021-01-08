@@ -44,21 +44,9 @@
 }
 .em_content_center a{
     color:gray;
-    font-size:20px;
+    font-size:60px;
+    cursor:pointer;
 }
-.em_content_center a:hover{
-    text-decoration:none;
-    animation-name:key;
-    animation-duration:0.3s;
-    animation-fill-mode:both;
-    animation-direction: alternate;
-}
-@keyframes key{
-    100%{
-        color:rgb(80, 150, 255); 
-    }
-}
-
 
 </style>
 </head>
@@ -78,30 +66,6 @@
                	<br>
                	<br>
                 <c:choose>
-                	<c:when test="${ !empty cal }">
-		                <img src="resources/calendar/images/calendar.png" width="300" height="300">
-		                <hr>
-          				<b>${ cal }</b>
-          				<br>
-          				<br>
-                		<a class="ca_submit" onclick="calendar_submit();"><i class="fa fa-user"></i> 확인</a>
-                	</c:when>
-                	<c:when test="${ !empty calDept }">
-                		<img src="resources/calendar/images/calendar.png" width="300" height="300">
-		                <hr>
-          				<b>${ calDept }</b>  
-          				<br>
-          				<br>    		
-	            		<a class="ca_submit" onclick="calendar_dept_submit();"><i class="fa fa-user-friends"></i> 확인</a>
-                	</c:when>
-                	<c:when test="${ !empty calComp}">
-                		<img src="resources/calendar/images/calendar.png" width="300" height="300">
-		                <hr>
-          				<b>${ calComp }</b>  
-          				<br>
-          				<br>
-	           		 	<a class="ca_submit" href="calendarComp.ca"><i class="fa fa-users"></i> 확인</a>
-                	</c:when>
                 	<c:when test="${ !empty fail}">
                 		<img src="resources/calendar/images/fail.png" width="300" height="300">
 		                <hr>
@@ -109,37 +73,66 @@
                 	</c:when>
                 </c:choose>
                <br>
-               <br>
-               <br>
-	            
-	            
-				<form action="calendar.ca" method="post" id="calendar_btn">
-					<input type="hidden" name="memNo" value="${ loginUser.memNo }">
-				</form>
-				<form action="calendarDept.ca" method="post" id="calendar_dept_btn">
-					<input type="hidden" name="memNo" value="${ loginUser.memNo }">
-					<input type="hidden" name="deptName" value="${ loginUser.deptName }">
-				</form>
-
-				<script>
-					function calendar_submit(){
-						$("#calendar_btn").submit();
-					}
-					
-					function calendar_dept_submit(){
-						$("#calendar_dept_btn").submit();
-					}
-				</script>
-                
-                
-                
-                
-                
-                
-                
             </div>
         </div>
     </div>
-
+   
+   	<!-- 해당 페이지에서 바로 post로 시행시킴 -->
+   	<c:if test="${ !empty resultCal }">
+		<form action="calendar.ca" method="post" id="calendar_form">
+			<input type="hidden" name="memNo" value="${ loginUser.memNo }">
+		</form>
+	
+		<script>
+			function calendarSubmit(){
+				$("#calendar_form").submit();
+			}
+		</script>
+		
+		<script>
+		    $(document).ready(function() {
+		    	alert("${ resultCal }");
+		    	calendarSubmit();
+		    });
+		</script>
+	</c:if>
+	
+    <c:if test="${ !empty resultCalDept }">
+		<form action="calendarDept.ca" method="post" id="calendar_dept_form">
+			<input type="hidden" name="deptName" value="${ loginUser.deptName }">
+		</form>
+		
+		<script>
+			function calendarDeptSubmit(){
+				$("#calendar_dept_form").submit();
+			}
+		</script>
+		
+		<script>
+		    $(document).ready(function() {
+		    	alert("${ resultCalDept }");
+		    	calendarDeptSubmit();
+		    });
+		</script>
+	</c:if>
+	
+   	<c:if test="${ !empty resultCalComp }">
+		<form action="calendarComp.ca" method="post" id="calendar_comp_form">
+		</form>
+	
+		<script>
+			function calendarCompSubmit(){
+				$("#calendar_comp_form").submit();
+			}
+		</script>
+		
+		<script>
+		    $(document).ready(function() {
+		    	alert("${ resultCalComp }");
+		    	calendarCompSubmit();
+		    });
+		</script>
+	</c:if>
+    
 </body>
 </html>

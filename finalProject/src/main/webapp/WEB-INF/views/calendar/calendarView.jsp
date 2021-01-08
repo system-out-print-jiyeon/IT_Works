@@ -29,7 +29,7 @@
 	      header: {
 	        left: 'prev,next today',
 	        center: 'title',
-	        right: 'month,agendaWeek,agendaDay'
+	        right: 'month,agendaWeek,agendaDay,listWeek'
 	      },
 	      local: 'ko',
  	      events: [
@@ -45,6 +45,7 @@
 					no: '${cal.calNo}',
 					ctime: '${cal.calTime}',
 					color: '${cal.calColor}',
+					range: '${cal.calRange}',
 					memNo: '${cal.memNo}',
 					memName: '${cal.memName}',
 					deptName: '${cal.deptName}',
@@ -65,7 +66,7 @@
 	          $('#cal-place').val(info.place); // 장소
 	          $('#cal-content').val(info.content); // 내용
 	          
-	          $('#cal-no').val(info.no); // 일정 고유번호
+	          $('.cal-no').val(info.no); // 일정 고유번호
 	          
 	          if(info.ctime == "Y"){// ---- Y일 경우
 	        	  $('#cal-time').prop('checked', true); // 체크활성화
@@ -82,6 +83,7 @@
 		          $('#cal-end').val(info.edate); // 마감일
 	          }
 	          $('#cal-color').val(info.color); // 색상
+			  $('.cal-range').val(info.range); // 개인/부서/사내 --> 수정 삭제 후 넘어갈 화면 정하기 위해
 	          $('#mem-no').html(info.memNo);
 	          $('#mem-name').html(info.memName); // 유저명
 	          $('#dept-name').html(info.deptName); // 부서명
@@ -89,24 +91,18 @@
 	          $('#title-color').css('background-color',info.color); // 모달창 header의 배경색을 넘어온색으로 변경
 	          
 				if($('#mem-no').html() == ${loginUser.memNo}){
-					console.log("같음");
-					$('#cal-delete').show;
-					$('#cal-update').show;
-					
+					$('.btn-status').show(); // 수정/삭제 보이기
 				}else{
-					console.log("다름");
-					$('#cal-delete').hide;
-					$('#cal-update').hide;	
+					$('.btn-status').hide(); // 수정/삭제 숨기기
 				}
 	          
 	          return false;
-	        },
+	        }
 	    });
 	});
 </script>
 
 <style>
-
 .ca_wrap{
     width: 100%; 
     height: 100%;
@@ -136,7 +132,8 @@
     color:gray;
 }
 #calendar{
-	max-width: 700px;
+	max-width:800px;
+	
  	margin-left:0;
 }
 #modal-btn{
@@ -219,9 +216,10 @@
 				</tr>
 			</table>
 			<hr>
-	      	<form>
-     			<input type="hidden" id="cal-no" name="calNo">
-     			<input type="hidden" id="mem-no" name="memNo" value="${ loginUser.memNo }">
+	      	<form action="update.ca" method="post">
+     			<input type="hidden" class="cal-no" name="calNo">
+     			<input type="hidden" name="memNo" value="${ loginUser.memNo }">
+     			<input type="hidden" class="cal-range" name="calRange">
      				
 	      		<table id="calendar-detail" class="table table-borderless" style="margin:auto;">
 	      			<tr>
@@ -252,15 +250,26 @@
 	      		</table>
 	      		<hr>
 	      		<div style="text-align:center;">
-		      		<button type="button" id="cal-delete" class="btn btn-danger">삭제</button>
-			        <button type="submit" id="cal-update" class="btn btn-primary">수정</button>
-			        <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+		      		<button type="button" class="btn btn-danger btn-status" onclick="deleteCalendar();">삭제</button>
+			        <button type="submit" class="btn btn-warning btn-status">수정</button>
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 	      		</div>
 	      	</form>
 	      </div>
 	    </div>
 	  </div>
 	</div>
+	
+	<form action="delete.ca" method="post" id="delete-calendar">
+		<input type="hidden" class="cal-no" name="calNo">
+		<input type="hidden" name="memNo" value="${ loginUser.memNo }">
+		<input type="hidden" class="cal-range" name="calRange">
+	</form>
+	<script>
+	function deleteCalendar(){
+		$("#delete-calendar").submit();
+	}
+	</script>
 
 	<script>
 		// 시간 설정 여부
@@ -275,6 +284,6 @@
 			}
 		}
 	</script>
-    
+	
 </body>
 </html>

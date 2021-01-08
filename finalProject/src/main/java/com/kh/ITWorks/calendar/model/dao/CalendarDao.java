@@ -30,4 +30,13 @@ public class CalendarDao {
 		return sqlSession.insert("calendarMapper.insertCalendar", ca);
 	}
 	
+	// 일정 삭제
+	public int deleteCalendar(SqlSessionTemplate sqlSession, Calendar ca) {
+		return sqlSession.update("calendarMapper.deleteCalendar", ca);
+	}
+	
+	// 일정 삭제
+	public int updateCalendar(SqlSessionTemplate sqlSession, Calendar ca) {
+		return sqlSession.update("calendarMapper.updateCalendar", ca);
+	}
 }
