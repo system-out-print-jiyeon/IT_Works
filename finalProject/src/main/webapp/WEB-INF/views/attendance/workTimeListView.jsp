@@ -316,7 +316,6 @@
                         	<form id="updateOnWork">
                         	 	<td>
                                     <select name="onLocation" id="onLocation">
-                                    	<option selected value="">출근지를 선택하세요</option>
                                         <option value="서울지사">서울지사</option>
                                         <option value="경기지사">경기지사</option>
                                     </select>
@@ -334,7 +333,6 @@
 	                         <form id="updateLeaveWork">
                             	<td>
                                     <select name="leaveLocation" id="leaveLocation">
-                                   		<option selected value="">퇴근지를 선택하세요</option>
                                         <option value="서울지사">서울지사</option>
                                         <option value="경기지사">경기지사</option>
                                     </select>
@@ -352,6 +350,9 @@
                         </tr>
                     </table>
                 	</div>
+                	
+                	
+                	
                 	
                 	<div class="content1_2">
                      	<img src="https://cdn0.iconfinder.com/data/icons/work-from-home-19/512/WorkAlone-working-businessman-work-office-workfromhome-512.png" width="250" height="250">
@@ -461,7 +462,6 @@
 	                                <td>출근위치</td>
 	                                <td>퇴근시각</td>
 	                                <td>퇴근위치</td>
-	                                <td>총 근무시간</td>
 	                                <td>상태</td>
 	                            </tr>
                         	</thead>
@@ -513,7 +513,7 @@
 												 }else{
 												 	value += "<td>" + wdList[i].leaveLocation + "</td>" 
 												 }; 
-												 value += "<td>" + (wdList[i].leaveTime - wdList[i].onTime) + "</td>" ;
+												
 								   			    if(wdList[i].workStatus == "Y"){ 
 								   			value += "<td>" + '<p class="btn btn-primary">' + "처리완료" + '</p>' + "</td>"
 												 }else{ 
