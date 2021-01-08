@@ -281,10 +281,11 @@ p.simple-card {
 				<div class="hv-wrapper">
 	
 					<div class="hv-item">
+					<!-- 잘 나오나 확인 -->
 	
 						<div class="hv-item-parent">
 							<div class="person">
-								<img src="../img/1.jpg" alt="">
+								<img src="https://www.sk5.co.kr/img_src/s600/b318/b3180113.jpg" alt="CEO 홍길동">
 								<p class="name">
 									홍길동 <b>/ CEO</b>
 								</p>
@@ -292,7 +293,7 @@ p.simple-card {
 						</div>
 						<div class="hv-item-parent">
 							<div class="person">
-								<img src="../../img/2.jpg" alt="">
+								<img src="https://img.hankyung.com/photo/201908/01.20297998.1.jpg" alt="이사 선동일">
 								<p class="name">
 									선동일 <b>/ 이사 </b>
 								</p>
@@ -306,9 +307,9 @@ p.simple-card {
 	
 									<div class="hv-item-parent">
 										<div class="person">
-											<img src="images/github-red.svg" alt="">
+											<img src="https://images.chosun.com/resizer/RXomcK0hmu9zBD4gQPP1144wp_E=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/P3SGPEU4ZOWPITSVO5T5SQSZSI.jpg" alt="과장 정중하">
 											<p class="name">
-												정중하 <b>/ 개발 <과장></b>
+												정중하 <b>/ 과장 <개발></b>
 											</p>
 										</div>
 									</div>
@@ -318,7 +319,7 @@ p.simple-card {
 	
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
+												<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201702%2F2017020813532326.jpg" alt="윤은해">
 												<p class="name">
 													윤은해 <b>/ 대리</b>
 												</p>
@@ -326,7 +327,7 @@ p.simple-card {
 											<br>
 											<div class="hv-item-child">
 												<div class="person">
-													<img src="https://randomuser.me/api/portraits/women/18.jpg" alt="">
+													<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201807%2F2018070515250027-6838357.jpg" alt="이중석">
 													<p class="name">
 														이중석 <b>/ 사원</b>
 													</p>
@@ -336,20 +337,13 @@ p.simple-card {
 	
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/women/18.jpg" alt="">
+												<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201601%2F20160106215050853-6185691.jpg" alt="대북혼">
 												<p class="name">
 													대북혼 <b>/ 대리</b>
 												</p>
 											</div>
 											<br>
-											<div class="hv-item-child">
-												<div class="person">
-													<img src="https://randomuser.me/api/portraits/women/18.jpg" alt="">
-													<p class="name">
-														서동준 <b>/ 사원</b>
-													</p>
-												</div>
-											</div>
+
 										</div>
 	
 									</div>
@@ -362,9 +356,9 @@ p.simple-card {
 	
 									<div class="hv-item-parent">
 										<div class="person">
-											<img src="images/github-red.svg" alt="">
+											<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201608%2F20160810155746864.jpg" alt="차태연">
 											<p class="name">
-												차태연 <b>/ 인사 <과장></b>
+												차태연 <b>/ 과장 <인사></b>
 											</p>
 										</div>
 									</div>
@@ -373,7 +367,7 @@ p.simple-card {
 	
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/men/41.jpg" alt="">
+												<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202006%2F20200619172124928.jpg" alt="송종기">
 												<p class="name">
 													송종기 <b>/ 과장</b>
 												</p>
@@ -381,7 +375,7 @@ p.simple-card {
 											<br>
 											<div class="hv-item-child">
 												<div class="person">
-													<img src="https://randomuser.me/api/portraits/women/18.jpg" alt="">
+													<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F154%2F201702141047389601.jpg" alt="전형돈">
 													<p class="name">
 														전형돈 <b>/ 대리</b>
 													</p>
@@ -389,7 +383,7 @@ p.simple-card {
 												<br>
 											<div class="hv-item-child">
 												<div class="person">
-													<img src="https://randomuser.me/api/portraits/women/18.jpg" alt="">
+													<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F118%2F201403111211164561.jpg" alt="장쯔위">
 													<p class="name">
 														장쯔위 <b>/ 사원</b>
 													</p>
@@ -400,7 +394,7 @@ p.simple-card {
 	
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201509%2F20150909171907196-4306988.jpg" alt="박나라">
 												<p class="name">
 													박나라 <b>/ 과장</b>
 												</p>
@@ -417,15 +411,15 @@ p.simple-card {
 	
 									<div class="hv-item-child">
 										<div class="person">
-											<img src="images/github-red.svg" alt="">
+											<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F125%2F201212262021589401.jpg" alt="전지연">
 											<p class="name">
-												전지연 <b>/ 경영지원 <차장></b>
+												전지연 <b>/ 차장 <경원지원></b>
 											</p>
 										</div>
 										<br>
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F190%2F201607181718224321.jpg" alt="노옹철">
 												<p class="name">
 													노옹철 <b>/ 과장</b>
 												</p>
@@ -433,7 +427,7 @@ p.simple-card {
 											<br>
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F015%2F2018%2F06%2F28%2F0003970142_001_20180628192004552.jpg&type=sc960_832" alt="이태림">
 												<p class="name">
 													이태림 <b>/ 대리</b>
 												</p>
@@ -441,7 +435,7 @@ p.simple-card {
 											<br>
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202004%2F20200423174808385.jpg" alt="하이유">
 												<p class="name">
 													하이유 <b>/ 사원</b>
 												</p>
@@ -460,15 +454,15 @@ p.simple-card {
 	
 									<div class="hv-item-child">
 										<div class="person">
-											<img src="images/github-red.svg" alt="">
+											<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F202009%2F2020090618264387.jpg" alt="이오리">
 											<p class="name">
-												이오리 <b>/ 기획 <차장></b>
+												이오리 <b>/ 차장 <기획></b>
 											</p>
 										</div>
 										<br>
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F42%2F201802141225151721.jpg" alt="김해술">
 												<p class="name">
 													김해술 <b>/ 과장</b>
 												</p>
@@ -477,7 +471,7 @@ p.simple-card {
 										<br>
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201603%2F20160317145311409.jpg" alt="하동운">
 												<p class="name">
 													하동운 <b>/ 대리</b>
 												</p>
@@ -493,15 +487,15 @@ p.simple-card {
 	
 									<div class="hv-item-child">
 										<div class="person">
-											<img src="images/github-red.svg" alt="">
+											<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201808%2F20180828141741978.jpg" alt="유재식">
 											<p class="name">
-												유재식 <b>/ 총무 <차장></b>
+												유재식 <b>/ 차장 <총무></b>
 											</p>
 										</div>
 										<br>
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F123%2F201403051702331631.jpg" alt="방명수">
 												<p class="name">
 													방명수 <b>/ 과장</b>
 												</p>
@@ -509,7 +503,7 @@ p.simple-card {
 											<br>
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201911%2F20191122154924464.jpg" alt="심봉선">
 												<p class="name">
 													심봉선 <b>/ 대리</b>
 												</p>
@@ -517,7 +511,7 @@ p.simple-card {
 											<br>
 										<div class="hv-item-child">
 											<div class="person">
-												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201910%2F20191008134435808.jpg" alt="임시완">
 												<p class="name">
 													임시완 <b>/ 사원</b>
 												</p>
