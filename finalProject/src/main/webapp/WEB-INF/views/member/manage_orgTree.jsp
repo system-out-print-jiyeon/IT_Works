@@ -272,10 +272,12 @@ p.simple-card {
         <jsp:include page="../common/sideBar_manage.jsp"/>
 
         <div class="content"><br><br><br>
-		<div class="content_1">
-			<h2>조직도 -"조직도 구성 예정"</h2>
-		</div>
-		<br><br>
+        <!-- 
+			<div class="content_1">
+				<h2>조직도 -"조직도 구성 예정"</h2>
+			</div>
+			<br><br>
+         -->
 		<section class="management-hierarchy">
 			<div class="hv-container">
 				<div class="hv-wrapper">
