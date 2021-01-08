@@ -158,8 +158,7 @@ textarea {
                 <div class="sidebar_menu">
                     <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>근태 현황</a>
                         <ul class="menu1">
-                            <li><a href="#">출/퇴근 등록</a></li>
-                            <li><a href="#">나의 근무시간 조회</a></li>
+                            <li><a href="workTime.at">출/퇴근 등록</a></li>
                         </ul>
                     </li>
                     <br>
