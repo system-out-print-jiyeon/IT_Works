@@ -222,20 +222,20 @@
 				<table class="table">
 					<thead scope="col">
 						<th width="100" style="text-align: center;">첨부파일</th>
-						<th>
-							<c:choose>
-								<c:when test="${ not empty attList }">
+						<c:choose>
+							<c:when test="${ not empty attList }">
+								<th>
 									<c:forEach var="attList" items="${ attList }">
 										<a href="${ attList.attChangeName }" download="${ attList.attPath }">
 											${attList.attOriginName }
 										</a>
 									</c:forEach>
-								</c:when>
-								<c:otherwise>
-									첨부파일이 없습니다.
-								</c:otherwise>
+								</th>
+							</c:when>
+							<c:otherwise>
+								<th style="display: block">첨부파일이 없습니다.</th>
+							</c:otherwise>
 							</c:choose>
-						</th>
 					</thead>
 				</table>
 			</div>

@@ -167,7 +167,7 @@ tbody tr:hover{background-color: #dbd5d5; cursor: pointer;}
 			                    <tr>
 			                        <td class="docNo">${ alist.docNo }</td>
 			                        <td>${ alist.docTitle }</td>
-			                        <td>${ alist.memNo }</td>
+			                        <td>${ alist.memName }</td>
 			                        <td>${ alist.docEnrollDate }</td>
 			                        <td>
 				                        <c:choose>

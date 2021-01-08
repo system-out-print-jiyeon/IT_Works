@@ -93,11 +93,11 @@
             <div class="sidebar_menu">
                 <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>진행 중인 문서</a>
                     <ul class="menu1">
-                        <li><a href="approval.do">전체</a></li>
-                        <li><a href="approval.do">대기</a></li>
-                        <li><a href="approval.do">확인</a></li>
-                        <li><a href="approval.do">예정</a></li>
-                        <li><a href="approval.do">진행</a></li>
+                        <li><a href="#">전체</a></li>
+                        <li><a href="#">대기</a></li>
+                        <li><a href="#">확인</a></li>
+                        <li><a href="#">예정</a></li>
+                        <li><a href="#">진행</a></li>
                     </ul>
                 </li>
                 <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>문서함</a>
