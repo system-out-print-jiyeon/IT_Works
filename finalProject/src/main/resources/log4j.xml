@@ -32,9 +32,6 @@
 		<level value="info" />
 	</logger>
 	
-	<logger name="supportMapper">
-		<level value="debug" />
-	</logger>
 
 	<!-- Root Logger -->
 	<root>
