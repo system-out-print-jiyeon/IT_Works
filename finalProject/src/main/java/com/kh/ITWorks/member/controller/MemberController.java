@@ -155,8 +155,6 @@ public class MemberController {
 		model.addAttribute("count", searchCount);
 		model.addAttribute("list", list);
 		
-		// 검색기능 수정중 2020.12.24 ..ing
-		
 		return "member/manage_list";
 	}
 	

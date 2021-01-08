@@ -272,138 +272,276 @@ p.simple-card {
         <jsp:include page="../common/sideBar_manage.jsp"/>
 
         <div class="content"><br><br><br>
-            <div class="content_1">
-                <h2>조직도 -"조직도 구성 예정"</h2>
-            </div>
-            <br><br>
-            <section class="management-hierarchy">
-                <div class="hv-container">
-                    <div class="hv-wrapper">
-        
-                        <div class="hv-item">
-        
-                            <div class="hv-item-parent">
-                                <div class="person">
-                                    <img src="images/github-blue.svg" alt="">
-                                    <p class="name">
-                                        홍길동 <b>/ CEO</b>
-                                    </p>
-                                </div>
-                            </div>
-        
-                            <div class="hv-item-children">
-        
-                                <div class="hv-item-child">
-                                    <div class="hv-item">
-        
-                                        <div class="hv-item-parent">
-                                            <div class="person">
-                                                <img src="images/github-red.svg" alt="">
-                                                <p class="name">
-                                                    이름 <b>/ 직책</b>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        
-        
-                                        <div class="hv-item-children">
-        
-                                            <div class="hv-item-child">
-                                                <div class="person">
-                                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
-                                                    <p class="name">
-                                                        이름 <b>/ 직책</b>
-                                                    </p>
-                                                </div>
-                                            </div>
-        
-                                            <div class="hv-item-child">
-                                                <div class="person">
-                                                    <img src="https://randomuser.me/api/portraits/men/81.jpg" alt="">
-                                                    <p class="name">
-                                                        이름 <b>/ 직책</b>
-                                                    </p>
-                                                </div>
-                                            </div>
-        
-                                            <div class="hv-item-child">
-                                                <div class="person">
-                                                    <img src="https://randomuser.me/api/portraits/women/18.jpg" alt="">
-                                                    <p class="name">
-                                                        이름 <b>/ 직책</b>
-                                                    </p>
-                                                </div>
-                                            </div>
-        
-                                        </div>
-        
-                                    </div>
-                                </div>
-        
-                                <div class="hv-item-child">
-                                    <div class="hv-item">
-        
-                                        <div class="hv-item-parent">
-                                            <div class="person">
-                                                <img src="images/github-red.svg" alt="">
-                                                <p class="name">
-                                                    이름 <b>/ 직책</b>
-                                                </p>
-                                            </div>
-                                        </div>
-        
-                                        <div class="hv-item-children">
-        
-                                            <div class="hv-item-child">
-                                                <div class="person">
-                                                    <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="">
-                                                    <p class="name">
-                                                        이름 <b>/ 직책</b>
-                                                    </p>
-                                                </div>
-                                            </div>
-        
-                                            <div class="hv-item-child">
-                                                <div class="person">
-                                                    <img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
-                                                    <p class="name">
-                                                        이름 <b>/ 직책</b>
-                                                    </p>
-                                                </div>
-                                            </div>
-        
-                                        </div>
-        
-                                    </div>
-                                </div>
-        
-                                <div class="hv-item-child">
-                                    <div class="hv-item">
-        
-                                        <div class="hv-item-child">
-                                            <div class="person">
-                                                <img src="images/github-red.svg" alt="">
-                                                <p class="name">
-                                                    이름 <b>/ 직책</b>
-                                                </p>
-                                            </div>
-                                        </div>
-        
-                                    </div>
-                                </div>
-        
-                            </div>
-        
-                        </div>
-        
-                    </div>
-                </div>
-            </section>
-        
-            </div>
-            <br><br><br><br>
-        </div>
-    </div>
+		<div class="content_1">
+			<h2>조직도 -"조직도 구성 예정"</h2>
+		</div>
+		<br><br>
+		<section class="management-hierarchy">
+			<div class="hv-container">
+				<div class="hv-wrapper">
+	
+					<div class="hv-item">
+	
+						<div class="hv-item-parent">
+							<div class="person">
+								<img src="../img/1.jpg" alt="">
+								<p class="name">
+									홍길동 <b>/ CEO</b>
+								</p>
+							</div>
+						</div>
+						<div class="hv-item-parent">
+							<div class="person">
+								<img src="../../img/2.jpg" alt="">
+								<p class="name">
+									선동일 <b>/ 이사 </b>
+								</p>
+							</div>
+						</div>
+	
+						<div class="hv-item-children">
+	
+							<div class="hv-item-child">
+								<div class="hv-item">
+	
+									<div class="hv-item-parent">
+										<div class="person">
+											<img src="images/github-red.svg" alt="">
+											<p class="name">
+												정중하 <b>/ 개발 <과장></b>
+											</p>
+										</div>
+									</div>
+									
+	
+									<div class="hv-item-children">
+	
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
+												<p class="name">
+													윤은해 <b>/ 대리</b>
+												</p>
+											</div>
+											<br>
+											<div class="hv-item-child">
+												<div class="person">
+													<img src="https://randomuser.me/api/portraits/women/18.jpg" alt="">
+													<p class="name">
+														이중석 <b>/ 사원</b>
+													</p>
+												</div>
+											</div>
+										</div>
+	
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/women/18.jpg" alt="">
+												<p class="name">
+													대북혼 <b>/ 대리</b>
+												</p>
+											</div>
+											<br>
+											<div class="hv-item-child">
+												<div class="person">
+													<img src="https://randomuser.me/api/portraits/women/18.jpg" alt="">
+													<p class="name">
+														서동준 <b>/ 사원</b>
+													</p>
+												</div>
+											</div>
+										</div>
+	
+									</div>
+	
+								</div>
+							</div>
+	
+							<div class="hv-item-child">
+								<div class="hv-item">
+	
+									<div class="hv-item-parent">
+										<div class="person">
+											<img src="images/github-red.svg" alt="">
+											<p class="name">
+												차태연 <b>/ 인사 <과장></b>
+											</p>
+										</div>
+									</div>
+	
+									<div class="hv-item-children">
+	
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/men/41.jpg" alt="">
+												<p class="name">
+													송종기 <b>/ 과장</b>
+												</p>
+											</div>
+											<br>
+											<div class="hv-item-child">
+												<div class="person">
+													<img src="https://randomuser.me/api/portraits/women/18.jpg" alt="">
+													<p class="name">
+														전형돈 <b>/ 대리</b>
+													</p>
+												</div>
+												<br>
+											<div class="hv-item-child">
+												<div class="person">
+													<img src="https://randomuser.me/api/portraits/women/18.jpg" alt="">
+													<p class="name">
+														장쯔위 <b>/ 사원</b>
+													</p>
+												</div>
+											</div>
+											</div>
+										</div>
+	
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<p class="name">
+													박나라 <b>/ 과장</b>
+												</p>
+											</div>
+										</div>
+	
+									</div>
+	
+								</div>
+							</div>
+	
+							<div class="hv-item-child">
+								<div class="hv-item">
+	
+									<div class="hv-item-child">
+										<div class="person">
+											<img src="images/github-red.svg" alt="">
+											<p class="name">
+												전지연 <b>/ 경영지원 <차장></b>
+											</p>
+										</div>
+										<br>
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<p class="name">
+													노옹철 <b>/ 과장</b>
+												</p>
+											</div>
+											<br>
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<p class="name">
+													이태림 <b>/ 대리</b>
+												</p>
+											</div>
+											<br>
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<p class="name">
+													하이유 <b>/ 사원</b>
+												</p>
+											</div>
+										
+										</div>
+										</div>
+										</div>
+									</div>
+	
+								</div>
+							</div>
+
+							<div class="hv-item-child">
+								<div class="hv-item">
+	
+									<div class="hv-item-child">
+										<div class="person">
+											<img src="images/github-red.svg" alt="">
+											<p class="name">
+												이오리 <b>/ 기획 <차장></b>
+											</p>
+										</div>
+										<br>
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<p class="name">
+													김해술 <b>/ 과장</b>
+												</p>
+											</div>
+										</div>
+										<br>
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<p class="name">
+													하동운 <b>/ 대리</b>
+												</p>
+											</div>
+										</div>
+									</div>
+	
+								</div>
+							</div>
+
+							<div class="hv-item-child">
+								<div class="hv-item">
+	
+									<div class="hv-item-child">
+										<div class="person">
+											<img src="images/github-red.svg" alt="">
+											<p class="name">
+												유재식 <b>/ 총무 <차장></b>
+											</p>
+										</div>
+										<br>
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<p class="name">
+													방명수 <b>/ 과장</b>
+												</p>
+											</div>
+											<br>
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<p class="name">
+													심봉선 <b>/ 대리</b>
+												</p>
+											</div>
+											<br>
+										<div class="hv-item-child">
+											<div class="person">
+												<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="">
+												<p class="name">
+													임시완 <b>/ 사원</b>
+												</p>
+											</div>
+										</div>
+										</div>
+										</div>
+									</div>
+	
+								</div>
+							</div>
+	
+						</div>
+	
+					</div>
+	
+				</div>
+			</div>
+		</section>
+	
+		</div>
+		<br><br><br><br>
+	</div>
+	</div>
 
 
 
