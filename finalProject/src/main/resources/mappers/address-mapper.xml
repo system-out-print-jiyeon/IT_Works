@@ -36,6 +36,7 @@
 		     , ADD_WRITER
 		  FROM ADDRESSBOOK
 		 WHERE STATUS = 'Y'
+		   AND ADD_CATEGORY = 'person'
 		 ORDER 
 		    BY ADD_NO DESC
 	</select>
@@ -60,6 +61,7 @@
 		     , ADD_WRITER
 		  FROM ADDRESSBOOK
 		 WHERE STATUS = 'Y'
+           AND ADD_CATEGORY = 'public'
 		 ORDER 
 		    BY ADD_NO DESC
 	</select>

@@ -21,6 +21,6 @@ public class AddressBook {
 	private String addEmail;
 	private String addCategory;
 	private String addCompanyName;
-	private char status;
+	private String status;
 	private int addWriter;
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,7 @@
 }
 
 table{
-    width: 100%;
+    width: 95%;
     background:white;
     height: 30%;
 }
@@ -71,21 +72,20 @@ td{
                         
             <button id="contactDelete" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-trash"></span>
-                <span class="txt_caution" onclick="postFormSubmit(2)">삭제</span>
+                <span class="txt_caution">삭제</span>
             </button>
                       
         </section>
-
-        <form id="post" class="speed_regist">
+       
         <fieldset>
             <div class="quickAdress">
-                <input id="quickName" type="text" placeholder="이름(표시명)">
-                <input id="quickEmail" type="text" placeholder="이메일">
-                <input id="quickPhone" type="text" placeholder="전화번호">
-                <button type="button" id="quickBtn" class="glyphicon glyphicon-plus btn btn-default btn-sm" onclick="postFormSubmit(1)"></button>                             
+                <input name="addName" id="quickName" type="text" placeholder="이름(표시명)">
+                <input name="addEmail" id="quickEmail" type="text" placeholder="이메일">
+                <input name="addPhone" id="quickPhone" type="text" placeholder="전화번호">
+                <button type="button" id="quickBtn" class="glyphicon glyphicon-plus btn btn-default btn-sm" onclick="quick();"></button>                             
             </div>
         </fieldset>
-        </form>
+
             <br>
         
             <div class="tablelist">
@@ -105,7 +105,7 @@ td{
                     <tbody align="center">
                     	<c:forEach var="a" items="${ list }">
                         <tr>
-                            <td><input name="adNo" type="checkbox" value="${a.addNo }"></td>
+                            <td><input name="adNo" type="checkbox" value="${ a.addNo }"></td>
                             <td>${ a.addName }</td>
                             <td>${ a.addPhone }</td>
                             <td>${ a.addDepartment }</td>
@@ -138,12 +138,12 @@ td{
 	                    		<li class="page-item disabled"><a class="page-link" href="#"><</a></li>
 	                    	</c:when>
 	                    	<c:otherwise>
-	                    		<li class="page-item"><a class="page-link" href="Personlist.ad?currentPage=${ pi.currentPage-1 }"><</a></li>
+	                    		<li class="page-item"><a class="page-link" href="personlist.ad?currentPage=${ pi.currentPage-1 }"><</a></li>
                     		</c:otherwise>
                     	</c:choose>
                                         
                     	<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                    		<li class="page-item"><a class="page-link" href="Personlist.ad?currentPage=${ p }">${ p }</a></li>
+                    		<li class="page-item"><a class="page-link" href="personlist.ad?currentPage=${ p }">${ p }</a></li>
                     	</c:forEach>
                                   
                     	<c:choose>
@@ -151,7 +151,7 @@ td{
 	                    		<li class="page-item disabled"><a class="page-link" href="#">></a></li>
 	                    </c:when>
 	                    <c:otherwise>
-	                    	<li class="page-item"><a class="page-link" href="Personlist.ad?currentPage=${ pi.currentPage+1 }">></a></li>
+	                    	<li class="page-item"><a class="page-link" href="personlist.ad?currentPage=${ pi.currentPage+1 }">></a></li>
                     	</c:otherwise>
                     </c:choose>
                 </ul>
@@ -177,6 +177,60 @@ td{
                 }
             });
         });
+        
+    </script>
+    <script>
+    	function quick(){
+    		 			
+    			$.ajax({
+    				url:"quick.ad",
+    				data:{
+    					addName:$("#quickName").val(),
+    					addEmail:${a.addEmail},
+    					addPhone:${a.addPhone}
+    				},
+    				success:function(result){
+    					
+    					if(result == "success"){
+    						$(".quickAdress").val("");
+    						
+    						selectAddressPersonList();
+    						
+    					}
+    				},error:function(){
+    					console.log("빠른 등록 ajax 통신 실패")
+    				}
+    			})
+    		}
+    	
+    	
+    	function selectAddressPersonList(){
+    		// 이 게시글에 딸린 댓글리스트 조회용 ajax
+    		$.ajax({
+    			url:"adplist.ad",
+    			data:{adno:${a.addNo}},
+    			success:function(list){
+    				
+    				//console.log(list);
+    				$("#quickBtn").text(list.length);
+    				
+    				var value="";
+    				for(var i in list){
+    					value += "<tr>" +
+			                        "<th>" + list[i].addName + "</th>" +
+			                        "<td>" + list[i].addEmail + "</td>" +
+			                        "<td>" + list[i].addPhone + "</td>" +
+			                     "</tr>";
+    				}
+    				
+    				$("#replyArea tbody").html(value);
+    				
+    			},error:function(){
+    				console.log("댓글 작성용 ajax 통신 실패");
+    			}
+    		})
+    		
+    	}
     </script>
     
 </body>

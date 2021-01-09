@@ -19,7 +19,7 @@ public class AddressController {
 	@Autowired
 	private AddressService adService;
 	
-	@RequestMapping("Personlist.ad")
+	@RequestMapping("personlist.ad")
 	public String selectAddressPersonList(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 										Model model) {
 		
@@ -34,7 +34,7 @@ public class AddressController {
 		
 	}
 	
-	@RequestMapping("Publiclist.ad")
+	@RequestMapping("publiclist.ad")
 	public String selectAddressPublicList(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 										Model model) {
 		
@@ -57,4 +57,6 @@ public class AddressController {
 	public int deleteFreeBoard(int ano) {
 		return adService.deleteAddress(ano);
 	}
+	
+	
 }
