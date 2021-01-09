@@ -529,15 +529,6 @@ public class AttendanceController {
 	
 	
 	
-	@RequestMapping("workTimeGraph.wd")
-	public ModelAndView workTimeGraph(ModelAndView mv) {
-		mv.setViewName("attendance/workTimeGraph");
-		return mv;
-	}
-	
-	
-	
-	
 	
 
 	
