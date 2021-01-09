@@ -80,4 +80,14 @@ public class SupportServiceImpl implements SupportService{
 		return sd.deleteAttach(supportNo, sqlss);
 	}
 
+	@Override
+	public int selectmyListCount(int mno) {
+		return sd.selectmyListCount(mno, sqlss);
+	}
+
+	@Override
+	public ArrayList<WorkSupport> selectListWorkSupport(PageInfo pi, int mno) {
+		return sd.selectListWorkSupport(pi, mno, sqlss);
+	}
+
 }

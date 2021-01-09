@@ -63,7 +63,6 @@
                 <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>사원 리스트</a>
                     <ul class="menu1">
                         <li><a href="manageList.ma">사원리스트 조회</a></li>
-                        <li><a href="#">사원 상세 조회</a></li>
                     </ul>
                 </li>
                 <br><br>
@@ -77,7 +76,6 @@
                     <ul class="menu1">
                         <li><a href="listManage.ma">사원 리스트</a></li>
                         <li><a href="enrollForm.ma">사원 등록</a></li>
-                        <li><a href="chat.do">Chat_Test</a></li>
                     </ul>
                 </li>
             </div>

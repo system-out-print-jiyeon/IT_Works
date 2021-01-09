@@ -22,6 +22,7 @@ import com.kh.ITWorks.board.model.vo.BoardAttachment;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.common.template.Pagination;
 import com.kh.ITWorks.member.model.vo.Member;
+import com.kh.ITWorks.reservation.model.vo.Reservation;
 import com.kh.ITWorks.support.model.service.SupportService;
 import com.kh.ITWorks.support.model.vo.WorkSupport;
 
@@ -173,12 +174,10 @@ public class SupportController {
 		
 		int listCount = ss.selectListCountforSearch(hm);
 		
-		System.out.println(listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 10);
 		ArrayList<WorkSupport> list = ss.searchSupportList(pi, hm);
 		
-		System.out.println(list);
 		return new Gson().toJson(list);
 		
 	}
@@ -206,7 +205,6 @@ public class SupportController {
 				// 기존 파일이 있음 -> 업데이트
 				if(ws2 != null) {
 					// 파일삭제
-					System.out.println(ws2);
 					
 					new File(session.getServletContext().getRealPath(ws2.getAttach().getFilePath()+
 							ws2.getAttach().getChangeName())).delete();
@@ -254,6 +252,27 @@ public class SupportController {
 		
 	}
 	
+	
+	@RequestMapping("mysupportList.sp")
+	public String mySupportList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model m, HttpSession session) {
+		
+		int mno = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		int listCount = ss.selectmyListCount(mno);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 10);
+		
+		System.out.println(listCount);
+		
+		ArrayList<WorkSupport> list = ss.selectListWorkSupport(pi, mno);
+		
+		System.out.println(list.size());
+		
+		m.addAttribute("pi", pi);
+		m.addAttribute("list", list);
+		
+		return "supportBoard/mySupport";
+		
+	}
 	
 	
 	

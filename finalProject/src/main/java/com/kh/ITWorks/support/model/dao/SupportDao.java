@@ -80,5 +80,19 @@ public class SupportDao {
 	public int deleteWorkSupport(int sno, SqlSessionTemplate sqlss) {
 		return sqlss.update("supportMapper.deleteWorkSupport", sno);
 	}
+	
+	
+	public int selectmyListCount(int mno, SqlSessionTemplate sqlss) {
+		return sqlss.selectOne("supportMapper.selectmyListCount", mno);
+	}
+	
+	
+	public ArrayList<WorkSupport> selectListWorkSupport(PageInfo pi, int mno, SqlSessionTemplate sqlss){
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlss.selectList("supportMapper.selectMyList", mno, rowBounds); 
+	}
 
 }

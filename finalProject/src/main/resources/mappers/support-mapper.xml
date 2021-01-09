@@ -255,5 +255,33 @@
 		   set status = 'N'
 		 where support_no = #{sno}  	   
 	</update>
+	
+	
+	<select id="selectmyListCount" resultType="_int" parameterType="_int">
+		select
+			   count(support_no)
+		  from work_support
+		 where status = 'Y'
+		   and mem_no = #{mno}
+	</select>
+	
+	<select id="selectMyList" resultMap="supportRset" parameterType="_int">
+		select
+			   	support_no,
+				category,
+				r_dept_code,
+				s_dept_code,
+				support_title,
+				support_content,
+				start_date,
+				end_date,
+				mem_no,
+				create_date
+		  from work_support w
+		 where w.status = 'Y'
+           and mem_no = #{mno}
+		 order
+		    by 1 desc
+	</select>
 
 </mapper>

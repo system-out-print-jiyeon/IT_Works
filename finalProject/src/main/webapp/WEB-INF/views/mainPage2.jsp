@@ -155,6 +155,9 @@
                 
             </li>
             <li class="profile" ><a class="btn" href="approval.me">전자결재</a>
+            
+            </li>
+            <li class="profile" ><a class="btn" href="chat.do">전체채팅</a>
                 
             </li>
             <br>
@@ -226,6 +229,11 @@
           <div class="content1_2">
           		<img src="https://cdn0.iconfinder.com/data/icons/work-from-home-19/512/Application-mobileapplication-smartphone-platform-mobile-512.png" width="150" height="150">
           </div>  
+
+
+		<!-- to do list -->
+		<%-- <jsp:include page="todolist/todolist.jsp" /> --%>
+		
 
 
     </div>
