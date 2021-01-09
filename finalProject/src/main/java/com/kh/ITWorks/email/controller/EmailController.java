@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.google.gson.Gson;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.common.template.Pagination;
 import com.kh.ITWorks.email.model.dto.EmailAttachSelect;
@@ -33,6 +34,8 @@ public class EmailController {
 	
 	@Autowired
 	private EmailService emService;
+	
+
 	
 	// 이메일 전체 리스트
 	@RequestMapping("list.em")
@@ -76,6 +79,114 @@ public class EmailController {
 		model.addAttribute("list", list);
 		return "email/emailListView";
 	}
+	
+	// 이메일 검색
+	@RequestMapping("emailSearch.em")
+	public String selectEmailListSearch(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String email, String condition, String keyword, String range, String imp, Model model) {
+
+		int listAllCount = emService.selectEmailListCount(email);
+		model.addAttribute("listAllCount", listAllCount);
+		model.addAttribute("condition", condition);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("range", range);
+		model.addAttribute("imp", imp);
+		
+		// 전체 메일검색
+		if(range.equals("all")) {
+
+			int listCount = emService.selectEmailListSearchCount(email, condition, keyword, imp);
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 20);
+			
+			ArrayList<EmailSelect> list = emService.selectEmailListSearch(pi, email,condition, keyword, imp);
+			
+			if(!list.isEmpty()) {
+				
+				for(EmailSelect li : list) {
+
+					if(li.getEmCheck().equals("emailFrom")) {
+						
+						ArrayList<String> listRec = emService.selectEmailFromListRec(li.getEmNo());
+
+						String recs = "";
+						for(String rec : listRec) { 
+							recs += rec+"<br>"; 
+						}
+						li.setEmTo(recs); 
+					} 
+					
+					int attCount = emService.emailAttCount(li.getEmNo());
+					li.setAtt(attCount);
+				}
+			}
+			
+			model.addAttribute("listCount", listCount); 
+			model.addAttribute("pi", pi);
+			model.addAttribute("list", list);
+ 
+			return "email/emailSearchListView";
+			
+		// 보낸이메일 검색
+		}else if(range.equals("from")) {
+			
+			int listCount = emService.selectEmailFromListSearchCount(email, condition, keyword, imp);
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 20);
+			
+			ArrayList<EmailSelect> list =  emService.selectEmailFromListSearch(pi, email, condition, keyword, imp);
+
+			if(!list.isEmpty()) {
+
+				for(EmailSelect li : list) {
+					
+					ArrayList<String> listRec = emService.selectEmailFromListRec(li.getEmNo());
+
+					String recs = "";
+					for(String rec : listRec) {
+						recs += rec+"<br>";
+					}
+
+					li.setEmTo(recs);
+					
+					int attCount = emService.emailAttCount(li.getEmNo());
+					li.setAtt(attCount);
+				}	
+			}
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("pi", pi);
+			model.addAttribute("list", list);
+			
+			return "email/emailSearchListView";
+		
+			// 받은이메일 검색
+		}else {
+			
+			int listCount = emService.selectEmailToListSearchCount(email, condition, keyword, imp);
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 20);
+			
+			ArrayList<EmailSelect> list = emService.selectEmailToListSearch(pi, email, condition, keyword, imp);
+			
+			// 첨부파일 여부 조회
+			if(!list.isEmpty()) {
+				for(EmailSelect li:list) {
+					
+					int attCount = emService.emailAttCount(li.getEmNo());
+					
+					li.setAtt(attCount);
+				}
+			}
+			
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("pi", pi);
+			model.addAttribute("list", list);
+			return "email/emailSearchListView";
+		}
+		
+	}
+	
+
+	
 	// 전체리스트 페이지 삭제 버튼
 	@RequestMapping("deleteList.em")
 	public String deleteEmailList(int[] emNo, int[] emRecNo, Model model) {
@@ -206,6 +317,8 @@ public class EmailController {
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 20);
 		ArrayList<EmailSelect> list = emService.selectEmailToList(pi, email);
+		
+		// 첨부파일 여부 조회
 		if(!list.isEmpty()) {
 			for(EmailSelect li:list) {
 				

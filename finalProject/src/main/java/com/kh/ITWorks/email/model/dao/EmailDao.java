@@ -1,6 +1,7 @@
 package com.kh.ITWorks.email.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -155,4 +156,65 @@ public class EmailDao {
 	public int restoreEmailToList(SqlSessionTemplate sqlSession, int emRecNo) {
 		return sqlSession.update("emailMapper.restoreEmailToList", emRecNo);
 	}
+	
+	public int selectEmailListSearchCount(SqlSessionTemplate sqlSession, String email, String condition, String keyword, String imp) {
+		HashMap<String, String> map = new HashMap();
+		map.put("email", email);
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		map.put("imp", imp);
+		return sqlSession.selectOne("emailMapper.selectEmailListSearchCount", map);
+	}
+	
+	public ArrayList<EmailSelect> selectEmailListSearch(SqlSessionTemplate sqlSession, PageInfo pi, String email, String condition, String keyword, String imp){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		HashMap<String, String> map = new HashMap();
+		map.put("email", email);
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		map.put("imp", imp);
+		return (ArrayList)sqlSession.selectList("emailMapper.selectEmailListSearch", map, rowBounds);
+	}
+	
+	public int selectEmailFromListSearchCount(SqlSessionTemplate sqlSession, String email, String condition, String keyword, String imp) {
+		HashMap<String, String> map = new HashMap();
+		map.put("email", email);
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		map.put("imp", imp);
+		return sqlSession.selectOne("emailMapper.selectEmailFromListSearchCount", map);
+	}
+	
+	public ArrayList<EmailSelect> selectEmailFromListSearch(SqlSessionTemplate sqlSession, PageInfo pi, String email, String condition, String keyword, String imp){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		HashMap<String, String> map = new HashMap();
+		map.put("email", email);
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		map.put("imp", imp);
+		return (ArrayList)sqlSession.selectList("emailMapper.selectEmailFromListSearch", map, rowBounds);
+	}
+	
+	public int selectEmailToListSearchCount(SqlSessionTemplate sqlSession, String email, String condition, String keyword, String imp) {
+		HashMap<String, String> map = new HashMap();
+		map.put("email", email);
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		map.put("imp", imp);
+		return sqlSession.selectOne("emailMapper.selectEmailToListSearchCount", map);
+	}
+	
+	public ArrayList<EmailSelect> selectEmailToListSearch(SqlSessionTemplate sqlSession, PageInfo pi, String email, String condition, String keyword, String imp){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		HashMap<String, String> map = new HashMap();
+		map.put("email", email);
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		map.put("imp", imp);
+		return (ArrayList)sqlSession.selectList("emailMapper.selectEmailToListSearch", map, rowBounds);
+	}
+
 }

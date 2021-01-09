@@ -186,7 +186,6 @@
 	<!-- 버튼 숨겨둠 -->
 	<button id="modal-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 	</button>
-	<p id="calendar-data"></p>
 
 	<!-- The Modal -->
 	<div class="modal fade" id="myModal">

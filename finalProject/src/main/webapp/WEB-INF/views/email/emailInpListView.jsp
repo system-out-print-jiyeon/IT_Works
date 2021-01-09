@@ -141,8 +141,9 @@
         <div class="em_content">
             <div class="em_content_center">
 			<span class="em_title">중요메일함</span><span class="em_count">&nbsp;&nbsp;${ listCount }</span>
-				<br><br>
-				
+				<br>
+				<jsp:include page="../email/emailSearchBar.jsp"/>
+				<br>
 				<c:choose>
 				
 					<c:when test="${empty list}">
@@ -150,7 +151,7 @@
 					</c:when>
 					<c:otherwise>
 				
-		                <form name="form_mail" method="post">
+		                <form name="form_mail" method="post" id="list-form">
 		
 		                    <div class="submit_btn">
 		                        <input type="checkbox" id="checkall" value=""> 
@@ -289,7 +290,7 @@
     })
 
     // 체크박스가 체크되면 버튼 활성화 되게 만들기 
-    $('.em_content_center input[type="checkbox"]').click(function(){
+    $('.em_content_center #list-form input[type="checkbox"]').click(function(){
         var tmpp = $(this).prop('checked');
         var tt=$("[name='emNo']:checked").length;
         var tt2=$("[name='emRecNo']:checked").length;        

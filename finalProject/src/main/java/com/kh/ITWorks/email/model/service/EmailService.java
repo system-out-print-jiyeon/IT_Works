@@ -93,5 +93,20 @@ public interface EmailService {
 	// 메일 복원
 	int restoreEmailFromList(int emNo);
 	int restoreEmailToList(int emRecNo);
-
+	
+	// 검색 ***********************************************************
+	// 전체메일 검색 카운트
+	int selectEmailListSearchCount(String email, String condition, String keyword, String imp);
+	// 전체메일 검색 리스트
+	ArrayList<EmailSelect> selectEmailListSearch(PageInfo pi, String email, String condition, String keyword, String imp);
+	
+	// 보낸메일 검색 카운트
+	int selectEmailFromListSearchCount(String email, String condition, String keyword, String imp);
+	// 보낸메일 검색 리스트
+	ArrayList<EmailSelect> selectEmailFromListSearch(PageInfo pi, String email, String condition, String keyword, String imp);
+	
+	// 받은메일 검색 카운트
+	int selectEmailToListSearchCount(String email, String condition, String keyword, String imp);
+	// 받은메일 검색 리스트
+	ArrayList<EmailSelect> selectEmailToListSearch(PageInfo pi, String email, String condition, String keyword, String imp);
 }

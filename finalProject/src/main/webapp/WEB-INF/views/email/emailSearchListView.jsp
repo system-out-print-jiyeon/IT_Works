@@ -128,6 +128,18 @@
  	background:linear-gradient( to right, rgb(241, 251, 253),rgb(255, 255, 255),rgb(255, 255, 255));
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -141,13 +153,40 @@
 
         <div class="em_content">
             <div class="em_content_center">
-			<span class="em_title">전체메일함</span><span class="em_count">&nbsp;&nbsp;${ listCount }</span>
+			<span class="em_title">메일 검색 결과</span>
+			<span class="em_count">
+				&nbsp;&nbsp;${ listAllCount }개 중 ${ listCount }개 검색됨.&nbsp;
+				<c:if test="${ imp  eq 'imp'}">중요 메일로 등록한 </c:if>
+				<c:choose>
+					<c:when test="${ range eq 'all' }">
+						전체메일 중
+					</c:when>
+					<c:when test="${ range eq 'from' }">
+						보낸메일 중
+					</c:when>
+					<c:otherwise>
+						받은메일 중
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${ condition eq 'title' }">
+						제목을
+					</c:when>
+					<c:when test="${ condition eq 'content' }">
+						내용을
+					</c:when>
+					<c:otherwise>
+						날짜를
+					</c:otherwise>
+				</c:choose>
+				'${ keyword }' 로 검색한 결과입니다.
+			</span>
 				<br>
 				<jsp:include page="../email/emailSearchBar.jsp"/>
 				<br>
 				<c:choose>
 					<c:when test="${empty list}">
-						<p style="text-align:center; font-size:20px; color:gray; font-weight:900; margin-top:50px;" >이메일이 존재하지 않습니다.</p>
+						<p style="text-align:center; font-size:20px; color:gray; font-weight:900; margin-top:50px;" >검색된 메일이 존재하지 않습니다.</p>
 					</c:when>
 					<c:otherwise>
 		                <form name="form_mail" method="post" id="list-form">
@@ -233,7 +272,8 @@
 											</c:when>
 										
 										</c:choose>
- 
+									
+			                            
 		                           </c:forEach>
 		
 		                        </tbody>

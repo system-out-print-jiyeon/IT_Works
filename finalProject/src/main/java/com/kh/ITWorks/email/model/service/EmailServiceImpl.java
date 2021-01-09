@@ -190,11 +190,45 @@ public class EmailServiceImpl implements EmailService {
 		return emDao.selectEmailDeleteList(sqlSession, pi, email);
 	}
 	// 복원 버튼
+	@Override
 	public int restoreEmailFromList(int emNo) {
 		return emDao.restoreEmailFromList(sqlSession, emNo);
 	}
+	@Override
 	public int restoreEmailToList(int emRecNo) {
 		return emDao.restoreEmailToList(sqlSession, emRecNo);
 	}
 	
+	// 검색 **************************************************************
+	// 전체메일 검색 카운트
+	@Override
+	public int selectEmailListSearchCount(String email, String condition, String keyword, String imp) {
+		return emDao.selectEmailListSearchCount(sqlSession, email, condition, keyword, imp);
+	}
+	// 전체메일 검색 리스트
+	@Override
+	public ArrayList<EmailSelect> selectEmailListSearch(PageInfo pi, String email, String condition, String keyword, String imp){
+		return emDao.selectEmailListSearch(sqlSession, pi, email, condition, keyword, imp);
+	}
+	
+	// 보낸메일 검색 카운트
+	@Override
+	public int selectEmailFromListSearchCount(String email, String condition, String keyword, String imp) {
+		return emDao.selectEmailFromListSearchCount(sqlSession, email, condition, keyword, imp);
+	}
+	// 보낸메일 검색 리스트
+	@Override
+	public ArrayList<EmailSelect> selectEmailFromListSearch(PageInfo pi, String email, String condition, String keyword, String imp){
+		return emDao.selectEmailFromListSearch(sqlSession, pi, email, condition, keyword, imp);
+	}
+	
+	// 받은메일 검색 카운트
+	@Override
+	public int selectEmailToListSearchCount(String email, String condition, String keyword, String imp) {
+		return emDao.selectEmailToListSearchCount(sqlSession, email, condition, keyword, imp);
+	}
+	// 받은메일 검색 리스트
+	public ArrayList<EmailSelect> selectEmailToListSearch(PageInfo pi, String email, String condition, String keyword, String imp) {
+		return emDao.selectEmailToListSearch(sqlSession, pi, email, condition, keyword, imp);
+	}
 }

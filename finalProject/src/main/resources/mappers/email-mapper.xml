@@ -463,4 +463,280 @@
 		 where em_rec_no = #{emRecNo}
 	</update>
 	
+	<!-- ================================================검색기능================================================ -->
+	
+	<select id="selectEmailListSearchCount" parameterType="hashmap" resultType="_int">
+		select count(*) 
+		  from
+		  (
+		    select 0
+		      from email e
+		     where e.em_from = #{email}
+		       and e.em_status = 'Y'
+		       
+		       <choose>
+			   <when test="imp == 'imp'">
+		       and e.em_inp = 'Y'
+			   </when>
+		       </choose>
+
+			   <choose>
+		       <when test="condition == 'title'">
+			   and e.em_title
+			  like '%' || #{keyword} || '%'
+			   </when>
+			   <when test="condition == 'content'">
+			   and e.em_content
+			  like '%' || #{keyword} || '%'
+			   </when>
+			   <when test="condition == 'date'">
+			   and e.em_enroll_date
+			  like '%' || to_date(#{keyword}) || '%'
+			   </when>
+			   </choose>
+    
+		     union all
+		    
+		    select 0
+		      from email e
+		      join email_recipient er using (em_no)
+		     where er.em_to = #{email}
+		       and er.em_status = 'Y'
+		       
+		       <choose>
+			   <when test="imp == 'imp'">
+		       and er.em_inp = 'Y'
+			   </when>
+		       </choose>
+
+			   <choose>
+		       <when test="condition == 'title'">
+			   and e.em_title
+			  like '%' || #{keyword} || '%'
+			   </when>
+			   <when test="condition == 'content'">
+			   and e.em_content
+			  like '%' || #{keyword} || '%'
+			   </when>
+			   <when test="condition == 'date'">
+			   and e.em_enroll_date
+			  like '%' || to_date(#{keyword}) || '%'
+			   </when>
+			   </choose>
+		   )
+	</select>
+	
+	<select id="selectEmailListSearch" parameterType="hashmap" resultMap="EmailSelectResultSet">
+		select 'emailTo' em_check
+		     , em_no
+		     , em_rec_no
+		     , e.em_from
+		     , er.em_to
+		     , e.em_title
+		     , e.em_content
+             , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
+		     , er.em_read
+		     , er.em_inp
+		     , er.em_status
+		  from email e
+		  join email_recipient er using (em_no)
+		 where em_to = #{email}
+		   and er.em_status = 'Y'
+		   
+	       <choose>
+		   <when test="imp == 'imp'">
+	       and er.em_inp = 'Y'
+		   </when>
+	       </choose>
+		   
+		   <choose>
+		   <when test="condition == 'title'">
+		   and e.em_title
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'content'">
+		   and e.em_content
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'date'">
+		   and e.em_enroll_date
+		  like '%' || to_date(#{keyword}) || '%'
+		   </when>
+		   </choose>
+		
+		union all
+		
+		select 'emailFrom'
+		     , em_no
+		     , null
+		     , e.em_from
+		     , null
+		     , e.em_title
+		     , e.em_content
+             , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
+		     , null
+		     , e.em_inp
+		     , e.em_status
+		  from email e
+		 where em_from = #{email}
+		   and e.em_status = 'Y'
+		   
+	       <choose>
+		   <when test="imp == 'imp'">
+	       and e.em_inp = 'Y'
+		   </when>
+	       </choose>
+
+		   <choose>
+	       <when test="condition == 'title'">
+		   and e.em_title
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'content'">
+		   and e.em_content
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'date'">
+		   and e.em_enroll_date
+		  like '%' || to_date(#{keyword}) || '%'
+		   </when>
+		   </choose>
+		 order 
+		    by em_no desc
+	</select>
+	
+	
+
+	<select id="selectEmailFromListSearchCount" parameterType="hashmap" resultType="_int">
+		select count(*)
+		  from email e
+		 where e.em_from = #{email}
+		   and e.em_status = 'Y'
+		   
+		   <choose>
+		   <when test="imp == 'imp'">
+	       and e.em_inp = 'Y'
+		   </when>
+	       </choose>
+		   
+		   <choose>
+	       <when test="condition == 'title'">
+		   and e.em_title
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'content'">
+		   and e.em_content
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'date'">
+		   and e.em_enroll_date
+		  like '%' || to_date(#{keyword}) || '%'
+		   </when>
+		   </choose>
+	</select>
+	
+	<!-- 하나의 페이지에서 전체메일 / 보낸메일 / 받은메일 검사하기 때문에 이 메일이 어떤메일 인지 확인하기위해 em_check로 직접 붙여줌 => db에는없음 -->
+	<select id="selectEmailFromListSearch" parameterType="hashmap" resultMap="EmailSelectResultSet">
+		select 'emailFrom' em_check 
+		     , e.em_no
+             , e.em_title
+             , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
+             , e.em_inp
+             , e.em_status
+          from email e
+         where em_from = #{email}
+           and e.em_status = 'Y'
+           
+           <choose>
+		   <when test="imp == 'imp'">
+	       and e.em_inp = 'Y'
+		   </when>
+	       </choose>
+           
+           <choose>
+	       <when test="condition == 'title'">
+		   and e.em_title
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'content'">
+		   and e.em_content
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'date'">
+		   and e.em_enroll_date
+		  like '%' || to_date(#{keyword}) || '%'
+		   </when>
+		   </choose>
+         order 
+            by e.em_no desc
+	</select>
+	
+	<select id="selectEmailToListSearchCount" parameterType="hashmap" resultType="_int">
+		select count(*)
+		  from email_recipient er
+		  join email e using(em_no)
+		 where er.em_to = #{email}
+		   and er.em_status='Y'
+		   
+		   <choose>
+		   <when test="imp == 'imp'">
+	       and er.em_inp = 'Y'
+		   </when>
+	       </choose>
+		   
+		   <choose>
+	       <when test="condition == 'title'">
+		   and e.em_title
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'content'">
+		   and e.em_content
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'date'">
+		   and e.em_enroll_date
+		  like '%' || to_date(#{keyword}) || '%'
+		   </when>
+		   </choose>
+	</select>
+	
+	<select id="selectEmailToListSearch" parameterType="hashmap" resultMap="EmailSelectResultSet">
+		select 'emailTo' em_check 
+		     , em_no
+		     , er.em_rec_no
+		     , er.em_read
+		     , er.em_inp
+		     , er.em_status
+		     , e.em_from
+		     , e.em_title
+		     , to_char(e.em_enroll_date, '""MM"월"DD"일 ("DY") "HH24":"mi""') em_enroll_date
+		  from email_recipient er
+		  join email e using(em_no)
+		 where er.em_to = #{email}
+		   and er.em_status='Y'
+		   
+		   <choose>
+		   <when test="imp == 'imp'">
+	       and er.em_inp = 'Y'
+		   </when>
+	       </choose>
+		   
+		   <choose>
+	       <when test="condition == 'title'">
+		   and e.em_title
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'content'">
+		   and e.em_content
+		  like '%' || #{keyword} || '%'
+		   </when>
+		   <when test="condition == 'date'">
+		   and e.em_enroll_date
+		  like '%' || to_date(#{keyword}) || '%'
+		   </when>
+		   </choose>
+		 order 
+            by er.em_rec_no desc
+	</select>
+	
 </mapper>
