@@ -93,6 +93,9 @@ public interface EmailService {
 	// 메일 복원
 	int restoreEmailFromList(int emNo);
 	int restoreEmailToList(int emRecNo);
+	// 메일 영구삭제
+	int removeEmailFromList(int emNo);
+	int removeEmailToList(int emRecNo);
 	
 	// 검색 ***********************************************************
 	// 전체메일 검색 카운트

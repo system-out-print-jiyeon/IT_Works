@@ -463,6 +463,18 @@
 		 where em_rec_no = #{emRecNo}
 	</update>
 	
+	<update id="removeEmailFromList" parameterType="_int">
+		update email
+		   set em_status = 'D'
+		 where em_no = #{emNo}
+	</update>
+	
+	<update id="removeEmailToList" parameterType="_int">
+		update email_recipient
+		   set em_status = 'D'
+		 where em_rec_no = #{emRecNo}
+	</update>
+	
 	<!-- ================================================검색기능================================================ -->
 	
 	<select id="selectEmailListSearchCount" parameterType="hashmap" resultType="_int">

@@ -157,6 +157,14 @@ public class EmailDao {
 		return sqlSession.update("emailMapper.restoreEmailToList", emRecNo);
 	}
 	
+	public int removeEmailFromList(SqlSessionTemplate sqlSession, int emNo) {
+		return sqlSession.update("emailMapper.removeEmailFromList", emNo);
+	}
+	
+	public int removeEmailToList(SqlSessionTemplate sqlSession, int emRecNo) {
+		return sqlSession.update("emailMapper.removeEmailToList", emRecNo);
+	}
+	
 	public int selectEmailListSearchCount(SqlSessionTemplate sqlSession, String email, String condition, String keyword, String imp) {
 		HashMap<String, String> map = new HashMap();
 		map.put("email", email);

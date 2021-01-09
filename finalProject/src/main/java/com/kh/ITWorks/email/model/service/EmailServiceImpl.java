@@ -189,7 +189,7 @@ public class EmailServiceImpl implements EmailService {
 	public ArrayList<EmailSelect> selectEmailDeleteList(PageInfo pi, String email){
 		return emDao.selectEmailDeleteList(sqlSession, pi, email);
 	}
-	// 복원 버튼
+	// 이메일 복원
 	@Override
 	public int restoreEmailFromList(int emNo) {
 		return emDao.restoreEmailFromList(sqlSession, emNo);
@@ -197,6 +197,13 @@ public class EmailServiceImpl implements EmailService {
 	@Override
 	public int restoreEmailToList(int emRecNo) {
 		return emDao.restoreEmailToList(sqlSession, emRecNo);
+	}
+	// 이메일 영구삭제
+	public int removeEmailFromList(int emNo) {
+		return emDao.removeEmailFromList(sqlSession, emNo);
+	}
+	public int removeEmailToList(int emRecNo) {
+		return emDao.removeEmailToList(sqlSession, emRecNo);
 	}
 	
 	// 검색 **************************************************************

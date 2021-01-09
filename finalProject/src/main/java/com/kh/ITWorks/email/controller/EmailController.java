@@ -704,6 +704,7 @@ public class EmailController {
 		}
 	}
 	
+
 	@RequestMapping("listInp.em")
 	public String selectEmailInpList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, String email, Model model ) {
 		
@@ -781,7 +782,7 @@ public class EmailController {
 			}
 		}
 		
-		// 받은메일 체크 했을 경우
+		// 받은메일 체크 했을 경우 else if로 하면 안됨 -> 또다른 if문임
 		if(emRecNo != null) {
 			for(int i=0; i<emRecNo.length; i++) {
 				int result = emService.restoreEmailToList(emRecNo[i]);
@@ -796,6 +797,43 @@ public class EmailController {
 			model.addAttribute("fail", "이메일을 복원하지 못하였습니다. 다시 시도해 주세요.");
 			return "email/emailResultPage";
 		}
+	}
+	
+	// 휴지통 삭제 버튼
+	@RequestMapping("removeList.em")
+	public String removeEmailList(int[] emNo, int[] emRecNo, Model model) {
+		
+		// 몇번 수행했는지 확인
+		int fromResultCount = 0;
+		int toResultCount = 0;
+		
+		// 보낸메일 체크 했을 경우
+		if(emNo != null) {
+			for(int i=0; i<emNo.length; i++) {
+				int result = emService.removeEmailFromList(emNo[i]);
+				fromResultCount++;
+			}
+		}
+		
+		// 받은메일 체크 했을 경우 else if로 하면 안됨 -> 또다른 if문임
+		if(emRecNo != null) {
+			for(int i=0; i<emRecNo.length; i++) {
+				int result = emService.removeEmailToList(emRecNo[i]);
+				toResultCount++;
+			}
+		}
+		
+		
+		if(fromResultCount > 0 || toResultCount>0) {
+			model.addAttribute("delete",  fromResultCount + "개의 보낸 이메일과 " + toResultCount + "개의 받은 이메일을 완전히 삭제하였습니다.");
+			return "email/emailResultPage";
+		}else {
+			model.addAttribute("fail", "이메일을 영구삭제하지 못하였습니다. 다시 시도해 주세요.");
+			return "email/emailResultPage";
+		}
+		
+		
+		
 	}
 
 	
