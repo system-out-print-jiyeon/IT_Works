@@ -232,7 +232,7 @@
 
 
 		<!-- to do list -->
-		<jsp:include page="todolist/todolist.jsp" />
+		<%-- <jsp:include page="todolist/todolist.jsp" /> --%>
 		
 
 
