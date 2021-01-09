@@ -158,29 +158,35 @@ img{ max-width:100%;}
         <div class="inbox_people">
           <div class="headind_srch">
             <div class="recent_heading">
-              <h4>Recent</h4>
+              <h4>접속 중</h4>
             </div>
-            <div class="srch_bar">
-              <div class="stylish-input-group">
-                <input type="text" class="search-bar"  placeholder="Search" >
-                <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
-            </div>
+            <!-- 
+	            <div class="srch_bar">
+	              <div class="stylish-input-group">
+	                <input type="text" class="search-bar"  placeholder="Search" >
+	                <span class="input-group-addon">
+	                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+	                </span> </div>
+	            </div>
+             -->
+             
           </div>
+          
           <div class="inbox_chat">
+          <!-- 접속한 인원 보이기 -->
+          <!-- 
             <div class="chat_list active_chat">
               <div class="chat_people">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="chat_img"> <img src="${ loginUser.memImg }" style="border-radius: 70%;" alt="프로필"> </div> 
                 <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
+                  <h5>${ loginUser.memName } <span class="chat_date"><c:out value="${sysdate}"/></span></h5>
+                  <p></p>
                 </div>
               </div>
             </div>
+           -->
             
-            <!-- 채팅 인원  -->
+            <!-- 채팅 인원  
             <div class="chat_list">
               <div class="chat_people">
                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
@@ -191,6 +197,7 @@ img{ max-width:100%;}
                 </div>
               </div>
             </div>
+            -->
             
           </div>
         </div>
@@ -207,7 +214,7 @@ img{ max-width:100%;}
         </div>
           <div class="type_msg">
             <div class="input_msg_write">
-              <input type="text" id="message" class="write_msg" placeholder="Type a message" />
+              <input type="text" id="message" class="write_msg" placeholder="메시지를 입력해주세요!" />
               <button class="msg_send_btn" type="button" id="btnSend"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
           </div>
@@ -221,6 +228,9 @@ img{ max-width:100%;}
 	var name = $("input#loginN").val();
 	var id = $("input#loginI").val();
 	
+	//var time = new Date();
+	//var now = time.getHours() + "시" + time.getMinutes() + "분" + time.getSeconds() + "초";
+	
 	var value = "";
 
    var socket = new SockJS("http://localhost:8888/ITWorks/chat");
@@ -229,10 +239,32 @@ img{ max-width:100%;}
        console.log('Info: connection opened.');
        console.log('로그인한 사원명 : ' + name);
        console.log('로그인한 사원 아이디명 : ' + id);
+       
+       if(name != null){
+    	   console.log("입장");
+    	   member =   	"<div class='chat_list'>" +
+		           			"<div class='chat_people'>" + 
+		             			"<div class='chat_img'>" +
+		             				"<img src='${ loginUser.memImg }' style='border-radius: 70%;' alt='프로필'>" +
+		             			"</div>" + 
+		             		"<div class='chat_ib'>" +
+		               			"<h5>" + name + "(" + id + ")" + 
+		               				"<span class='chat_date'>" + "접속 시간" + "</span>" + 
+		               			"</h5>" +
+		               			"<p>" + "${loginUser.deptName}" + "/" +"${loginUser.jobName}" +"</p>" +
+             				"</div>" +
+           				"</div>" +
+         			"</div>";
+         			
+		 $("div.inbox_chat").append(member);
+       }
    };
  
    socket.onmessage = function (event) {
       console.log(event.data+'\n'); 
+      
+      var time = new Date();
+  	  var now = time.getHours() + "시" + time.getMinutes() + "분" + time.getSeconds() + "초";
       
       var arr = event.data.split(" (");
       
@@ -243,29 +275,29 @@ img{ max-width:100%;}
       if(id == arr[0]){
     	  console.log('일치함');
     	  // 일치 == (내가 메시지 보냄) 1번 div로 출력
-    	  value = "<div class='outgoing_msg'>" + 
+    	  chat = "<div class='outgoing_msg'>" + 
           				"<div class='sent_msg'>" +
           					"<p>" + event.data + "</p>" + 
-          					"<span class='time_date'>" + "채팅한시간 넣기" + "</span>" + 
+          					"<span class='time_date'>" + "보낸시간 - " + now + "</span>" + 
           				"</div>" +
       				"</div>";
       				
-    	  $("div.incoming_msg").append(value);
+    	  $("div.incoming_msg").append(chat);
       				
       }else{
     	  console.log('불일치함');
     	  // 불일치 == (다른사람 메시지 받아옴) 2번 div로 출력
-    	  value = 
+    	  chat = 
     		  "<div class='incoming_msg_img'>" +
     		  	"<img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'>" + 
     		  "</div>" +
           	"<div class='received_msg'>" +
           		"<div class='received_withd_msg'>" + 
             		"<p>" + event.data + "</p>" +
-            		"<span class='time_date'>" + "채팅온 시간" + "</span>" + "</div>" +
+            		"<span class='time_date'>" + "받은시간 - " + now + "</span>" + "</div>" +
         	"</div>";
         	
-    	  $("div.incoming_msg").append(value);
+    	  $("div.incoming_msg").append(chat);
       }
       //$("div.messaging").append(value);
       
@@ -277,7 +309,6 @@ img{ max-width:100%;}
    socket.onclose = function (event) {
       console.log('Info: connection closed.'); 
       //setTimeout( function(){socket.onopen();}, 1000);	// 연결 끊어지면 다시 연결 시도
-      console.log(SYSDATE);
    };
 
    socket.onerror = function (event) { 
