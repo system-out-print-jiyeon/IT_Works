@@ -133,8 +133,12 @@
     color:gray;
 }
 #calendar{
-	max-width: 800px;
- 	margin-left:0;
+	border:2px solid lightgray;
+	max-width:800px;
+	border-radius:5px;
+ 	margin:0 auto;
+ 	padding: 10px;
+ 	box-shadow: 0px 0px 10px 1px gray;
 }
 #modal-btn{
 	display:none;
@@ -173,11 +177,12 @@
 
             <div class="ca_content_center">
 	            <span class="ca_title">부서일정(${ loginUser.deptName }부서)</span>	
-
+				<hr>
 				<div class="ca_content_center_calendar">
 	            	<div id='calendar'>
 	            	</div>
 				</div>
+				<hr>
             </div>
         </div>
     </div>

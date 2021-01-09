@@ -126,20 +126,32 @@
 .ca_content_center{
     margin-top:100px;
     padding:20px;
+
+    
 }
 .ca_content_center tbody>tr{
     font-size:17px;
     color:gray;
 }
+
+
+
+
 #calendar{
+	border:2px solid lightgray;
 	max-width:800px;
-	
- 	margin-left:0;
+	border-radius:5px;
+ 	margin:0 auto;
+ 	padding: 10px;
+ 	box-shadow: 0px 0px 10px 1px gray;
 }
+
+
+
+
 #modal-btn{
 	display:none;
 }
-
 .calendar-title{
 	color:white;
 	font-size:20px;
@@ -170,14 +182,14 @@
 		<jsp:include page="../common/sideBar_calendar.jsp"/>
 		
         <div class="ca_content">
-
             <div class="ca_content_center">
 	            <span class="ca_title">개인일정</span>	
-
+				<hr>
 				<div class="ca_content_center_calendar">
 	            	<div id='calendar'>
 	            	</div>
 				</div>
+		        <hr>
             </div>
         </div>
     </div>
