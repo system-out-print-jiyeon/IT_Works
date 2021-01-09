@@ -36,6 +36,7 @@
 		<mapper resource="/mappers/support-mapper.xml"/>
 		<mapper resource="/mappers/reservation-mapper.xml"/>
 		<mapper resource="/mappers/calendar-mapper.xml"/>
+		<mapper resource="/mappers/address-mapper.xml"/>
 	</mappers>
 	
 </configuration>
