@@ -255,15 +255,23 @@
         </c:choose>
     </nav>
 
-    <!-- 서브메뉴바 -->
+     <!-- 서브메뉴바 -->
     <div class="submenuList" style="display: none;">
         
-        <a href=""><div><p class="listCategory"><i class="far fa-envelope"></i><br> 메일</p></div></a>
-        <a href=""><div><p class="listCategory"><i class="far fa-calendar-alt"></i><br> 캘린더</p></div></a>
+        <a href="list.em?email=${loginUser.email}"><div><p class="listCategory"><i class="far fa-envelope"></i><br> 메일</p></div></a>
+        <a href="#" onclick="calendar_submit();"><div><p class="listCategory"><i class="far fa-calendar-alt"></i><br> 캘린더</p></div></a>
+       	<form action="calendar.ca" method="post" id="calendar_btn">
+			<input type="hidden" name="memNo" value="${ loginUser.memNo }">
+		</form>
+		<script>
+			function calendar_submit(){
+				$("#calendar_btn").submit();
+			}
+		</script>
+        
         <a href=""><div><p class="listCategory"><i class="far fa-address-card"></i><br> 주소록</p></div></a>
         <a href="list.bo"><div><p class="listCategory"><i class="far fa-list-alt"></i><br>게시판</p></div></a>
     
-
    
 
         <a href="reservation.re?floor=3"><div><p class="listCategory"><i class="fas fa-business-time"></i><br>회의실 예약</p></div></a>
