@@ -113,7 +113,7 @@
           
       }
 
-      .bell{
+      #bell{
           border: 2px solid rgb(109, 100, 100);
           padding: 10px 7px;
           width: 40px;
@@ -127,8 +127,7 @@
          vertical-align: middle;
             
         }
-        span{ display: table-cell;}
-
+        .icon{ display: table-cell;}
 
         /* 서브메뉴리스트 */
 
@@ -214,9 +213,9 @@
         </div>
         <%} else { %>  <% } %>
         
-        <a href=""><span class="bell"><i class="fas fa-bell"></i></span></a>
+        <a href=""><span class="icon" id="bell"><i class="fas fa-bell"></i></span></a>
         <div class="personalInfo">
-           <a href="" class="infoText"><span><i class="fas fa-user-circle fa-2x"></i></span>&nbsp;<span class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
+           <a href="" class="infoText"><span class="icon"><i class="fas fa-user-circle fa-2x"></i></span class="icon" class="username">&nbsp;<span class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
         </div>
     </nav>
 
