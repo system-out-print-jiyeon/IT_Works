@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>그룹 내 채팅</title>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -152,8 +152,7 @@ img{ max-width:100%;}
 </head>
 <body>
 	<jsp:include page="../common/approvalNavbar.jsp"/><br><br>
-	<div class="container">
-<h3 class=" text-center">Messaging</h3>
+	<div class="container"><br><br>
 <div class="messaging">
       <div class="inbox_msg">
         <div class="inbox_people">
@@ -278,6 +277,7 @@ img{ max-width:100%;}
    socket.onclose = function (event) {
       console.log('Info: connection closed.'); 
       //setTimeout( function(){socket.onopen();}, 1000);	// 연결 끊어지면 다시 연결 시도
+      console.log(SYSDATE);
    };
 
    socket.onerror = function (event) { 
@@ -289,7 +289,7 @@ img{ max-width:100%;}
    $('#btnSend').on('click', function(evt) {
            //evt.preventDefault();
                 socket.send($('input#message').val());
-                $('.write_msg').html("");
+                $('input#message').val("");
        });
   });
    

@@ -157,7 +157,7 @@
             <li class="profile" ><a class="btn" href="approval.me">전자결재</a>
             
             </li>
-            <li class="profile" ><a class="btn" href="chat.do">전체채팅</a>
+            <li class="profile" ><a class="btn" id="chat">전체채팅</a>
                 
             </li>
             <br>
@@ -165,6 +165,22 @@
         </div>
     
     </div>
+
+<!-- 채팅 기능 팝업창 -->
+<script type="text/javascript">
+	$('#chat').click(function(event){  //버튼을 클릭 했을시 popupOpen 함수 출력 
+	    console.log('click');
+	    popupOpen();	//Popup Open 함수
+	});
+	
+	function popupOpen(){
+		var url= "chat.do";    //팝업창 페이지 URL
+		var winWidth = 630;
+	    var winHeight = 480;
+	    var popupOption= "width="+winWidth+", height="+winHeight;    //팝업창 옵션(optoin)
+		window.open(url,"",popupOption);
+	}
+</script>
 
     <div class="contents">
 
