@@ -9,16 +9,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>approvalNavbar</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lexend+Peta&family=Nanum+Pen+Script&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
-    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lexend+Peta&family=Nanum+Pen+Script&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     
     
   <style>
@@ -179,28 +180,28 @@
     .listCategory{display: table-cell;  vertical-align: middle; }
 
     a{text-decoration: none;}
-    
-    	.logoutDiv{
+
+  	.logoutDiv{
 		padding-top:20px;
 		padding-left:20px;
 	}
 
 	.logoutDiv a{
 		text-decoration:none;
-		font-size: 13px; 
+		font-size: 12px; 
 		font-weight: 700;
-		border: 1px solid  rgb(44, 146, 255);
-        padding: 8px;
+		border: 1px solid rgb(44, 146, 255);
+        padding: 6px;
         border-radius: 6px;
-        color: rgb(44, 146, 255);
+        color:rgb(87, 168, 255);
 	}
 
     .logoutDiv a:hover{
         text-decoration:none;
-		font-size: 13px; 
+		font-size: 12px; 
 		font-weight: 700;
 		background-color:  rgb(44, 146, 255);
-        padding: 8px;
+        padding: 6px;
         border-radius: 6px;
         color:white;
     }
@@ -228,6 +229,7 @@
            <% if(url.contains("approval")){ %> 전자결재 <% } 
            else if(url.contains("manage")) {%> 인사관리 <% } 
            else if(url.contains("reservation")) {%> 회의실 예약 <% } 
+           else if(url.contains("board")) {%> 게시판 <% }
            else if(url.contains("workTime")) {%> 근태관리 <% } 
            else if(url.contains("an")) {%> 근태관리 <% } 
            else {%> 오피스 홈 <% } %>
@@ -249,6 +251,7 @@
         <div class="personalInfo">
            <a href="" class="infoText"><span class="icon"><i class="fas fa-user-circle fa-2x"></i></span class="icon" class="username">&nbsp;<span class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
         </div>
+        
         
         <c:choose>
         	<c:when test="${ !empty loginUser}">

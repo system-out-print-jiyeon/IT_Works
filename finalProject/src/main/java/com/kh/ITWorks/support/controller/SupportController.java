@@ -173,12 +173,10 @@ public class SupportController {
 		
 		int listCount = ss.selectListCountforSearch(hm);
 		
-		System.out.println(listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 10);
 		ArrayList<WorkSupport> list = ss.searchSupportList(pi, hm);
 		
-		System.out.println(list);
 		return new Gson().toJson(list);
 		
 	}
@@ -206,7 +204,6 @@ public class SupportController {
 				// 기존 파일이 있음 -> 업데이트
 				if(ws2 != null) {
 					// 파일삭제
-					System.out.println(ws2);
 					
 					new File(session.getServletContext().getRealPath(ws2.getAttach().getFilePath()+
 							ws2.getAttach().getChangeName())).delete();
