@@ -277,6 +277,7 @@ img{ max-width:100%;}
 
    socket.onclose = function (event) {
       console.log('Info: connection closed.'); 
+      //setTimeout( function(){socket.onopen();}, 1000);	// 연결 끊어지면 다시 연결 시도
    };
 
    socket.onerror = function (event) { 
