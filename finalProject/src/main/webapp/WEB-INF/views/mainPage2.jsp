@@ -155,6 +155,9 @@
                 
             </li>
             <li class="profile" ><a class="btn" href="approval.me">전자결재</a>
+            
+            </li>
+            <li class="profile" ><a class="btn" href="chat.do">전체채팅</a>
                 
             </li>
             <br>
