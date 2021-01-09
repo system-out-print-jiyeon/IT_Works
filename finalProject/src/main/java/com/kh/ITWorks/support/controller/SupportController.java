@@ -22,6 +22,7 @@ import com.kh.ITWorks.board.model.vo.BoardAttachment;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.common.template.Pagination;
 import com.kh.ITWorks.member.model.vo.Member;
+import com.kh.ITWorks.reservation.model.vo.Reservation;
 import com.kh.ITWorks.support.model.service.SupportService;
 import com.kh.ITWorks.support.model.vo.WorkSupport;
 
@@ -251,6 +252,27 @@ public class SupportController {
 		
 	}
 	
+	
+	@RequestMapping("mysupportList.sp")
+	public String mySupportList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, Model m, HttpSession session) {
+		
+		int mno = ((Member)session.getAttribute("loginUser")).getMemNo();
+		
+		int listCount = ss.selectmyListCount(mno);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 10);
+		
+		System.out.println(listCount);
+		
+		ArrayList<WorkSupport> list = ss.selectListWorkSupport(pi, mno);
+		
+		System.out.println(list.size());
+		
+		m.addAttribute("pi", pi);
+		m.addAttribute("list", list);
+		
+		return "supportBoard/mySupport";
+		
+	}
 	
 	
 	

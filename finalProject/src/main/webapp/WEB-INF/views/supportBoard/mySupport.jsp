@@ -58,43 +58,9 @@
                     <button type="button" class="btn btn-info" onclick="location.href='insertForm.sp'">업무헙업 요청</button>
 	                <a class="btn btn-link" id="myBtn" href="mysupportList.sp">내 업무협업</a>
                 </div>
-                <div class="select">
-                    <select class="custom-select" id="category" name="category">
-                        <option selected hidden>분류</option>
-                        <option value="클레임">클레임</option>
-                        <option value="업무요청">업무요청</option>
-                        <option value="회사내지침">회사내지침</option>
-                        <option value="회의록">회의록</option>
-                    </select>
-                </div>
+                
             </div>
-            <script type="text/javascript">
-            	$(function(){
-            		$("#category").change(function(){
-	            		$.ajax({
-	            			url:"ajaxCategorySort.go",
-	            			type:"post",
-	            			data:{category: $(this).val(), deptCode: "${loginUser.deptCode}"},
-	            			success:function(list){
-	            				var data = "";
-	            				for(var i in list){
-	            					data += "<tr>" + 
-					                            "<td>"+ list[i].supportNo+"</td>" +
-					                            "<td>"+ list[i].category+"</td>" +
-					                            "<td>${loginUser.deptName}팀</td>" +
-					                            "<td>"+ list[i].supportTitle+"</td>" +
-					                            "<td>"+ list[i].createDate+"</td>" +
-					                            "<td>"+list[i].mem.deptName+"팀</td>" +
-		                        			"</tr>"
-	            				}
-	            				$(".tablewrap>table tbody").html(data);
-	            			},error: function(){
-	            				console.log("실패");
-	            			}
-	            		}) 
-            		})
-            	})
-            </script>
+            
             <div id="box2" class="tablewrap" align="center">
                 <table border="1" bordercolor="lightgray">
                     <thead>
@@ -116,7 +82,7 @@
 			                        <td>${loginUser.deptName}팀</td>
 		                            <td>${li.supportTitle }</td>
 		                            <td>${li.createDate}</td>
-		                            <td>${li.mem.deptName}팀</td>
+		                            <td>${loginUser.deptName}팀</td>
 		                        </tr>
 	                    	</c:forEach>
                     	</c:if>
@@ -132,24 +98,7 @@
             	})
             
             </script>
-            <div id="box3">
-                <form action="search.sp" method="post">
-                    <div id="box1">
-                        <div class="select">
-                            <select class="custom-select" name="condition">
-                                <option value="support_title" selected>제목</option>
-                                <option value="support_content">내용</option>
-                                <option value="dept_name">발신부서</option>
-                            </select>
-                        </div>
-                        <div class="insert" style="width: 68%;">
-                            <input type="text" class="form-control" name="keyword">
-                            <input type="hidden" name="deptCode" value="${loginUser.deptCode}">
-                        </div>
-                        <button type="submit" class="search btn btn-secondary">검색</button>
-                    </div>
-                </form>
-            </div>
+            
             <div id="box4">
                 <div id="pagingArea">
                     <ul class="pagination">
@@ -158,18 +107,18 @@
                     	    <li class="page-item disabled"><a class="page-link" href="#"><</a></li>
                     	</c:when>
                     	<c:otherwise>
-                    	    <li class="page-item"><a class="page-link" href="list.sp?currentPage=${pi.currentPage-1}"><</a></li>
+                    	    <li class="page-item"><a class="page-link" href="mysupportList.sp?currentPage=${pi.currentPage-1}"><</a></li>
                     	</c:otherwise>
                     </c:choose>
                     <c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage}">
-                        <li class="page-item"><a class="page-link" href="list.sp?currentPage=${p}">${p}</a></li>
+                        <li class="page-item"><a class="page-link" href="mysupportList.sp?currentPage=${p}">${p}</a></li>
                     </c:forEach>
                     <c:choose>
                     	<c:when test="${pi.currentPage eq pi.maxPage}">
 	                        <li class="page-item disabled"><a class="page-link" href="#">></a></li>
                     	</c:when>
                     	<c:otherwise>
-	                        <li class="page-item"><a class="page-link" href="list.sp?currentPage=${pi.currentPage+1}">></a></li>
+	                        <li class="page-item"><a class="page-link" href="mysupportList.sp?currentPage=${pi.currentPage+1}">></a></li>
                     	</c:otherwise>
                     </c:choose>
                     </ul>
