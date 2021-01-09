@@ -1,216 +1,277 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
-  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
+ <link rel="preconnect" href="https://fonts.gstatic.com">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <style>
-#pagingArea{width:fit-content;margin:auto;}
-
-.free-board{
-    width: 100%; 
-    height:100%;
-    margin: 30px
-}
-
-.tool_bar1{
-    width: 100%;
-    height: 50px;
-    margin-top: 100px; 
-    position: relative;
-}
-
-
-#free-boardList{
-    width: 100%;
-    background:white;
-    height: 700px;
-}
-th{
-    background: lightgray;
-    text-align: center;
-
-}
-td{
-    font-size: 19px;
-    text-align: center;
-    padding : 20px 8px 8px 8px!important;
-}
-#free-boardList>tbody>tr:hover{cursor:pointer;}
-
-
+      /* *{
+          border: 1px solid red;
+      }  */
+      .wrap{width: 100%; 
+            height: 100%;
+            display: flex;
+          }
+      
+       .titleBar{text-align: center;}
+      
+      .titleArea{
+         border-radius: 10px;
+         border: 0;
+         width: 250px;
+         height: 45px;
+         font-size: larger;
+         color: white;
+         background-color: rgb(84, 129, 189);
+         padding-top: 10px;
+      }
+      /* 사이드바 */
+      .sidebar{    
+          justify-content: space-between;
+          padding: 8px 24px;
+          width: 300px;
+          height: 1200px;
+          background-color: #e7e1e1;
+          margin-top: 80px;
+      }
+      
+      .sidebar_menu{
+          align-items: center;
+          list-style: none;
+      }  
+      
+      .sidebar_menu a{
+          text-decoration: none;
+          line-height: 40px;
+          color: rgb(107, 102, 102);
+          font-size: 18px;
+          padding-left: 40px;
+          box-sizing: border-box;
+      }
+      
+      .sidebar_menu a:hover{
+          color: rgb(39, 37, 37);
+      }
+      
+      .menu1 li{ 
+          padding-left: 20px;
+          list-style: none; 
+      }
+      
+      .profile:hover{cursor: pointer;}
+      .profile .menu1{display: none;}
+      
+      /*선택된메뉴*/
+	  .selectedTitle{
+	    background-color: rgba(76, 135, 212, 0.616);
+	    border-radius: 10px;	
+	  }  
+        
+      /* 컨텐트 */
+      .contentArea{width: 100%; height: 1200px;margin-top: 80px;}
+      .content1{
+          width: 100%;
+          height: 100%; 
+          float: left;
+          padding: 40px;
+      }
+      .nameBar{
+          padding: 20px;
+      }
+      .nameBar h5{
+          font-weight: 900;
+      }
+      
+      /* 테이블 */
+      .businessTableArea{
+          padding: 20px;
+      }
+      .tdTitle td{
+          text-align: center;
+          background: lightgray;
+      }
+      #businessTable tr td{
+          text-align: center;
+      }
+      tbody tr td:hover{
+      		cursor:pointer;
+      }
+      #workListTable tbody tr:hover{cursor:pointer;}
+      /* 페이징 */
+      .paginationBar{
+          align-items: center;
+      }
 </style>
+       
+</head>
 <body>
-<div class="free-board">
-        <h1>전체 게시판<small>(자유)</small></h1> 
-            <section class="tool_bar1">
-                        
-                <button id="New writing" class="btn btn-default btn-sm">
-                    <i class="fas fa-pencil-alt"></i>
-                    <span class="txt">새글쓰기</span>
-                </button>
-                            
-                <button id="Copy" class="btn btn-default btn-sm">
-                    <i class="fas fa-copy"></i>
-                    <span class="txt">복사</span>
-                </button>
-                                                                                   
-                <button id="contactDelete" class="btn btn-default btn-sm">
-                    <i class="fas fa-trash"></i>
-                    <span class="txt_caution">삭제</span>
-                </button>
-                                                      
-            </section>
 
-        <div class="tablelist">
-            <table id="free-boardList" class="table">
-                 <thead>
-                    <tr>
-                        <th width="30px"><input type="checkbox" id="checkedAll"></th>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>작성일</th>
-                        <th>조회</th>
-                        <th>좋아요</th>                               
-                    </tr>
-                </thead>
-                <tbody align="center">
-                    <tr>
-                        <td><input name="chk" type="checkbox" value="10" data-row="0"></td>
-                        <td>1</td>
-                        <td>안녕하세요.</td>
-                        <td>김OO</td>
-                        <td>2020/12/14</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td><input name="chk" type="checkbox" value="9" data-row="1"></td>
-                        <td>2</td>
-                        <td>안녕하세요.</td>
-                        <td>김OO</td>
-                        <td>2020/12/14</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td><input name="chk" type="checkbox" value="8" data-row="2"></td>
-                        <td>3</td>
-                        <td>안녕하세요.</td>
-                        <td>김OO</td>
-                        <td>2020/12/14</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td><input name="chk" type="checkbox" value="7" data-row="3"></td>
-                        <td>4</td>
-                        <td>안녕하세요.</td>
-                        <td>김OO</td>
-                        <td>2020/12/14</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td><input name="chk" type="checkbox" value="6" data-row="4"></td>
-                        <td>5</td>
-                        <td>안녕하세요.</td>
-                        <td>김OO</td>
-                        <td>2020/12/14</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                            <td><input name="chk" type="checkbox" value="5" data-row="5"></td>
-                            <td>6</td>
-                            <td>안녕하세요.</td>
-                            <td>김OO</td>
-                            <td>2020/12/14</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><input name="chk" type="checkbox" value="4" data-row="6"></td>
-                            <td>7</td>
-                            <td>안녕하세요.</td>
-                            <td>김OO</td>
-                            <td>2020/12/14</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><input name="chk" type="checkbox" value="3" data-row="7"></td>
-                            <td>8</td>
-                            <td>안녕하세요.</td>
-                            <td>김OO</td>
-                            <td>2020/12/14</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><input name="chk" type="checkbox" value="2" data-row="8"></td>
-                            <td>9</td>
-                            <td>안녕하세요.</td>
-                            <td>김OO</td>
-                            <td>2020/12/14</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><input name="chk" type="checkbox" value="1" data-row="9"></td>
-                            <td>10</td>
-                            <td>안녕하세요.</td>
-                            <td>김OO</td>
-                            <td>2020/12/14</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    </tbody>
-                </table>
+ 	<jsp:include page="../common/navbar.jsp"/>
+ 	
+ 	
+	<c:if test="${ !empty alertMsg }">
+		<script>
+			alertify.alert("${ alertMsg }");
+		</script>
+		<c:remove var="alertMsg" scope="session"/>
+		
+	</c:if>
+ 	
+
+        <div class="wrap">      
+            <div class="sidebar">
+
+                    <br><br>
+                <div class="titleBar">
+                    <div class="titleArea">근태관리</div>
+                </div>
+                    <br><br><br>
+
+                <div class="sidebar_menu">
+                    <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>근태 현황</a>
+                        <ul class="menu1">
+                            <li><a href="workTime.at">출/퇴근 등록</a></li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>출장</a>
+                        <ul class="menu1">
+                            <li><a href="insertForm.bt">출장 신청</a></li>
+                            <li><a href="list.bt">출장 내역 조회</a></li>
+                            <li class="selectedTitle"><a href="approval.bt">출장 승인</a></li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>연차</a>
+                        <ul class="menu1">
+                            <li><a href="insertForm.an">연차 신청</a></li>
+                            <li><a href="list.an">연차 내역 조회</a></li>
+                            <li><a href="approval.an">연차 승인</a></li>
+                        </ul>
+                    </li>
+                </div>
+
             </div>
-    
-            <br><br><br><br>
-            <div id="pagingArea">
-                <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#"><</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">></a></li>
-                </ul>
-            </div>               
-        </div>   
-    </div>
-        <script>
-        $(document).ready(function(){
 
-            $("#quickregist").click(function(){
-                $(".quickAdress").slideToggle();
-            })
-            //최상단 체크박스 클릭
-            $("#checkedAll").click(function(){
-                //클릭되었으면
-                if($("#checkedAll").prop("checked")){
-                    //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
-                    $("input[name=chk]").prop("checked",true);
-                    //클릭이 안되있으면
-                }else{
-                    //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
-                    $("input[name=chk]").prop("checked",false);
-                }
-            });
-        });
-        </script>       
+            <script>
+
+                /* 사이드바 메뉴 보이기 */
+                $(document).ready(function(){
+                    $(".profile>a").click(function(){
+                        var submenu = $(this).next();
+                        if(submenu.css("display") == 'block'){
+                            submenu.slideUp();
+                        }else{
+                            submenu.slideDown();
+                        }
+                        
+                    });
+                });
+            </script>
+
+            <div class="contentArea">
+
+
+                <div class="content1">
+                    <br>
+                    <div class="nameBar"><h5>출장 승인</h5></div>
+                    <br>
+                    <div class="businessTableArea">
+                        <table id="businessTable" class="table">
+	                        <thead>
+	                            <tr class="tdTitle">
+	                            	<td>글번호</td>
+	                                <td>일자</td>
+	                                <td>출장지</td>
+	                                <td>출장기간</td>
+	                                <td>상태</td>
+	                            </tr>
+	                         </thead>
+	                         <tbody>
+	                            <c:forEach var="bt" items="${ list }">
+			                            <tr>
+			                            	<td class="btno"> ${ bt.businessNo }</td>
+			                                <td>${ bt.createDate }</td>
+			                                <td>${ bt.businessPlace }</td>
+			                                <td>${bt.businessStart } ~ ${ bt.businessEnd }</td>
+			                                <td>
+			                                	<c:choose>
+				                                	<c:when test="${bt.buStatus eq 'Y'}">
+				                                    	<p class="btn btn-primary">처리완료</p>
+													</c:when>
+													<c:when test="${bt.buStatus eq 'R'}">
+														<p class="btn btn-danger">반려</p>
+													</c:when>
+													<c:otherwise>
+														<p class="btn btn-secondary">미처리</p>
+													</c:otherwise>
+												</c:choose>	                                
+			                                </td>
+			                            </tr>
+								</c:forEach> 
+							</tbody>                      
+                        </table>
+                        
+            <script>
+            	$(function(){
+            		$("#businessTable tbody tr").click(function(){
+            			location.href = "detailApproval.bt?btno=" + $(this).children(".btno").text();
+            		})
+            	})
+            </script>
+  
+  
+  
+                    <div class="paginationBar">
+		                <ul class="pagination justify-content-center" style="margin:20px 0">
+		                
+		                	<c:choose>
+		                		<c:when test="${ pi.currentPage eq 1 }">
+			                    	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+			                    </c:when>
+			                    <c:otherwise>
+			                    	<li class="page-item"><a class="page-link" href="approval.bt?currentPage=${ pi.currentPage - 1 }">Previous</a></li>
+			                    </c:otherwise>
+		                    </c:choose>
+		                    
+		                    
+		                    
+		                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+		                    <li class="page-item"><a class="page-link" href="approval.bt?currentPage=${ p }">${ p }</a></li>
+		                    </c:forEach>
+		                    <c:choose>
+		                    	<c:when test="${ pi.currentPage eq pi.maxPage }">
+		                    		<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+		                    	</c:when>
+		                    	<c:otherwise>
+		                        	<li class="page-item"><a class="page-link" href="approval.bt?currentPage=${ pi.currentPage + 1 }">Next</a></li>
+		                   		</c:otherwise>
+		                    </c:choose>
+		                    
+		                </ul>
+		            </div>
+                    
+                
+                    
+                </div>
+
+            </div>
+
+        </div>
 </body>
 </html>

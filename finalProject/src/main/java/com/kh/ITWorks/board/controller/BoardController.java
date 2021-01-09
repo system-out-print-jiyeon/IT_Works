@@ -30,7 +30,7 @@ public class BoardController {
 
 	@RequestMapping("list.bo")
 	public String listAllBoardView() {
-		return "board/board_sidebar";
+		return "board/freeBoardListView";
 	}
 
 	// 자유게시판 전체 리스트

@@ -38,6 +38,9 @@
 }
 </style>
 <body>
+
+	<jsp:include page="board_sidebar.jsp"/>
+
 	<div class="boardEnrollForm">
             <h1>글쓰기</h1>                
             <table id="enrollForm">
