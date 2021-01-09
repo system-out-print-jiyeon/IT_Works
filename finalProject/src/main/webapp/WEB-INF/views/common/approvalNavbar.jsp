@@ -187,10 +187,23 @@
 
 	.logoutDiv a{
 		text-decoration:none;
-		font-size: 12px; 
+		font-size: 13px; 
 		font-weight: 700;
+		border: 1px solid  rgb(44, 146, 255);
+        padding: 8px;
+        border-radius: 6px;
+        color: rgb(44, 146, 255);
 	}
-	
+
+    .logoutDiv a:hover{
+        text-decoration:none;
+		font-size: 13px; 
+		font-weight: 700;
+		background-color:  rgb(44, 146, 255);
+        padding: 8px;
+        border-radius: 6px;
+        color:white;
+    }
 
   </style>
 </head>
