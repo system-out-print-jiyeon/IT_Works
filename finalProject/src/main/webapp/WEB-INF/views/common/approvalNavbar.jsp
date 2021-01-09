@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     
   <style>
       
@@ -174,6 +179,18 @@
     .listCategory{display: table-cell;  vertical-align: middle; }
 
     a{text-decoration: none;}
+    
+    	.logoutDiv{
+		padding-top:20px;
+		padding-left:20px;
+	}
+
+	.logoutDiv a{
+		text-decoration:none;
+		font-size: 12px; 
+		font-weight: 700;
+	}
+	
 
   </style>
 </head>
@@ -198,6 +215,8 @@
            <% if(url.contains("approval")){ %> 전자결재 <% } 
            else if(url.contains("manage")) {%> 인사관리 <% } 
            else if(url.contains("reservation")) {%> 회의실 예약 <% } 
+           else if(url.contains("workTime")) {%> 근태관리 <% } 
+           else if(url.contains("an")) {%> 근태관리 <% } 
            else {%> 오피스 홈 <% } %>
             
             &nbsp;<i class="fas fa-sort-down">&nbsp;</i>
@@ -217,6 +236,14 @@
         <div class="personalInfo">
            <a href="" class="infoText"><span class="icon"><i class="fas fa-user-circle fa-2x"></i></span class="icon" class="username">&nbsp;<span class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
         </div>
+        
+        <c:choose>
+        	<c:when test="${ !empty loginUser}">
+		        <div class="logoutDiv">
+		        	<a href="logout.at" class="btn btn-outline-primary">로그아웃</a>
+		        </div>
+		    </c:when>
+        </c:choose>
     </nav>
 
     <!-- 서브메뉴바 -->
@@ -241,7 +268,7 @@
 
         <a href="reservation.re?floor=3"><div><p class="listCategory"><i class="fas fa-business-time"></i><br>회의실 예약</p></div></a>
         <a href="manageList.ma"><div><p class="listCategory"><i class="fas fa-users"></i><br>인사관리</p></div></a>
-        <a href=""><div><p class="listCategory"><i class="far fa-id-badge"></i><br>근태관리</p></div></a>
+        <a href="workTime.at"><div><p class="listCategory"><i class="far fa-id-badge"></i><br>근태관리</p></div></a>
         <a href="#" onclick="document.getElementById('approvalList').submit();"><div><p class="listCategory"><i class="fas fa-file-signature"></i><br>전자결재</p></div></a>
     
     </div>
