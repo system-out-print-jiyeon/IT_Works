@@ -240,6 +240,9 @@ img{ max-width:100%;}
        console.log('로그인한 사원명 : ' + name);
        console.log('로그인한 사원 아이디명 : ' + id);
        
+       var time = new Date();
+   	  var now = (time.getMonth()+1) + "월/" + time.getDate() + "일-" + time.getHours() + "시" + time.getMinutes() + "분";
+       
        if(name != null){
     	   console.log("입장");
     	   member =   	"<div class='chat_list'>" +
@@ -249,7 +252,7 @@ img{ max-width:100%;}
 		             			"</div>" + 
 		             		"<div class='chat_ib'>" +
 		               			"<h5>" + name + "(" + id + ")" + 
-		               				"<span class='chat_date'>" + "접속 시간" + "</span>" + 
+		               				"<span class='chat_date'>" + now + "</span>" + 
 		               			"</h5>" +
 		               			"<p>" + "${loginUser.deptName}" + "/" +"${loginUser.jobName}" +"</p>" +
              				"</div>" +
