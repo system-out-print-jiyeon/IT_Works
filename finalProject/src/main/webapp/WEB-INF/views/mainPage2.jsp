@@ -228,6 +228,11 @@
           </div>  
 
 
+		<!-- to do list -->
+		<jsp:include page="todolist/todolist.jsp" />
+		
+
+
     </div>
 
 

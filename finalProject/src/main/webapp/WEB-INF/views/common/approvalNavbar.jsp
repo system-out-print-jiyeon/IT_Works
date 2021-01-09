@@ -198,6 +198,7 @@
            <% if(url.contains("approval")){ %> 전자결재 <% } 
            else if(url.contains("manage")) {%> 인사관리 <% } 
            else if(url.contains("reservation")) {%> 회의실 예약 <% } 
+           else if(url.contains("board")) {%> 게시판 <% }
            else {%> 오피스 홈 <% } %>
             
             &nbsp;<i class="fas fa-sort-down">&nbsp;</i>
