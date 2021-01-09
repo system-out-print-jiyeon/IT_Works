@@ -28,11 +28,6 @@ public class BoardController {
 	private BoardService bService;
 	
 
-	@RequestMapping("list.bo")
-	public String listAllBoardView() {
-		return "board/freeBoardListView";
-	}
-
 	// 자유게시판 전체 리스트
 	@RequestMapping("list.fb")
 	public String selectFreeBoardList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, 

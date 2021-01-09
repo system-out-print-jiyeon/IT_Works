@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="boardmapper">
+<mapper namespace="boardMapper">
+	
+	<resultMap type="Member" id="memberResultSet">
+		<result column="mem_no" property="memNo"/>
+		<result column="mem_id" property="memId"/>
+		<result column="mem_pwd" property="memPwd"/>
+		<result column="mem_img" property="memImg"/>
+		<result column="mem_name" property="memName"/>
+		<result column="mem_phone" property="phone"/>
+		<result column="mem_email" property="email"/>
+		<result column="mem_gender" property="gender"/>
+		<result column="mem_birth" property="birth"/>
+		<result column="mem_address" property="address"/>
+		<result column="mem_certification" property="certification"/>
+		<result column="mem_career" property="career"/>
+		<result column="mem_status" property="status"/>
+		<result column="mem_enroll" property="enrollDate"/>
+		<result column="modify_date" property="modifyDate"/>
+		<result column="annual_leave" property="annualLeave"/>
+		<result column="dept_code" property="deptCode"/>	
+		<result column="job_code" property="jobCode"/>
+		<result column="job_name" property="jobName"/>
+		<result column="dept_name" property="deptName"/>		
+	</resultMap>
 	
 	<resultMap id="FreeBoardResultSet" type="FreeBoard">
 		<result column="f_board_no" property="fBoardNo"/>
@@ -13,6 +36,7 @@
 		<result column="status" property="status"/>
 		<result column="f_disclosure" property="fDisclosure"/>
 		<result column="f_allowed" property="fAllowed"/>
+		<result column="mem_name" property="memName"/>
 	</resultMap>
 	
 	<select id="selectFreeBoardListCount" resultType="_int">
@@ -23,6 +47,17 @@
 	</select>
 	
 	<select id="selectFreeBoardList" resultMap="FreeBoardResultSet">
-		
+		SELECT 
+		       F_BOARD_NO
+		     , F_BOARD_TITLE
+		     , F_BOARD_WRITER
+		     , F_CREATE_DATE
+		     , F_COUNT
+		     , mem_name
+		  FROM FREE_BOARD
+		  JOIN EMPLOYEE ON (F_BOARD_WRITER = MEM_NO)
+		 WHERE STATUS = 'Y'
+		 ORDER
+		    BY F_BOARD_NO DESC
 	</select>
 </mapper>

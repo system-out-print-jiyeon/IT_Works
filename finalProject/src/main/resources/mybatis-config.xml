@@ -17,6 +17,7 @@
 		<typeAlias alias="Support" type="com.kh.ITWorks.support.model.vo.WorkSupport"/>
 		<typeAlias alias="BoardAttachment" type="com.kh.ITWorks.board.model.vo.BoardAttachment"/>
 		<typeAlias type="com.kh.ITWorks.addressbook.model.vo.AddressBook" alias="Address"/>
+		<typeAlias type="com.kh.ITWorks.board.model.vo.FreeBoard" alias="FreeBoard"/>
 		
 		<typeAlias type="com.kh.ITWorks.approval.model.vo.ApprovalLine" alias="ApprovalLine"/>
 		<typeAlias type="com.kh.ITWorks.approval.model.vo.Attachment" alias="Attachment"/>
@@ -37,6 +38,7 @@
 		<mapper resource="/mappers/reservation-mapper.xml"/>
 		<mapper resource="/mappers/calendar-mapper.xml"/>
 		<mapper resource="/mappers/address-mapper.xml"/>
+		<mapper resource="/mappers/board-mapper.xml"/>
 	</mappers>
 	
 </configuration>
