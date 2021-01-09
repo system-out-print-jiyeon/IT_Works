@@ -13,8 +13,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- 아이콘 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
 
+<style>
 /*내용*/
 .em_title{
 	color:gray;
@@ -156,6 +156,7 @@
 		                        <input type="checkbox" id="checkall" value=""> 
 		                        <label class="update" for="checkall">전체선택</label>
 		                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("restore");'><i class="fa fa-trash-restore"></i> 복원</button></label>
+		                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("remove");'><i class="fa fa-trash-alt"></i> 영구삭제</button></label>
 		                    </div>
 		                    <table id="emailListTable" class="table">
 		                        <tbody>
@@ -305,12 +306,16 @@
     });
     </script>
 
-    <!-- 중요/삭제 클릭시 action -->
+    <!-- 복원 / 영구삭제 클릭시 action -->
     <script>
         function btn_click(str){                          
             if(str=="restore"){   // 메일 복원
             	if(confirm("선택한 이메일을 복원하시겠습니까?") == true){
 	                form_mail.action="restoreList.em";
+            	}
+            }else if(str=="remove"){
+             	if(confirm("선택한 이메일을 완전히 삭제하시겠습니까? 삭제시 복원할 수 없습니다.") == true){
+            		form_mail.action="removeList.em";
             	}
             }
         }  

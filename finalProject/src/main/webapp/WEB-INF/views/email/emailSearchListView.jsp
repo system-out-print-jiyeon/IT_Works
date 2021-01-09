@@ -348,13 +348,6 @@
     <!-- 중요/삭제 클릭시 action -->
     <script>
         function btn_click(str){                             
-/*             if(str=="important"){  // 중요메일 등록
-
-                alert("중요메일 등록이 완료되었습니다.");
-
-                form_mail.action="important.em";
-
-            } else  */
             	if(str=="delete"){   // 메일 삭제
 				
             	if(confirm("선택한 이메일을 삭제하시겠습니까?") == true){
