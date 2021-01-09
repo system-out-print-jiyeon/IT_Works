@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="addressMapper">
+
+	<resultMap id="AddressResultSet" type="Address">
+		<result column="add_no" property="addNo"/>
+		<result column="add_name" property="addName"/>
+		<result column="add_phone" property="addPhone"/>
+		<result column="add_department" property="addDepartment"/>
+		<result column="add_department_phone" property="addDepartmentPhone"/>
+		<result column="add_spot" property="addSpot"/>
+		<result column="add_email" property="addEmail"/>
+		<result column="add_category" property="addCategory"/>
+		<result column="add_company_name" property="addCompanyName"/>
+		<result column="status" property="status"/>
+		<result column="add_writer" property="addWriter"/>
+	</resultMap>
+	
+	<select id="selectPersonListCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM ADDRESSBOOK
+		 WHERE STATUS = 'Y'
+	</select>
+	
+	<select id="selectAddressPersonList" resultMap="AddressResultSet">
+		SELECT
+		       ADD_NO
+		     , ADD_NAME
+		     , ADD_PHONE
+		     , ADD_DEPARTMENT
+             , ADD_DEPARTMENT_PHONE
+             , ADD_SPOT
+             , ADD_EMAIL
+             , ADD_COMPANY_NAME
+		     , ADD_WRITER
+		  FROM ADDRESSBOOK
+		 WHERE STATUS = 'Y'
+		 ORDER 
+		    BY ADD_NO DESC
+	</select>
+	
+	<select id="selectPublicListCount" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM ADDRESSBOOK
+		 WHERE STATUS = 'Y'
+	</select>
+	
+	<select id="selectAddressPublicList" resultMap="AddressResultSet">
+		SELECT
+		       ADD_NO
+		     , ADD_NAME
+		     , ADD_PHONE
+		     , ADD_DEPARTMENT
+             , ADD_DEPARTMENT_PHONE
+             , ADD_SPOT
+             , ADD_EMAIL
+             , ADD_COMPANY_NAME
+		     , ADD_WRITER
+		  FROM ADDRESSBOOK
+		 WHERE STATUS = 'Y'
+		 ORDER 
+		    BY ADD_NO DESC
+	</select>
+	
+	<insert id="insertAddress" parameterType="Address">
+		INSERT
+		  INTO ADDRESSBOOK
+		  (
+		     ADD_NO
+		   , ADD_NAME
+		   , ADD_PHONE
+		   , ADD_DEPARTMENT
+		   , ADD_DEPARTMENT_PHONE
+		   , ADD_SPOT
+           , ADD_EMAIL
+           , ADD_COMPANY_NAME
+           , ADD_CATEGORY
+		  )
+		  VALUES
+		  (
+		     SEQ_ADNO.NEXTVAL
+		   , #{addName}
+		   , #{addPhone}
+		   , #{addDepartment}
+		   , #{addDepartmentPhone}
+		   , #{addSpot}
+           , #{addEmail}
+           , #{addCompanyName}
+           , #{addCategory}
+		  )
+	</insert>
+	
+</mapper>

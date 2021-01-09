@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardmapper">
+	
+	<resultMap id="FreeBoardResultSet" type="FreeBoard">
+		<result column="f_board_no" property="fBoardNo"/>
+		<result column="f_board_title" property="fBoardTitle"/>
+		<result column="f_create_date" property="fCreateDate"/>
+		<result column="f_count" property="fCount"/>
+		<result column="f_board_writer" property="fBoardWriter"/>
+		<result column="f_board_content" property="fBoardContent"/>
+		<result column="board_division" property="boardDivision"/>
+		<result column="status" property="status"/>
+		<result column="f_disclosure" property="fDisclosure"/>
+		<result column="f_allowed" property="fAllowed"/>
+	</resultMap>
+	
+	<select id="selectFreeBoardListCount" resultType="_int">
+		select
+		       count(*)
+		  from free_board
+		 where status = 'Y'
+	</select>
+	
+	<select id="selectFreeBoardList" resultMap="FreeBoardResultSet">
+		
+	</select>
+</mapper>
