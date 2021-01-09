@@ -75,20 +75,19 @@ public class ApprovalController {
 	@ResponseBody
 	public ModelAndView selectFormList(ModelAndView mv, String selectoption) {
 
-		System.out.println(selectoption);
-		if ("outgoingEnrollForm".equals(selectoption)) {
+		if ("1".equals(selectoption)) {
 
 			mv.setViewName("approval/approvalForms/outgoingsEnrollForm");
 			
-		} else if ("consultDraftForm".equals(selectoption)) {
+		} else if ("4".equals(selectoption)) {
 
 			mv.setViewName("approval/approvalForms/consultDraftForm");
 			
-		} else if ("projectReportForm".equals(selectoption)) {
+		} else if ("3".equals(selectoption)) {
 
 			mv.setViewName("approval/approvalForms/projectReportForm");
 			
-		} else if ("documentsRequestEnrollForm".equals(selectoption)) {
+		} else if ("2".equals(selectoption)) {
 
 			mv.setViewName("approval/approvalForms/documentsRequestEnrollForm");
 			

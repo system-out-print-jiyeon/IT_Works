@@ -71,18 +71,6 @@ public class ApprovalDao {
 		return sqlSession.insert("approvalMapper.insertApprovalReferer", refererList);
 	}
 
-	public int insertOutgoings(Outgoings o, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("approvalMapper.insertOutgoings", o);
-	}
-
-	public int insertOutgoingsList(ArrayList<OutgoingsList> oList, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("approvalMapper.insertoutgoingsList", oList);
-	}
-
-	public int insertDocumentsRequest(ArrayList<DocumentsRequest> drList, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("approvalMapper.insertDocumentsRequest", drList);
-	}
-	
 	/* 결재문서 상세 select */
 	public ApprovalDocument selectApprovalDocument(SqlSessionTemplate sqlSession, int docNo) {
 		return sqlSession.selectOne("approvalMapper.selectApprovalDocument", docNo);

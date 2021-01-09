@@ -405,12 +405,9 @@
 		   , mem_no
 		   , doc_title
 		   , doc_contents
-		   , doc_enroll_date
 		   , doc_retention
 		   , doc_grade
-		   , doc_status
 		   , doc_form
-		   , doc_approval_status
 		  )
 		  values
 		  (
@@ -418,12 +415,9 @@
 		   , #{memNo}
 		   , #{docTitle}
 		   , #{docContents}
-		   , #{docEnrollDate}
 		   , #{docRetention}
 		   , #{docGrade}
-		   , #{docStatus}
 		   , #{docForm}
-		   , #{docApprovalStatus}
 		  )
 	</insert>
 

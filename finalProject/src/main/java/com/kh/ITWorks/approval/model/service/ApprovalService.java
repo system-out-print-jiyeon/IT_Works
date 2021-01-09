@@ -37,11 +37,6 @@ public interface ApprovalService {
 	
 	// 결재문서 상세내용
 	// 1. 지출결의서 입력
-	int insertOutgoings(Outgoings o);
-	int insertOutgoingsList(ArrayList<OutgoingsList> oList);
-	
-	// 2. 문서발급요청서 입력
-	int insertDocumentsRequest(ArrayList<DocumentsRequest> drList);
 	
 	// 3. 프로젝트업무보고서 입력
 	

@@ -335,7 +335,7 @@
     <jsp:include page="../common/sideBar_approval.jsp"/>
         
         
-        <form name="enrollForm" action="approval.do" method="get">
+        <form name="enrollForm" action="insert.ap" method="POST">
         <div class="enrollForm" id="enrollForm">
 
             <div class="titleBox">
@@ -343,35 +343,36 @@
                 <table class="infoTable" border="1px">
                     <tr>
                         <th>문서 종류</th>
-                        <td>  <select name="formCategory" id="formCategory">
+                        <td>  <select name="docForm" id="formCategory">
                                 <option value="selectOption">&nbsp;선택</option>
-                                <option value="outgoingEnrollForm">지출 결의서</option>
-                                <option value="documentsRequestEnrollForm">문서 발급 요청서</option>
-                                <option value="projectReportForm">프로젝트 업무 보고서</option>
-                                <option value="consultDraftForm">품의서</option>
+                                <option value="1">지출 결의서</option>
+                                <option value="2">문서 발급 요청서</option>
+                                <option value="3">프로젝트 업무 보고서</option>
+                                <option value="4">품의서</option>
                             </select> 
                         </td>
                         <th>작성자</th>
                         <td> ${ loginUser.memName }</td>
+                        <input type="hidden" name="memNo" id="memNo" value="${ loginUser.memNo }">
                     </tr>
                     <tr>
                         <th>보존 연한</th>
                         <td>
-                            <select name="" id="">
+                            <select name="docRetention" id="docRetention">
                                 <option value="">&nbsp;보존 연한</option>
-                                <option value="1년">1년</option>
-                                <option value="3년">3년</option>
-                                <option value="5년">5년</option>
+                                <option value="1">1년</option>
+                                <option value="3">3년</option>
+                                <option value="5">5년</option>
                             </select> 
                         </td>
                         <th>보안 등급</th>
                         <td>
-                            <select name="" id="">
+                            <select name="docGrade" id="docGrade">
                                 <option value="">&nbsp;보안 등급</option>
-                                <option value="S등급">S 등급</option>
-                                <option value="A등급">A 등급</option>
-                                <option value="B등급">B 등급</option>
-                                <option value="C등급">C 등급</option>
+                                <option value="S">S 등급</option>
+                                <option value="A">A 등급</option>
+                                <option value="B">B 등급</option>
+                                <option value="C">C 등급</option>
                             </select> 
                         </td>
                     </tr>
@@ -432,7 +433,7 @@
             </div>
                 
             <div class="inputTitle">
-                <input type="text" style="width: 800px; margin-left: 30px;">
+                <input type="text" style="width: 800px; margin-left: 30px;" name="docTitle">
             </div>
 
             <div class="titleBox">
@@ -441,14 +442,14 @@
 
             <div class="detailContents">
 										
-                <div id="summernote">
+                <textarea id="summernote" name="docContents">
              
              		
 				
             
 					
                              
-                </div> 
+                </textarea> 
                 
                
 

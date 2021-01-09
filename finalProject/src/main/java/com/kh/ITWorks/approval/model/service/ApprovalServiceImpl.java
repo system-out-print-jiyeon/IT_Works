@@ -93,21 +93,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return aDao.insertApprovalRefere(refererList, sqlSession);
 	}
 
-	@Override
-	public int insertOutgoings(Outgoings o) {
-		return aDao.insertOutgoings(o, sqlSession);
-	}
-
-	@Override
-	public int insertOutgoingsList(ArrayList<OutgoingsList> oList) {
-		return aDao.insertOutgoingsList(oList, sqlSession);
-	}
-
-	@Override
-	public int insertDocumentsRequest(ArrayList<DocumentsRequest> drList) {
-		return aDao.insertDocumentsRequest(drList, sqlSession);
-	}
-	
 	/* 결재문서 상세보기 select */
 	@Override
 	public ApprovalDocument selectApprovalDocument(int docNo) {
