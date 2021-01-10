@@ -6,20 +6,21 @@
 <head>
 <meta charset="UTF-8">
     <title>Document</title>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  	    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-  	
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    	
 </head>
 <style>
 
 .personAddress{
-    width: 1200px; 
+    width: 1600px; 
     height:1000px; 
     padding-top: 100px;
     margin: auto; 
     box-sizing: border-box;
+    margin-left:400px;
 }
 
 .tool_bar{
@@ -38,19 +39,20 @@ table{
     width: 1500px;
     background:white;
     height: 200px;
-    font-size: 25px; 
-    text-align: center; 
+    font-size: 27px; 
 }
 
-th{
+.tablelist1>thead>tr>th {
     background: lightgray;
+    text-align: center;
 }
 
-td{ 
-    padding: 20px;
+.tablelist1>tbody>tr>td{ 
+    padding: 10px;
     text-align: center;
     font-size: 20px;
 }
+
 
 #pagingArea{
     width:fit-content;
@@ -61,7 +63,7 @@ td{
 <body>
 	
 	<jsp:include page="../common/approvalNavbar.jsp" />
-	<div class="ad_wrap">
+
 	<jsp:include page="address_sidebar.jsp" />
 	
 	<div class="personAddress">
@@ -72,16 +74,11 @@ td{
             <button id="quickregist" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-plus"></span>
                 <span class="txt">빠른등록</span>
-            </button>
-                                              
-            <button id="contactMail" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-envelope"></span>
-                <span class="txt">메일발송</span>
-            </button>
+            </button>                                           
                         
-            <button action="" method="post" id="contactDelete" class="btn btn-default btn-sm">
+            <button type="button" id="contactDelete" class="btn btn-default btn-sm" onclick="deleteAdd();">
                 <span class="glyphicon glyphicon-trash"></span>
-                <span class="txt_caution" onclick="btn_del(1);">삭제</span>
+                <span class="txt_caution">삭제</span>
             </button>
                       
         </section>
@@ -99,7 +96,7 @@ td{
         
             <div class="tablelist">
                 <table border="1" class="tablelist1" id="addressArea">
-                    <thead align="center">
+                    <thead>
                         <tr>
                             <th><input type="checkbox" id="checkedAll" value="${ a.addNo }"></th>
                             <th>이름</th>
@@ -112,9 +109,9 @@ td{
                         </tr>
                     </thead>
                     <tbody align="center">
-                    	<c:forEach var="a" items="${ list }">
+                    	<c:forEach var="a" items="${ peList }">
                         <tr>
-                            <td><input name="adNo" type="checkbox" value="${ a.addNo }"></td>
+                            <td><input name="adNo" type="checkbox" value="${ a.addNo }" ></td>
                             <td>${ a.addName }</td>
                             <td>${ a.addPhone }</td>
                             <td>${ a.addDepartment }</td>
@@ -126,6 +123,7 @@ td{
                         </c:forEach>                       
                     </tbody>
                 </table>
+            </div>
             
                 <br><br><br><br>
                 <div id="pagingArea">
@@ -139,23 +137,21 @@ td{
                     		</c:otherwise>
                     	</c:choose>
                                         
-                    	<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                    		<li class="page-item"><a class="page-link" href="personlist.ad?currentPage=${ p }">${ p }</a></li>
-                    	</c:forEach>
+                    		<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                    			<li class="page-item"><a class="page-link" href="personlist.ad?currentPage=${ p }">${ p }</a></li>
+                    		</c:forEach>
                                   
                     	<c:choose>
 							<c:when test="${ pi.currentPage eq pi.maxPage }">
 	                    		<li class="page-item disabled"><a class="page-link" href="#">></a></li>
-	                    </c:when>
-	                    <c:otherwise>
-	                    	<li class="page-item"><a class="page-link" href="personlist.ad?currentPage=${ pi.currentPage+1 }">></a></li>
-                    	</c:otherwise>
-                    </c:choose>
-                </ul>
-            </div>         
-            </div>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<li class="page-item"><a class="page-link" href="personlist.ad?currentPage=${ pi.currentPage+1 }">></a></li>
+                    		</c:otherwise>
+                    	</c:choose>
+                	</ul>
+            	</div>         
           </div>
-    </div>
     <script>
         $(document).ready(function(){
 
@@ -178,6 +174,40 @@ td{
         
     </script>
     <script>
+	    function deleteAdd(){
+	    	var answer = confirm('해당 주소록을 정말 삭제하시겠습니까?');
+	    	if(answer == true){
+	    		var count = $("tbody :checked").length;
+	    		if(count > 1){
+	    			alert('항목 하나만 선택해주세요.');
+	    			$(":checkbox").removeAttr('checked');
+	    		}else{
+	    			deleteAddress();
+	    		}
+	    	} 
+	    }
+	    function deleteAddress(){
+	    	$("tbody :checkbox").each(function(){
+       			if($(this).is(":checked") == true){
+		    		var adno = $(this).val();
+       				 $.ajax({
+       					url: "delete.ad",
+       					type: "post",
+       					data: {addNo : adno},
+       					success:function(result){
+       						if(result>0){
+       							alert('성공적으로 삭제되었습니다.');
+       							selectAddressPerList();
+       						}else{
+       							alert('삭제에 실패했습니다.');
+       						}
+       					},error:function(){
+       						console.log('통신실패');
+       					}
+       				}) 
+       			}
+       		})
+	    }
     	function quick(){
     		 			
     			$.ajax({
@@ -235,15 +265,6 @@ td{
     	}
     </script>
     
-    <script>
-        function btn_del(num){ 
-        	var url = "";
-            if(num == 1){
-				url = "delete.ad";           	
-            }
-            $("#contactDelete").attr("action", url).submit();
-        }  
-    </script>
     
 </body>
 </html>

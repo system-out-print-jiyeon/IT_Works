@@ -57,6 +57,12 @@ public class AddressDao {
 	public int insertPubAddress(SqlSessionTemplate sqlSession, AddressBook a) {
 		return sqlSession.insert("addressMapper.insertPubAddress", a);
 	}
+	
+	
+	public int deleteAddress(SqlSessionTemplate sqlss, int ano) {
+		
+		return sqlss.update("addressMapper.deleteAddress", ano);
+	}
 
 
 }

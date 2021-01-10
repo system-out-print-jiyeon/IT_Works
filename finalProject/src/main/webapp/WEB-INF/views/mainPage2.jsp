@@ -24,7 +24,7 @@
      margin: 0;
      padding: 0;
      box-sizing: border-box;
-     border: solid 1px red;
+     
  }
 
 .wrap{width: 100%; 
@@ -53,13 +53,12 @@
 	float:left;
 	height:100%;
 }
-	
 .content1_1{
 	
 	width:30%;
 }
-.content1_2{width:40%;float:left;}
-.content1_3{width:30%;padding-left:120px;float:left;}
+.content1_2{width:30%;float:left;}
+.content1_3{width:40%;float:left;}
 
 .content2{width: 50%; height:500px; }
 .content3{width: 50%; height:500px;}
@@ -221,7 +220,54 @@ body {
     background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
 }
+.mainP{
+	height:100%;
+	
+}
 
+
+  /* 결재할문서div css */
+	.content4_substance{
+	    width: 400px;
+	    height: 300px;
+	    border: 1px solid #aaa5a5;
+	    box-shadow: 2px 2px 2px 2px #aaa5a5;
+	    margin:50px;
+		}
+	
+	.content4_substance_title{
+	    font-weight: 700;
+	    font-size:larger;
+	    padding-left: 10px;
+	    padding-top: 10px;
+		}
+	
+	.content4_substance_contents_list{
+		  width: 390px;
+		  text-align: center;
+		  border-collapse: collapse;
+		}
+	
+	.content4_substance_contents_list tr{
+		    height: 40px;
+		}
+	
+	.content4_substance_contents_list tr:hover{
+		    cursor: pointer;
+		    background-color: #e7e1e1;
+		}
+	
+	.list_titleCell{
+		    width: 230px;
+		}
+	
+	.list_nameCell{
+		    width: 70px;
+		}
+	
+	.list_enrollDate{
+		    width: 100px;
+		}
 
 </style>
 </head>
@@ -285,8 +331,8 @@ body {
 	
 	function popupOpen(){
 		var url= "chat.do";    //팝업창 페이지 URL
-		var winWidth = 630;
-	    var winHeight = 480;
+		var winWidth = 800;
+	    var winHeight = 600;
 	    var popupOption= "width="+winWidth+", height="+winHeight;    //팝업창 옵션(optoin)
 		window.open(url,"",popupOption);
 	}
@@ -294,10 +340,8 @@ body {
 
     <div class="contents">
 
-
-	
 		<div class="content1">
-			
+	
 			<div class="content1_1">
                 		 <table class="sysdateTable">
                         <tr>
@@ -359,7 +403,23 @@ body {
           </div>  
           
           <div class="content1_3">
-          		<img src="https://cdn0.iconfinder.com/data/icons/work-from-home-19/512/WorkAlone-working-businessman-work-office-workfromhome-512.png" width="200" height="200">
+          		<!-- 메인화면 간략 프로필 -->
+          		<div class="row">
+			        <div class="col-sm-2 col-md-2">
+			            <img class="mainP" src="${ loginUser.memImg }"
+			            alt="" class="img-rounded img-responsive" />
+			        </div>
+			        <div class="col-sm-4 col-md-4">
+			            <blockquote>
+			                <p><b>${ loginUser.memName }</b></p> <small><cite title="Source Title">(${ loginUser.memId })  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+			            </blockquote>
+			            <p> <i class="glyphicon glyphicon-envelope"></i> 소속부서 / <b>${ loginUser.deptName }</b>
+			                <br
+			                /> <i class="glyphicon glyphicon-globe"></i> 직급 / <b>${ loginUser.jobName }</b><br>
+			                <br /> <i class="glyphicon glyphicon-gift"></i> <b>${ loginUser.phone }</b></p>
+			                <i class="glyphicon glyphicon-gift"></i><b>${ loginUser.email }</b>
+			        </div>
+			    </div>
           </div>  
 
 		  <script>
@@ -401,19 +461,65 @@ body {
     </div>
     
 		<div class="content2">  <!-- 캘린더 영역 -->
-		
+		<!-- 
+			<jsp:include page="member/mainProfile.jsp"/>
+		 -->
 		</div>
 		
 		<div class="content3">  <!-- todoList 영역 -->
+		
+		
+		
 		
 		</div>
 
 		<div class="content4">  <!-- 전자결재 영역 -->
 		
+		 <div class="content4_substance">
+
+            <div class="content4_substance_title">진행중인 결재</div>
+            <hr >
+            <div class="content4_substance_contents">
+                <table class="content4_substance_contents_list">
+                    <tr>
+                        <td class="list_titleCell">제목1</td>
+                        <td class="list_nameCell">홍길동</td>
+                        <td class="list_enrollDate">2020/01/04</td>
+                    </tr>
+                    <tr>
+                        <td class="list_titleCell">제목2</td>
+                        <td class="list_nameCell">홍길동</td>
+                        <td class="list_enrollDate">2020/01/04</td>
+                    </tr>
+                    <tr>
+                        <td class="list_titleCell">제목3</td>
+                        <td class="list_nameCell">홍길동</td>
+                        <td class="list_enrollDate">2020/01/04</td>
+                    </tr>
+                    <tr>
+                        <td class="list_titleCell">제목4</td>
+                        <td class="list_nameCell">홍길동</td>
+                        <td class="list_enrollDate">2020/01/04</td>
+                    </tr>
+                    <tr>
+                        <td class="list_titleCell">제목5</td>
+                        <td class="list_nameCell">홍길동</td>
+                        <td class="list_enrollDate">2020/01/04</td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+
+        </div>
+		
+		
+		
 		</div>
 		
 		<div class="content5">  <!-- 사원목록 영역 -->
-		 
+		 	
 		</div>
 
     </div>

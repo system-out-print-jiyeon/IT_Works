@@ -14,11 +14,12 @@
 </head>
 <style>
 .publicAddress{
-    width: 1200px; 
+    width: 1600px; 
     height:1000px; 
     padding-top: 100px;
     margin: auto; 
     box-sizing: border-box;
+    margin-left:400px;
 }
 
 .tool_bar{
@@ -37,19 +38,19 @@
 table{
     width: 1500px;
     background:white;
-    height: 90px;
-    font-size: 20px;
+    height: 100px;
+    font-size: 27px; 
 }
 
-th{
+.tablelist1>thead>tr>th {
     background: lightgray;
     text-align: center;
-    padding: 10px;
 }
 
-td{ 
-    padding: 20px;
+.tablelist1>tbody>tr>td{ 
+    padding: 10px;
     text-align: center;
+    font-size: 20px;
 }
 
 #pagingArea{
@@ -72,38 +73,31 @@ td{
                 <button id="quickregist" class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="txt">빠른등록</span>
-                </button>
-                    
-                    
-                <button id="contactMail" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-envelope"></span>
-                    <span class="txt">메일발송</span>
-                </button>
+                </button>                                     
                         
-                <button id="contactDelete" class="btn btn-default btn-sm">
+                <button id="contactDelete" class="btn btn-default btn-sm" onclick="deleteAdd();">
                     <span class="glyphicon glyphicon-trash"></span>
                     <span class="txt_caution">삭제</span>
                 </button>
                       
         </section>
 
-        <form id="" class="speed_regist">
+        
             <fieldset>
                 <div class="quickAdress">
-                    <input id="quickName" type="text" placeholder="이름(표시명)">
-                    <input id="quickEmail" type="text" placeholder="이메일">
-                    <input id="quickPhone" type="text" placeholder="전화번호">
+                    <input name="addName" id="quickName" type="text" placeholder="이름(표시명)">
+                    <input name="addEmail" id="quickEmail" type="text" placeholder="이메일">
+                    <input name="addPhone" id="quickPhone" type="text" placeholder="전화번호">
                     <button type="button" id="quickBtn" class="glyphicon glyphicon-plus btn btn-default btn-sm" onclick="quick1();"></button>                             
                 </div>
             </fieldset>
-        </form>
         <br>
             
             <div class="tablelist">
                 <table border="1" class="tablelist1" id="addressArea1">
                     <thead align="center">
                         <tr>
-                            <th width="30px"><input type="checkbox" id="checkedAll" value="${ a.addNo }"></th>
+                            <th><input type="checkbox" id="checkedAll" value="${ a.addNo }"></th>
                             <th>이름</th>
                             <th>전화번호</th>
                             <th>부서</th>
@@ -114,7 +108,7 @@ td{
                         </tr>
                     </thead>
                     <tbody align="center">
-                    	<c:forEach var="a" items="${ list }">
+                    	<c:forEach var="a" items="${ puList }">
                         <tr>
                             <td><input name="adNo" type="checkbox" value="${ a.addNo }" ></td>
                             <td>${ a.addName }</td>
@@ -175,9 +169,45 @@ td{
                         $("input[name=adNo]").prop("checked",false);
                     }
                 });
+                
             });
         </script>
         <script>
+	        function deleteAdd(){
+		    	var answer = confirm('해당 주소록을 정말 삭제하시겠습니까?');
+		    	if(answer == true){
+		    		var count = $("tbody :checked").length;
+		    		if(count > 1){
+		    			alert('항목 하나만 선택해주세요.');
+		    			$(":checkbox").removeAttr('checked');
+		    		}else{
+		    			deleteAddress();
+		    		}
+		    	} 
+		    }
+		    function deleteAddress(){
+		    	$("tbody :checkbox").each(function(){
+	       			if($(this).is(":checked") == true){
+			    		var adno = $(this).val();
+	       				 $.ajax({
+	       					url: "delete.ad",
+	       					type: "post",
+	       					data: {addNo : adno},
+	       					success:function(result){
+	       						if(result>0){
+	       							alert('성공적으로 삭제되었습니다.');
+	       							selectAddressPerList();
+	       						}else{
+	       							alert('삭제에 실패했습니다.');
+	       						}
+	       					},error:function(){
+	       						console.log('통신실패');
+	       					}
+	       				}) 
+	       			}
+	       		})
+		    }
+        
     	function quick1(){
     		 			
     			$.ajax({
@@ -201,7 +231,6 @@ td{
     				}
     			})
     		}
-    	
     	
     	function selectAddressPubList(){
     		$.ajax({

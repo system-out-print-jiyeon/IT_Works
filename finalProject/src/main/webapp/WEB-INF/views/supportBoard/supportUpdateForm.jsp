@@ -30,6 +30,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="support_sidebar.jsp"/>
     <div class="wrap">
         <h4>업무협업</h4>
         <div class="tablewrap">

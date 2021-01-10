@@ -7,8 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <style>
 .Addressbook{
@@ -17,6 +15,7 @@
     padding-top: 100px;
     margin: auto; 
     box-sizing: border-box;
+    margin-left:400px;
 }
 .address1{
     width:1200px; 
@@ -30,7 +29,7 @@
     margin-top: 50px;
 }
 .button_1{
-    width: 1500px; 
+    width:1500px; 
     padding-left: 600px; 
     margin-top: 350px;
 }
@@ -82,9 +81,9 @@
                             <th><label for="Address">주소록 선택</label></th>
                             <td>
                                 <input type="radio" id="public" name="addCategory" value="public">
-                                <label for="public" href="publiclist.ad">공용 주소록</label> &nbsp;
+                                <label for="public">공용 주소록</label> &nbsp;
                                 <input type="radio" id="person" name="addCategory" value="person">
-                                <label for="person" href="personlist.ad">개인 주소록</label>
+                                <label for="person">개인 주소록</label>
                             </td> 
                         </tr>
                         </table>

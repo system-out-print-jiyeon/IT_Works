@@ -71,7 +71,7 @@
 	<update id="deleteAddress" parameterType="_int">
 		UPDATE
 		       ADDRESSBOOK
-		   SET STATUS = 'Y'
+		   SET STATUS = 'N'
 		 WHERE ADD_NO = #{ano}
 	</update>
 	
