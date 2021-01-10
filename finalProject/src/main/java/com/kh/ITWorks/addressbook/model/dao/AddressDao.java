@@ -42,4 +42,21 @@ public class AddressDao {
 		return sqlSession.update("addressMapper.deleteAddress", ano);
 	}
 
+	public ArrayList<AddressBook> selectAddressPerList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("addressMapper.selectAddressPerList");
+	}
+
+	public int insertPerAddress(SqlSessionTemplate sqlSession, AddressBook a) {
+		return sqlSession.insert("addressMapper.insertPerAddress", a);
+	}
+	
+	public ArrayList<AddressBook> selectAddressPubList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("addressMapper.selectAddressPubList");
+	}
+
+	public int insertPubAddress(SqlSessionTemplate sqlSession, AddressBook a) {
+		return sqlSession.insert("addressMapper.insertPubAddress", a);
+	}
+
+
 }
