@@ -14,7 +14,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
-    div{border: px solid rgb(89, 89, 89); box-sizing: border-box;}
     .wrap{
         padding-top: 50px;
         margin:auto; 
@@ -40,7 +39,10 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../board/board_sidebar.jsp" />
+
+	
+	<jsp:include page="support_sidebar.jsp"/>
+
 	
 	<%-- 알림메시지출력 --%>
 	<c:if test="${ !empty alertMsg }">

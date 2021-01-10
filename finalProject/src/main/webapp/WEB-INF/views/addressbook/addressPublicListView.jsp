@@ -75,7 +75,7 @@ table{
                     <span class="txt">빠른등록</span>
                 </button>                                     
                         
-                <button id="contactDelete" class="btn btn-default btn-sm">
+                <button id="contactDelete" class="btn btn-default btn-sm" onclick="deleteAdd();">
                     <span class="glyphicon glyphicon-trash"></span>
                     <span class="txt_caution">삭제</span>
                 </button>
@@ -169,9 +169,45 @@ table{
                         $("input[name=adNo]").prop("checked",false);
                     }
                 });
+                
             });
         </script>
         <script>
+	        function deleteAdd(){
+		    	var answer = confirm('해당 주소록을 정말 삭제하시겠습니까?');
+		    	if(answer == true){
+		    		var count = $("tbody :checked").length;
+		    		if(count > 1){
+		    			alert('항목 하나만 선택해주세요.');
+		    			$(":checkbox").removeAttr('checked');
+		    		}else{
+		    			deleteAddress();
+		    		}
+		    	} 
+		    }
+		    function deleteAddress(){
+		    	$("tbody :checkbox").each(function(){
+	       			if($(this).is(":checked") == true){
+			    		var adno = $(this).val();
+	       				 $.ajax({
+	       					url: "delete.ad",
+	       					type: "post",
+	       					data: {addNo : adno},
+	       					success:function(result){
+	       						if(result>0){
+	       							alert('성공적으로 삭제되었습니다.');
+	       							selectAddressPerList();
+	       						}else{
+	       							alert('삭제에 실패했습니다.');
+	       						}
+	       					},error:function(){
+	       						console.log('통신실패');
+	       					}
+	       				}) 
+	       			}
+	       		})
+		    }
+        
     	function quick1(){
     		 			
     			$.ajax({
@@ -195,7 +231,6 @@ table{
     				}
     			})
     		}
-    	
     	
     	function selectAddressPubList(){
     		$.ajax({

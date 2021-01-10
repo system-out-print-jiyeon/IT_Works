@@ -47,8 +47,10 @@ public class AddressController {
 		ArrayList<AddressBook> puList = adService.selectAddressPublicList(pi);
 		
 		model.addAttribute("pi", pi);
+
 		model.addAttribute("puList", puList);
-		
+
+
 	return "addressbook/addressPublicListView";
 		
 	}
@@ -58,19 +60,6 @@ public class AddressController {
 		return "addressbook/addressEnrollForm";
 	}
 
-	@RequestMapping("delete.ad")
-	public String deleteAddress(int ano, HttpSession session, Model model) {
-		
-		int result = adService.deleteAddress(ano);
-		
-		if(result > 0) {
-			session.setAttribute("alertMsg", "성공적으로 주소록이 삭제되었습니다.");
-			return "redirect:personlist.ad";
-		}else {
-			model.addAttribute("errorMsg", "주소록 삭제 실패");
-			return "common/errorPage";
-		}
-	}
 	
 	@ResponseBody
 	@RequestMapping(value="adpelist.ad", produces="application/json; charset=utf-8")
@@ -112,5 +101,14 @@ public class AddressController {
 		}else {
 			return "fail";
 		}
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("delete.ad")
+	public int deletePublicAdd(int addNo) {
+		
+		return adService.deleteAddress(addNo);
+		
 	}
 }

@@ -76,9 +76,9 @@ table{
                 <span class="txt">빠른등록</span>
             </button>                                           
                         
-            <button action="" method="post" id="contactDelete" class="btn btn-default btn-sm">
+            <button type="button" id="contactDelete" class="btn btn-default btn-sm" onclick="deleteAdd();">
                 <span class="glyphicon glyphicon-trash"></span>
-                <span class="txt_caution" onclick="btn_del(1);">삭제</span>
+                <span class="txt_caution">삭제</span>
             </button>
                       
         </section>
@@ -111,7 +111,7 @@ table{
                     <tbody align="center">
                     	<c:forEach var="a" items="${ peList }">
                         <tr>
-                            <td><input name="adNo" type="checkbox" value="${ a.addNo }"></td>
+                            <td><input name="adNo" type="checkbox" value="${ a.addNo }" ></td>
                             <td>${ a.addName }</td>
                             <td>${ a.addPhone }</td>
                             <td>${ a.addDepartment }</td>
@@ -174,6 +174,40 @@ table{
         
     </script>
     <script>
+	    function deleteAdd(){
+	    	var answer = confirm('해당 주소록을 정말 삭제하시겠습니까?');
+	    	if(answer == true){
+	    		var count = $("tbody :checked").length;
+	    		if(count > 1){
+	    			alert('항목 하나만 선택해주세요.');
+	    			$(":checkbox").removeAttr('checked');
+	    		}else{
+	    			deleteAddress();
+	    		}
+	    	} 
+	    }
+	    function deleteAddress(){
+	    	$("tbody :checkbox").each(function(){
+       			if($(this).is(":checked") == true){
+		    		var adno = $(this).val();
+       				 $.ajax({
+       					url: "delete.ad",
+       					type: "post",
+       					data: {addNo : adno},
+       					success:function(result){
+       						if(result>0){
+       							alert('성공적으로 삭제되었습니다.');
+       							selectAddressPerList();
+       						}else{
+       							alert('삭제에 실패했습니다.');
+       						}
+       					},error:function(){
+       						console.log('통신실패');
+       					}
+       				}) 
+       			}
+       		})
+	    }
     	function quick(){
     		 			
     			$.ajax({
@@ -231,15 +265,6 @@ table{
     	}
     </script>
     
-    <script>
-        function btn_del(num){ 
-        	var url = "";
-            if(num == 1){
-				url = "delete.ad";           	
-            }
-            $("#contactDelete").attr("action", url).submit();
-        }  
-    </script>
     
 </body>
 </html>

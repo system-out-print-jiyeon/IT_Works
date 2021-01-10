@@ -31,9 +31,10 @@
 </style>
 <body>
 
-	<jsp:include page="../board/board_sidebar.jsp" />
+	<jsp:include page="support_sidebar.jsp"/>
 	
 	 <div class="wrap">
+	 <h4>업무협업</h4>
         <div class="tablewrap">
             <form action="insert.sp" method="POST" enctype="multipart/form-data">
                 <table id="table1" border="1" bordercolor="lightgray">
