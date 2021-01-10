@@ -20,4 +20,12 @@ public interface AddressService {
     
     // 4. 주소록 삭제용 서비스
     int deleteAddress(int ano);
+    
+    // 5. 개인주소록 빠른등록 리스트 조회용 서비스
+	ArrayList<AddressBook> selectAddressPerList();
+	int insertPerAddress(AddressBook a);
+	
+	// 6. 공용주소록 빠른등록 리스트 조회용 서비스
+	ArrayList<AddressBook> selectAddressPubList();
+	int insertPubAddress(AddressBook a);
 }

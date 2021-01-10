@@ -72,7 +72,6 @@ public class BoardController {
 		
 		int result = bService.insertFreeBoard(fb);
 		
-		System.out.println("result : " + result);
 		
 		if(result > 0) { // 성공
 			session.setAttribute("alertMsg", "성공적으로 게시글이 작성되었습니다!");

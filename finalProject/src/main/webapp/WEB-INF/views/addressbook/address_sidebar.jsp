@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +12,6 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <style>
-.wrap{width: 100%; 
-      height: 100%;
-      display: flex;
-    }
-
 
 .writeButton{text-align: center;}
 .button1{
@@ -38,9 +34,12 @@
 .sidebar{    
     justify-content: space-between;
     padding: 8px 24px;
+    padding-top:100px;
     width: 300px;
-    height: 1000px;
+    height: 100%;
     background-color: #e7e1e1;
+    position: fixed;
+    z-index:3;
 }
 
 .sidebar_menu{
@@ -73,26 +72,21 @@
 
 </style>
 <body>
-	<div class="wrap">      
+	
+		      
             <div class="sidebar">
 
                     <br><br>
                 <div class="writeButton">
-                        <button class="button1">연락처 추가</button>
+                    <a href="enrollForm.ad"><button class="button1">연락처 추가</button></a>
                 </div>
                     <br><br>
 
                 <div class="sidebar_menu">
-                    <li class="profile"><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>개인 주소록</a>
-                        <ul class="menu1">
-                            <li><a href="Publiclist.ad" style="color: cornflowerblue;">전체 주소록</a></li>
-                        </ul>
+                    <li class="profile"><a class="btn" href="publiclist.ad">공용 주소록</a>   
                     </li>
                     <br>
-                    <li class="profile"><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>공용 주소록</a>
-                        <ul class="menu1">
-                            <li style="font-size: 20px;"><a href="#"></a>전체 주소록</li>
-                        </ul>
+                    <li class="profile"><a class="btn" href="personlist.ad">개인 주소록</a>                 
                     </li>
                     
                 </div>
