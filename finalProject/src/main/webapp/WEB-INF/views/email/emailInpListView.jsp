@@ -141,6 +141,7 @@
         <div class="em_content">
             <div class="em_content_center">
 			<span class="em_title">중요메일함</span><span class="em_count">&nbsp;&nbsp;${ listCount }</span>
+				<hr>
 				<br>
 				<jsp:include page="../email/emailSearchBar.jsp"/>
 				<br>

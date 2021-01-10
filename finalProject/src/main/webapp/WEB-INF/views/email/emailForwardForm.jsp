@@ -137,6 +137,7 @@ input[type="submit"]:hover{
 
             <div class="em_content_center">
                 <span class="em_title">메일전달</span>
+                <hr>
                 <br>
                 <br>
                 <form action="insertForward.em" method="post">

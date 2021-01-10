@@ -137,6 +137,7 @@ input[type="submit"]:hover{
 
             <div class="em_content_center">
             <span class="em_title">메일쓰기</span>
+            <hr>
             <br>
             <br>
             <form action="insert.em" method="post" enctype="multipart/form-data">

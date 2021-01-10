@@ -140,6 +140,7 @@ input[type="submit"]:hover{
 
             <div class="em_content_center">
                 <span class="em_title">메일답장</span>
+                <hr>
                 <br>
                 <br>
                 <form action="insertReply.em" method="post" enctype="multipart/form-data">
