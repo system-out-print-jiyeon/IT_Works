@@ -154,6 +154,7 @@
 						                 <thead>
 						                    <tr align="center">
 						                        <th></th>
+						                        <th>공지</th>
 						                        <th>번호</th>
 						                        <th>제목</th>
 						                        <th>작성자</th>
@@ -165,13 +166,17 @@
 						                <c:forEach var="fb" items="${fbList}">
 						                    <tr>
 						                        <th width="30px"><input type="checkbox" id="checkedAll" name="bono"></th>
+						                        <td>
+						                        	<c:if test="${ fb.boardDivision eq 'N' }">
+						                        		★
+						                        	</c:if>
+						                        </td>
 						                        <td class="fbno">${fb.FBoardNo }</td>
-						                        <td>${fb.FBoardTitle }</td>
+						                        <td class="fbtt">${fb.FBoardTitle }</td>
 						                        <td>${fb.memName }</td>
 						                        <td>${fb.FCreateDate }</td>
 						                        <td>${fb.FCount }</td>
 						                    </tr>
-						                    
 						                </c:forEach>
 						                </tbody>
 					                </table>
@@ -182,10 +187,28 @@
                       
              <script>
             	$(function(){
-            		$("#free-boardList tbody tr").click(function(){
-            			location.href = "detail.fb?fbno=" + $(this).children(".fbno").text();
+            		$("#free-boardList tbody tr td").click(function(){
+            			location.href = "detail.fb?fbno=" + $(this).siblings(".fbno").text();
             		})
             	})
+            	
+            	
+            	$(function(){
+	            			noticeStyle();
+	            		})
+            	
+				function noticeStyle() {
+            		
+            		var notice = "<c:out value='${fb.boardDivision}'/>";
+            		
+            		if(notice == 'N'){
+						document.getElementByClass("fbtt").style.color = "red";
+					}
+						
+            	}
+            	
+            	
+            	
             </script> 
   
   

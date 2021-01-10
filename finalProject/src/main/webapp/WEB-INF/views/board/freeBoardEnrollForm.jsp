@@ -60,15 +60,7 @@
 		                    <th>제목</th>
 		                    <td><input type="text" name="fBoardTitle" style="width: 800px;"></td>
 		                </tr>
-		                <tr>
-		                    <th>비공개 설정</th>
-		                    <td> &nbsp;&nbsp;&nbsp;
-		                        <input type="radio" id="open" name="fDisclosure" value="Y">
-		                            <label for="open">공개</label> &nbsp;
-		                        <input type="radio" id="private" name="fDisclosure" value="N">
-		                            <label for="private">비공개</label>
-		                    </td> 
-		                </tr>
+		                
 		                <tr>                   
 		                    <th><label for="upfile">첨부파일</label></th>
 		                    <td><input type="file" id="upfile" name="upfile"></td>                   

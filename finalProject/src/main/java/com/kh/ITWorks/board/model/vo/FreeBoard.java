@@ -21,10 +21,10 @@ public class FreeBoard {
 	private int fCount;       	  // 조회수
 	private int fBoardWriter;	  // 작성자
 	private String fBoardContent; // 내용
-	private char boardDivision;   // 공지구분
-	private char status; 		  // 상태
-	private char fDisclosure;	  // 공개
-	private char fAllowed;		  // 댓글허용/비허용
+	private String boardDivision;   // 공지구분
+	private String status; 		  // 상태
+	private String fDisclosure;	  // 공개
+	private String fAllowed;		  // 댓글허용/비허용
 	
 	
 	private String memName;
