@@ -241,9 +241,9 @@
         </div>
         <%} else { %>  <% } %>
         
-        <a href=""><span class="icon" id="bell"><i class="fas fa-bell"></i></span></a>
-        <div class="personalInfo">
-           <a href="" class="infoText"><span class="icon"><i class="fas fa-user-circle fa-2x"></i></span>&nbsp;<span class="icon" class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
+        
+       <div class="personalInfo">
+           <a href="" class="infoText"><span class="icon"><img class="profileImg" alt="사원사진" src="${ loginUser.memImg }"></span class="icon" class="username">&nbsp;<span class="username">${ loginUser.memName }&nbsp;</span></a>
         </div>
         
         <c:choose>
@@ -270,7 +270,7 @@
 		</script>
         
         <a href="publiclist.ad"><div><p class="listCategory"><i class="far fa-address-card"></i><br> 주소록</p></div></a>
-        <a href="list.bo"><div><p class="listCategory"><i class="far fa-list-alt"></i><br>게시판</p></div></a>
+        <a href="list.fb"><div><p class="listCategory"><i class="far fa-list-alt"></i><br>게시판</p></div></a>
     
    
 
