@@ -205,7 +205,11 @@
         border-radius: 6px;
         color:white;
     }
-
+	.profileImg{
+		border-radius: 70%;
+		width: 70px;
+    	height: 70px;
+	}
   </style>
 </head>
 <body>
@@ -249,7 +253,7 @@
         
         <a href=""><span class="icon" id="bell"><i class="fas fa-bell"></i></span></a>
         <div class="personalInfo">
-           <a href="" class="infoText"><span class="icon"><i class="fas fa-user-circle fa-2x"></i></span class="icon" class="username">&nbsp;<span class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
+           <a href="" class="infoText"><span class="icon"><img class="profileImg" alt="사원사진" src="${ loginUser.memImg }"></span class="icon" class="username">&nbsp;<span class="username">${ loginUser.memName }&nbsp;<i class="fas fa-sort-down"></i></span></a>
         </div>
         
         

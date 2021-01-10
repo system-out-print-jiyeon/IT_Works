@@ -2,6 +2,7 @@ package com.kh.ITWorks.board.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.ITWorks.board.model.vo.BoardAttachment;
 import com.kh.ITWorks.board.model.vo.FreeBoard;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 

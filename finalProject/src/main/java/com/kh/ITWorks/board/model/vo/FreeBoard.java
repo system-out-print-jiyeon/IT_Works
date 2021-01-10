@@ -25,4 +25,10 @@ public class FreeBoard {
 	private char status; 		  // 상태
 	private char fDisclosure;	  // 공개
 	private char fAllowed;		  // 댓글허용/비허용
+	
+	
+	private String memName;
+	private String originName;
+	private String changeName;
+	
 }

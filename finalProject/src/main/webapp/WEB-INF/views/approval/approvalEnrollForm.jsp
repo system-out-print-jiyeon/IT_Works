@@ -304,6 +304,16 @@
 
     }
     
+    .referenceCell span{
+    
+    	margin-left:15px;
+    	margin-right:15px;
+    	padding:5px;
+    	background-color: #e7e1e1;
+    
+    
+    }
+    
     
    
 
@@ -391,13 +401,13 @@
               <table class="approvalTable" border="1px">
                 <tr>
                     <th rowspan="3" class="mainTitle">결재</th>
-                    <th class="firstCell"></th>
-                    <th class="firstCell"></th>
-                    <th class="firstCell"></th>
-                    <th class="firstCell"></th>
-                    <th class="firstCell"></th>
-                    <th class="firstCell"></th>
-                    <th class="firstCell"></th>
+                    <th class="firstCell">1 경영지원팀</th>
+                    <th class="firstCell">2 총무팀</th>
+                    <th class="firstCell">3 개발팀</th>
+                    <th class="firstCell">4 기획팀</th>
+                    <th class="firstCell">5 경영지원팀</th>
+                    <th class="firstCell">6 개발팀</th>
+                    <th class="firstCell">7 인사팀</th>
                 </tr>
                 <tr>
                     <td class="secondCell"></td>
@@ -409,20 +419,25 @@
                     <td class="secondCell"></td>
                     
                 </tr>
-                <tr>
-                    <td class="thirdCell"></td>
-                    <td class="thirdCell"></td>
-                    <td class="thirdCell"></td>
-                    <td class="thirdCell"></td>
-                    <td class="thirdCell"></td>
-                    <td class="thirdCell"></td>
-                    <td class="thirdCell"></td>
+                <tr style="text-align:center;">
+                    <td class="thirdCell">과장 노옹철</td>
+                    <td class="thirdCell">과장 심봉선</td>
+                    <td class="thirdCell">과장 정중하</td>
+                    <td class="thirdCell">차장 이오리</td>
+                    <td class="thirdCell">차장 전지연</td>
+                    <td class="thirdCell">이사 선동일</td>
+                    <td class="thirdCell">대표이사 홍길동</td>
                     
                 </tr>
                 
                 <tr>
                     <th class="secondTitle">참조</th>
-                    <td colspan="7"></td>
+                    <td class="referenceCell" colspan="7" style="text-align:center;">
+                    	<span> <b>인사팀</b> 과장 박나라</span>
+                    	<span><b>총무팀</b> 과장 심봉선</span>
+                    	<span><b>개발팀</b> 대리 대북혼</span>
+                    	<span><b>기획팀</b> 과장 김해술</span>
+                    </td>
                     
                 </tr>
             </table>
@@ -456,21 +471,22 @@
 
             </div>
 
-            <div class="attachment" style="border:dashed; width: 800px; margin: 30px; ">
-              <div style="height:80px;">
-                <span><h5 style="margin: 30px;">별첨</h5></span>
-                <span><h6 style="margin-top: 30px; margin-bottom: 30px; color: rgb(73, 174, 233); border-right: 1px solid#878787; "><label for="upfile" style="cursor: pointer;">파일 첨부 </label>&nbsp;</h6></span> 
-                <span><h6 style="margin-top: 30px; color: rgb(73, 174, 233);">&nbsp;&nbsp;관련문서 첨부</h6> </span>
-               <span><h6 style="margin-top: 30px; margin-bottom: 30px; margin-left: 100px; text-align: center; color: #878787;" >여기로 파일을 끌어놓으세요</h6></span>
-               
+            <div class="attachment" style="border:dashed; width: 800px; margin: 30px;  ">
+              <div style="height:80px; display: flex;">
+                <span><h5 style="margin: 30px; ">별첨</h5></span>
+                <span><h6 style="margin-top: 30px; margin-bottom: 30px; color: rgb(73, 174, 233); /* border-right: 1px solid#878787; */"><label for="upfile" style="cursor: pointer;">파일 첨부 </label>&nbsp;</h6></span> 
+               <!--  <span><h6 style="margin-top: 30px; color: rgb(73, 174, 233);">&nbsp;&nbsp;관련문서 첨부</h6> </span>  -->
+               <!--  <span><h6 style="margin-top: 30px; margin-bottom: 30px; margin-left: 100px; text-align: center; color: #878787;" >여기로 파일을 끌어놓으세요</h6></span> -->
+                <input type="file" id="upfile" name="upfile" style="display:none;">
+                 <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>  
+                <!-- <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br> -->
+                <!-- <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br> -->
                </div> 
                
                 <div style="margin-left:80px">
-                <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>
-                <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>
-                <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>
                 
-                <input type="file" id="upfile" name="upfile" style="display:none;">
+                
+               
                 
                  
                 

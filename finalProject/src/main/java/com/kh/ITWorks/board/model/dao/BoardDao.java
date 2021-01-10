@@ -24,6 +24,7 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeBoardList", null, rowBounds);
 	}
 
+	
 	public int insertFreeBoard(SqlSessionTemplate sqlSession, FreeBoard fb) {
 		return sqlSession.insert("boardMapper.insertFreeBoard", fb);
 	}

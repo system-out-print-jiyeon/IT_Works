@@ -18,6 +18,7 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardDao bDao;
 	
+	// 자유게시판 리스트 조회
 	@Override
 	public int selectFreeBoardListCount() {
 		return bDao.selectFreeBoardListCount(sqlSession);
@@ -26,6 +27,7 @@ public class BoardServiceImpl implements BoardService{
 	public ArrayList<FreeBoard> selectFreeBoardList(PageInfo pi) {
 		return bDao.selectFreeBoardList(sqlSession, pi);
 	}
+	
 	@Override
 	public int insertFreeBoard(FreeBoard fb) {
 		return bDao.insertFreeBoard(sqlSession, fb);

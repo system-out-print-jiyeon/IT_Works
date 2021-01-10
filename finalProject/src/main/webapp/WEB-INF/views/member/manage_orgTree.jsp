@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>기업 조직도</title>
 	<!-- orgTree 
 	    <link rel="stylesheet" href="../../resources/css/main.css">
 		<link rel="stylesheet" href="resources/css/hierarchy-view.css">

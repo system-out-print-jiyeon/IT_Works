@@ -11,7 +11,7 @@
 .sidebar{
     justify-content: space-between;
     padding: 8px 24px;
-    padding-top:100px;
+    padding-top:20px;
     width: 300px;
     height: 100%;
     background-color: #e7e1e1;
@@ -28,8 +28,8 @@
     line-height: 40px;
     color: rgb(107, 102, 102);
     font-size: 20px;
-    padding-left: 40px;
     box-sizing: border-box;
+    padding-left: 40px;
 }
 .sidebar_menu a:hover{
     color: rgb(39, 37, 37);
@@ -38,11 +38,12 @@
     padding-left: 60px;
     list-style: none; 
 }
+.btn{text-align:left;}
 .profile:hover{cursor: pointer;}
 .profile .menu1{display: none;}
 </style>
 <body>
-	<jsp:include page="../common/approvalNavbar.jsp" />
+	
       <div class="sidebar"><br>
             <div class="sidebar_menu">
                 <li class="profile" ><a class="btn" href="">자유게시판</a>

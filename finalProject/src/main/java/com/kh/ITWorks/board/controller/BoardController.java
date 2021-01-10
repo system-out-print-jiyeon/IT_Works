@@ -28,11 +28,6 @@ public class BoardController {
 	private BoardService bService;
 	
 
-	@RequestMapping("list.bo")
-	public String listAllBoardView() {
-		return "board/board_sidebar";
-	}
-
 	// 자유게시판 전체 리스트
 	@RequestMapping("list.fb")
 	public String selectFreeBoardList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, 
@@ -41,10 +36,12 @@ public class BoardController {
 		int listCount = bService.selectFreeBoardListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
-		ArrayList<FreeBoard> list = bService.selectFreeBoardList(pi);
+		ArrayList<FreeBoard> fbList = bService.selectFreeBoardList(pi);
 		
 		model.addAttribute("pi", pi);
-		model.addAttribute("list", list);
+		model.addAttribute("fbList", fbList);
+		
+		System.out.println("list"  + fbList);
 		
 		return "board/freeBoardListView";
 	}
@@ -54,27 +51,43 @@ public class BoardController {
 		return "board/freeBoardEnrollForm";		
 	}
 	
+
+	
 	@RequestMapping("insert.fb")
-	public String insertFreeBoard(FreeBoard fb, BoardAttachment ba, MultipartFile mfile, HttpSession session, Model model) {
+	public String insertFreeBoard(FreeBoard fb, MultipartFile upfile, HttpSession session,
+							Model model) {
 		
-		if(!mfile.getOriginalFilename().equals("")) {
-			String changeName = saveFile(session, mfile);
+		// 전달된 파일이 있을 경우 => 서버에 업로드 => 원본명, 저장경로 b에 담기
+		if( !upfile.getOriginalFilename().equals("")) {
 			
-			ba.setOriginName(mfile.getOriginalFilename());
-			ba.setChangeName("resources/BoardUploadFiles/" + changeName);
+
+			
+			String changeName =  saveFile(session, upfile);
+			
+			
+			fb.setOriginName(upfile.getOriginalFilename());
+			fb.setChangeName("resources/freeBoardUpfiles/" + changeName); // "resources/uploadFiles/2020120117323045236.png"
 			
 		}
+		
 		int result = bService.insertFreeBoard(fb);
 		
-		if(result > 0){
-			session.setAttribute("alertMsg", "성공적으로 게시글이 등록되었습니다.");
+		System.out.println("result : " + result);
+		
+		if(result > 0) { // 성공
+			session.setAttribute("alertMsg", "성공적으로 게시글이 작성되었습니다!");
 			return "redirect:list.fb";
-			
-		}else {
-			model.addAttribute("errorMsg", "게시글 등록에 실패했습니다.");
+		}else { // 실패
+			model.addAttribute("errorMsg", "게시글 작성 실패!");
 			return "common/errorPage";
 		}
+		
 	}
+	
+	
+	
+	
+	
 	
 	@RequestMapping("detail.fb")
 	public String selectFreeBoard(int fbno, Model model) {
@@ -106,7 +119,7 @@ public class BoardController {
 	public String saveFile(HttpSession session, MultipartFile upfile) {
 		
 		// 파일을 업로드 시킬 폴더의 물리적인 경로 (savePath)
-		String savePath = session.getServletContext().getRealPath("/resources/boardUploadFiles/");
+		String savePath = session.getServletContext().getRealPath("/resources/freeBoardUpfiles/");
 		
 		// 어떤 이름으로 업로드 시킬껀지의 수정명 (changeName)
 		String originName = upfile.getOriginalFilename(); // flower.png
