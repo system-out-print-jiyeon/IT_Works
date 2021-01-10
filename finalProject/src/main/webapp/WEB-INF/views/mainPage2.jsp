@@ -24,6 +24,7 @@
      margin: 0;
      padding: 0;
      box-sizing: border-box;
+     border: solid 1px red;
  }
 
 .wrap{width: 100%; 
@@ -38,11 +39,13 @@
 	width:100%;
 	height:100%;
 	margin-top:80px;
+	margin-left:300px;
+	display:flex;
+    flex-wrap: wrap;
 }
 .content1{
     width: 100%;
     height: 250px; 
-    float: left;
     padding: 30px;
     }
     
@@ -52,11 +55,16 @@
 }
 	
 .content1_1{
-	padding-left:300px;
+	
 	width:44%;
 }
 .content1_2{width:26%;float:left;}
 .content1_3{width:30%;padding-left:120px;float:left;}
+
+.content2{width: 50%; height:500px; }
+.content3{width: 50%; height:500px;}
+.content4{width: 50%; height:500px;}
+.content5{width: 50%; height:500px;}
 
 .sysdateTable tr td{
     padding: 15px;
@@ -387,11 +395,30 @@ body {
 		<!-- to do list -->
 		<%-- <jsp:include page="todolist/todolist.jsp" /> --%>
 		
+		
+		
+		
+    </div>
+    
+		<div class="content2">  <!-- 캘린더 영역 -->
+		
+		</div>
+		
+		<div class="content3">  <!-- todoList 영역 -->
+		
+		</div>
 
+		<div class="content4">  <!-- 전자결재 영역 -->
+		
+		</div>
+		
+		<div class="content5">  <!-- 사원목록 영역 -->
+		 
+		</div>
 
     </div>
-
-
+    
+    
     </div>
 
 </body>
