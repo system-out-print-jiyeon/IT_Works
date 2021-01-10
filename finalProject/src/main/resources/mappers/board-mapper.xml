@@ -136,7 +136,15 @@
 		 where f_board_no = #{fbno}
 	</update>
 	
-	
+	<update id="updateFreeBoard" parameterType="FreeBoard">
+	UPDATE
+	       FREE_BOARD
+	   SET F_BOARD_TITLE = #{fBoardTitle}
+	     , F_board_content = #{fBoardContent}
+	     , origin_name = #{originName}
+	     , change_name = #{changeName}
+	 WHERE f_BOARD_NO = #{fBoardNo}
+	</update>
 	
 	
 	

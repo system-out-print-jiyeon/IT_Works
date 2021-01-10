@@ -24,7 +24,8 @@ public interface BoardService {
 	// 리스트 삭제 버튼
 	int deleteToList(int fbno);
 	
-	
+	// 게시판 수정용 서비스
+	int updateFreeBoard(FreeBoard fb);
 	
 	
 	

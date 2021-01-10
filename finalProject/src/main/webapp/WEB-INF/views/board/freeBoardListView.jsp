@@ -57,7 +57,7 @@
    	  float:right;
    	  padding-right:20px;
    }
-   
+   #deletebtn{background:white;}
    /* 테이블 */
    .businessTableArea{
        padding: 20px;

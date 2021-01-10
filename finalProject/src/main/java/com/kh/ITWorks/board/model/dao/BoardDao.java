@@ -43,6 +43,10 @@ public class BoardDao {
 	public int deleteToList(SqlSessionTemplate sqlSession, int fbno) {
 		return sqlSession.update("boardMapper.deleteToList", fbno);
 	}
+	
+	public int updateFreeBoard(SqlSessionTemplate sqlSession, FreeBoard fb) {
+		return sqlSession.update("boardMapper.updateFreeBoard", fb);
+	}
 
 
 }

@@ -49,6 +49,10 @@ public class BoardServiceImpl implements BoardService{
 	public int deleteToList(int fbno) {
 		return bDao.deleteToList(sqlSession, fbno);
 	}
+	@Override
+	public int updateFreeBoard(FreeBoard fb) {
+		return bDao.updateFreeBoard(sqlSession, fb);
+	}
 	
 	
 }

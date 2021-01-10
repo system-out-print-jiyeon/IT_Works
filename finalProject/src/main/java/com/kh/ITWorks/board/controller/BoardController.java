@@ -150,7 +150,46 @@ public class BoardController {
 		
 	
 	
-	
+
+		
+		@RequestMapping("updateForm.fb")
+		public String updateForm(int fbno, Model model) {
+			
+			model.addAttribute("fb", bService.selectFreeBoard(fbno));
+			return "board/freeBoardUpdateForm";
+		}
+		
+		
+		@RequestMapping("update.fb")
+		public String updateFreeBoard(FreeBoard fb, MultipartFile reupFile, HttpSession session, Model model) {
+			
+			if(!reupFile.getOriginalFilename().equals("")) { 
+				
+				if(fb.getOriginName() != null) {
+					new File(session.getServletContext().getRealPath(fb.getChangeName())).delete();
+				}
+				
+				
+				String changeName = saveFile(session, reupFile);
+				fb.setOriginName(reupFile.getOriginalFilename());
+				fb.setChangeName("resources/freeBoardUpFiles/" + changeName);
+				
+			}
+			
+			int result = bService.updateFreeBoard(fb);
+			
+			if(result > 0) { // 게시글 수정 성공 => 상세보기 페이지 재요청 (detail.bo)
+				
+				session.setAttribute("alertMsg", "성공적으로 게시글이 수정되었습니다.");
+				return "redirect:detail.fb?fbno=" + fb.getFBoardNo();
+				
+			}else { // 게시글 수정 실패 
+				model.addAttribute("errorMsg", "게시글 수정 실패");
+				return "common/errorPage";
+			}
+			
+			
+		}
 	
 	
 	

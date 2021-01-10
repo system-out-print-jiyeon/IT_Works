@@ -1,0 +1,38 @@
+<!--resultXXX : 실행하고나서의 타입, parameterType : sql에전달된객체의 타입 -->
+<!-- 
+		* resultMap은 마이바티스의 가장 강력하고 핵심적인 기능 중 하나
+		ResultSet으로부터 조회된 컬럼값 하나씩 뽑아서
+		내가 지정한 자바 객체에 각 필드에 주섬주섬 담는 JDBC코드를 대부분 줄여주는 역할을 담당
+		
+		type : ResultSet에 조회된 한 행의 값들을 어떤 VO 클래스 객체에 담을건지에 대한 타입 (풀네임 또는 별칭)
+	 -->
+	<resultMap id="memberResultSet" type="Member">
+		<!-- 
+			column : 조회된 결과중 어떤 컬럼의 값을 뽑을건지 (DB의 해당 컬럼명)
+			property : 그 뽑은 값을 헤당 겍체의 어떤 필드에 매핑시킬건지 (자바코드의 필드명)
+		 -->
+		<result column="user_no" property="userNo" />
+		<result column="user_id" property="userId" />
+		<result column="user_pwd" property="userPwd" />
+		<result column="user_name" property="userName" />
+		<result column="email" property="email" />
+		<result column="birthday" property="birthday" />
+		<result column="gender" property="gender" />
+		<result column="phone" property="phone" />
+		<result column="address" property="address" />
+		<result column="enroll_date" property="enrollDate" />
+		<result column="modify_date" property="modifyDate" />
+		<result column="status" property="status" />
+	</resultMap>
+
+	<!-- 
+		실행하고자하는 sql문 종류에 따라 태그 작성 후 sql문 기술
+		DAO에서 각 sql문을 찾아서 실행할 수 있도록 고유한 id부여
+		
+		쿼리문 기본적으로 preparedStatement
+		?(폴더) 대신에 해당 sql문에 전달받은 객체의 값을 바로 꺼내서 대체할
+		전달값을 꺼낼때 #{필드명 또는 변수명 또는 키값}으로 꺼냄
+		
+		id : 외부(DAO)에서 참조하기 위한 해당 sql문의 고유 아이디
+		parameterType : 해당 sql문에 전달된 객체의 타입(풀네임) 또는 별칭
+	 -->

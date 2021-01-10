@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 </head>
 <style>
@@ -79,7 +85,7 @@ th{
 	<div class="wrap">
 
         <div class="fullBoard">
-            <h3>전체 게시판</h3> 
+            <h3>&nbsp;&nbsp;자유 게시판</h3> 
                 
                <br><br><br><br>
                 <div class="postPage">
@@ -103,7 +109,7 @@ th{
                     <td colspan="3">
                 		<c:choose>
                 			<c:when test="${ empty fb.originName }">
-                				
+                				첨부파일이 없습니다.
                 			</c:when>
                 			<c:otherwise>
                        			<a href="${ fb.changeName }" download="${ fb.originName }">${ fb.originName }</a>
@@ -121,9 +127,9 @@ th{
 			<hr>
 			<c:if test="${ loginUser.memNo eq fb.FBoardWriter }">
 	            <div align="center">
-	                <!-- 수정하기, 삭제하기 버튼은 이글이 본인글일 경우만 보여져야됨 -->
-	                <a class="btn btn-primary" onclick="postFormSubmit(1)">수정하기</a>
-	                <a class="btn btn-danger" onclick="postFormSubmit(2)">삭제하기</a>
+	                <a style="color:white;" class="btn btn-secondary" onclick="postFormSubmit(2)">삭제하기</a>
+	                &nbsp;&nbsp;&nbsp;&nbsp;
+	                <a style="color:white;" class="btn btn-primary" onclick="postFormSubmit(1)">수정하기</a>
 	            </div><br><br>
 	        
 			</c:if>
@@ -131,7 +137,7 @@ th{
 				function postFormSubmit(num){
 					var url = "";
 					if(num == 1){ // 수정
-						url = "updateForm.bo";
+						url = "updateForm.fb";
 					}else if(num == 2){ // 삭제
 						url = "delete.fb";
 					}
