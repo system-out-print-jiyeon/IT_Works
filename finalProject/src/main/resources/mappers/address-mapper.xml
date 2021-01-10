@@ -77,30 +77,39 @@
 	
 	<insert id="insertAddress" parameterType="Address">
 		INSERT
-		  INTO ADDRESSBOOK
-		  (
-		     ADD_NO
-		   , ADD_NAME
-		   , ADD_PHONE
-		   , ADD_DEPARTMENT
-		   , ADD_DEPARTMENT_PHONE
-		   , ADD_SPOT
-           , ADD_EMAIL
+        INTO ADDRESSBOOK
+        (
+           ADD_NO
+         , ADD_NAME
+         , ADD_PHONE
+         , ADD_EMAIL
+         , ADD_CATEGORY
+         , ADD_DEPARTMENT
+         , ADD_DEPARTMENT_PHONE
+         , ADD_SPOT
            , ADD_COMPANY_NAME
-           , ADD_CATEGORY
-		  )
-		  VALUES
-		  (
-		     SEQ_ADNO.NEXTVAL
-		   , #{addName}
-		   , #{addPhone}
-		   , #{addDepartment}
-		   , #{addDepartmentPhone}
-		   , #{addSpot}
-           , #{addEmail}
-           , #{addCompanyName}
-           , #{addCategory}
-		  )
+        )
+        VALUES
+        (
+           SEQ_ADNO.NEXTVAL,
+          #{addName},
+          #{addPhone},
+          #{addEmail},
+          #{addCategory},
+         <choose>
+               <when test="addDepartment != null">
+               #{addDepartment},
+               #{addDepartmentPhone},
+               #{addSpot},
+               #{addCompanyName}
+               </when>
+               <otherwise>
+               null,
+               null,
+               null,
+               null
+               </otherwise>
+         </choose>
 	</insert>
 	
 	<select id="selectAddressPerList" resultMap="AddressResultSet">
@@ -120,25 +129,6 @@
 		    BY ADD_NO DESC
 	</select> 
 	
-	<insert id="insertPerAddress" parameterType="Address">
-		 INSERT
-		   INTO ADDRESSBOOK
-		   (
-		        ADD_no
-		      , ADD_name
-		      , ADD_EMAIL
-		      , ADD_PHONE
-		      , ADD_CATEGORY
-		      )
-		     values
-		      (
-		        seq_adno.nextval
-		      , #{addName}
-		      , #{addEmail}
-		      , #{addPhone}
-		      , #{addCategory}
-		      )
-	</insert>
 	
 	<select id="selectAddressPubList" resultMap="AddressResultSet">
 		SELECT
@@ -157,23 +147,4 @@
 		    BY ADD_NO DESC
 	</select> 
 	
-	<insert id="insertPubAddress" parameterType="Address">
-		 INSERT
-		   INTO ADDRESSBOOK
-		   (
-		        ADD_no
-		      , ADD_name
-		      , ADD_EMAIL
-		      , ADD_PHONE
-		      , ADD_CATEGORY
-		      )
-		     values
-		      (
-		        seq_adno.nextval
-		      , #{addName}
-		      , #{addEmail}
-		      , #{addPhone}
-		      , #{addCategory}
-		      )
-	</insert>
 </mapper>

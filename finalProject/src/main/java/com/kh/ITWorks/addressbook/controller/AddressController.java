@@ -31,8 +31,9 @@ public class AddressController {
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 		ArrayList<AddressBook> peList = adService.selectAddressPersonList(pi);
 		
-		model.addAttribute("pi", pi);
-		model.addAttribute("pelist", peList);
+		model.addAttribute("pi", pi);	
+		
+		model.addAttribute("peList", peList);
 		
 		return "addressbook/addressPersonListView";
 		
@@ -45,12 +46,10 @@ public class AddressController {
 		int listCount = adService.selectAddressPublicListCount();
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 		ArrayList<AddressBook> puList = adService.selectAddressPublicList(pi);
-		
-		model.addAttribute("pi", pi);
-
+					
+		model.addAttribute("pi", pi);					
 		model.addAttribute("puList", puList);
-
-
+		
 	return "addressbook/addressPublicListView";
 		
 	}
@@ -60,6 +59,26 @@ public class AddressController {
 		return "addressbook/addressEnrollForm";
 	}
 
+	@RequestMapping("insert.ad")
+	public String insertAddress(AddressBook a, HttpSession session, Model model) {
+		
+		String str = a.getAddCategory();
+		int result = adService.insertAddress(a);
+		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "성공적으로 주소록이 등록되었습니다");
+			if(str.equals("public")) {
+				
+				return "redirect:publiclist.ad";
+			}else {
+				return "redirect:personlist.ad";
+			}
+		}else {
+			model.addAttribute("errorMsg", "주소록 등록 실패");
+			return "common/errorPage";			
+		}
+		
+	}
 	
 	@ResponseBody
 	@RequestMapping(value="adpelist.ad", produces="application/json; charset=utf-8")
@@ -111,4 +130,5 @@ public class AddressController {
 		return adService.deleteAddress(addNo);
 		
 	}
+	
 }

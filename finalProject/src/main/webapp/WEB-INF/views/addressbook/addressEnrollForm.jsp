@@ -41,7 +41,7 @@
 
 	 <div class="Addressbook">
         <div class="address1">
-            <form id="enrollForm" method="post" action="enrollForm.ad" enctype="multipart/form-data">
+            <form id="enrollForm" action="insert.ad" method="post">
                 <h1>연락처 추가</h1><br>
                     <table class="address2">                        
                         <tr>
@@ -87,11 +87,11 @@
                             </td> 
                         </tr>
                         </table>
-            	</form>                    
                 <div class="button_1" align="right">
                     <button type="submit" class="btn btn-info btn btn-primary btn-lg">저장</button>
                     <button type="reset" class="btn btn btn-lg">취소</button>
                 </div>
+            </form>                    
         </div>
     </div>
 </body>
