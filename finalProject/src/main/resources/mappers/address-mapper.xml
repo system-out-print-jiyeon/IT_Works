@@ -23,7 +23,7 @@
 		 WHERE STATUS = 'Y'
 	</select>
 	
-	<select id="selectAddressPersonList" resultMap="AddressResultSet">
+	<select id="selectAddressPersonList" resultMap="AddressResultSet" parameterType="_int">
 		SELECT
 		       ADD_NO
 		     , ADD_NAME
@@ -36,6 +36,7 @@
 		     , ADD_WRITER
 		  FROM ADDRESSBOOK
 		 WHERE STATUS = 'Y'
+		   AND ADD_WRITER = #{addWriter}
 		   AND ADD_CATEGORY = 'person'
 		 ORDER 
 		    BY ADD_NO DESC
@@ -87,7 +88,7 @@
          , ADD_DEPARTMENT
          , ADD_DEPARTMENT_PHONE
          , ADD_SPOT
-           , ADD_COMPANY_NAME
+         , ADD_COMPANY_NAME
         )
         VALUES
         (
@@ -110,6 +111,7 @@
                null
                </otherwise>
          </choose>
+         )
 	</insert>
 	
 	<select id="selectAddressPerList" resultMap="AddressResultSet">

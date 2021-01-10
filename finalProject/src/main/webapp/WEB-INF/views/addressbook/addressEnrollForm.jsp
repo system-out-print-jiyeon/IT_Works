@@ -46,12 +46,12 @@
                     <table class="address2">                        
                         <tr>
                             <th><label for="name">이름</label></th> 
-                            <td><input type="text" id="name" size="30" name="addName"></td>
+                            <td><input type="text" id="name" size="30" name="addName" required></td>
                         </tr>
 
                         <tr>
                             <th><label for="phone">전화번호</label></th>
-                            <td><input type="tel" id="phone" size="30" name="addPhone"></td>
+                            <td><input type="tel" id="phone" size="30" name="addPhone" required></td>
                         </tr>
 
                         <tr>
@@ -70,7 +70,7 @@
                         </tr>
                         <tr>
                             <th><label for="email">이메일</label></th> 
-                            <td><input type="email" id="email" size="30" name="addEmail"></td>
+                            <td><input type="email" id="email" size="30" name="addEmail" required></td>
                         </tr>
                         <tr>
                             <th><label for="company">회사명</label></th> 

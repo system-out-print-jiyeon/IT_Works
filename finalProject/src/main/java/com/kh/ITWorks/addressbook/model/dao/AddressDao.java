@@ -16,11 +16,11 @@ public class AddressDao {
 		return sqlSession.selectOne("addressMapper.selectPersonListCount");
 	}
 
-	public ArrayList<AddressBook> selectAddressPersonList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<AddressBook> selectAddressPersonList(SqlSessionTemplate sqlSession, PageInfo pi, int addWriter) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("addressMapper.selectAddressPersonList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("addressMapper.selectAddressPersonList", addWriter, rowBounds);
 	}
 
 	public int selectAddressPublicListCount(SqlSessionTemplate sqlSession) {

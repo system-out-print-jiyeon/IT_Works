@@ -16,6 +16,7 @@ import com.kh.ITWorks.addressbook.model.service.AddressService;
 import com.kh.ITWorks.addressbook.model.vo.AddressBook;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.common.template.Pagination;
+import com.kh.ITWorks.member.model.vo.Member;
 
 @Controller
 public class AddressController {
@@ -25,11 +26,14 @@ public class AddressController {
 	
 	@RequestMapping("personlist.ad")
 	public String selectAddressPersonList(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
-										Model model) {
+										Model model, HttpSession session) {
+		
+		Member mem = (Member) session.getAttribute("loginUser");
+		int adUser = mem.getMemNo();
 		
 		int listCount = adService.selectAddressPersonListCount();
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
-		ArrayList<AddressBook> peList = adService.selectAddressPersonList(pi);
+		ArrayList<AddressBook> peList = adService.selectAddressPersonList(pi, adUser);
 		
 		model.addAttribute("pi", pi);	
 		
@@ -92,7 +96,7 @@ public class AddressController {
 	@RequestMapping("quick.ad")
 	public String selectAddressPerson(AddressBook a) {
 		
-		int result = adService.insertPerAddress(a);
+		int result = adService.insertAddress(a);
 		
 		if(result > 0) {
 			return "success";
@@ -113,7 +117,7 @@ public class AddressController {
 	@RequestMapping("quick.ad1")
 	public String selectAddressPublic(AddressBook a) {
 		
-		int result = adService.insertPubAddress(a);
+		int result = adService.insertAddress(a);
 		
 		if(result > 0) {
 			return "success";
