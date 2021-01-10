@@ -108,7 +108,7 @@ table{
                         </tr>
                     </thead>
                     <tbody align="center">
-                    	<c:forEach var="a" items="${ list }">
+                    	<c:forEach var="a" items="${ puList }">
                         <tr>
                             <td><input name="adNo" type="checkbox" value="${ a.addNo }" ></td>
                             <td>${ a.addName }</td>
