@@ -16,11 +16,13 @@ public interface BoardService {
 	int insertFreeBoard(FreeBoard fb);
 	
 	// 자유게시판 상세조회용 서비스
+	int increaseCount(int fbno);
 	FreeBoard selectFreeBoard(int fbno);
 	
 	// 자유게시판 삭제용 서비스
 	int deleteFreeBoard(int fbno);
-	
+	// 리스트 삭제 버튼
+	int deleteToList(int fbno);
 	
 	
 	

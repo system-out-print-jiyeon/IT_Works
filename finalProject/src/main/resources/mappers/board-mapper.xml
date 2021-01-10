@@ -97,4 +97,53 @@
 			#{changeName}
 		)
 	</insert>
+	
+	
+	<update id="increaseCount" parameterType="_int">
+		UPDATE
+		       FREE_BOARD
+		   SET F_COUNT = F_COUNT + 1
+		 WHERE STATUS = 'Y'
+		   AND F_BOARD_NO = #{fbno}
+	</update>
+
+	<select id="selectFreeBoard" parameterType="_int" resultMap="FreeBoardResultSet">
+		SELECT
+		       F_BOARD_NO
+		     , F_BOARD_TITLE
+		     , F_BOARD_WRITER
+		     , TO_CHAR(F_CREATE_DATE, 'YYYY-MM-DD') "F_CREATE_DATE"
+		     , F_BOARD_CONTENT
+		     , ORIGIN_NAME
+		     , CHANGE_NAME
+		     , mem_name
+		  FROM FREE_BOARD
+		  JOIN EMPLOYEE ON (F_BOARD_WRITER = MEM_NO)
+		 WHERE F_BOARD_NO = #{fbno}      
+	</select>
+	
+	
+	<update id="deleteFreeBoard" parameterType="_int">
+		UPDATE
+		       FREE_BOARD
+		   SET STATUS = 'N'
+	     WHERE F_BOARD_NO = #{fbno}
+	</update>
+	
+	<update id="deleteToList" parameterType="_int">
+		update FREE_BOARD
+		   set status = 'N'
+		 where f_board_no = #{fbno}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

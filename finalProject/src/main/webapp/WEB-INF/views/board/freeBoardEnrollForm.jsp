@@ -67,7 +67,7 @@
 		                </tr>
 		            </table>
 		                <div class="SummerNote">
-		                    <textarea id="summernote" name="fBoardContent"></textarea>
+		                    <textarea id="summernote" name="fBoardContent" required></textarea>
 		                </div>
 		                    
 		                
