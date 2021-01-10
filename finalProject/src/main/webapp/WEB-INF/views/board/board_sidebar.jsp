@@ -46,9 +46,7 @@
 	
       <div class="sidebar"><br>
             <div class="sidebar_menu">
-                <li class="profile" ><a class="btn" href="">자유게시판</a>
-                </li>
-                <li class="profile" ><a class="btn" href="">부서게시판</a>
+                <li class="profile" ><a class="btn" href="list.fb">자유게시판</a>
                 </li>
                 <li class="profile" ><a class="btn" href="list.sp">업무협업</a>
                 </li>
