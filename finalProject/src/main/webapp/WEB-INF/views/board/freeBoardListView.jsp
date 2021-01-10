@@ -20,93 +20,102 @@
  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
  <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <style>
-       *{
-          border: 1px solid red;
-      }  
-      .wrap{width: 100%; 
-            height: 100%;
-            display: flex;
-          }
+
+   .wrap{width: 100%; 
+         height: 100%;
+         display: flex;
+       }
+   
+    .titleBar{text-align: center;}
+   
+   .titleArea{
+      border-radius: 10px;
+      border: 0;
+      width: 250px;
+      height: 45px;
+      font-size: larger;
+      color: white;
+      background-color: rgb(84, 129, 189);
+      padding-top: 10px;
+   }
+  
+   
+   
+   /**** 컨텐트 ****/
+   .contentArea{width: 80%; height: 1200px;margin-top: 80px; margin-left:300px;}
+
+	.tool_bar1{
+	    width: 100%;
+	    height: 40px;
+	    margin-top: 30px; 
+	    position: relative;
+	    padding-left:20px;
+	    border-bottom: 2px solid grey;
+	}
+   .content1{
+       width: 100%;
+       height: 100%; 
+       float: left;
+       padding: 40px;
+   }
+   .nameBar{
+       padding: 20px;
+   }
+   .nameBar h3, .nameBar small{
+       font-weight: 900;
+   }
+   
+   .insert{
+   	  float:right;
+   	  padding-right:20px;
+   }
+   
+   /* 테이블 */
+   .businessTableArea{
+       padding: 20px;
+   }
+   .tdTitle td{
+       text-align: center;
+       background: lightgray;
+   }
+   #businessTable tr td{
+       text-align: center;
+   }
+   tbody tr td:hover{
+   		cursor:pointer;
+   }
+   #workListTable tbody tr:hover{cursor:pointer;}
+   /* 페이징 */
+   .paginationBar{
+       align-items: center;
+   }
+   
+
+  .navBar{
+      width: 100%;
+      height: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid gray;
+      background-color: white;
+      position:fixed;
+      z-index:300;
+      float:left;
+      top: 0;
+	  left: 0;
+	  right: 0;
       
-       .titleBar{text-align: center;}
-      
-      .titleArea{
-         border-radius: 10px;
-         border: 0;
-         width: 250px;
-         height: 45px;
-         font-size: larger;
-         color: white;
-         background-color: rgb(84, 129, 189);
-         padding-top: 10px;
-      }
-     
-      /*선택된메뉴*/
-	  .selectedTitle{
-	    background-color: rgba(76, 135, 212, 0.616);
-	    border-radius: 10px;	
-	  }  
-        
-      
-      
-      /**** 컨텐트 ****/
-      .contentArea{width: 80%; height: 1200px;margin-top: 80px; margin-left:300px;}
-      
-      
-      
-		.tool_bar1{
-		    width: 100%;
-		    height: 40px;
-		    margin-top: 30px; 
-		    position: relative;
-		    padding-left:20px;
-		}
-		      
-      
-      .content1{
-          width: 100%;
-          height: 100%; 
-          float: left;
-          padding: 40px;
-      }
-      .nameBar{
-          padding: 20px;
-      }
-      .nameBar h5{
-          font-weight: 900;
-      }
-      
-      .insert{
-      	  float:right;
-      	  padding-right:20px;
-      }
-      
-      /* 테이블 */
-      .businessTableArea{
-          padding: 20px;
-      }
-      .tdTitle td{
-          text-align: center;
-          background: lightgray;
-      }
-      #businessTable tr td{
-          text-align: center;
-      }
-      tbody tr td:hover{
-      		cursor:pointer;
-      }
-      #workListTable tbody tr:hover{cursor:pointer;}
-      /* 페이징 */
-      .paginationBar{
-          align-items: center;
-      }
+  }   
 </style>
        
 </head>
 <body>
 
  	<jsp:include page="../common/navbar.jsp"/>
- 	<jsp:include page="board_sidebar.jsp"/>
+
+	<jsp:include page="board_sidebar.jsp"/>
+
  	
 
 
@@ -115,42 +124,61 @@
 
                 <div class="content1">
                     <br>
-                    <div class="nameBar"><h1>전체 게시판<small>(자유)</small></h1> </div>
+                    <div class="nameBar"><h3>전체 게시판<small>(자유)</small></h3> </div>
                     <section class="tool_bar1">
-		                 <div class="submit_btn">
-	                        <input type="checkbox" id="checkall" value=""> 
-	                        <label class="update" for="checkall">전체선택</label>
-	                        <!-- <label class="update"><button type="submit" disabled="true" onclick='btn_click("important");'><i class="fa fa-star"></i> 중요</button></label> -->
-	                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("delete");' id="deletebtn"><i class="fa fa-trash"></i> 삭제</button></label>
-	                        <label class="insert"><button type="submit" onclick='btn_click("insert");' id="insertbtn" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> 새글쓰기</button></label>             
-	                    </div>                               
-		            </section>
-                    <div class="businessTableArea">
-                        <table id="free-boardList" class="table">
-		                 <thead>
-		                    <tr align="center">
-		                        <th></th>
-		                        <th>번호</th>
-		                        <th>제목</th>
-		                        <th>작성자</th>
-		                        <th>작성일</th>
-		                        <th>조회</th>                             
-		                    </tr>
-		                </thead>
-		                <tbody align="center">
-		                <c:forEach var="fb" items="${ list }">
-		                    <tr>
-		                        <th width="30px"><input type="checkbox" id="checkedAll" name="bono"></th>
-		                        <td class="fbno">${fb.fBoardNo }</td>
-		                        <td>${fb.fBoardTitle }</td>
-		                        <td>${fb.memName }</td>
-		                        <td>${fb.fCreateDate }</td>
-		                        <td>${fb.fCount }</td>
-		                    </tr>
-		                    
-		                </c:forEach>
-		                </table>
-                        
+                    
+                    <c:choose>       
+                    
+						<c:when test="${empty list}">
+							
+	                    	<div class="submit_btn">
+		                        <label class="insert"><button onclick="showPopup();" id="insertbtn" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> 새글쓰기</button></label>             
+		                    </div>  
+		                    <br><br><br>  
+							<p style="text-align:center; font-size:20px; color:gray; font-weight:900; margin-top:60px;" >게시글이 존재하지 않습니다.</p>
+							<br><br><br><br>
+						</c:when>
+						<c:otherwise>
+				            <form name="form_freeboard" method="post" id="list-form">
+				
+				                 <div class="submit_btn">
+			                        <input type="checkbox" id="checkall" value=""> 
+			                        <label class="update" for="checkall">전체선택</label>
+			                        
+			                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("delete");' id="deletebtn"><i class="fa fa-trash"></i> 삭제</button></label>
+			                        <label class="insert"><button onclick="showPopup();" id="insertbtn" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> 새글쓰기</button></label>             
+			                    </div>                               
+				            </section>
+		                    <div class="businessTableArea">
+		                        <table id="free-boardList" class="table">
+					                 <thead>
+					                    <tr align="center">
+					                        <th></th>
+					                        <th>번호</th>
+					                        <th>제목</th>
+					                        <th>작성자</th>
+					                        <th>작성일</th>
+					                        <th>조회</th>                             
+					                    </tr>
+					                </thead>
+					                <tbody align="center">
+					                <c:forEach var="fb" items="${list}">
+					                    <tr>
+					                        <th width="30px"><input type="checkbox" id="checkedAll" name="bono"></th>
+					                        <td class="fbno">${fb.fBoardNo }</td>
+					                        <td>${fb.fBoardTitle }</td>
+					                        <td>${fb.memName }</td>
+					                        <td>${fb.fCreateDate }</td>
+					                        <td>${fb.fCount }</td>
+					                    </tr>
+					                    
+					                </c:forEach>
+				                </table>
+		                       
+		                     </form>
+	                    </c:otherwise>
+                	 </c:choose>   
+                      
           <!--   <script>
             	$(function(){
             		$("#free-boardList tbody tr").click(function(){
@@ -233,13 +261,16 @@
     <!-- 중요/삭제 클릭시 action -->
     <script>
         function btn_click(str){                             
-            	if(str=="delete"){   // 메일 삭제
+            	if(str=="delete"){   //  삭제
 				
             	if(confirm("선택한 게시글을 삭제하시겠습니까?") == true){
-	                form_mail.action="#";
+	                form_freeboard.action="#";
             	}
             }
         }  
+        
+        
+        function showPopup() { window.open("enrollForm.fb", "a", "width=1000, height=900, left=400, top=200"); }
     </script>
         
 </body>
