@@ -28,6 +28,7 @@ public class FreeBoard {
 	
 	
 	private String memName;
-	
+	private String originName;
+	private String changeName;
 	
 }

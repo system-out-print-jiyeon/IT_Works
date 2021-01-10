@@ -125,7 +125,7 @@
                 <div class="content1">
                     <br>
                     <div class="nameBar"><h3>전체 게시판<small>(자유)</small></h3> </div>
-                    <section class="tool_bar1">
+                    
                     
                     <c:choose>       
                     
@@ -141,42 +141,43 @@
 						<c:otherwise>
 				            <form name="form_freeboard" method="post" id="list-form">
 				
-				                 <div class="submit_btn">
-			                        <input type="checkbox" id="checkall" value=""> 
-			                        <label class="update" for="checkall">전체선택</label>
-			                        
-			                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("delete");' id="deletebtn"><i class="fa fa-trash"></i> 삭제</button></label>
-			                        <label class="insert"><button onclick="showPopup();" id="insertbtn" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> 새글쓰기</button></label>             
-			                    </div>                               
-				            </section>
-		                    <div class="businessTableArea">
-		                        <table id="free-boardList" class="table">
-					                 <thead>
-					                    <tr align="center">
-					                        <th></th>
-					                        <th>번호</th>
-					                        <th>제목</th>
-					                        <th>작성자</th>
-					                        <th>작성일</th>
-					                        <th>조회</th>                             
-					                    </tr>
-					                </thead>
-					                <tbody align="center">
-					                <c:forEach var="fb" items="${list}">
-					                    <tr>
-					                        <th width="30px"><input type="checkbox" id="checkedAll" name="bono"></th>
-					                        <td class="fbno">${fb.fBoardNo }</td>
-					                        <td>${fb.fBoardTitle }</td>
-					                        <td>${fb.memName }</td>
-					                        <td>${fb.fCreateDate }</td>
-					                        <td>${fb.fCount }</td>
-					                    </tr>
-					                    
-					                </c:forEach>
-				                </table>
-		                       
-		                     </form>
-	                    </c:otherwise>
+					                 <div class="submit_btn">
+				                        <input type="checkbox" id="checkall" value=""> 
+				                        <label class="update" for="checkall">전체선택</label>
+				                        
+				                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("delete");' id="deletebtn"><i class="fa fa-trash"></i> 삭제</button></label>
+				                        <label class="insert"><button onclick="showPopup();" id="insertbtn" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> 새글쓰기</button></label>             
+				                    </div>                               
+					            
+			                    <div class="businessTableArea">
+			                        <table id="free-boardList" class="table">
+						                 <thead>
+						                    <tr align="center">
+						                        <th></th>
+						                        <th>번호</th>
+						                        <th>제목</th>
+						                        <th>작성자</th>
+						                        <th>작성일</th>
+						                        <th>조회</th>                             
+						                    </tr>
+						                </thead>
+						                <tbody align="center">
+						                <c:forEach var="fb" items="${fbList}">
+						                    <tr>
+						                        <th width="30px"><input type="checkbox" id="checkedAll" name="bono"></th>
+						                        <td class="fbno">${fb.fBoardNo }</td>
+						                        <td>${fb.fBoardTitle }</td>
+						                        <td>${fb.memName }</td>
+						                        <td>${fb.fCreateDate }</td>
+						                        <td>${fb.fCount }</td>
+						                    </tr>
+						                    
+						                </c:forEach>
+						                </tbody>
+					                </table>
+		                          </div>
+		                      </form>
+	                     </c:otherwise>
                 	 </c:choose>   
                       
           <!--   <script>

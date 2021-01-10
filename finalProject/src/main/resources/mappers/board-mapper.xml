@@ -37,6 +37,8 @@
 		<result column="f_disclosure" property="fDisclosure"/>
 		<result column="f_allowed" property="fAllowed"/>
 		<result column="mem_name" property="memName"/>
+		<result column="origin_name" property="originName"/>
+		<result column="change_name" property="changeName"/>
 	</resultMap>
 	
 	<select id="selectFreeBoardListCount" resultType="_int">
@@ -60,4 +62,38 @@
 		 ORDER
 		    BY F_BOARD_NO DESC
 	</select>
+	
+	<insert id="insertFreeBoard" parameterType="FreeBoard">
+	insert 
+	  into FREE_BOARD
+	  	(
+	  		F_BOARD_NO,
+			F_BOARD_TITLE,
+			F_CREATE_DATE,
+			F_COUNT,
+			F_BOARD_WRITER,
+			F_BOARD_CONTENT,
+			BOARD_DIVISION,
+			STATUS,
+			F_DISCLOSURE,
+			F_ALLOWED,
+			ORIGIN_NAME,
+			CHANGE_NAME
+	  	)
+	values
+		(
+			seq_fbno.nextval,
+			#{fBoardTitle},
+			default,
+			0,
+			#{fBoardWriter},
+			#{fBoardContent},
+			'Y',
+			default,
+			default,
+			default,
+			#{originName},
+			#{changeName}
+		)
+	</insert>
 </mapper>
