@@ -43,4 +43,20 @@ public class AddressServiceImpl implements AddressService{
 	public int deleteAddress(int ano) {
 		return aDao.deleteAdress(sqlSession, ano);
 	}
+	@Override
+	public ArrayList<AddressBook> selectAddressPerList() {
+		return aDao.selectAddressPerList(sqlSession);
+	}
+	@Override
+	public int insertPerAddress(AddressBook a) {
+		return aDao.insertPerAddress(sqlSession, a);
+	}
+	@Override
+	public ArrayList<AddressBook> selectAddressPubList() {
+		return aDao.selectAddressPubList(sqlSession);
+	}
+	@Override
+	public int insertPubAddress(AddressBook a) {
+		return aDao.insertPubAddress(sqlSession, a);
+	}
 }

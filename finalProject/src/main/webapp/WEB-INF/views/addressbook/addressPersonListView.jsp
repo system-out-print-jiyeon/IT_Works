@@ -9,13 +9,17 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+  	
 </head>
 <style>
 
 .personAddress{
-    width: 100%; 
-    height:100%; 
-    margin: 50px
+    width: 1200px; 
+    height:1000px; 
+    padding-top: 100px;
+    margin: auto; 
+    box-sizing: border-box;
 }
 
 .tool_bar{
@@ -31,20 +35,21 @@
 }
 
 table{
-    width: 95%;
+    width: 1500px;
     background:white;
-    height: 30%;
+    height: 200px;
+    font-size: 25px; 
+    text-align: center; 
 }
 
 th{
     background: lightgray;
-    text-align: center;
-    padding: 10px;
 }
 
 td{ 
     padding: 20px;
     text-align: center;
+    font-size: 20px;
 }
 
 #pagingArea{
@@ -54,6 +59,11 @@ td{
 
 </style>
 <body>
+	
+	<jsp:include page="../common/approvalNavbar.jsp" />
+	<div class="ad_wrap">
+	<jsp:include page="address_sidebar.jsp" />
+	
 	<div class="personAddress">
         <h1>전체 주소록<small>(개인 주소록)</small></h1> 
         <section class="tool_bar">
@@ -63,16 +73,15 @@ td{
                 <span class="glyphicon glyphicon-plus"></span>
                 <span class="txt">빠른등록</span>
             </button>
-                        
-                        
+                                              
             <button id="contactMail" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-envelope"></span>
                 <span class="txt">메일발송</span>
             </button>
                         
-            <button id="contactDelete" class="btn btn-default btn-sm">
+            <button action="" method="post" id="contactDelete" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-trash"></span>
-                <span class="txt_caution">삭제</span>
+                <span class="txt_caution" onclick="btn_del(1);">삭제</span>
             </button>
                       
         </section>
@@ -89,10 +98,10 @@ td{
             <br>
         
             <div class="tablelist">
-                <table border="1" class="tablelist1">
-                    <thead>
+                <table border="1" class="tablelist1" id="addressArea">
+                    <thead align="center">
                         <tr>
-                            <th><input type="checkbox" id="checkedAll" value="${ a.addNo }">전체선택</th>
+                            <th><input type="checkbox" id="checkedAll" value="${ a.addNo }"></th>
                             <th>이름</th>
                             <th>전화번호</th>
                             <th>부서</th>
@@ -113,19 +122,7 @@ td{
                             <td>${ a.addSpot }</td>
                             <td>${ a.addEmail }</td>
                             <td>${ a.addCompanyName }</td>
-                        </tr>
-                        <!--
-                        <tr>
-                            <td><input name="adNo" type="checkbox" value="10"></td>
-                            <td>김OO</td>
-                            <td>010-1111-2222</td>
-                            <td>OO팀</td>
-                            <td>070-1111-1111</td>
-                            <td>사원</td>
-                            <td>abc@naver.com</td>
-                            <td>IT'S WORKS COMPANY</td>
-                        </tr>
-                        -->
+                        </tr>                        
                         </c:forEach>                       
                     </tbody>
                 </table>
@@ -157,6 +154,7 @@ td{
                 </ul>
             </div>         
             </div>
+          </div>
     </div>
     <script>
         $(document).ready(function(){
@@ -186,15 +184,16 @@ td{
     				url:"quick.ad",
     				data:{
     					addName:$("#quickName").val(),
-    					addEmail:${a.addEmail},
-    					addPhone:${a.addPhone}
+    					addEmail:$("#quickEmail").val(),
+    					addPhone:$("#quickPhone").val(),
+    					addCategory:'person'
     				},
     				success:function(result){
     					
     					if(result == "success"){
     						$(".quickAdress").val("");
     						
-    						selectAddressPersonList();
+    						selectAddressPerList();
     						
     					}
     				},error:function(){
@@ -204,11 +203,9 @@ td{
     		}
     	
     	
-    	function selectAddressPersonList(){
-    		// 이 게시글에 딸린 댓글리스트 조회용 ajax
+    	function selectAddressPerList(){
     		$.ajax({
-    			url:"adplist.ad",
-    			data:{adno:${a.addNo}},
+    			url:"adpelist.ad",
     			success:function(list){
     				
     				//console.log(list);
@@ -217,13 +214,18 @@ td{
     				var value="";
     				for(var i in list){
     					value += "<tr>" +
+    								"<td>" + "" + "</td>" +
 			                        "<th>" + list[i].addName + "</th>" +
-			                        "<td>" + list[i].addEmail + "</td>" +
 			                        "<td>" + list[i].addPhone + "</td>" +
+			                        "<td>" + "" + "</td>" +
+			                        "<td>" + "" + "</td>" +
+			                        "<td>" + "" + "</td>" +
+			                        "<td>" + list[i].addEmail + "</td>" +
+			                        "<td>" + "" + "</td>" +
 			                     "</tr>";
     				}
     				
-    				$("#replyArea tbody").html(value);
+    				$("#addressArea tbody").html(value);
     				
     			},error:function(){
     				console.log("댓글 작성용 ajax 통신 실패");
@@ -231,6 +233,16 @@ td{
     		})
     		
     	}
+    </script>
+    
+    <script>
+        function btn_del(num){ 
+        	var url = "";
+            if(num == 1){
+				url = "delete.ad";           	
+            }
+            $("#contactDelete").attr("action", url).submit();
+        }  
     </script>
     
 </body>

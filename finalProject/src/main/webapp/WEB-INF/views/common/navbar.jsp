@@ -269,7 +269,7 @@
 			}
 		</script>
         
-        <a href=""><div><p class="listCategory"><i class="far fa-address-card"></i><br> 주소록</p></div></a>
+        <a href="publiclist.ad"><div><p class="listCategory"><i class="far fa-address-card"></i><br> 주소록</p></div></a>
         <a href="list.bo"><div><p class="listCategory"><i class="far fa-list-alt"></i><br>게시판</p></div></a>
     
    
