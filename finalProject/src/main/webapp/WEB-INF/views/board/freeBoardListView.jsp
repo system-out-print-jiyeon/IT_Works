@@ -246,7 +246,7 @@
                 $("input[name=fbno]").prop("checked",true);    
                 $(".submit_btn #deletebtn").css({"color":"red"}).prop("disabled",false);
             }else{
-                $("input[name=bono]").prop("checked",false);
+                $("input[name=fbno]").prop("checked",false);
                 // 전체선택 체크박스 체크 해제시 버튼 비활성화
                 $(".submit_btn #deletebtn").css({"color":"gray"}).prop("disabled",true);
             }

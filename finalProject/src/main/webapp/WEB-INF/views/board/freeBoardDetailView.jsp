@@ -23,10 +23,11 @@
      
     }
 .fullBoard{
-    width: 1000px; 
+    width: 1100px; 
     height:100%;
     margin-top:100px;
-	margin-left:350px;
+	margin-left:330px;
+	margin-bottom:100px;
 	}
 .fullBoard h3{
 	padding-top:70px;
@@ -64,7 +65,7 @@ th{
 	margin-top:80px;
 }
 
-*{border:1px solid red;}
+
 
 </style>
 
@@ -117,13 +118,14 @@ th{
                 </tr>
             </table>
             <br>
-
+			<hr>
 			<c:if test="${ loginUser.memNo eq fb.FBoardWriter }">
 	            <div align="center">
 	                <!-- 수정하기, 삭제하기 버튼은 이글이 본인글일 경우만 보여져야됨 -->
 	                <a class="btn btn-primary" onclick="postFormSubmit(1)">수정하기</a>
 	                <a class="btn btn-danger" onclick="postFormSubmit(2)">삭제하기</a>
 	            </div><br><br>
+	        
 			</c:if>
 			<script>
 				function postFormSubmit(num){
@@ -142,9 +144,9 @@ th{
 				<input type="hidden" name="fbno" value="${ fb.FBoardNo }">
 				<input type="hidden" name="fileName" value="${ fb.changeName }">
 			</form>
-                    <hr>
+              
                     <div class="commentpage">                           
-                        <span><input type="text" name="comment" style="width: 900px; height: 30px;"></span>
+                        <span><input type="text" name="comment" style="width: 1000px; height: 30px;"></span>
                         <span><button class="btn btn-dark">댓글 작성</button></span>                            
                     </div>                        
                     <hr>
