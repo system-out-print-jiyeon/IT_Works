@@ -478,7 +478,7 @@
                <!--  <span><h6 style="margin-top: 30px; color: rgb(73, 174, 233);">&nbsp;&nbsp;관련문서 첨부</h6> </span>  -->
                <!--  <span><h6 style="margin-top: 30px; margin-bottom: 30px; margin-left: 100px; text-align: center; color: #878787;" >여기로 파일을 끌어놓으세요</h6></span> -->
                 <input type="file" id="upfile" name="upfile" style="display:none;">
-                 <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>  
+                 <span sytle><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>  
                 <!-- <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br> -->
                 <!-- <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br> -->
                </div> 
