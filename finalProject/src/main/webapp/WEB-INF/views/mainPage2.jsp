@@ -411,13 +411,13 @@ body {
 			        </div>
 			        <div class="col-sm-4 col-md-4">
 			            <blockquote>
-			                <p><b>${ loginUser.memName }</b></p> <small><cite title="Source Title">(${ loginUser.memId })  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+			                <p><b>&nbsp;&nbsp;${ loginUser.memName }</b></p> <small><cite title="Source Title">&nbsp;&nbsp;(${ loginUser.memId })  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
 			            </blockquote>
-			            <p> <i class="glyphicon glyphicon-envelope"></i> 소속부서 / <b>${ loginUser.deptName }</b>
+			            <p> <i class="glyphicon glyphicon-envelope"></i>&nbsp;&nbsp;소속부서 / <b>${ loginUser.deptName }</b>
 			                <br
-			                /> <i class="glyphicon glyphicon-globe"></i> 직급 / <b>${ loginUser.jobName }</b><br>
-			                <br /> <i class="glyphicon glyphicon-gift"></i> <b>${ loginUser.phone }</b></p>
-			                <i class="glyphicon glyphicon-gift"></i><b>${ loginUser.email }</b>
+			                /> <i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;직급 / <b>${ loginUser.jobName }</b><br>
+			                <br /> <i class="glyphicon glyphicon-gift"></i>&nbsp;&nbsp;<b>${ loginUser.phone }</b></p>
+			                <i class="glyphicon glyphicon-gift"></i>&nbsp;&nbsp;<b>${ loginUser.email }</b>
 			        </div>
 			    </div>
           </div>  
