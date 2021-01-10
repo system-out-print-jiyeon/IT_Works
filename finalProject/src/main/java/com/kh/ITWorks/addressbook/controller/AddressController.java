@@ -29,10 +29,10 @@ public class AddressController {
 		
 		int listCount = adService.selectAddressPersonListCount();
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
-		ArrayList<AddressBook> list = adService.selectAddressPersonList(pi);
+		ArrayList<AddressBook> peList = adService.selectAddressPersonList(pi);
 		
 		model.addAttribute("pi", pi);
-		model.addAttribute("list", list);
+		model.addAttribute("pelist", peList);
 		
 		return "addressbook/addressPersonListView";
 		
@@ -44,10 +44,11 @@ public class AddressController {
 		
 		int listCount = adService.selectAddressPublicListCount();
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
-		ArrayList<AddressBook> list = adService.selectAddressPublicList(pi);
+		ArrayList<AddressBook> puList = adService.selectAddressPublicList(pi);
 		
 		model.addAttribute("pi", pi);
-		model.addAttribute("list", list);
+		model.addAttribute("puList", puList);
+		
 	return "addressbook/addressPublicListView";
 		
 	}

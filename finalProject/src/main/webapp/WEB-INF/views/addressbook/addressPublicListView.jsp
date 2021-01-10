@@ -14,11 +14,12 @@
 </head>
 <style>
 .publicAddress{
-    width: 1200px; 
+    width: 1600px; 
     height:1000px; 
     padding-top: 100px;
     margin: auto; 
     box-sizing: border-box;
+    margin-left:400px;
 }
 
 .tool_bar{
@@ -37,19 +38,19 @@
 table{
     width: 1500px;
     background:white;
-    height: 90px;
-    font-size: 20px;
+    height: 100px;
+    font-size: 27px; 
 }
 
-th{
+.tablelist1>thead>tr>th {
     background: lightgray;
     text-align: center;
-    padding: 10px;
 }
 
-td{ 
-    padding: 20px;
+.tablelist1>tbody>tr>td{ 
+    padding: 10px;
     text-align: center;
+    font-size: 20px;
 }
 
 #pagingArea{
@@ -72,13 +73,7 @@ td{
                 <button id="quickregist" class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="txt">빠른등록</span>
-                </button>
-                    
-                    
-                <button id="contactMail" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-envelope"></span>
-                    <span class="txt">메일발송</span>
-                </button>
+                </button>                                     
                         
                 <button id="contactDelete" class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-trash"></span>
@@ -87,23 +82,22 @@ td{
                       
         </section>
 
-        <form id="" class="speed_regist">
+        
             <fieldset>
                 <div class="quickAdress">
-                    <input id="quickName" type="text" placeholder="이름(표시명)">
-                    <input id="quickEmail" type="text" placeholder="이메일">
-                    <input id="quickPhone" type="text" placeholder="전화번호">
+                    <input name="addName" id="quickName" type="text" placeholder="이름(표시명)">
+                    <input name="addEmail" id="quickEmail" type="text" placeholder="이메일">
+                    <input name="addPhone" id="quickPhone" type="text" placeholder="전화번호">
                     <button type="button" id="quickBtn" class="glyphicon glyphicon-plus btn btn-default btn-sm" onclick="quick1();"></button>                             
                 </div>
             </fieldset>
-        </form>
         <br>
             
             <div class="tablelist">
                 <table border="1" class="tablelist1" id="addressArea1">
                     <thead align="center">
                         <tr>
-                            <th width="30px"><input type="checkbox" id="checkedAll" value="${ a.addNo }"></th>
+                            <th><input type="checkbox" id="checkedAll" value="${ a.addNo }"></th>
                             <th>이름</th>
                             <th>전화번호</th>
                             <th>부서</th>
