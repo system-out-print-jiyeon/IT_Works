@@ -180,13 +180,13 @@
 	                     </c:otherwise>
                 	 </c:choose>   
                       
-          <!--   <script>
+             <script>
             	$(function(){
             		$("#free-boardList tbody tr").click(function(){
-            			location.href = "detailApproval.bt?btno=" + $(this).children(".btno").text();
+            			location.href = "detail.fb?fbno=" + $(this).children(".fbno").text();
             		})
             	})
-            </script> -->
+            </script> 
   
   
   
