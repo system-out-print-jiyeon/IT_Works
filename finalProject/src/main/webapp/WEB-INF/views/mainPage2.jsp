@@ -140,7 +140,7 @@ body {
   margin-bottom: 80px;
   -webkit-appearance: none;
   appearance: none;
-  background-color: rgb(44, 146, 255);
+  background-color: rgb(0, 132, 255);
   color: #fff;
   border-radius: 4px;
   border: none;
