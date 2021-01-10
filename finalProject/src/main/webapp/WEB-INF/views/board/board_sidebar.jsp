@@ -44,7 +44,14 @@
 </style>
 <body>
 	
-      <div class="sidebar"><br>
+      <div class="sidebar">
+      
+      	    <br><br>
+                <div class="titleBar">
+                    <div class="titleArea">게시판</div>
+                </div>
+            <br><br><br>
+      
             <div class="sidebar_menu">
                 <li class="profile" ><a class="btn" href="list.fb">자유게시판</a>
                 </li>

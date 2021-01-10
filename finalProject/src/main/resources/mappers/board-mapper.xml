@@ -53,14 +53,14 @@
 		       F_BOARD_NO
 		     , F_BOARD_TITLE
 		     , F_BOARD_WRITER
-		     , F_CREATE_DATE
+		     , TO_CHAR(F_CREATE_DATE, 'YYYY-MM-DD') "F_CREATE_DATE"
 		     , F_COUNT
 		     , mem_name
 		  FROM FREE_BOARD
 		  JOIN EMPLOYEE ON (F_BOARD_WRITER = MEM_NO)
 		 WHERE STATUS = 'Y'
 		 ORDER
-		    BY F_BOARD_NO DESC
+    		BY CASE WHEN BOARD_DIVISION IN ('N') THEN 0 ELSE 1 END, F_BOARD_NO DESC
 	</select>
 	
 	<insert id="insertFreeBoard" parameterType="FreeBoard">

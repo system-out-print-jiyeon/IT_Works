@@ -17,7 +17,7 @@ public class FreeBoard {
 
 	private int fBoardNo;         // 자유게시판 번호
 	private String fBoardTitle;   // 제목
-	private Date fCreateDate;     // 작성일
+	private String fCreateDate;     // 작성일
 	private int fCount;       	  // 조회수
 	private int fBoardWriter;	  // 작성자
 	private String fBoardContent; // 내용
