@@ -114,7 +114,7 @@ input[type="submit"]:hover{
 
             <div class="em_content_center">
             	<span class="em_title">보낸메일</span>
-				<br>
+            	<hr>
 				<br>
             	<div id="emInp">
 		        	<c:choose>

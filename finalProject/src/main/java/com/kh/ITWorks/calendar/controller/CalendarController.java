@@ -50,6 +50,17 @@ public class CalendarController {
 	// 일정 추가
 	@RequestMapping("insert.ca")
 	public String insertCalendar(Calendar ca, Model model) {
+		
+		// 마감일이 시작일 보다 더 빠른 날일 경우 시작일 마감일 데이터를 바꿔 저장해줌
+		if(ca.getCalStartDate().compareTo(ca.getCalEndDate()) > 0) {
+			String changeDate = "";
+			
+			changeDate = ca.getCalStartDate();
+			
+			ca.setCalStartDate(ca.getCalEndDate());
+			ca.setCalEndDate(changeDate);
+			
+		}
 
 		if(ca.getCalTime() == null) { // 체크를 안했을 때 N을 넣어줌 -> 체크 했을 때는 Y가 넘어옴 
 			ca.setCalTime("N");
@@ -116,6 +127,17 @@ public class CalendarController {
 		
 		if(ca.getCalTime() == null) {
 			ca.setCalTime("N");
+		}
+		
+		// 마감일이 시작일 보다 더 빠른 날일 경우 시작일 마감일 데이터를 바꿔 저장해줌
+		if(ca.getCalStartDate().compareTo(ca.getCalEndDate()) > 0) {
+			String changeDate = "";
+			
+			changeDate = ca.getCalStartDate();
+			
+			ca.setCalStartDate(ca.getCalEndDate());
+			ca.setCalEndDate(changeDate);
+			
 		}
 		
 		int result = caService.updateCalendar(ca);

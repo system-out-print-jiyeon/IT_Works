@@ -130,16 +130,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 </style>
 </head>
 <body>
@@ -154,6 +144,7 @@
         <div class="em_content">
             <div class="em_content_center">
 			<span class="em_title">메일 검색 결과</span>
+
 			<span class="em_count">
 				&nbsp;&nbsp;${ listAllCount }개 중 ${ listCount }개 검색됨.&nbsp;
 				<c:if test="${ imp  eq 'imp'}">중요 메일로 등록한 </c:if>
@@ -181,7 +172,7 @@
 				</c:choose>
 				'${ keyword }' 로 검색한 결과입니다.
 			</span>
-				<br>
+				<hr>
 				<jsp:include page="../email/emailSearchBar.jsp"/>
 				<br>
 				<c:choose>
