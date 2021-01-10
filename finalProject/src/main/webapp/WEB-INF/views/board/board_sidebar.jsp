@@ -41,6 +41,21 @@
 .btn{text-align:left;}
 .profile:hover{cursor: pointer;}
 .profile .menu1{display: none;}
+
+ .titleBar{text-align: center;}
+   
+ .titleArea{
+      border-radius: 10px;
+      border: 0;
+      width: 250px;
+      height: 45px;
+      font-size: larger;
+      color: white;
+      background-color: rgb(84, 129, 189);
+      padding-top: 10px;
+   }
+  
+
 </style>
 <body>
 	

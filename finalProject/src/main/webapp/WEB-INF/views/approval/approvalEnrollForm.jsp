@@ -472,13 +472,13 @@
             </div>
 
             <div class="attachment" style="border:dashed; width: 800px; margin: 30px;  ">
-              <div style="height:80px; display: flex;">
-                <span><h5 style="margin: 30px; ">별첨</h5></span>
-                <span><h6 style="margin-top: 30px; margin-bottom: 30px; color: rgb(73, 174, 233); /* border-right: 1px solid#878787; */"><label for="upfile" style="cursor: pointer;">파일 첨부 </label>&nbsp;</h6></span> 
+              <div style="height:80px; display: flex; ">
+                <span><h5 style="margin: 30px;">별첨</h5></span>
+                <!-- <span><h6 style="margin-top: 30px; margin-bottom: 30px; color: rgb(73, 174, 233); /* border-right: 1px solid#878787; */"><label for="upfile" style="cursor: pointer;">파일 첨부 </label>&nbsp;</h6></span>  -->
                <!--  <span><h6 style="margin-top: 30px; color: rgb(73, 174, 233);">&nbsp;&nbsp;관련문서 첨부</h6> </span>  -->
                <!--  <span><h6 style="margin-top: 30px; margin-bottom: 30px; margin-left: 100px; text-align: center; color: #878787;" >여기로 파일을 끌어놓으세요</h6></span> -->
-                <input type="file" id="upfile" name="upfile" style="display:none;">
-                 <span sytle><i class="far fa-file-alt">&nbsp;파일이름</i></span><br>  
+                <input type="file" id="upfile" name="upfile" style="margin-top:27px;" >
+                <!-- <span sytle><i class="far fa-file-alt">&nbsp;파일이름</i></span><br> -->
                 <!-- <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br> -->
                 <!-- <span><i class="far fa-file-alt">&nbsp;파일이름</i></span><br> -->
                </div> 

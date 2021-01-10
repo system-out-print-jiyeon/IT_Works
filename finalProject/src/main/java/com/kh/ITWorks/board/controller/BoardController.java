@@ -41,7 +41,6 @@ public class BoardController {
 		model.addAttribute("pi", pi);
 		model.addAttribute("fbList", fbList);
 		
-		System.out.println("list"  + fbList);
 		
 		return "board/freeBoardListView";
 	}
@@ -86,33 +85,84 @@ public class BoardController {
 	
 	
 	
-	
-	
 	@RequestMapping("detail.fb")
 	public String selectFreeBoard(int fbno, Model model) {
 		
-		model.addAttribute(bService);
+		int result = bService.increaseCount(fbno);
 		
-		return "board/freeBoardDetailView";
-	}
-	
-	
-	@RequestMapping("deletelist.fb")
-	public String deleteFreeBoardList(int fbno, String name, HttpSession session, Model model) {
-		
-		int result = bService.deleteFreeBoard(fbno);
-		
-		if(result > 0) {
-			session.setAttribute("alertMsg", "성공적으로 리스트가 삭제되었습니다.");
-			return "redirect:list.fb";
-		}else {
+		if(result > 0) { // 유효한 게시글
 			
-			model.addAttribute("errorMsg", "리스트 삭제 실패");
+			FreeBoard fb = bService.selectFreeBoard(fbno);
+			
+			model.addAttribute("fb", fb);
+			
+			return "board/freeBoardDetailView";
+			
+		}else { // 유효한 게시글 X
+			model.addAttribute("errorMsg", "존재하지 않는 게시글이거나 삭제된 게시글입니다.");
 			return "common/errorPage";
 		}
 		
-		
 	}
+	
+	// 상세페이지에서 삭제
+	@RequestMapping("delete.fb")
+	public String deleteFreeBoard(int fbno, String fileName, HttpSession session, Model model) {
+		
+		int result = bService.deleteFreeBoard(fbno);
+		
+		if(result > 0) { // 기존의 파일 찾아서 삭제 => 게시글 리스트페이지 재요청
+			
+			if(!fileName.equals("")) { // 기존의 첨부파일이 있었을 경우
+				new File(session.getServletContext().getRealPath(fileName)).delete();
+			}
+			
+			session.setAttribute("alertMsg", "성공적으로 게시글이 삭제되었습니다.");
+			return "redirect:list.fb";
+			
+		}else { 
+			
+			model.addAttribute("errorMsg", "게시글 삭제 실패!");
+			return "common/errorPage";
+			
+		}
+	}
+	
+	
+	// 리스트에서 삭제 
+		@RequestMapping("deleteToList.fb")
+		public String deleteToList(int[] fbno, HttpSession session, Model model) {
+			
+			int resultCount = 0;
+			for(int i=0; i<fbno.length; i++) {
+				int result = bService.deleteToList(fbno[i]);
+				resultCount++;
+			}
+			
+			if(resultCount > 0) {
+				session.setAttribute("alertMsg",  resultCount + "개의 게시글을 성공적으로 삭제하였습니다.");
+				return "redirect:list.fb";
+			}else {
+				model.addAttribute("errorMsg", "게시글을 삭제하지 못하였습니다. 다시 시도해 주세요.");
+				return "common/errorPage";
+			}
+		}
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// 첨부파일 업로드 시켜주는 메소드
 	public String saveFile(HttpSession session, MultipartFile upfile) {

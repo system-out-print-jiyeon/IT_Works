@@ -32,7 +32,11 @@ public class BoardServiceImpl implements BoardService{
 	public int insertFreeBoard(FreeBoard fb) {
 		return bDao.insertFreeBoard(sqlSession, fb);
 	}
-	
+
+	@Override
+	public int increaseCount(int fbno) {
+		return bDao.increaseCount(sqlSession, fbno);
+	}
 	@Override
 	public FreeBoard selectFreeBoard(int fbno) {
 		return bDao.selectFreeBoard(sqlSession, fbno);
@@ -40,6 +44,10 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int deleteFreeBoard(int fbno) {
 		return bDao.deleteFreeBoard(sqlSession, fbno);
+	}
+	@Override
+	public int deleteToList(int fbno) {
+		return bDao.deleteToList(sqlSession, fbno);
 	}
 	
 	

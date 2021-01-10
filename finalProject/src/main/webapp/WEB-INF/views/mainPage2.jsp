@@ -24,7 +24,7 @@
      margin: 0;
      padding: 0;
      box-sizing: border-box;
-     border: solid 1px red;
+     
  }
 
 .wrap{width: 100%; 
@@ -225,6 +225,50 @@ body {
 	
 }
 
+
+  /* 결재할문서div css */
+	.content4_substance{
+	    width: 400px;
+	    height: 300px;
+	    border: 1px solid #aaa5a5;
+	    box-shadow: 2px 2px 2px 2px #aaa5a5;
+	    margin:50px;
+		}
+	
+	.content4_substance_title{
+	    font-weight: 700;
+	    font-size:larger;
+	    padding-left: 10px;
+	    padding-top: 10px;
+		}
+	
+	.content4_substance_contents_list{
+		  width: 390px;
+		  text-align: center;
+		  border-collapse: collapse;
+		}
+	
+	.content4_substance_contents_list tr{
+		    height: 40px;
+		}
+	
+	.content4_substance_contents_list tr:hover{
+		    cursor: pointer;
+		    background-color: #e7e1e1;
+		}
+	
+	.list_titleCell{
+		    width: 230px;
+		}
+	
+	.list_nameCell{
+		    width: 70px;
+		}
+	
+	.list_enrollDate{
+		    width: 100px;
+		}
+
 </style>
 </head>
 <body>
@@ -424,9 +468,53 @@ body {
 		
 		<div class="content3">  <!-- todoList 영역 -->
 		
+		
+		
+		
 		</div>
 
 		<div class="content4">  <!-- 전자결재 영역 -->
+		
+		 <div class="content4_substance">
+
+            <div class="content4_substance_title">진행중인 결재</div>
+            <hr >
+            <div class="content4_substance_contents">
+                <table class="content4_substance_contents_list">
+                    <tr>
+                        <td class="list_titleCell">제목1</td>
+                        <td class="list_nameCell">홍길동</td>
+                        <td class="list_enrollDate">2020/01/04</td>
+                    </tr>
+                    <tr>
+                        <td class="list_titleCell">제목2</td>
+                        <td class="list_nameCell">홍길동</td>
+                        <td class="list_enrollDate">2020/01/04</td>
+                    </tr>
+                    <tr>
+                        <td class="list_titleCell">제목3</td>
+                        <td class="list_nameCell">홍길동</td>
+                        <td class="list_enrollDate">2020/01/04</td>
+                    </tr>
+                    <tr>
+                        <td class="list_titleCell">제목4</td>
+                        <td class="list_nameCell">홍길동</td>
+                        <td class="list_enrollDate">2020/01/04</td>
+                    </tr>
+                    <tr>
+                        <td class="list_titleCell">제목5</td>
+                        <td class="list_nameCell">홍길동</td>
+                        <td class="list_enrollDate">2020/01/04</td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+
+        </div>
+		
+		
 		
 		</div>
 		

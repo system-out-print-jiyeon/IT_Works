@@ -29,12 +29,19 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.insertFreeBoard", fb);
 	}
 	
+	public int increaseCount(SqlSessionTemplate sqlSession, int fbno) {
+		return sqlSession.update("boardMapper.increaseCount", fbno);
+	}
 	public FreeBoard selectFreeBoard(SqlSessionTemplate sqlSession, int fbno) {
 		return sqlSession.selectOne("boardMapper.selectFreeBoard", fbno);
 	}
 
 	public int deleteFreeBoard(SqlSessionTemplate sqlSession, int fbno) {
-		return sqlSession.update("boardMapper.deleteBoard", fbno);
+		return sqlSession.update("boardMapper.deleteFreeBoard", fbno);
+	}
+	
+	public int deleteToList(SqlSessionTemplate sqlSession, int fbno) {
+		return sqlSession.update("boardMapper.deleteToList", fbno);
 	}
 
 

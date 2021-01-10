@@ -26,19 +26,7 @@
          display: flex;
        }
    
-    .titleBar{text-align: center;}
    
-   .titleArea{
-      border-radius: 10px;
-      border: 0;
-      width: 250px;
-      height: 45px;
-      font-size: larger;
-      color: white;
-      background-color: rgb(84, 129, 189);
-      padding-top: 10px;
-   }
-  
    
    
    /**** 컨텐트 ****/
@@ -61,7 +49,7 @@
    .nameBar{
        padding: 20px;
    }
-   .nameBar h3, .nameBar small{
+   .nameBar h3{
        font-weight: 900;
    }
    
@@ -124,7 +112,7 @@
 
                 <div class="content1">
                     <br>
-                    <div class="nameBar"><h3>전체 게시판<small>(자유)</small></h3> </div>
+                    <div class="nameBar"><h3>자유 게시판</h3> </div>
                     
                     
                     <c:choose>       
@@ -140,7 +128,7 @@
 						</c:when>
 						<c:otherwise>
 				            <form name="form_freeboard" method="post" id="list-form">
-				
+								
 					                 <div class="submit_btn">
 				                        <input type="checkbox" id="checkall" value=""> 
 				                        <label class="update" for="checkall">전체선택</label>
@@ -165,7 +153,8 @@
 						                <tbody align="center">
 						                <c:forEach var="fb" items="${fbList}">
 						                    <tr>
-						                        <th width="30px"><input type="checkbox" id="checkedAll" name="bono"></th>
+						                        <th width="30px"><input type="checkbox" id="" name="fbno" value="${fb.FBoardNo }"></th>
+						                        <input type="hidden" id="fbno" value="${ fb.FBoardNo }">
 						                        <td>
 						                        	<c:if test="${ fb.boardDivision eq 'N' }">
 						                        		★
@@ -254,7 +243,7 @@
     $(document).ready(function(){
         $("#checkall").click(function(){
             if($("#checkall").prop("checked")){ 
-                $("input[name=bono]").prop("checked",true);    
+                $("input[name=fbno]").prop("checked",true);    
                 $(".submit_btn #deletebtn").css({"color":"red"}).prop("disabled",false);
             }else{
                 $("input[name=bono]").prop("checked",false);
@@ -267,7 +256,7 @@
     // 체크박스가 체크되면 버튼 활성화 되게 만들기 
     $('#free-boardList tbody tr input[type="checkbox"]').click(function(){
         var tmpp = $(this).prop('checked');
-        var tt=$("[name='bono']:checked").length;   
+        var tt=$("[name='fbno']:checked").length;   
         // 하나라도 체크되어있을 때 버튼 활성화 시키기 위해 length로 체크된 값의 개수를 구함
         
         if(tmpp==true || tt>0 ){
@@ -288,7 +277,7 @@
             	if(str=="delete"){   //  삭제
 				
             	if(confirm("선택한 게시글을 삭제하시겠습니까?") == true){
-	                form_freeboard.action="#";
+	                form_freeboard.action="deleteToList.fb";
             	}
             }
         }  
