@@ -13,10 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.kh.ITWorks.board.model.service.BoardService;
 import com.kh.ITWorks.board.model.vo.BoardAttachment;
+import com.kh.ITWorks.board.model.vo.BoardComment;
 import com.kh.ITWorks.board.model.vo.FreeBoard;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.common.template.Pagination;
@@ -192,7 +195,31 @@ public class BoardController {
 		}
 	
 	
-	
+
+		@ResponseBody
+		@RequestMapping(value="rlist.fb", produces="application/json; charset=utf-8")
+		public String selectReplyList(int fbno) {
+			
+			ArrayList<BoardComment> list = bService.selectReplyList(fbno);
+			// list => JSON => String
+			return new Gson().toJson(list);
+			
+		}
+		
+		
+		@ResponseBody
+		@RequestMapping("rinsert.fb")
+		public String insertReply(BoardComment bc) {
+			
+			int result = bService.insertReply(bc);
+			
+			if(result > 0) {
+				return "success";
+			}else {
+				return "fail";
+			}
+			
+		}
 	
 	
 	

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.ITWorks.board.model.dao.BoardDao;
+import com.kh.ITWorks.board.model.vo.BoardComment;
 import com.kh.ITWorks.board.model.vo.FreeBoard;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 
@@ -52,6 +53,14 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int updateFreeBoard(FreeBoard fb) {
 		return bDao.updateFreeBoard(sqlSession, fb);
+	}
+	@Override
+	public ArrayList<BoardComment> selectReplyList(int fbno) {
+		return bDao.selectReplyList(sqlSession, fbno);
+	}
+	@Override
+	public int insertReply(BoardComment bc) {
+		return bDao.insertReply(sqlSession, bc);
 	}
 	
 	

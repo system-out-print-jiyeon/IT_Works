@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,16 +75,7 @@
 		                
 		            <div class="boardEnrollForm2">
 		                <table id="enrollForm2">
-		                    <tr>
-		                        <th>댓글</th>
-		                        <td>
-		                            <input type="radio" id="allowed" name="fAllowed" value="Y">
-		                                <label for="allowed">허용</label> &nbsp;
-		                            <input type="radio" id="notAllowed" name="fAllowed" value="N">
-		                                <label for="notAllowed">비허용</label>
-		                        </td> 
-		                    </tr>
-		
+		                   
 		                    <tr>
 		                        <th>공지로 등록</th>
 		                        <td>

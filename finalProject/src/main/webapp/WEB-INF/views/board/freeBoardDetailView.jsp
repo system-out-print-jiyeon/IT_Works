@@ -31,7 +31,7 @@
 .fullBoard{
     width: 1100px; 
     height:100%;
-    margin-top:100px;
+    margin-top:70px;
 	margin-left:330px;
 	margin-bottom:100px;
 	}
@@ -151,33 +151,90 @@ th{
 				<input type="hidden" name="fileName" value="${ fb.changeName }">
 			</form>
               
-                    <div class="commentpage">                           
-                        <span><input type="text" name="comment" style="width: 1000px; height: 30px;"></span>
-                        <span><button class="btn btn-dark">댓글 작성</button></span>                            
-                    </div>                        
-                    <hr>
-                    <br><br>
-                    <table id="replyTable" class="table">
-                        <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th>제목</th>
-                                <th>작성자</th>
-                                <th>작성일</th>                              
-                            </tr>
-                        </thead>
-                        <tbody align="center">
-                            <tr>
-                                <td>1</td>
-                                <td>안녕하세요.</td>
-                                <td>김OO</td>
-                                <td>2020/12/14</td>
-                            </tr>
-                    </table>
-                    </div>   
-                </div>    
-                
-                
-         </div>           
+              
+              
+             <table id="replyArea" class="table" align="center">
+                <thead>
+                    <tr>
+                        <th colspan="2">
+                            <textarea class="form-control" id="content" cols="55" rows="2" style="resize:none; width:100%"></textarea>
+                        </th>
+                        <th style="vertical-align: middle"><button class="btn btn-secondary" onclick="addReply();">등록하기</button></th>
+                    </tr>
+                    <tr>
+                       <td colspan="3">댓글 (<span id="rcount"></span>) </td> 
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+           
+           
+           </div>   
+       </div>    
+       
+	<script>
+		$(function(){
+			selectReplyList();
+		})
+		
+		function addReply(){
+			if($("#content").val().trim().length != 0){
+				$.ajax({
+					url:"rinsert.fb",
+					data:{
+						comContent:$("#content").val(),
+						refBno:${fb.FBoardNo}, 
+						comWriter:"${loginUser.memNo}" 
+					},
+					success:function(result){
+						
+						if(result == "success"){
+							$("#content").val("");
+							selectReplyList();
+						}
+						
+					},error:function(){
+						console.log("댓글 작성용 ajax 통신 실패!");
+					}
+					
+				})
+				
+			}
+			
+			
+			
+		}
+		
+		function selectReplyList(){
+			$.ajax({
+				url:"rlist.fb",
+				data:{fbno:${fb.FBoardNo}},
+				success:function(list){
+					$("#rcount").text(list.length);
+					var value ="";
+					
+					for(var i in list){
+						value += "<tr>" + 
+									 "<th>" + list[i].memName + "</th>" + 
+									 "<td>" + list[i].comContent + "</td>" + 
+									 "<td>" + list[i].createDate + "</td>" + 
+								 "</tr>";
+					}
+					
+					$("#replyArea tbody").html(value);
+					
+				}, error:function(){
+					console.log("댓글 작성용 ajax 통신 실패");
+				}
+			})
+		}
+	
+	</script>
+
+       
+       
+</div>           
 </body>
 </html>

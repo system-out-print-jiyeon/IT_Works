@@ -30,7 +30,7 @@
 .fullBoard{
     width: 1100px; 
     height:100%;
-    margin-top:100px;
+    margin-top:70px;
 	margin-left:330px;
 	margin-bottom:100px;
 	}

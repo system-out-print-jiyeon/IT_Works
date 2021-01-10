@@ -41,6 +41,17 @@
 		<result column="change_name" property="changeName"/>
 	</resultMap>
 	
+	<resultMap id="BoardCommentResultSet" type="BoardComment">
+		<result column="com_no" property="comNo"/>
+		<result column="com_content" property="comContent"/>
+		<result column="create_date" property="createDate"/>
+		<result column="ref_bno" property="refBno"/>
+		<result column="com_writer" property="comWriter"/>
+		<result column="status" property="status"/>
+		<result column="com_division" property="comDivision"/>
+		<result column="mem_name" property="memName"/>
+	</resultMap>
+	
 	<select id="selectFreeBoardListCount" resultType="_int">
 		select
 		       count(*)
@@ -92,7 +103,7 @@
 			#{boardDivision},
 			default,
 			default,
-			#{fAllowed},
+			default,
 			#{originName},
 			#{changeName}
 		)
@@ -146,7 +157,42 @@
 	 WHERE f_BOARD_NO = #{fBoardNo}
 	</update>
 	
-	
+	<select id="selectReplyList" parameterType="_int" resultMap="BoardCommentResultSet">
+		SELECT 
+			   COM_NO
+			 , COM_WRITER
+			 , COM_CONTENT
+			 , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+			 , mem_name
+	      FROM BOARD_COMMENT
+	      join employee on (com_writer = mem_no)
+	     WHERE REF_BNO = #{fbno}
+	       AND STATUS = 'Y'
+	     ORDER
+	        BY COM_NO DESC
+	</select>
+
+	<insert id="insertReply" parameterType="BoardComment">
+		INSERT
+		  INTO BOARD_COMMENT
+		  (
+		     COM_NO
+		   , COM_CONTENT
+		   , REF_BNO
+		   , COM_WRITER
+		   , CREATE_DATE
+		   , STATUS
+		  )
+		  VALUES
+		  (
+		     SEQ_BCNO.NEXTVAL
+		   , #{comContent}
+		   , #{refBno}
+		   , #{comWriter}
+		   , DEFAULT
+		   , DEFAULT
+		  )
+	</insert>
 	
 	
 	

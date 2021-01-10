@@ -3,6 +3,7 @@ package com.kh.ITWorks.board.model.service;
 import java.util.ArrayList;
 
 import com.kh.ITWorks.board.model.vo.BoardAttachment;
+import com.kh.ITWorks.board.model.vo.BoardComment;
 import com.kh.ITWorks.board.model.vo.FreeBoard;
 import com.kh.ITWorks.common.model.vo.PageInfo;
 
@@ -27,6 +28,10 @@ public interface BoardService {
 	// 게시판 수정용 서비스
 	int updateFreeBoard(FreeBoard fb);
 	
+	// 댓글 리스트 조회용 서비스
+		ArrayList<BoardComment> selectReplyList(int fbno);
 	
+	// 댓글 작성용 서비스
+	int insertReply(BoardComment bc);
 	
 }
