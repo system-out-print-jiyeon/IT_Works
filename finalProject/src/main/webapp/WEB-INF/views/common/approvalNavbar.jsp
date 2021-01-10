@@ -108,16 +108,14 @@
           text-decoration: none;
           font-size: 25px;
           display: inline;
-          
+          display: table-cell;
+        	   text-decoration: none;
+          	   color: rgb(109, 100, 100);
           
 
           
       }
-      .infoText {
-          text-decoration: none;
-          color: rgb(109, 100, 100);
-          
-      }
+     
 
       #bell{
           border: 2px solid rgb(109, 100, 100);
@@ -133,7 +131,7 @@
          vertical-align: middle;
             
         }
-        .icon{ display: table-cell;}
+       
 
         /* 서브메뉴리스트 */
 
@@ -236,6 +234,11 @@
            else if(url.contains("board")) {%> 게시판 <% }
            else if(url.contains("workTime")) {%> 근태관리 <% } 
            else if(url.contains("an")) {%> 근태관리 <% } 
+           else if(url.contains("calendar")) {%> 캘린더 <% }
+           else if(url.contains("email")) {%> 메일 <% }
+           else if(url.contains("publiclist")) {%> 주소록 <% }
+           else if(url.contains("personlist")) {%> 주소록 <% }
+           else if(url.contains("list.fb")) {%> 게시판 <% }
            else {%> 오피스 홈 <% } %>
             
             &nbsp;<i class="fas fa-sort-down">&nbsp;</i>
@@ -253,14 +256,14 @@
         
         
         <div class="personalInfo">
-           <a href="#" class="infoText"><span class="icon"><img class="profileImg" alt="사원사진" src="${ loginUser.memImg }"></span class="icon" class="username">&nbsp;<span class="username">${ loginUser.memName }&nbsp;</span></a>
+           <span class="icon"><img class="profileImg" alt="사원사진" src="${ loginUser.memImg }"></span>&nbsp;<span class="username">${ loginUser.memName }&nbsp;</span>
         </div>
         
         
         <c:choose>
         	<c:when test="${ !empty loginUser}">
-		        <div class="logoutDiv">
-		        	<a href="logout.at" class="btn btn-outline-primary">로그아웃</a>
+		        <div class="logoutDiv" style="margin-bottom:22px;">
+		        	<a href="logout.at" class="btn btn-outline-primary" style="">로그아웃</a>
 		        </div>
 		    </c:when>
         </c:choose>

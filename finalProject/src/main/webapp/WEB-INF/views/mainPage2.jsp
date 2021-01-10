@@ -263,7 +263,7 @@ body {
                 
             </li>
             <br>
-            <li style="margin-left: -35px;"><a href=""><i class="fas fa-cog"></i>&nbsp;&nbsp;관리자 설정</a></li>
+            <!-- <li style="margin-left: -35px;"><a href=""><i class="fas fa-cog"></i>&nbsp;&nbsp;관리자 설정</a></li>   -->
         </div>
     
     </div>
