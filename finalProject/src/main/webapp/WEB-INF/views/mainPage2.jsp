@@ -285,8 +285,8 @@ body {
 	
 	function popupOpen(){
 		var url= "chat.do";    //팝업창 페이지 URL
-		var winWidth = 630;
-	    var winHeight = 480;
+		var winWidth = 800;
+	    var winHeight = 600;
 	    var popupOption= "width="+winWidth+", height="+winHeight;    //팝업창 옵션(optoin)
 		window.open(url,"",popupOption);
 	}

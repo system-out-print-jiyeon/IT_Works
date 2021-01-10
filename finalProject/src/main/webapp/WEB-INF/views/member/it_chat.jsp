@@ -71,7 +71,7 @@ img{ max-width:100%;}
   margin: 0;
   padding: 18px 16px 10px;
 }
-.inbox_chat { height: 550px; overflow-y: scroll;}
+.inbox_chat { height: 440px; overflow-y: scroll;}
 
 .active_chat{ background:#ebebeb;}
 
@@ -145,7 +145,7 @@ img{ max-width:100%;}
 }
 .messaging { padding: 0 0 50px 0;}
 .msg_history {
-  height: 516px;
+  height: 400px;
   overflow-y: auto;
 }
 </style>
