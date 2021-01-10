@@ -129,7 +129,7 @@
                     
                     <c:choose>       
                     
-						<c:when test="${empty list}">
+						<c:when test="${empty fbList}">
 							
 	                    	<div class="submit_btn">
 		                        <label class="insert"><button onclick="showPopup();" id="insertbtn" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> 새글쓰기</button></label>             
@@ -165,11 +165,11 @@
 						                <c:forEach var="fb" items="${fbList}">
 						                    <tr>
 						                        <th width="30px"><input type="checkbox" id="checkedAll" name="bono"></th>
-						                        <td class="fbno">${fb.fBoardNo }</td>
-						                        <td>${fb.fBoardTitle }</td>
+						                        <td class="fbno">${fb.FBoardNo }</td>
+						                        <td>${fb.FBoardTitle }</td>
 						                        <td>${fb.memName }</td>
-						                        <td>${fb.fCreateDate }</td>
-						                        <td>${fb.fCount }</td>
+						                        <td>${fb.FCreateDate }</td>
+						                        <td>${fb.FCount }</td>
 						                    </tr>
 						                    
 						                </c:forEach>
