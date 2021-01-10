@@ -56,9 +56,9 @@
 	
 .content1_1{
 	
-	width:44%;
+	width:30%;
 }
-.content1_2{width:26%;float:left;}
+.content1_2{width:40%;float:left;}
 .content1_3{width:30%;padding-left:120px;float:left;}
 
 .content2{width: 50%; height:500px; }
@@ -144,7 +144,7 @@ body {
   display: inline-block;
   font-size: 1em;
   padding: 1em 2em;
-  margin-top: 80px;
+  margin-top: 85px;
   margin-bottom: 80px;
   -webkit-appearance: none;
   appearance: none;
