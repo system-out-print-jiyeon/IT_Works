@@ -198,7 +198,11 @@
 		font-size: 12px; 
 		font-weight: 700;
 	}
-	
+	.profileImg{
+		border-radius: 70%;
+		width: 70px;
+    	height: 70px;
+	}
   </style>
 </head>
 <body>
