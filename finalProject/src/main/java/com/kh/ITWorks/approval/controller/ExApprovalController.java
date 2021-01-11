@@ -38,13 +38,43 @@ public class ExApprovalController {
 									 ApprovalDocument ad,
 									 HttpSession session, Model model) {
 		int listCount = aService.selectListCount(ad);
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 15, 5);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 15);
 		ArrayList<ApprovalDocument> alist = aService.selectApprovalList(pi, ad);
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("alist", alist);
 		
 		return "approval/approvalListView";
+	}
+	
+	@RequestMapping("allist.ap")
+	public String selectApprovalLineList(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+		                                 ApprovalDocument ad,
+		                                 HttpSession session, Model model) {
+		int listCount = aService.selectLineListCount(ad);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 15);
+		ArrayList<ApprovalDocument> alist = aService.selectApprovalLineList(pi, ad);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("alist", alist);
+		
+		return "approval/approvalListView";
+
+	}
+	
+	@RequestMapping("rlist.ap")
+	public String selectRefererList(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+		                                 ApprovalDocument ad,
+		                                 HttpSession session, Model model) {
+		int listCount = aService.selectRefererListCount(ad);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 15);
+		ArrayList<ApprovalDocument> alist = aService.selectRefererList(pi, ad);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("alist", alist);
+		
+		return "approval/approvalListView";
+
 	}
 	
 	@RequestMapping("detail.ap")
@@ -75,6 +105,7 @@ public class ExApprovalController {
 	
 	@RequestMapping("decision.ap")
 	public String approvalDecision(ApprovalLine al, HttpSession session, Model model) {
+		
 		int result = aService.approvalDecision(al);
 		
 		if (result > 0) {

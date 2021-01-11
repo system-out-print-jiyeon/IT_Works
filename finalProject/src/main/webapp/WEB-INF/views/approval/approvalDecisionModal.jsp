@@ -11,22 +11,23 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<h6>결재여부</h6>
+						<h4>결재여부</h4>
 						<br>
 						<div style="text-align: center;">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="appSta" id="approvalMethod_approve" value="Y" onclick="statusApprove();">
-								<label for="approvalMethod_approve">승인</label>
+								<label class="form-check-label" for="approvalMethod_approve" style="font-size: 23px;">승인</label>
 							</div>
-							<div class="form-check form-check-inline">
+							<div class="form-check form-check-inline" style="margin-left: 30px;">
 								<input class="form-check-input" type="radio" name="appSta" id="approvalMethod_reject" value="N" onclick="statusReject();">
-								<label for="approvalMethod_reject">반려</label>
+								<label class="form-check-label" for="approvalMethod_reject" style="font-size: 23px;">반려</label>
 							</div>
 						</div>
 					</div>
 				</div>
 				<input type="hidden" value="${ loginUser.memNo }" name="memNo">
 				<input type="hidden" value="${ ad.docNo }" name="docNo">
+				<input type="hidden" value="" id="approvalOrder" name="approvalOrder">
 				<input type="hidden" value="" id="approvalStatus" name="approvalStatus">
 				
 				<script>

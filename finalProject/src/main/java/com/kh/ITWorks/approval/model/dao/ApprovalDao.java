@@ -104,5 +104,27 @@ public class ApprovalDao {
 		
 		return (ArrayList) sqlSession.selectList("approvalMapper.selectApprovalList", ad, rowBounds);
 	}
+	public int selectLineListCount(SqlSessionTemplate sqlSession, ApprovalDocument ad) {
+		return sqlSession.selectOne("approvalMapper.selectLineListCount", ad);
+	}
+	public ArrayList<ApprovalDocument> selectApprovalLineList(SqlSessionTemplate sqlSession, PageInfo pi,
+			ApprovalDocument ad) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList) sqlSession.selectList("approvalMapper.selectApprovalLineList", ad, rowBounds);
+	}
+	public int selectRefererListCount(SqlSessionTemplate sqlSession, ApprovalDocument ad) {
+		return sqlSession.selectOne("approvalMapper.selectRefererListCount", ad);
+	}
+	public ArrayList<ApprovalDocument> selectRefererList(SqlSessionTemplate sqlSession, PageInfo pi,
+			ApprovalDocument ad) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList) sqlSession.selectList("approvalMapper.selectRefererList", ad, rowBounds);
+	}
 
 }

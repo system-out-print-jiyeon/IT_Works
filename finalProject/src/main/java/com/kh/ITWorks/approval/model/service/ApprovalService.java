@@ -46,6 +46,12 @@ public interface ApprovalService {
 	int selectListCount(ApprovalDocument ad);
 	ArrayList<ApprovalDocument> selectApprovalList(PageInfo pi, ApprovalDocument ad);
 	
+	int selectLineListCount(ApprovalDocument ad);
+	ArrayList<ApprovalDocument> selectApprovalLineList(PageInfo pi, ApprovalDocument ad);
+	
+	int selectRefererListCount(ApprovalDocument ad);
+	ArrayList<ApprovalDocument> selectRefererList(PageInfo pi, ApprovalDocument ad);
+	
 	ArrayList<ApprovalLine> selectApprovalLine(int docNo);
 	ArrayList<Referer> selectReferer(int docNo);
 	ApprovalDocument selectApprovalDocument(int docNo);

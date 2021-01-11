@@ -94,10 +94,9 @@
                 <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>문서함</a>
                     <ul class="menu1">
                         <li><a href="#" onclick="document.getElementById('approvalList').submit();">전체</a></li>
-                        <li><a href="#">대기</a></li>
-                 <!--        <li><a href="#">확인</a></li> -->
-                        <li><a href="#">진행</a></li>
-                        <li><a href="#">완료</a></li>
+                        <li><a href="#" onclick="document.getElementById('approvalLine').submit();">결재문서</a></li>
+                        <li><a href="#" onclick="document.getElementById('refererList').submit();">참조문서</a></li>
+                        <!-- <li><a href="#">완료</a></li> -->
                     </ul>
                 </li>
                 <!-- <li class="profile" ><a class="btn"><i class="fas fa-sort-down">&nbsp;</i>문서함</a>
@@ -112,6 +111,12 @@
                 </li> -->
                 <!-- <li><a href=""><i class="fas fa-cog"></i>&nbsp;관리자 설정</a></li> -->
             </div>
+            <form action="allist.ap" method="POST" id="approvalLine">
+				<input type="hidden" value="${ loginUser.memNo }" name="memNo">
+			</form>
+			<form action="rlist.ap" method="POST" id="refererList">
+				<input type="hidden" value="${ loginUser.memNo }" name="memNo">
+			</form>
         
         </div>
 

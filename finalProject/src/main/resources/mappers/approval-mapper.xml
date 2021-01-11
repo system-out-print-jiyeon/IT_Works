@@ -275,6 +275,74 @@
 		    BY ad.doc_no desc
 	</select>
 	
+	<select id="selectLineListCount" parameterType="AppDoc" resultType="_int">
+		select
+		       count(*)
+		  from 
+		       approval_document ad
+		 inner
+		  join approval_line al
+		    on al.doc_no = ad.doc_no
+		 where al.mem_no = #{memNo}
+	</select>
+	
+	<select id="selectApprovalLineList" parameterType="AppDoc" resultMap="approvalDocumentResultSet">
+		select 
+		       ad.doc_no "doc_no"
+		     , ad.mem_no "mem_no"
+		     , mem_name
+		     , al.mem_no "approvalmem_no"
+		     , doc_title
+		     , doc_enroll_date
+		     , doc_status
+		     , doc_form
+		     , approval_status
+		     , approval_order
+		  from 
+		       approval_document ad
+		 inner
+		  join approval_line al
+		    on al.doc_no = ad.doc_no
+		  join employee e
+		    on e.mem_no = ad.mem_no
+		 where al.mem_no = #{memNo}
+		 order
+		    by ad.doc_no desc
+	</select>
+	
+	<select id="selectRefererListCount" parameterType="AppDoc" resultType="_int">
+		select
+		       count(*)
+		  from 
+		       approval_document ad
+		 inner
+		  join referer r
+		    on r.doc_no = ad.doc_no
+		 where r.mem_no = #{memNo}
+	</select>
+	
+	<select id="selectRefererList" parameterType="AppDoc" resultMap="approvalDocumentResultSet">
+		select 
+		       ad.doc_no "doc_no"
+		     , ad.mem_no "mem_no"
+		     , mem_name
+		     , r.mem_no "approvalmem_no"
+		     , doc_title
+		     , doc_enroll_date
+		     , doc_status
+		     , doc_form
+		  from 
+		       approval_document ad
+		 inner
+		  join referer r
+		    on r.doc_no = ad.doc_no
+		  join employee e
+		    on e.mem_no = ad.mem_no
+		 where r.mem_no = #{memNo}
+		 order
+		    by ad.doc_no desc
+	</select>
+	
 	<select id="selectReferer" parameterType="_int" resultMap="refererResultSet">
 		select
 		       doc_no
@@ -386,11 +454,10 @@
 		       approval_line
 		   set approval_status = #{approvalStatus}
 		 where doc_no = #{docNo}
-		 <if test="approvalStatus.equals('N')">
-		   and approval_grade >= #{approvalOrder}
-		 </if>
-		 <if test="approvalStatus.equals('Y')">
-		   and approval_grade <![CDATA[<=]]> #{approvalOrder}
+		 <if test='"Y".equals(approvalStatus)'>
+		 <![CDATA[
+		   and approval_order <= #{approvalOrder}
+		   ]]>
 		 </if>
 	</update>
 
