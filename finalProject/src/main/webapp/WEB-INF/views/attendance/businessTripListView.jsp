@@ -112,6 +112,10 @@
       		cursor:pointer;
       }
       
+      #businessTable tr td p{
+          width:100px;
+      }
+      
       /* 페이징 */
       .paginationBar{
           align-items: center;

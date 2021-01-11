@@ -151,7 +151,7 @@ input[type="submit"]:hover{
                         <td>
                             <table id="addTable" class="table-sm table-borderless">
                                 <tr height="0">
-                                    <td>
+                                    <td width="300">
                                         <input type="email" name="emToList[0].emTo" required>
                                         <input class="add" type="button" onClick="add()" value="추가">
                                     </td>

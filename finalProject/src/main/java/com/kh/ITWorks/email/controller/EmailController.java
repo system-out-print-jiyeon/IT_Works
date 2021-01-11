@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.google.gson.Gson;
+
 import com.kh.ITWorks.common.model.vo.PageInfo;
 import com.kh.ITWorks.common.template.Pagination;
 import com.kh.ITWorks.email.model.dto.EmailAttachSelect;
@@ -28,6 +28,7 @@ import com.kh.ITWorks.email.model.service.EmailService;
 import com.kh.ITWorks.email.model.vo.Email;
 import com.kh.ITWorks.email.model.vo.EmailAttach;
 import com.kh.ITWorks.email.model.vo.EmailRecipient;
+
 
 @Controller
 public class EmailController {
@@ -384,6 +385,7 @@ public class EmailController {
 		
 	}
 	
+	// 메일 보내기 화면
 	@RequestMapping("enrollForm.em")
 	public String emailEnrollForm() {
 		return "email/emailEnrollForm";

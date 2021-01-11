@@ -22,7 +22,7 @@
 	margin-top:80px;
     width:300px;
     height:0%;
-    background:linear-gradient(  rgb(245, 236, 236),rgb(240, 231, 231), rgb(255, 255, 255));
+    background:linear-gradient(rgb(231, 225, 225),rgb(231, 225, 225), rgb(255, 255, 255));
     position: fixed;
 
     animation-name:key1;
@@ -76,6 +76,7 @@
 }
 .em_menubar_list a:hover{
     text-decoration:none;
+    color:gray;
     animation-name:key3;
     animation-duration:0.3s;
     animation-fill-mode:both;

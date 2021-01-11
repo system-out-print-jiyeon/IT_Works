@@ -69,7 +69,6 @@
 }
 @keyframes key5{
     100%{
-        /* background:rgb(231, 225, 225); */
         background:rgb(241, 235, 235);
     }
 }
@@ -111,15 +110,15 @@
     animation-fill-mode:both;
     animation-direction: alternate;
 }
-#current-page{
-        background:rgb(93, 158, 255); 
-        color:white;
-}
 @keyframes key6{
     100%{
         background:rgb(93, 158, 255); 
         color:white;
     }
+}
+#current-page{
+        background:rgb(93, 158, 255); 
+        color:white;
 }
 .email-from-list{
 	background:linear-gradient( to right, rgb(253, 253, 241),rgb(255, 255, 255),rgb(255, 255, 255));

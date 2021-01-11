@@ -69,7 +69,6 @@
 }
 @keyframes key5{
     100%{
-        /* background:rgb(231, 225, 225); */
         background:rgb(241, 235, 235);
     }
 }
@@ -128,8 +127,6 @@
  	background:linear-gradient( to right, rgb(241, 251, 253),rgb(255, 255, 255),rgb(255, 255, 255));
 }
 
-
-
 </style>
 </head>
 <body>
@@ -138,7 +135,7 @@
 		<jsp:include page="../common/approvalNavbar.jsp"/>
     </div>
 	<div class="em_wrap">
-
+	
 		<jsp:include page="../common/sideBar_email.jsp"/>
 
         <div class="em_content">

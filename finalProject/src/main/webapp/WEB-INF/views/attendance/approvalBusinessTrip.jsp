@@ -111,6 +111,9 @@
       tbody tr td:hover{
       		cursor:pointer;
       }
+      #businessTable tr td p{
+		    width:100px;
+		}
       #workListTable tbody tr:hover{cursor:pointer;}
       /* 페이징 */
       .paginationBar{
