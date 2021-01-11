@@ -230,15 +230,15 @@
         
            <% if(url.contains("approval")){ %> 전자결재 <% } 
            else if(url.contains("manage")) {%> 인사관리 <% } 
-           else if(url.contains("reservation")) {%> 회의실 예약 <% } 
-           else if(url.contains("board")) {%> 게시판 <% }
+           else if(url.contains("reservation")) {%> 회의실 예약 <% }
            else if(url.contains("workTime")) {%> 근태관리 <% } 
            else if(url.contains("an")) {%> 근태관리 <% } 
+           else if(url.contains("bt")) {%> 근태관리 <% }
            else if(url.contains("calendar")) {%> 캘린더 <% }
            else if(url.contains("email")) {%> 메일 <% }
            else if(url.contains("publiclist")) {%> 주소록 <% }
            else if(url.contains("personlist")) {%> 주소록 <% }
-           else if(url.contains("list.fb")) {%> 게시판 <% }
+           else if(url.contains("ad")) {%> 주소록 <% }
            else {%> 오피스 홈 <% } %>
             
             &nbsp;<i class="fas fa-sort-down">&nbsp;</i>

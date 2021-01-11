@@ -229,10 +229,14 @@
       	 <% String url = request.getRequestURI(); %>
         
            <% if(url.contains("approval")){ %> 전자결재 <% } 
-           else if(url.contains("manage")) {%> 인사관리 <% } 
+           else if(url.contains("manage")) {%> 인사관리 <% }  
+           else if(url.contains("personlist")) {%> 주소록 <% }
+           else if(url.contains("publiclist")) {%> 주소록 <% }
+           else if(url.contains("ad")) {%> 주소록 <% }
            else if(url.contains("reservation")) {%> 회의실 예약 <% } 
            else if(url.contains("workTime")) {%> 근태관리 <% } 
-           else if(url.contains("an")) {%> 근태관리 <% } 
+           else if(url.contains("an")) {%> 근태관리 <% }
+           else if(url.contains("bt")) {%> 근태관리 <% }
            else {%> 오피스 홈 <% } %>
             
             &nbsp;<i class="fas fa-sort-down">&nbsp;</i>
@@ -284,6 +288,12 @@
         <a href="#" onclick="document.getElementById('approvalList').submit();"><div><p class="listCategory"><i class="fas fa-file-signature"></i><br>전자결재</p></div></a>
     
     </div>
+
+	
+	<form action="list.ap" method="POST" id="approvalList">
+		<input type="hidden" value="${ loginUser.memNo }" name="memNo">
+		<input type="hidden" value="0" id="docform" name="docForm">
+	</form>
 
     <script>
 
