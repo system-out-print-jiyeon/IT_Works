@@ -134,6 +134,25 @@
 		    });
 		</script>
 	</c:if>
+	
+	<c:if test="${ !empty mianCal }">
+		<form action="selectMain.ca" method="post" id="select_main_calendar_form">
+			<input type="hidden" name="memNo" value="${ loginUser.memNo }" >
+		</form>
+	
+		<script>
+			function mainCalendarSubmit(){
+				$("#select_main_calendar_form").submit();
+			}
+		</script>
+		
+		<script>
+		    $(document).ready(function() {
+		    	alert("${ mianCal }");
+		    	mainCalendarSubmit();
+		    });
+		</script>
+	</c:if>
     
 </body>
 </html>
