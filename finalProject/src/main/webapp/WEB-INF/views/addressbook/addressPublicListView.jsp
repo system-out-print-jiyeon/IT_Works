@@ -14,8 +14,8 @@
 </head>
 <style>
 .publicAddress{
-    width: 1600px; 
-    height:1000px; 
+    width: 900px; 
+    height:800px; 
     padding-top: 100px;
     margin: auto; 
     box-sizing: border-box;
@@ -36,7 +36,7 @@
 
 
 table{
-    width: 1500px;
+    width: 1000px;
     background:white;
     height: 100px;
     font-size: 27px; 
@@ -113,9 +113,9 @@ table{
                             <td><input name="adNo" type="checkbox" value="${ a.addNo }" ></td>
                             <td>${ a.addName }</td>
                             <td>${ a.addPhone }</td>
-                            <td>${ a.addDepartment }</td>
+                            <td>${ a.mem.deptName }팀</td>
                             <td>${ a.addDepartmentPhone }</td>
-                            <td>${ a.addSpot }</td>
+                            <td>${ a.mem.jobName }</td>
                             <td>${ a.addEmail }</td>
                             <td>${ a.addCompanyName }</td>
                         </tr>
@@ -216,6 +216,7 @@ table{
     					addName:$("#quickName").val(),
     					addEmail:$("#quickEmail").val(),
     					addPhone:$("#quickPhone").val(),
+    					addWriter:"${ loginUser.memNo }",
     					addCategory:'public'
     				},
     				success:function(result){
@@ -242,18 +243,23 @@ table{
     				
     				var value="";
     				for(var i in list){
-    					value += "<tr>" +
-    								"<td>" + "" + "</td>" +
-			                        "<th>" + list[i].addName + "</th>" +
-			                        "<td>" + list[i].addPhone + "</td>" +
-			                        "<td>" + "" + "</td>" +
-			                        "<td>" + "" + "</td>" +
-			                        "<td>" + "" + "</td>" +
-			                        "<td>" + list[i].addEmail + "</td>" +
-			                        "<td>" + "" + "</td>" +
-			                     "</tr>";
-    				}
-    				
+    					if(list[i].addDepartment === undefined){
+    	                      list[i].mem.deptName = '';
+    	                      list[i].addDepartmentPhone = '';
+    	                      list[i].mem.jobName = '';
+    	                      list[i].addCompanyName = '';
+    	                   }
+    	                   value += "<tr>" +
+    	                            "<td>" + list[i].addNo + "</td>" +
+    	                                 "<td>" + list[i].addName + "</td>" +
+    	                                 "<td>" + list[i].addPhone + "</td>" +
+    	                                 "<td>" + list[i].addDepartment + "</td>" +
+    	                                 "<td>" + list[i].addDepartmentPhone + "</td>" +
+    	                                 "<td>" + list[i].addSpot + "</td>" +
+    	                                 "<td>" + list[i].addEmail + "</td>" +
+    	                                 "<td>" + list[i].addCompanyName + "</td>" +
+    	                              "</tr>";
+    	                }
     				$("#addressArea1 tbody").html(value);
     				
     			},error:function(){

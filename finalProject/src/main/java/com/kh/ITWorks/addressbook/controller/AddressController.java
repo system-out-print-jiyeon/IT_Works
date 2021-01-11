@@ -67,6 +67,42 @@ public class AddressController {
 	public String insertAddress(AddressBook a, HttpSession session, Model model) {
 		
 		String str = a.getAddCategory();
+		String str1 = a.getAddSpot();
+		String str2 = a.getAddDepartment();
+		
+		if(str2 != null) {
+		
+			if(str2.contains("개발")) {				
+				str2 = "D1";
+			}else if(str2.contains("인사")) {
+				str2 = "D2";
+			}else if(str2.contains("경영지원")) {
+				str2 = "D3";
+			}else if(str2.contains("기획")) {
+				str2 = "D4";
+			}else if(str2.contains("총무")) {
+				str2 = "D5";
+			}
+		}
+		a.setAddDepartment(str2);
+			
+		if(str1 != null)	{		
+		switch(str1) {
+	      case "대표이사": str1 = "J7"; break;
+	      case "이사": str1 = "J6"; break;
+	      case "부사": str1 = "J5"; break;
+	      case "차장": str1 = "J4"; break;
+	      case "과장": str1 = "J3"; break;
+	      case "대리": str1 = "J2"; break;
+	      case "사원": str1 = "J1"; break;
+	      case "계약직": str1 = "J0"; break;
+	      
+	      }
+		}
+		
+		
+		a.setAddSpot(str1);
+		
 		int result = adService.insertAddress(a);
 		
 		if(result > 0) {

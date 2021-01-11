@@ -43,7 +43,9 @@
         <div class="address1">
             <form id="enrollForm" action="insert.ad" method="post">
                 <h1>연락처 추가</h1><br>
-                    <table class="address2">                        
+                    <table class="address2">
+                    	
+                                            
                         <tr>
                             <th><label for="name">이름</label></th> 
                             <td><input type="text" id="name" size="30" name="addName" required></td>
@@ -88,6 +90,7 @@
                         </tr>
                         </table>
                 <div class="button_1" align="right">
+                	<input type="hidden" name="addWriter" value="${ loginUser.memNo }">
                     <button type="submit" class="btn btn-info btn btn-primary btn-lg">저장</button>
                     <button type="reset" class="btn btn btn-lg">취소</button>
                 </div>
