@@ -14,7 +14,7 @@
 </head>
 <style>
 .publicAddress{
-    width: 900px; 
+    width: 85%; 
     height:800px; 
     padding-top: 100px;
     margin: auto; 
@@ -36,7 +36,7 @@
 
 
 table{
-    width: 1000px;
+    width: 85%;
     background:white;
     height: 100px;
     font-size: 27px; 

@@ -10,28 +10,28 @@
 </head>
 <style>
 .Addressbook{
-    width: 1200px; 
-    height:1100px; 
-    padding-top: 100px;
+    width: 100%; 
+    height:1000px; 
+    padding-top: 5px;
     margin: auto; 
     box-sizing: border-box;
     margin-left:400px;
 }
 .address1{
-    width:1200px; 
-    height:1500px; 
+    width:80%; 
+    height:1000px; 
     padding: 10px;
 }
 .address2{
-    width: 900px; 
+    width: 80%; 
     height: 900px; 
-    font-size: 30px; 
-    margin-top: 50px;
+    font-size: 25px; 
+    margin-top: 10px;
 }
 .button_1{
-    width:1500px; 
-    padding-left: 600px; 
-    margin-top: 350px;
+    width: 80%; 
+    padding-left: 400px; 
+    margin-top: 200px;
 }
 </style>
 <body>
