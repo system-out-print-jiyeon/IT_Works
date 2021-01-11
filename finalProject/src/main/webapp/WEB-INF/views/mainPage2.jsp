@@ -671,7 +671,7 @@ body{
 		
 		<div class="content3">  <!-- todoList 영역 -->
 		
-		
+			<jsp:include page="todolist/todolist.jsp" />
 		
 		</div>
 
