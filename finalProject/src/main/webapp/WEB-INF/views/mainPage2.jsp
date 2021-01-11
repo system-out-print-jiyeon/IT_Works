@@ -676,10 +676,12 @@ body{
 		<!-- 
 			<jsp:include page="member/mainProfile.jsp"/>
 		 -->
+		 
+			<jsp:include page="calendar/mainPageCalendar.jsp"/>
+
 		</div>
 		
 		<div class="content3">  <!-- todoList 영역 -->
-		
 		
 		
 		
