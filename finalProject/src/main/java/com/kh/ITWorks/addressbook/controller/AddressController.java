@@ -32,7 +32,7 @@ public class AddressController {
 		int adUser = mem.getMemNo();
 		
 		int listCount = adService.selectAddressPersonListCount();
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 15, 10);
 		ArrayList<AddressBook> peList = adService.selectAddressPersonList(pi, adUser);
 		
 		model.addAttribute("pi", pi);	
@@ -48,7 +48,7 @@ public class AddressController {
 										Model model) {
 		
 		int listCount = adService.selectAddressPublicListCount();
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 15, 10);
 		ArrayList<AddressBook> puList = adService.selectAddressPublicList(pi);
 					
 		model.addAttribute("pi", pi);					
