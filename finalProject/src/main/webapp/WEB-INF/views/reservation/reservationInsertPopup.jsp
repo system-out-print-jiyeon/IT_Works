@@ -167,7 +167,7 @@
       				startPeriod: $("#startPeriod").val(),
       				endPeriod: $("#endPeriod").val(),
       				room: $("#room").val(),
-      				object:$("#object").val().trim(),
+      				object:$("#object").val(),
       				visiterYn:$("#visiterYn").val()
       			},
       			success:function(result){      				

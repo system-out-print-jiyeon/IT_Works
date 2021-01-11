@@ -129,9 +129,7 @@
 	                      <tr>
 	                          <th>사용목적 * </th>
 	                          <td>
-	                              <textarea id="object" cols="20" rows="3" style="resize: none;">
-	                              	${re.object.trim()}
-	                              </textarea>
+	                              <textarea id="object" cols="20" rows="3" style="resize: none;">${re.object.trim()}</textarea>
 	                          </td>
 	                      </tr>
 	                      <tr>

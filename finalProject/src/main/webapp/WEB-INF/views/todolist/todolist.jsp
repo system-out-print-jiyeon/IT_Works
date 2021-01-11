@@ -148,6 +148,21 @@
     				insertLi(cookie[i].substr(index+1));
     			}
     		}
+    		
+    		// Click on a close button to hide the current list item
+            var close = document.getElementsByClassName("close");
+            var i;
+            for (i = 0; i < close.length; i++) {
+            	$(document).on('click','.close', function(){
+                	var div = this.parentElement;	// li태그
+                    var txt = (div.textContent).replace('\u00D7', '');	// li태그안의 값
+                    var index = $(this).parent().index();	// li태그 인덱스
+                    div.remove();
+                    delCookie(index+1, txt);	// 쿠키삭제
+            		
+            	})
+            }
+    		
     	})
     	function insertLi(str){
     		
@@ -198,19 +213,7 @@
             myNodelist[i].appendChild(span);
         }
 
-        // Click on a close button to hide the current list item
-        var close = document.getElementsByClassName("close");
-        var i;
-        for (i = 0; i < close.length; i++) {
-        	$(document).on('click','.close', function(){
-            	var div = this.parentElement;	// li태그
-                var txt = (div.textContent).replace('\u00D7', '');	// li태그안의 값
-                var index = $(this).parent().index();	// li태그 인덱스
-                div.remove();
-                delCookie(index+1, txt);	// 쿠키삭제
-        		
-        	})
-        }
+        
 
         // Add a "checked" symbol when clicking on a list item
         $(document).on('click','#myUL', function(ev){
@@ -246,26 +249,15 @@
             span.appendChild(txt);
             li.appendChild(span);
             
-            for (i = 0; i < close.length; i++) {
+            for (var i = 0; i < close.length; i++) {
             	$(document).on('click','.close', function(){
                 	var div = this.parentElement;	// li태그
                     var txt = (div.textContent).replace('\u00D7', '');	// li태그안의 값
                     var index = $(this).parent().index();	// li태그 인덱스
                     div.remove();
                     delCookie(index+1, txt);	// 쿠키삭제
-            		
             	})
             }
-
-            /* for (i = 0; i < close.length; i++) {
-                close[i].onclick = function() {
-                    var div = this.parentElement;
-                    var txt = (div.textContent).replace('\u00D7', '');
-                    var index = $(this).parent().index();
-                    div.remove();
-                    delCookie(index+1, txt);
-                }
-            } */
     }
     </script>
 	

@@ -42,6 +42,7 @@
 .profile:hover{cursor: pointer;}
 .profile .menu1{display: none;}
 </style>
+
 <body>
 
 	<jsp:include page="../common/approvalNavbar.jsp"/>
