@@ -110,16 +110,16 @@ table{
                     </thead>
                     <tbody align="center">
                     	<c:forEach var="a" items="${ peList }">
-                        <tr>
+                          <tr>
                             <td><input name="adNo" type="checkbox" value="${ a.addNo }" ></td>
                             <td>${ a.addName }</td>
                             <td>${ a.addPhone }</td>
-                            <td>${ a.addDepartment }</td>
+                            <td>${ a.departmentName }팀</td>
                             <td>${ a.addDepartmentPhone }</td>
-                            <td>${ a.addSpot }</td>
+                            <td>${ a.jobgradeName }</td>
                             <td>${ a.addEmail }</td>
                             <td>${ a.addCompanyName }</td>
-                        </tr>                        
+                        </tr>                       
                         </c:forEach>                       
                     </tbody>
                 </table>
@@ -244,17 +244,23 @@ table{
     				
     				var value="";
     				for(var i in list){
-    					value += "<tr>" +
-    								"<td>" + "" + "</td>" +
-			                        "<td>" + list[i].addName + "</td>" +
-			                        "<td>" + list[i].addPhone + "</td>" +
-			                        "<td>" + "" + "</td>" +
-			                        "<td>" + "" + "</td>" +
-			                        "<td>" + "" + "</td>" +
-			                        "<td>" + list[i].addEmail + "</td>" +
-			                        "<td>" + "" + "</td>" +
-			                     "</tr>";
-    				}
+    					if(list[i].addDepartment === undefined){
+    	                      list[i].departmentName = '';
+    	                      list[i].addDepartmentPhone = '';
+    	                      list[i].jobgradeName = '';
+    	                      list[i].addCompanyName = '';
+   	                   }
+    	                   value += "<tr>" +
+    	                            "<td>" + list[i].addNo + "</td>" +
+    	                                 "<td>" + list[i].addName + "</td>" +
+    	                                 "<td>" + list[i].addPhone + "</td>" +
+    	                                 "<td>" + list[i].departmentName + "</td>" +
+    	                                 "<td>" + list[i].addDepartmentPhone + "</td>" +
+    	                                 "<td>" + list[i].jobgradeName + "</td>" +
+    	                                 "<td>" + list[i].addEmail + "</td>" +
+    	                                 "<td>" + list[i].addCompanyName + "</td>" +
+    	                              "</tr>";
+    	                }
     				
     				$("#addressArea tbody").html(value);
     				

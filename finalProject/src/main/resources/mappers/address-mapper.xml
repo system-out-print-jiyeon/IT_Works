@@ -14,11 +14,10 @@
 		<result column="add_company_name" property="addCompanyName"/>
 		<result column="status" property="status"/>
 		<result column="add_writer" property="addWriter"/>
+		<result column="dept_name" property="departmentName"/>
+		<result column="job_name" property="jobgradeName"/>
 		
-		<association property="mem" javaType="Member">
-         <result property="deptName" column="dept_name"/>
-         <result property="jobName" column="job_name"/>
-      	</association>
+      	
 	</resultMap>
 	
 	<select id="selectPersonListCount" resultType="_int">
@@ -68,8 +67,8 @@
              , ADD_COMPANY_NAME
 		     , ADD_WRITER
 		  FROM ADDRESSBOOK
-		  JOIN DEPARTMENT ON(ADD_DEPARTMENT = DEPT_CODE)
-          JOIN JOBGRADE ON(ADD_SPOT = JOB_CODE)
+		  left JOIN DEPARTMENT ON(ADD_DEPARTMENT = DEPT_CODE)
+          left JOIN JOBGRADE ON(ADD_SPOT = JOB_CODE)
 		 WHERE STATUS = 'Y'
            AND ADD_CATEGORY = 'public'
 		 ORDER 
@@ -146,14 +145,17 @@
 		       ADD_NO
 		     , ADD_NAME
 		     , ADD_PHONE
-		     , ADD_DEPARTMENT
+		     , DEPT_NAME
              , ADD_DEPARTMENT_PHONE
-             , ADD_SPOT
+             , JOB_NAME
              , ADD_EMAIL
              , ADD_COMPANY_NAME
 		     , ADD_WRITER
 		  FROM ADDRESSBOOK
+		  left JOIN DEPARTMENT ON(ADD_DEPARTMENT = DEPT_CODE)
+          left JOIN JOBGRADE ON(ADD_SPOT = JOB_CODE)
 		 WHERE STATUS = 'Y'
+           AND ADD_CATEGORY = 'public'
 		 ORDER 
 		    BY ADD_NO DESC
 	</select> 

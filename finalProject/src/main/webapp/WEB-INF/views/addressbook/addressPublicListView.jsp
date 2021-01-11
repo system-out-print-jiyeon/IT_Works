@@ -113,9 +113,9 @@ table{
                             <td><input name="adNo" type="checkbox" value="${ a.addNo }" ></td>
                             <td>${ a.addName }</td>
                             <td>${ a.addPhone }</td>
-                            <td>${ a.mem.deptName }팀</td>
+                            <td>${ a.departmentName }팀</td>
                             <td>${ a.addDepartmentPhone }</td>
-                            <td>${ a.mem.jobName }</td>
+                            <td>${ a.jobgradeName }</td>
                             <td>${ a.addEmail }</td>
                             <td>${ a.addCompanyName }</td>
                         </tr>
@@ -238,24 +238,23 @@ table{
     			url:"adpulist.ad",
     			success:function(list){
     				
-    				//console.log(list);
     				$("#quickBtn").text(list.length);
     				
     				var value="";
     				for(var i in list){
     					if(list[i].addDepartment === undefined){
-    	                      list[i].mem.deptName = '';
+    	                      list[i].departmentName = '';
     	                      list[i].addDepartmentPhone = '';
-    	                      list[i].mem.jobName = '';
+    	                      list[i].jobgradeName = '';
     	                      list[i].addCompanyName = '';
-    	                   }
+   	                   }
     	                   value += "<tr>" +
     	                            "<td>" + list[i].addNo + "</td>" +
     	                                 "<td>" + list[i].addName + "</td>" +
     	                                 "<td>" + list[i].addPhone + "</td>" +
-    	                                 "<td>" + list[i].addDepartment + "</td>" +
+    	                                 "<td>" + list[i].departmentName + "</td>" +
     	                                 "<td>" + list[i].addDepartmentPhone + "</td>" +
-    	                                 "<td>" + list[i].addSpot + "</td>" +
+    	                                 "<td>" + list[i].jobgradeName + "</td>" +
     	                                 "<td>" + list[i].addEmail + "</td>" +
     	                                 "<td>" + list[i].addCompanyName + "</td>" +
     	                              "</tr>";

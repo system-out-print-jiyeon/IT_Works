@@ -25,5 +25,9 @@ public class AddressBook {
 	private String addCompanyName;
 	private String status;
 	private int addWriter;
-	private Member mem;
+	
+	private String departmentName;
+	private String jobgradeName;
+	
+	
 }
