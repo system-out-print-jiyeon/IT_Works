@@ -18,8 +18,13 @@
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
-    
-    <style>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+
+<style>
+
+
+
 *{   
      margin: 0;
      padding: 0;
@@ -45,34 +50,68 @@
 }
 .content1{
     width: 100%;
-    height: 250px; 
-    padding: 30px;
+    height: 470px; 
     }
     
 .content1 div {
 	float:left;
-	height:100%;
 }
 .content1_1{
 	
-	width:30%;
+	width:100%;
+	height:100%;
 }
-.content1_2{width:30%;float:left;}
-.content1_3{width:40%;float:left;}
+.content1_1_1{width:100%; height:260px;}
+.content1_1_2{width:100%; height:210px;}
+.centerDiv , .topcenterDiv {width:20%; height:100%;}
+.topempty1 , .empty1, .empty2{width:40%; height:100%;}
+.topempty2{width:40%; height:450px;}
+.topempty2 .area{height:260px;}
+.userName{font-weight:700; }
+
+
+.centerDiv div, .topempty1 div, .topcenterDiv div{width:100%; height:100%;}
+
+.userimg{
+	margin-top:50px;
+	width:100%;
+	height:100%;
+	width: 100px;
+    height: 100px; 
+    border-radius: 70%;
+    overflow: hidden;
+    border:10px solid white;
+}
+
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.userinfo table{padding-top:70px;font-family: 'Noto Serif KR', serif; color:rgb(92, 92, 92);}
+
+
+
+
+
+
+
+
 
 .content2{width: 50%; height:500px; }
 .content3{width: 50%; height:500px;}
 .content4{width: 50%; height:500px;}
 .content5{width: 50%; height:500px;}
 
-.sysdateTable tr td{
-    padding: 15px;
-}
 .sysdateTable{
-	width:500px;
+	width:230px;
 	display: flex;
+	margin:80px;
 }
-
+.sysdateBar{
+	color:white;
+	font-family: 'Noto Serif KR', serif;
+}
 
 .workTimeBtn{
 	float:left;
@@ -131,101 +170,6 @@
 .profile:hover{cursor: pointer;}
 
 
-/* 출퇴근버튼 css */
-body {
-  font-size: 16px;
-  font-family: "Helvetica", "Arial", sans-serif;
-  background-color: #f8faff;
-}
-
-.bubbly-button {
-  font-family: 'DM Serif Display', serif;
-  display: inline-block;
-  font-size: 1em;
-  padding: 1em 2em;
-  margin-top: 85px;
-  margin-bottom: 80px;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: rgb(0, 132, 255);
-  color: #fff;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
-  box-shadow: 0 2px 25px rgba(44, 146, 255, 0.5);
-}
-.bubbly-button:focus {
-  outline: 0;
-}
-.bubbly-button:before, .bubbly-button:after {
-  position: absolute;
-  content: "";
-  display: block;
-  width: 140%;
-  height: 100%;
-  left: -20%;
-  z-index: -1000;
-  transition: all ease-in-out 0.5s;
-  background-repeat: no-repeat;
-}
-.bubbly-button:before {
-  display: none;
-  top: -75%;
-  background-image: radial-gradient(circle, rgb(44, 146, 255) 20%, transparent 20%), radial-gradient(circle, transparent 20%, rgb(45, 30, 255) 20%, transparent 30%), radial-gradient(circle, rgb(44, 146, 255) 20%, transparent 20%), radial-gradient(circle, rgb(44, 146, 255) 20%, transparent 20%), radial-gradient(circle, transparent 10%, rgb(44, 146, 255) 15%, transparent 20%), radial-gradient(circle, rgb(44, 146, 255) 20%, transparent 20%), radial-gradient(circle, rgb(44, 146, 255) 20%, transparent 20%), radial-gradient(circle, rgb(44, 146, 255) 20%, transparent 20%), radial-gradient(circle, rgb(45, 30, 255) 20%, transparent 20%);
-  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
-}
-.bubbly-button:after {
-  display: none;
-  bottom: -75%;
-  background-image: radial-gradient(circle, rgb(45, 30, 255) 20%, transparent 20%), radial-gradient(circle, rgb(44, 146, 255) 20%, transparent 20%), radial-gradient(circle, transparent 10%, rgb(44, 146, 255) 15%, transparent 20%), radial-gradient(circle, rgb(44, 146, 255) 20%, transparent 20%), radial-gradient(circle, rgb(44, 146, 255) 20%, transparent 20%), radial-gradient(circle, rgb(45, 30, 255) 20%, transparent 20%), radial-gradient(circle, rgb(45, 30, 255) 20%, transparent 20%);
-  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
-}
-.bubbly-button:active {
-  transform: scale(0.9);
-  background-color:  rgba(86, 187, 255, 0.664);
-  box-shadow: 0 2px 25px  rgba(86, 187, 255, 0.664);
-}
-.bubbly-button.animate:before {
-  display: block;
-  animation: topBubbles ease-in-out 0.75s forwards;
-}
-.bubbly-button.animate:after {
-  display: block;
-  animation: bottomBubbles ease-in-out 0.75s forwards;
-}
-
-@keyframes topBubbles {
-  0% {
-    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
-  }
-  50% {
-    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
-  }
-  100% {
-    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
-    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-  }
-}
-@keyframes bottomBubbles {
-  0% {
-    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
-  }
-  50% {
-    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
-  }
-  100% {
-    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
-    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-  }
-}
-.mainP{
-	height:100%;
-	
-}
-
-
   /* 결재할문서div css */
 	.content4_substance{
 	    width: 400px;
@@ -268,6 +212,218 @@ body {
 	.list_enrollDate{
 		    width: 100px;
 		}
+
+
+
+/* 프로필 도형 css애니메이션*/
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font-family: 'Exo', sans-serif;
+}
+
+.context {
+    width: 100%;
+    position: absolute;
+    top:50vh;
+    
+}
+
+
+
+
+.area{
+    background:  rgba(32, 132, 226, 0.6);
+    background: -webkit-linear-gradient(to left, #6598e4,  #1762d3);  
+    width: 100%;
+    height:100vh;
+    
+   
+}
+
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+	margin-left:330px;
+}
+
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    
+}
+
+.circles li:nth-child(1){
+    left: 85%;
+    width: 10px;
+    height: 10px;
+    animation-delay: 0s;
+    animation-duration: 12s;
+}
+
+
+.circles li:nth-child(2){
+    left: 10%;
+    width: 10px;
+    height: 10px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3){
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4){
+    left: 20%;
+    width: 10px;
+    height: 10px;
+    animation-delay: 9s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5){
+    left: 25%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6){
+    left: 75%;
+    width: 30px;
+    height: 30px;
+    animation-delay: 1s;
+}
+
+.circles li:nth-child(7){
+    left: 35%;
+    width: 10px;
+    height: 10px;
+    animation-delay: 40s;
+}
+
+.circles li:nth-child(8){
+    left: 90%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 0s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10){
+    left: 85%;
+    width: 10px;
+    height: 10px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+.circles li:nth-child(11){
+    left: 35%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 3s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(12){
+    left: 10%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 1s;
+    animation-duration: 25s;
+}
+
+.circles li:nth-child(13){
+    left: 20%;
+    width: 21px;
+    height: 21px;
+    animation-delay: 2s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(14){
+    left: 85%;
+    width: 5px;
+    height: 5px;
+    animation-delay: 0s;
+    animation-duration: 21s;
+}
+.circles li:nth-child(15){
+    left: 90%;
+    width: 12px;
+    height: 12px;
+    animation-delay: 2s;
+}
+
+
+.circles li:nth-child(16){
+    left: 5%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 1s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(17){
+    left: 80%;
+    width: 14px;
+    height: 14px;
+    animation-delay: 2s;
+}
+
+.circles li:nth-child(18){
+    left: 20%;
+    width: 10px;
+    height: 10px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+
+
+@keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
 
 </style>
 </head>
@@ -341,25 +497,135 @@ body {
     <div class="contents">
 
 		<div class="content1">
-	
 			<div class="content1_1">
-                		 <table class="sysdateTable">
-                        <tr>
-                            <td><div class="btn btn-outline-primary" class="sysdateBar"><%= sf.format(nowTime) %></div><br></td>
-                        </tr>
-                        <tr>
-                            <td>
-								<body onload="printClock()">
-                                        <div style="color:#666;font-size:50px;" id="clock">
-                                        </div>
-                                </body>
-							</td>
-                        </tr>
-                     </table>
-                     
-                     
-              </div>
-              
+				<div class="content1_1_1">
+	                <div class="topempty1">
+	                	<div class="area" >
+	                	<table class="sysdateTable">
+	                        <tr>
+	                            <td><div class="sysdateBar"><%= sf.format(nowTime) %></div><br></td>
+	                        </tr>
+	                        <tr>
+	                            <td>
+									<body onload="printClock()">
+	                                        <div style="color:white;font-size:30px;" id="clock">
+	                                        </div>
+	                                </body>
+								</td>
+	                        </tr>
+	                     </table>
+	                     
+	                     
+	                     
+				            <ul class="circles">
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				            </ul>
+				    	 </div >
+					                     
+	                </div>
+	                <div class="topcenterDiv">
+	                	<div class="area" >
+	                	<div class="userimg" align="center">
+	               				<img class="profile" src="${ loginUser.memImg }"alt="" class="img-rounded img-responsive" />
+	               		 </div>
+	               		 
+	               		 
+				            <ul class="circles">
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				            </ul>
+				    	 </div >
+	                </div>
+	                <div class="topempty2">
+	                     <div class="area" >
+				            <ul class="circles">
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				                    <li></li>
+				            </ul>
+				    	 </div >
+	                     </div>
+	               </div>
+	               <div class="content1_1_2">
+	               		<div class="empty1"></div>
+	               		<div class="centerDiv" align="center">
+	               			
+	               			<div class="userinfo">
+	               				<table>
+	               					<tr>
+	               						<td width="400px" align="center" class="userName">${ loginUser.memName }</td>
+	               					</tr>
+	               					<tr>
+	               						<td align="center">${ loginUser.deptName }팀 / ${ loginUser.jobName } </td>
+	               					</tr>
+	               					<tr>
+	               						<td align="center">${ loginUser.phone }</td>
+	               					</tr>
+	               					<tr>
+	               						<td align="center">${ loginUser.email }</td>
+	               					</tr>
+	               				</table>
+	               			</div>
+	               		</div>
+	               		<div class="empty2"></div>
+	               </div>
+              	</div>
               <script>
 
               function printClock() {
@@ -380,7 +646,7 @@ body {
                   if(currentSeconds >= 50){// 50초 이상일 때 색을 변환해 준다.
                   currentSeconds = '<span style="color:#de1951;">'+currentSeconds+'</span>'
                   }
-                  clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds +" <span style='font-size:50px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
+                  clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds +" <span style='font-size:30px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
                   
                   setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
               }
@@ -396,66 +662,12 @@ body {
                   return zero + num;
               }
               
+              
+              
+              
           </script>  
           
-          <div class="content1_2">
-          		<button class="bubbly-button" >Let's go to Work !</button>
-          </div>  
-          
-          <div class="content1_3">
-          		<!-- 메인화면 간략 프로필 -->
-          		<div class="row">
-			        <div class="col-sm-2 col-md-2">
-			            <img class="mainP" src="${ loginUser.memImg }"
-			            alt="" class="img-rounded img-responsive" />
-			        </div>
-			        <div class="col-sm-4 col-md-4">
-			            <blockquote>
-			                <p><b>&nbsp;&nbsp;${ loginUser.memName }</b></p> <small><cite title="Source Title">&nbsp;&nbsp;(${ loginUser.memId })  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
-			            </blockquote>
-			            <p> <i class="glyphicon glyphicon-envelope"></i>&nbsp;&nbsp;소속부서 / <b>${ loginUser.deptName }</b>
-			                <br
-			                /> <i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;직급 / <b>${ loginUser.jobName }</b><br>
-			                <br /> <i class="glyphicon glyphicon-gift"></i>&nbsp;&nbsp;<b>${ loginUser.phone }</b></p>
-			                <i class="glyphicon glyphicon-gift"></i>&nbsp;&nbsp;<b>${ loginUser.email }</b>
-			        </div>
-			    </div>
-          </div>  
-
-		  <script>
-		  var animateButton = function(e) {
-
-			  e.preventDefault;
-			  //reset animation
-			  e.target.classList.remove('animate');
-			  
-			  e.target.classList.add('animate');
-			  setTimeout(function(){
-			    e.target.classList.remove('animate');
-			  },700);
-			};
-
-			var bubblyButtons = document.getElementsByClassName("bubbly-button");
-
-			for (var i = 0; i < bubblyButtons.length; i++) {
-			  bubblyButtons[i].addEventListener('click', animateButton, false);
-			}
-			
-			// css보여지게 딜레이주는 함수
-			$(document).ready(function(){
-		    	$(".bubbly-button").click(function(){
-		    		setTimeout(function() {
-		    	        location.href = 'workTime.at';
-		    	    }, 800);
-		    	})
-		    });
-		  </script>
-
-
-		<!-- to do list -->
-		<%-- <jsp:include page="todolist/todolist.jsp" /> --%>
-		
-		
+		       
 		
 		
     </div>
