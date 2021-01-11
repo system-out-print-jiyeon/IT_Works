@@ -1,5 +1,7 @@
 package com.kh.ITWorks.addressbook.model.vo;
 
+import com.kh.ITWorks.member.model.vo.Member;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,4 +25,5 @@ public class AddressBook {
 	private String addCompanyName;
 	private String status;
 	private int addWriter;
+	private Member mem;
 }

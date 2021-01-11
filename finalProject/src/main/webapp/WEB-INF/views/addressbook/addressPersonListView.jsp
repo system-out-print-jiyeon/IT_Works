@@ -15,12 +15,12 @@
 <style>
 
 .personAddress{
-    width: 1600px; 
+    width: 1000px; 
     height:1000px; 
     padding-top: 100px;
     margin: auto; 
     box-sizing: border-box;
-    margin-left:400px;
+    margin-left: 450px;
 }
 
 .tool_bar{
@@ -216,6 +216,7 @@ table{
     					addName:$("#quickName").val(),
     					addEmail:$("#quickEmail").val(),
     					addPhone:$("#quickPhone").val(),
+    					addWriter:"${ loginUser.memNo }",
     					addCategory:'person'
     				},
     				success:function(result){
@@ -245,7 +246,7 @@ table{
     				for(var i in list){
     					value += "<tr>" +
     								"<td>" + "" + "</td>" +
-			                        "<th>" + list[i].addName + "</th>" +
+			                        "<td>" + list[i].addName + "</td>" +
 			                        "<td>" + list[i].addPhone + "</td>" +
 			                        "<td>" + "" + "</td>" +
 			                        "<td>" + "" + "</td>" +
