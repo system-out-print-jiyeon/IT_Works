@@ -154,18 +154,19 @@
 							<td class="secondCell">
 								<c:choose>
 									<c:when test="${ aList.approvalStatus eq 'Y' }">
-										<button class="btn btn-secondary" disabled>승인</button>
+										<button class="btn btn-primary" disabled>승인</button>
 									</c:when>
 									<c:when test="${ aList.approvalStatus eq 'N' }">
-										<button class="btn btn-secondary" disabled>반려</button>
+										<button class="btn btn-outline-danger" disabled>반려</button>
 									</c:when>
 									<c:otherwise>
 										<c:choose>
 											<c:when test="${ aList.memNo eq loginUser.memNo }">
-												<button class="btn btn-primary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal">결재</button>	
+												<button class="btn btn-secondary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal" onclick="approvalOrder();">결재</button>
+												<input type="hidden" value="${ aList.approvalOrder }" id="orderNum" name="approvalOrder">
 											</c:when>
 											<c:otherwise>
-												<button class="btn btn-primary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal" disabled>결재</button>
+												<button class="btn btn-secondary" id="approvalBtn" data-toggle="modal" data-target="#approvalModal" disabled>결재</button>
 											</c:otherwise>
 										</c:choose>
 									</c:otherwise>
@@ -187,6 +188,12 @@
 					</tr>
 				</table>
 			</div>
+			
+			<script>
+				function approvalOrder() {
+					document.getElementById("approvalOrder").value = document.getElementById("orderNum").value;
+				}
+			</script>
 
 			<br>
 			<br>

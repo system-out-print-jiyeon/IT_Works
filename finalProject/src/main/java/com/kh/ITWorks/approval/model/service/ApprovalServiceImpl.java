@@ -130,5 +130,21 @@ public class ApprovalServiceImpl implements ApprovalService {
 	public ArrayList<ApprovalDocument> selectApprovalList(PageInfo pi, ApprovalDocument ad) {
 		return aDao.selectApprovalList(sqlSession, pi, ad);
 	}
+	@Override
+	public int selectLineListCount(ApprovalDocument ad) {
+		return aDao.selectLineListCount(sqlSession, ad);
+	}
+	@Override
+	public ArrayList<ApprovalDocument> selectApprovalLineList(PageInfo pi, ApprovalDocument ad) {
+		return aDao.selectApprovalLineList(sqlSession, pi, ad);
+	}
+	@Override
+	public int selectRefererListCount(ApprovalDocument ad) {
+		return aDao.selectRefererListCount(sqlSession, ad);
+	}
+	@Override
+	public ArrayList<ApprovalDocument> selectRefererList(PageInfo pi, ApprovalDocument ad) {
+		return aDao.selectRefererList(sqlSession, pi, ad);
+	}
 
 }
