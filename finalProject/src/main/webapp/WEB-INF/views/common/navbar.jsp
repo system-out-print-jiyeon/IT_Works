@@ -233,6 +233,8 @@
            else if(url.contains("personlist")) {%> 주소록 <% }
            else if(url.contains("publiclist")) {%> 주소록 <% }
            else if(url.contains("ad")) {%> 주소록 <% }
+           else if(url.contains("calendar")) {%> 캘린더 <% }
+           else if(url.contains("email")) {%> 메일 <% }
            else if(url.contains("reservation")) {%> 회의실 예약 <% } 
            else if(url.contains("workTime")) {%> 근태관리 <% } 
            else if(url.contains("an")) {%> 근태관리 <% }
