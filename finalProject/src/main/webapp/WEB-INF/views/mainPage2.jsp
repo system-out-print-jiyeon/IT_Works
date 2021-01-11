@@ -89,8 +89,16 @@
     object-fit: cover;
 }
 .userinfo table{padding-top:70px;font-family: 'Noto Serif KR', serif; color:rgb(92, 92, 92);}
-
-
+.sysdateTable{
+	width:230px;
+	display: flex;
+	margin:80px;
+}
+.sysdateBar{
+	color:white;
+	font-family: 'Noto Serif KR', serif;
+}
+/******************************************************/
 
 
 
@@ -103,25 +111,9 @@
 .content4{width: 50%; height:500px;}
 .content5{width: 50%; height:500px;}
 
-.sysdateTable{
-	width:230px;
-	display: flex;
-	margin:80px;
-}
-.sysdateBar{
-	color:white;
-	font-family: 'Noto Serif KR', serif;
-}
 
-.workTimeBtn{
-	float:left;
-	background-color:  rgb(44, 146, 255);
-    padding: 15px;
-    border-radius: 6px;
-    color:white;
-    text-decoration: none;
-    font-family: 'Nanum Gothic Coding', monospace;
-}
+
+
 
 /* 사이드바 */
 .sidebar{
@@ -215,7 +207,7 @@
 
 
 
-/* 프로필 도형 css애니메이션*/
+/********** 프로필 도형 css애니메이션 **************/
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 *{
@@ -422,7 +414,7 @@ body{
         opacity: 0;
         border-radius: 50%;
     }
-
+/**********************************************************/
 }
 
 </style>
@@ -661,10 +653,7 @@ body{
                   }
                   return zero + num;
               }
-              
-              
-              
-              
+             
           </script>  
           
 		       
