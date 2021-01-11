@@ -57,7 +57,6 @@
 	float:left;
 }
 .content1_1{
-	
 	width:100%;
 	height:100%;
 }
@@ -88,7 +87,7 @@
     height: 100%;
     object-fit: cover;
 }
-.userinfo table{padding-top:70px;font-family: 'Noto Serif KR', serif; color:rgb(92, 92, 92);}
+.userinfo table{margin-top:70px;font-family: 'Noto Serif KR', serif; color:rgb(92, 92, 92);}
 .sysdateTable{
 	width:230px;
 	display: flex;
