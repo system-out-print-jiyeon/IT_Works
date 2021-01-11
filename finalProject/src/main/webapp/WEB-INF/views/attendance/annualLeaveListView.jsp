@@ -121,6 +121,9 @@
 #workListTable tr td{
     text-align: center;
 }
+#workListTable tr td p{
+    width:100px;
+}
 #workListTable tbody tr:hover{cursor:pointer;}
 
 /* 페이징 */

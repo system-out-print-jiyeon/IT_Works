@@ -122,7 +122,9 @@
     text-align: center;
 }
 #workListTable tbody tr:hover{cursor:pointer;}
-
+#workListTable tr td p{
+    width:100px;
+}
 /* 페이징 */
 .paginationBar{
     align-items: center;
