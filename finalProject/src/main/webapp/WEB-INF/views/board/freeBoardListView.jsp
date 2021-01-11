@@ -242,7 +242,8 @@
 
         </div>
         
-         <script>
+    <script>
+    
     $(document).ready(function(){
         $("#checkall").click(function(){
             if($("#checkall").prop("checked")){ 
@@ -272,9 +273,9 @@
             $("#checkall").prop("checked",false);
         }
     });
+    
     </script>
 
-    <!-- 중요/삭제 클릭시 action -->
     <script>
         function btn_click(str){                             
             	if(str=="delete"){   //  삭제

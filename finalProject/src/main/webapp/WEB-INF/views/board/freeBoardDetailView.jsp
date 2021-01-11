@@ -198,13 +198,8 @@ th{
 					},error:function(){
 						console.log("댓글 작성용 ajax 통신 실패!");
 					}
-					
 				})
-				
 			}
-			
-			
-			
 		}
 		
 		function selectReplyList(){
@@ -222,7 +217,6 @@ th{
 									 "<td>" + list[i].createDate + "</td>" + 
 								 "</tr>";
 					}
-					
 					$("#replyArea tbody").html(value);
 					
 				}, error:function(){

@@ -621,8 +621,8 @@ body{
 
               function printClock() {
                   
-                  var clock = document.getElementById("clock");            // 출력할 장소 선택
-                  var currentDate = new Date();                                     // 현재시간
+                  var clock = document.getElementById("clock");           
+                  var currentDate = new Date(); // 현재시간
                   var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
                   var amPm = 'AM'; // 초기값 AM
                   var currentHours = addZeros(currentDate.getHours(),2); 
