@@ -24,7 +24,7 @@
 	margin-top:80px;
     width:300px;
     height:0%;
-    background:linear-gradient(  rgb(245, 236, 236),rgb(240, 231, 231), rgb(255, 255, 255));
+    background:linear-gradient(rgb(231, 225, 225),rgb(231, 225, 225), rgb(255, 255, 255));
     position: fixed;
 
     animation-name:key1;
@@ -211,7 +211,7 @@
 	      		</table>
 	      		<hr>
 	      		<button type="submit" class="btn btn-primary">추가</button>
-		        <button type="button" class="btn btn-danger" style="margin-left:345px;" data-dismiss="modal">닫기</button>
+		        <button type="button" class="btn btn-secondary" style="margin-left:345px;" data-dismiss="modal">닫기</button>
 
 				
 	      	</form>
