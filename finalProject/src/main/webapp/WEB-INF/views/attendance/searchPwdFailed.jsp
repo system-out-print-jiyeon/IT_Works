@@ -56,7 +56,7 @@
     
     <div class="outer">
         <div class="content">
-            <p align="center">Search Password</p>
+            <p align="center">Find Password</p>
             
             <div class="searchArea" align="center">
                 <br><br>

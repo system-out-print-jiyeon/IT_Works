@@ -56,7 +56,7 @@
     
     <div class="outer">
         <div class="content">
-            <p align="center">Search Id</p>
+            <p align="center">Find Id</p>
             
             <div class="searchArea" align="center">
                 <br><br>

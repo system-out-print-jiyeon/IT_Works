@@ -57,7 +57,7 @@
     
     <div class="outer">
         <div class="content">
-            <p align="center">Search Id</p>
+            <p align="center">Find Id</p>
             	<c:if test="${ !empty searchId}">
 	            	<div class="searchArea" align="center">
 	                <br><br><br> 
