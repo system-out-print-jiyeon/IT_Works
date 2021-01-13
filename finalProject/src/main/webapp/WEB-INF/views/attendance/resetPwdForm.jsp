@@ -76,7 +76,7 @@
 }
 .login-form-right-side p{
     padding-top: 50px;
-    padding-left:100px;
+    padding-left:160px;
     font-size:12px;
     text-align: right;
     opacity: 0.8;
@@ -176,7 +176,7 @@ background: linear-gradient(162deg, rgba(105,163,255,1) 0%, rgba(43,125,254,1) 5
                     
                 </div>
                 <h1>Forgot your Password?</h1>
-                <p>Please create your new password.</p>
+                <p>Please create your <br> new password.</p>
             </div>
             <div class="login-form-left-side">
                 <div class="login-input-container">
