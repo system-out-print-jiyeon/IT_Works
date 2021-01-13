@@ -55,6 +55,8 @@
             <div class="sidebar_menu">
                 <li class="profile" ><a class="btn" href="list.fb">자유게시판</a>
                 </li>
+                <li class="profile" ><a class="btn" href="list.myfb">나의 글 목록</a>
+                </li>
                 <li class="profile" ><a class="btn" href="list.sp">업무협업</a>
                 </li>
                 <br><br>

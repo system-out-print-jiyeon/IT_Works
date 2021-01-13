@@ -133,7 +133,10 @@
 				            <form name="form_freeboard" method="post" id="list-form">
 								
 					                 <div class="submit_btn">
+				                        <input type="checkbox" id="checkall" value=""> 
+				                        <label class="update" for="checkall">전체선택</label>
 				                        
+				                        <label class="update"><button type="submit" disabled="true" onclick='btn_click("delete");' id="deletebtn"><i class="fa fa-trash"></i> 삭제</button></label>
 				                        <label class="insert"><button onclick="showPopup();" id="insertbtn" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> 새글쓰기</button></label>             
 				                    </div>                               
 					            
@@ -141,6 +144,7 @@
 			                        <table id="free-boardList" class="table">
 						                 <thead>
 						                    <tr align="center">
+						                        <th></th>
 						                        <th>공지</th>
 						                        <th>번호</th>
 						                        <th>제목</th>
@@ -151,19 +155,22 @@
 						                </thead>
 						                <tbody align="center">
 						                <c:forEach var="fb" items="${fbList}">
-						                    <tr>
-						                        <input type="hidden" id="fbno" value="${ fb.FBoardNo }">
-						                        <td>
-						                        	<c:if test="${ fb.boardDivision eq 'N' }">
-						                        		★
-						                        	</c:if>
-						                        </td>
-						                        <td class="fbno">${fb.FBoardNo }</td>
-						                        <td class="fbtt">${fb.FBoardTitle }</td>
-						                        <td>${fb.memName }</td>
-						                        <td>${fb.FCreateDate }</td>
-						                        <td>${fb.FCount }</td>
-						                    </tr>
+						               	   <c:if test="${loginUser.memNo eq fb.FBoardWriter }"> 
+						                    	<tr>
+							                        <th width="30px"><input type="checkbox" id="" name="fbno" value="${fb.FBoardNo }"></th>
+								                        <input type="hidden" id="fbno" value="${ fb.FBoardNo }">
+								                        <td>
+								                        	<c:if test="${ fb.boardDivision eq 'N' }">
+								                        		★
+								                        	</c:if>
+								                        </td>
+								                        <td class="fbno">${fb.FBoardNo }</td>
+								                        <td class="fbtt">${fb.FBoardTitle }</td>
+								                        <td>${fb.memName }</td>
+								                        <td>${fb.FCreateDate }</td>
+								                        <td>${fb.FCount }</td>
+							                    </tr>
+						                    </c:if>
 						                </c:forEach>
 						                </tbody>
 					                </table>
@@ -178,6 +185,23 @@
             			location.href = "detail.fb?fbno=" + $(this).siblings(".fbno").text();
             		})
             	})
+            	
+            	
+            	$(function(){
+	            			noticeStyle();
+	            		})
+            	
+				function noticeStyle() {
+            		
+            		var notice = "<c:out value='${fb.boardDivision}'/>";
+            		
+            		if(notice == 'N'){
+						document.getElementByClass("fbtt").style.color = "red";
+					}
+						
+            	}
+            	
+            	
             	
             </script> 
   
@@ -220,9 +244,51 @@
 
         </div>
         
+    <script>
+    
+    $(document).ready(function(){
+        $("#checkall").click(function(){
+            if($("#checkall").prop("checked")){ 
+                $("input[name=fbno]").prop("checked",true);    
+                $(".submit_btn #deletebtn").css({"color":"red"}).prop("disabled",false);
+            }else{
+                $("input[name=fbno]").prop("checked",false);
+                // 전체선택 체크박스 체크 해제시 버튼 비활성화
+                $(".submit_btn #deletebtn").css({"color":"gray"}).prop("disabled",true);
+            }
+        })
+    })
 
+    // 체크박스가 체크되면 버튼 활성화 되게 만들기 
+    $('#free-boardList tbody tr input[type="checkbox"]').click(function(){
+        var tmpp = $(this).prop('checked');
+        var tt=$("[name='fbno']:checked").length;   
+        // 하나라도 체크되어있을 때 버튼 활성화 시키기 위해 length로 체크된 값의 개수를 구함
+        
+        if(tmpp==true || tt>0 ){
+            // 버튼 활성화
+            $(".submit_btn #deletebtn").css({"color":"red"}).prop("disabled",false);
+        }
+        else{
+            // 버튼 비활성화
+            $(".submit_btn #deletebtn").css({"color":"gray"}).prop("disabled",true);
+            $("#checkall").prop("checked",false);
+        }
+    });
+    
+    </script>
 
     <script>
+        function btn_click(str){                             
+            	if(str=="delete"){   //  삭제
+				
+            	if(confirm("선택한 게시글을 삭제하시겠습니까?") == true){
+	                form_freeboard.action="deleteToList.fb";
+            	}
+            }
+        }  
+        
+        
         function showPopup() { window.open("enrollForm.fb", "a", "width=1000, height=900, left=400, top=200"); }
     </script>
         

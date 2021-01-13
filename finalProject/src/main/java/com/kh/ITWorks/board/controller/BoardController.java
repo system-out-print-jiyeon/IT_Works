@@ -47,6 +47,25 @@ public class BoardController {
 		
 		return "board/freeBoardListView";
 	}
+	
+	// 자유게시판 내가 작성한 글 리스트
+		@RequestMapping("list.myfb")
+		public String selectMyFreeBoardList(@RequestParam(value="currentPage", defaultValue="1") int currentPage, 
+										Model model) {
+			
+			int listCount = bService.selectFreeBoardListCount();
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+			ArrayList<FreeBoard> fbList = bService.selectFreeBoardList(pi);
+			
+			model.addAttribute("pi", pi);
+			model.addAttribute("fbList", fbList);
+			
+			
+			return "board/freeBoardMyListView";
+		}
+		
+		
 				
 	@RequestMapping("enrollForm.fb")
 	public String FreeBoardEnrollForm() {
