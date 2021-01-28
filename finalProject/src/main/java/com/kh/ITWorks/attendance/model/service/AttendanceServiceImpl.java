@@ -63,7 +63,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public void sendEmail(Member m, String div) throws Exception {
 		// Mail Server 설정
 		String charSet = "utf-8";
-		String hostSMTP = "smtp.gmail.com"; //네이버 이용시 smtp.naver.com
+		String hostSMTP = "smtp.gmail.com";
 		String hostSMTPid = "itworks0112@gmail.com";
 		String hostSMTPpwd = "highperformers";
 
