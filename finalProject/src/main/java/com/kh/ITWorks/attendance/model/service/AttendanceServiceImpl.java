@@ -64,11 +64,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 		// Mail Server 설정
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.gmail.com"; //네이버 이용시 smtp.naver.com
-		String hostSMTPid = "wldus4592@gmail.com";
-		String hostSMTPpwd = "Leedo599100!";
+		String hostSMTPid = "itworks0112@gmail.com";
+		String hostSMTPpwd = "highperformers";
 
 		// 보내는 사람 EMail, 제목, 내용
-		String fromEmail = "wldus4592@gmail.com";
+		String fromEmail = "itworks0112@gmail.com";
 		String fromName = "ITWorks";
 		String subject = "";
 		String msg = "";
@@ -131,7 +131,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 			// 비밀번호 변경 메일 발송
 			sendEmail(m, "findpw");
 
-			out.print("이메일로 임시 비밀번호를 발송하였습니다.");
+			out.print("이메일로 임시 비밀번호를 발송하였습니다. 사용 후 비밀번호를 변경해주세요");
 			out.close();
 		}
 	}
