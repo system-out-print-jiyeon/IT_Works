@@ -10,6 +10,7 @@
     
     <script src="https://kit.fontawesome.com/51db22a717.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+   	<script src="http://code.jquery.com/jquery-latest.js"></script>
     <style>
         /* *{
             border: 1px solid red;
@@ -174,30 +175,48 @@ background: linear-gradient(162deg, rgba(105,163,255,1) 0%, rgba(43,125,254,1) 5
                 <p>Please enter your information.</p>
             </div>
             <div class="login-form-left-side">
-                <div class="login-input-container">
-                	<form action="searchPwd.at" id="searchPwdForm" method="post">
+              <form action="" id="searchPwdForm" method="post">
+                	 <div class="login-input-container">
 	                    <div class="login-input-wrap input-name">
 	                        <input type="text" name="memName" id="memName" required placeholder="이름을 입력하세요" minlength="2" maxlength="5">
 	                    </div>
 	                    <div class="login-input-wrap input-id">
 	                    	<input type="text" name="memId" id="memId" required placeholder="아이디를 입력하세요">
 	                    </div>
-	                    <div class="login-input-wrap input-birth">
-	                        <input type="text" name="birth" id="birth" required placeholder="6자리의 숫자로 입력하세요" minlength="6" maxlength="6">
+	                    <div class="login-input-wrap input-email">
+	                        <input type="email" name="email" id="email" required placeholder="email주소를 입력하세요">
 	                    </div>
-	                    <div class="login-input-wrap input-phone">
-	                        <input type="text" name="phone" id="phone" required placeholder=" - 포함해서 입력하세요" minlength="13" maxlength="13">
-	                    </div>
-	                </div>
-	                <div class="find-btn-wrap">
+	             	 </div>
+	                 <div class="find-btn-wrap">
 		                <button  class="find-btn" onclick="goBack();" id="backBtn"> 뒤로가기 </button>
-	                    <button class="find-btn" type="submit" id="findBtn" >비밀번호 찾기</button>
-               		</div>
-               		
+	                    <button class="find-btn" type="button" id="findBtn" >비밀번호 찾기</button>
+               		 </div>
+               	</form>
+               	  
                		<script>
                			function goBack(){
                				window.history.back();
                			}
+               			
+               		</script>
+               		<script type="text/javascript">
+               		$(function(){
+       					$("#findBtn").click(function(){
+       						$.ajax({
+       							url : "findpw.at",
+       							type : "POST",
+       							data : {
+       								memName:$("#memName").val(),
+       								memId : $("#memId").val(),
+       								email : $("#email").val()
+       							},
+       							success : function(result) {
+       								alert(result);
+       							},
+       						})
+       					});
+       				})
+       			
                		</script>
             </div>
         </div>

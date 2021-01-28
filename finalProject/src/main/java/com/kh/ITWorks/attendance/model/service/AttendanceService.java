@@ -3,6 +3,8 @@ package com.kh.ITWorks.attendance.model.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.kh.ITWorks.attendance.model.vo.AnnualLeave;
 import com.kh.ITWorks.attendance.model.vo.BusinessTrip;
 import com.kh.ITWorks.attendance.model.vo.WorkDay;
@@ -22,6 +24,13 @@ public interface AttendanceService {
 	
 	// 비밀번호 수정
 	int updateMember(Member m);
+	
+	//이메일발송
+	public void sendEmail(Member m, String div) throws Exception;
+
+	//비밀번호찾기
+	public void findPw(HttpServletResponse resp, Member m) throws Exception;
+
 	
 	
 	// *근태관리*

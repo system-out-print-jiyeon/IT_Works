@@ -183,7 +183,7 @@ background: linear-gradient(162deg, rgba(105,163,255,1) 0%, rgba(43,125,254,1) 5
 	                        <input type="text" name="birth" id="birth" required placeholder="6자리의 숫자로 입력하세요" minlength="6" maxlength="6">
 	                    </div>
 	                    <div class="login-input-wrap input-phone">
-	                        <input type="text" name="phone" id="phone" required placeholder=" - 포함해서 입력하세요" minlength="13" maxlength="13">
+	                        <input type="text" name="phone" id="phone" required placeholder="전화번호를 - 포함해서 입력하세요" minlength="13" maxlength="13">
 	                    </div>
 	                </div>
 	                <div class="find-btn-wrap">

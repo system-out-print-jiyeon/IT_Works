@@ -148,6 +148,33 @@
     WHERE MEM_ID = #{memId}
 </update>
 
+<select id="readMember" resultMap="memberResultSet">
+		select *
+		from EMPLOYEE
+		where MEM_ID=#{memId}
+</select>
+<select id="idCheck" parameterType="Member" resultMap="memberResultSet">
+ SELECT MEM_ID
+   FROM EMPLOYEE
+  WHERE MEM_ID = #{memId}
+    AND MEM_STATUS = 'Y'
+</select>
+
+
+<!-- 비밀번호 변경 -->
+<update id="updatePw">
+	update 
+	       EMPLOYEE
+	   set MEM_PWD = #{memPwd} 
+	     , MODIFY_DATE = SYSDATE
+	 where MEM_ID = #{memId}
+</update>
+
+
+
+
+
+
 
 <select id="selectListCount" resultType="_int">
 	select

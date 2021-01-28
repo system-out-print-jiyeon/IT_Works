@@ -27,10 +27,5 @@ public class BusinessTripInterceptor extends HandlerInterceptorAdapter{
 		
 			return true;			
 		}
-		
-		
 	}
-	
-	
-
 }

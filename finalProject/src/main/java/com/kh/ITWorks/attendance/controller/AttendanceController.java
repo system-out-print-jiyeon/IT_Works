@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,7 +42,7 @@ public class AttendanceController {
 		
 		Member loginUser = aService.loginMember(m);  
 		
-		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(),(loginUser.getMemPwd()))) {
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(),(loginUser.getMemPwd())) || loginUser.getMemPwd().equals(m.getMemPwd())) {
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("mainPage2"); 
 
@@ -112,13 +115,22 @@ public class AttendanceController {
 			
 		}else { 
 			
-			model.addAttribute("errorMsg", "회원정보 수정 실패!");
+			model.addAttribute("errorMsg", "비밀번호 수정 실패!");
 			return "common/errorPage";
 			
 		}
 	}
 
-	
+	/* 비밀번호 찾기 */
+	@RequestMapping(value = "findpw.at", method = RequestMethod.GET)
+	public void findPwGET() throws Exception{
+	}
+
+	@RequestMapping(value = "findpw.at", method = RequestMethod.POST)
+	public void findPwPOST(@ModelAttribute Member m, HttpServletResponse response) throws Exception{
+		
+		aService.findPw(response, m);
+	}
 	
 	
 	

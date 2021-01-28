@@ -251,7 +251,18 @@
 		    <artifactId>xercesImpl</artifactId>
 		    <version>2.9.1</version>
 		</dependency>
-					  
+			
+		<!-- 비밀번호 재설정 메일 api -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.2</version>
+		</dependency>		  
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.7</version>
+		</dependency>
 		
 	</dependencies>
     <build>

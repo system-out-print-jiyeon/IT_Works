@@ -149,7 +149,7 @@ public class ExApprovalController {
 		int insertResult = documentResult /** apLineResult * refererResult */;
 		
 		if (insertResult > 0) {	// 입력성공
-			return "approval.me";
+			return "approval/approvalListView";
 		} else {	// 입력실패
 			session.setAttribute("errorMsg", "입력 실패!!");
 			return "common/errorPage";

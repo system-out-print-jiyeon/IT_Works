@@ -30,6 +30,7 @@
      padding: 0;
      box-sizing: border-box;
      
+     
  }
 
 .wrap{width: 100%; 
@@ -617,8 +618,9 @@ body{
 	               		<div class="empty2"></div>
 	               </div>
               	</div>
-              <script>
-
+              	
+              	
+            <script>
               function printClock() {
                   
                   var clock = document.getElementById("clock");           
@@ -652,8 +654,7 @@ body{
                   }
                   return zero + num;
               }
-             
-          </script>  
+            </script>  
           
 		       
 		
