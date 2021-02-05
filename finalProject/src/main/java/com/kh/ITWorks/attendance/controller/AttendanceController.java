@@ -62,9 +62,8 @@ public class AttendanceController {
 	}
 	
 	@RequestMapping("searchIdForm.at")
-	public ModelAndView searchIdForm(ModelAndView mv) {
-		mv.setViewName("attendance/searchIdForm");
-		return mv;
+	public String searchIdForm() {
+		return "attendance/searchIdForm";
 	}
 	
 	@RequestMapping("searchId.at")
@@ -81,9 +80,8 @@ public class AttendanceController {
 	}
 	
 	@RequestMapping("searchPwdForm.at")
-	public ModelAndView searchPwdForm(ModelAndView mv) {
-		mv.setViewName("attendance/searchPwdForm");
-		return mv;
+	public String searchPwdForm() {
+		return "attendance/searchPwdForm";
 	}
 	
 	@RequestMapping("searchPwd.at")
@@ -171,9 +169,8 @@ public class AttendanceController {
 	
 	
 	@RequestMapping("insertForm.bt")
-	public ModelAndView insertBusinessForm(ModelAndView mv) {
-		mv.setViewName("attendance/submitBusinessTrip");
-		return mv;
+	public String insertBusinessForm() {
+		return "attendance/submitBusinessTrip";
 	}
 	
 	
@@ -326,9 +323,8 @@ public class AttendanceController {
 	
 
 	@RequestMapping("insertForm.an")
-	public ModelAndView insertAnnualForm(ModelAndView mv) {
-		mv.setViewName("attendance/submitAnnualLeave");
-		return mv;
+	public String insertAnnualForm() {
+		return "attendance/submitAnnualLeave";
 	}
 	
 
@@ -456,9 +452,8 @@ public class AttendanceController {
 
 	
 	@RequestMapping("workTime.at")
-	public ModelAndView workTimeView(ModelAndView mv) {
-		mv.setViewName("attendance/workTimeListView");
-		return mv;
+	public String workTimeView() {
+		return "attendance/workTimeListView";
 	}
 	
 
